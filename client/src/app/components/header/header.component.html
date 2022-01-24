@@ -17,11 +17,16 @@
       <div class="language">
         <div class="lang-item" >
           <mat-form-field appearance="fill">
-            <mat-select panelClass="panel" empty="false" selected="ENG">
+            <mat-select panelClass="panel" empty="false" [value]="'ENG'">
               <mat-option value="ENG">ENG</mat-option>
               <mat-option value="FR">FR</mat-option>
             </mat-select>
+            <mat-icon matSuffix></mat-icon>
           </mat-form-field>
+          <!-- <select name="language" id="language">
+            <option value="ENG">ENG</option>
+            <option value="FRA">FRA</option>
+          </select> -->
         </div>
       </div>
       <div class="auth-buttons">
