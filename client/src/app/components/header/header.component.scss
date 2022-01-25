@@ -42,6 +42,11 @@
 }
 
 .language {
+  border: 1px solid white;
+  border-radius: 6px;
+  height: 36px;
+  display: flex;
+  align-items: inherit;
   /* margin: 0 20px;
   position: relative;
   color: white;
@@ -58,6 +63,12 @@
     border-bottom: 2px solid white;
     border-left: 2px solid white;
   } */
+}
+
+.lang-item {
+  position: relative;
+  top: 4px;
+  left: 4px;
 }
 
 #language {
@@ -127,7 +138,7 @@
 
   &::after {
     position: absolute;
-    top: 16px;
+    top: 24px;
     right: 20px;
     width: 9px;
     height: 9px;
@@ -139,8 +150,8 @@
   }
 }
 
-.mat-select-arrow-wrapper {
-  display: none;
+::ng-deep div.mat-select-arrow {
+  border: none;
 }
 
 ::ng-deep .mat-form-field-underline,
