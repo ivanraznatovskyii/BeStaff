@@ -20,9 +20,6 @@ mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useFindAndModify: false,
 
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
-
-// new line
-
 app.use(require('morgan')('dev'));
 app.use('/uploads', express.static('uploads'));//make to have access to images directly
 app.use(bodyParser.urlencoded({extended: true}));
