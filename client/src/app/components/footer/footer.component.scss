@@ -8,8 +8,8 @@
   color: $header-font-color;
 }
 
-.container {
-  /* width: 1200px; */
+.footer-container {
+  max-width: 1200px;
   margin: 0 auto;
   border: 1px solid white;
 }
@@ -31,7 +31,7 @@
 .footer-column {
   height: 100%;
   width: 100%;
-  padding: 15px;
+  padding: 35px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

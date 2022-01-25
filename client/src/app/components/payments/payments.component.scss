@@ -1,0 +1,32 @@
+.payments-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.payment-item {
+  display: block;
+  width: 57px;
+  height: 38px;
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.visa {
+  background-image: url('../../../assets/payments.svg');
+}
+
+.master {
+  background-image: url('../../../assets/payments.svg');
+  background-position-x: 199px;
+}
+
+.american-ex {
+  background-image: url('../../../assets/payments.svg');
+  background-position-x: 127px;
+}
+
+.discover {
+  background-image: url('../../../assets/payments.svg');
+  background-position-x: 58px;
+}

@@ -1,0 +1,15 @@
+<div class="contact-wrapper">
+  <div class="contact-header">
+    <h2>Contact us</h2>
+  </div>
+  <div class="contact-us-form">
+    <form [formGroup]="contactUsForm" #contactForm="ngForm">
+      <mat-form-field>
+        <input type="text"
+              name="name"
+              formControlName="name"
+              placeholder="Name">
+      </mat-form-field>
+    </form>
+  </div>
+</div>
