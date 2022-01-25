@@ -1,0 +1,48 @@
+@import 'src/styles/variables';
+
+.footer-wrapper {
+  display: inline-flex;
+  width: 100%;
+  min-height: 250px;
+  background-color: $header-bg-color;
+  color: $header-font-color;
+}
+
+.container {
+  /* width: 1200px; */
+  margin: 0 auto;
+  border: 1px solid white;
+}
+
+.left-block {
+  border: 1px solid white;
+}
+
+.middle-block {
+  border: 1px solid white;
+}
+
+.right-block {
+  height: 100%;
+  border: 1px solid white;
+
+}
+
+.footer-column {
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text {
+  width: 100%;
+}
+
+.payments,
+.socials {
+  align-items: flex-end;
+}

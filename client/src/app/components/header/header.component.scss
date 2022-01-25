@@ -39,6 +39,10 @@
 .main-menu-item {
   padding: 10px;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .language {
@@ -47,22 +51,6 @@
   height: 36px;
   display: flex;
   align-items: inherit;
-  /* margin: 0 20px;
-  position: relative;
-  color: white;
-
-  &::after {
-    position: absolute;
-    top: 16px;
-    right: 20px;
-    width: 9px;
-    height: 9px;
-    content: '';
-    color: white;
-    transform: rotate(-45deg);
-    border-bottom: 2px solid white;
-    border-left: 2px solid white;
-  } */
 }
 
 .lang-item {

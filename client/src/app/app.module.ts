@@ -11,6 +11,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
+import { SocialsComponent } from './components/socials/socials.component';
+import { PaymentsComponent } from './components/payments/payments.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SearchPageComponent,
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ContuctFormComponent,
+    SocialsComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,
