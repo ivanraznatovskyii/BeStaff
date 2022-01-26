@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+.heading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 50px 0 10px 0;
+}
+
+.see-more-link {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: $header-hover-link-color;
+  text-align: right;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 48px;
+}
+
+::ng-deep .mat-tab-label-active {
+  background-color: grey;
+  height: 40px;
+  border-radius: 30px;
+}
+
+::ng-deep .mat-ink-bar {
+  display: none;
+}

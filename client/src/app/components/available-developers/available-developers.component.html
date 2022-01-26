@@ -1,10 +1,34 @@
 <div class="av-dev-wrapper">
-  <div class="row">
-    <div class="col-6"></div>
-    <div class="col-6"></div>
+  <div class="row heading">
+    <div class="col-6">
+      <h2>
+        Available developers
+      </h2>
+    </div>
+    <div class="col-6 see-more-link">
+      See more &#10142;
+    </div>
   </div>
   <div class="row">
-    <div class="col-12"></div>
+    <div class="col-12 skills-block">
+     <!--  <ul class="skills-list">
+        <li class="skills-item"></li>
+        <li class="skills-item"></li>
+        <li class="skills-item"></li>
+        <li class="skills-item"></li>
+        <li class="skills-item"></li> -->
+        <ng-container *ngIf="(asyncTabs | async) === null">
+          Loading tabs...
+        </ng-container>
+
+        <mat-tab-group>
+          <mat-tab *ngFor="let tab of asyncTabs | async">
+            <ng-template mat-tab-label>{{tab.label}}</ng-template>
+            {{tab.content}}
+          </mat-tab>
+        </mat-tab-group>
+      <!-- </ul> -->
+    </div>
   </div>
   <div class="row">
     <div class="col-4"></div>

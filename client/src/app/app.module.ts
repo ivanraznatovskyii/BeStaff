@@ -4,6 +4,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +59,8 @@ import { PartnersComponent } from './components/partners/partners.component';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatChipsModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
