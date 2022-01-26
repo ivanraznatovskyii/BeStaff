@@ -1,35 +1,38 @@
 <div class="header-wrapper">
-  <div class="container">
-    <div class="logo">
+  <div class="row header-container">
+    <div class="col-3 logo">
       <img src="../../../assets/Logo.svg" alt="BeStaff">
     </div>
-    <div class="main-menu">
-      <ul class="main-menu-list">
-        <li class="main-menu-item">About</li>
-        <li class="main-menu-item">Developers</li>
-        <li class="main-menu-item">Services</li>
-        <li class="main-menu-item">Clients</li>
-        <li class="main-menu-item">Career</li>
-        <li class="main-menu-item">Contacts</li>
-      </ul>
-    </div>
-    <div class="right-block">
-      <div class="language">
-        <div class="lang-item" >
-          <mat-form-field appearance="fill" mat-flat-button color="primary">
-            <mat-select panelClass="panel" empty="false" [value]="'ENG'">
-              <mat-option value="ENG">ENG</mat-option>
-              <mat-option value="FR">FR</mat-option>
-            </mat-select>
-            <mat-icon matSuffix></mat-icon>
-          </mat-form-field>
+    <div class="col-8 rest">
+      <div class="main-menu">
+        <ul class="main-menu-list">
+          <li class="main-menu-item">About</li>
+          <li class="main-menu-item">Developers</li>
+          <li class="main-menu-item">Services</li>
+          <li class="main-menu-item">Clients</li>
+          <li class="main-menu-item">Career</li>
+          <li class="main-menu-item">Contacts</li>
+        </ul>
+      </div>
+      <div class="right-block">
+        <div class="language">
+          <div class="lang-item" >
+            <mat-form-field appearance="fill" mat-flat-button color="primary">
+              <mat-select panelClass="panel" empty="false" [value]="'ENG'">
+                <mat-option value="ENG">ENG</mat-option>
+                <mat-option value="FR">FR</mat-option>
+              </mat-select>
+              <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="auth-buttons">
+          <button mat-flat-button color="primary">Register</button>
+          <button mat-flat-button>Login</button>
         </div>
       </div>
-      <div class="auth-buttons">
-        <button mat-flat-button color="primary">Register</button>
-        <button mat-flat-button>Login</button>
-      </div>
     </div>
+    
   </div>
 </div>
 

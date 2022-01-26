@@ -13,20 +13,36 @@
 }
 
 .visa {
-  background-image: url('../../../assets/payments.svg');
+  background-image: url('../../../assets/visa.svg');
+  background-repeat: no-repeat;
+  /* background-position-y: 10px;
+  background-size: contain; */
+  background-position: center;
+  background-size: inherit;
 }
 
 .master {
-  background-image: url('../../../assets/payments.svg');
-  background-position-x: 199px;
+  background-image: url('../../../assets/master.svg');
+  background-repeat: no-repeat;
+  /* background-position-y: 3px;
+  background-position-x: -1px;
+  background-size: contain; */
+  background-position: center;
+  background-size: inherit;
 }
 
 .american-ex {
-  background-image: url('../../../assets/payments.svg');
-  background-position-x: 127px;
+  background-image: url('../../../assets/ae.svg');
+  background-repeat: no-repeat;
+  /* background-position-y: 1px;
+  background-size: contain; */
+  background-position: center;
+  background-size: inherit;
 }
 
 .discover {
-  background-image: url('../../../assets/payments.svg');
-  background-position-x: 58px;
+  background-image: url('../../../assets/discover.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: inherit;
 }
