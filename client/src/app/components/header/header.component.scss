@@ -1,7 +1,8 @@
 @import 'src/styles/variables';
 
 .header-wrapper {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   background-color: $header-bg-color;
   color: $header-font-color;
@@ -162,4 +163,10 @@
 
 ::ng-deep .mat-select-panel mat-option.mat-option {
   color: $header-bg-color;
+}
+
+.banner {
+  width: 100%;
+  max-width: 100%;
+  height: 530px;
 }

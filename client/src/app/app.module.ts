@@ -20,6 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BannerComponent } from './components/banner/banner.component';
+import { AvailableDevelopersComponent } from './components/available-developers/available-developers.component';
+import { AdCalculationComponent } from './components/ad-calculation/ad-calculation.component';
+import { BenefitsComponent } from './components/benefits/benefits.component';
+import { PartnersComponent } from './components/partners/partners.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NotFoundComponent,
     ContuctFormComponent,
     SocialsComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    BannerComponent,
+    AvailableDevelopersComponent,
+    AdCalculationComponent,
+    BenefitsComponent,
+    PartnersComponent
   ],
   imports: [
     BrowserModule,
