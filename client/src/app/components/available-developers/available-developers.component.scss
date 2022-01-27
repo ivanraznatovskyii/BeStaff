@@ -1,5 +1,10 @@
 @import 'src/styles/variables';
 
+.av-dev-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .heading {
   display: inline-flex;
   align-items: center;
@@ -62,14 +67,26 @@ h3.card-heading {
   color: $orange-logo-color;
 }
 
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  margin: 30px 0;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}
+
+::ng-deep .mat-ripple:not(:empty) {
+  height: 40px;
+  width: 125px;
+}
+
 ::ng-deep .mat-tab-label .mat-tab-label-content {
   color: $skills-button-color;
   font-weight: 500;
 }
 
 ::ng-deep .mat-tab-label {
-  width: 125px;
-  height: 40px;
   line-height: 24px;
   border-radius: 30px;
   font-size: 16px;
@@ -92,5 +109,5 @@ h3.card-heading {
 }
 
 ::ng-deep .mat-tab-label-container {
-  padding: 0 0 15px 0;
+  padding: 0 0 40px 0;
 }

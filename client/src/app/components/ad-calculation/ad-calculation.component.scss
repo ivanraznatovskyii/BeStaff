@@ -1,0 +1,44 @@
+@import 'src/styles/variables';
+
+.calc-wrapper {
+  min-height: 500px;
+  background-color: $ad-block-bg-color;
+  align-items: center;
+}
+
+.calc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.elipse-button {
+  height: 54px;
+  width: 317px;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}
+
+.calc-heading {
+  font-size: 52px;
+  line-height: 78px;
+  font-weight: 600;
+  margin: 0 0 23px;
+}
+
+.calc-content {
+  margin: 100px 0 0 0;
+  max-width: 500px;
+}
+
+.text-content {
+  margin: 0 0 35px;
+}
+
+.calc-image {
+  margin: 30px;
+  position: absolute;
+  box-sizing: content-box;
+  text-align: end;
+}

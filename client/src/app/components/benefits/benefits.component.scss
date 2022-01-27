@@ -1,0 +1,68 @@
+@import 'src/styles/variables';
+
+.benefits-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: -webkit-center;
+  padding: 50px 0;
+}
+
+.benefit-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  text-align: center;
+
+  & img {
+    padding: 35px;
+  }
+}
+
+.heading {
+  font-size: 52px;
+  line-height: 78px;
+  font-weight: 600;
+}
+
+.centered-text {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.counts {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 35px 0;
+}
+
+.count {
+  width: 100%;
+}
+
+.benefit-item:not(:last-child) .count {
+  border-right: 2px dashed #284057;
+}
+
+.num {
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 800;
+  color: $orange-logo-color;
+}
+
+.small-text {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.text-content {
+  text-align: center;
+  max-width: 580px;
+}
