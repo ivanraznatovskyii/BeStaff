@@ -11,12 +11,6 @@
   </div>
   <div class="row">
     <div class="col-12 skills-block">
-     <!--  <ul class="skills-list">
-        <li class="skills-item"></li>
-        <li class="skills-item"></li>
-        <li class="skills-item"></li>
-        <li class="skills-item"></li>
-        <li class="skills-item"></li> -->
         <ng-container *ngIf="(asyncTabs | async) === null">
           Loading tabs...
         </ng-container>
@@ -24,10 +18,22 @@
         <mat-tab-group>
           <mat-tab *ngFor="let tab of asyncTabs | async">
             <ng-template mat-tab-label>{{tab.label}}</ng-template>
-            {{tab.content}}
+            <div class="dev-card-list">
+              <div class="dev-card" *ngFor="let dev of devs">
+                <h3 class="card-heading">{{ dev.username }}</h3>
+                <div class="position">{{ dev.position }}</div>
+                <div class="skills">Specialization:</div>
+                <div class="skills-text">
+                  {{ dev.specialization }}
+                </div>
+                <div class="skills">Experience:</div>
+                <div class="skills-text">
+                  {{ dev.experience }}
+                </div>
+              </div>
+            </div>
           </mat-tab>
         </mat-tab-group>
-      <!-- </ul> -->
     </div>
   </div>
   <div class="row">
@@ -36,3 +42,5 @@
     <div class="col-4"></div>
   </div>
 </div>
+
+

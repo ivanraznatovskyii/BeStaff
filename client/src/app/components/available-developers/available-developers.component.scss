@@ -21,12 +21,76 @@ h2 {
   line-height: 48px;
 }
 
-::ng-deep .mat-tab-label-active {
-  background-color: grey;
+.dev-card-list {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dev-card {
+  max-width: 370px;
+  padding: 30px;
+}
+
+.skills {
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+h3.card-heading {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.position {
+  margin: 0 0 15px;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  color: $skills-button-color;
+  font-weight: 500;
+}
+
+::ng-deep .mat-tab-label {
+  width: 125px;
   height: 40px;
+  line-height: 24px;
   border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 24px;
+  background-color: $skills-button-bg;
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-tab-label-active {
+  background-color: $skills-active-button-bg;
 }
 
 ::ng-deep .mat-ink-bar {
   display: none;
+}
+
+::ng-deep .mat-tab-header {
+  border: none;
+}
+
+::ng-deep .mat-tab-label-container {
+  padding: 0 0 15px 0;
 }
