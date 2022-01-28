@@ -4,8 +4,14 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  background-color: $header-bg-color;
   color: $header-font-color;
+}
+
+.bg-color {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: $header-bg-color;
 }
 
 .header-container {
@@ -147,6 +153,30 @@
   }
 }
 
+.mat-menu-item {
+  &:hover {
+    color: $orange-logo-color;
+  }
+}
+
+.main-menu-item.arrow-itm {
+  position: relative;
+  padding-right: 35px;
+
+  &::after {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    width: 9px;
+    height: 9px;
+    content: '';
+    color: white;
+    transform: rotate(-45deg);
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+  }
+}
+
 ::ng-deep div.mat-select-arrow {
   border: none;
 }
@@ -166,7 +196,47 @@
 }
 
 .banner {
+  height: 530px;
   width: 100%;
   max-width: 100%;
-  height: 530px;
+  background-color: transparent;
+  transition: all .3s ease-in-out;
+}
+
+.hide-block {
+  height: 0;
+  transform: scaleY(0);
+}
+
+.toggle-arrow {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  width: 9px;
+  height: 9px;
+  transform: rotate(135deg);
+  border-bottom: 2px solid $header-bg-color;
+  border-left: 2px solid $header-bg-color;
+  transition: transform 0.5 ease-in-out;
+}
+
+.rotate-arrow {
+  transform: rotate(315deg);
+  top: 13px;
+  right: 20px;
+}
+
+.banner-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 39px;
+  border-radius: 25px;
+  background-color: white;
+  vertical-align: middle;
+  color: black;
+  cursor: pointer;
+  margin: 0 auto;
+  transform: translateY(-20px);
 }

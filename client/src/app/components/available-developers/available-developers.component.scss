@@ -3,6 +3,7 @@
 .av-dev-wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 0 80px ;
 }
 
 .heading {
@@ -34,9 +35,10 @@ h2 {
   align-items: center;
 }
 
-.dev-card {
+div.dev-card {
   max-width: 370px;
   padding: 30px;
+  background-color: white;
 }
 
 .skills {
@@ -46,6 +48,7 @@ h2 {
 }
 
 .skills-text {
+  padding: 5px 0 15px;
   font-size: 14px;
   line-height: 21px;
   color: $dev-card-heading-color;
@@ -76,7 +79,7 @@ h3.card-heading {
   background-color: $orange-logo-color;
 }
 
-::ng-deep .mat-ripple:not(:empty) {
+::ng-deep div.mat-tab-label {
   height: 40px;
   width: 125px;
 }

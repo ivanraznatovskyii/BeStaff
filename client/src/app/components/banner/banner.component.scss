@@ -1,9 +1,66 @@
+@import 'src/styles/variables';
+
 .banner-wrapper {
   min-height: 530px;
-  background-color: aquamarine;
+  width: 100%;
   background-image: url('../../../assets/banner-bg.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
+  
+}
+
+
+.mat-content {
+  width: 100px;
+  height: 40px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-expansion-panel {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel-header {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.elipse-button {
+  height: 54px;
+  width: 160px;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}
+
+.transparent {
+  border: 1px solid $header-font-color;
+  margin-left: 30px;
+  background-color: transparent;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 48px auto;
+}
+
+.banner-heading {
+  font-size: 70px;
+  line-height: 105px;
+  font-weight: 600;
+}
+
+.text-content {
+  font-size: 18px;
+  line-height: 27px;
+  margin: 0 0 35px;
+}
+
+.in-block {
+  max-width: 680px;
 }

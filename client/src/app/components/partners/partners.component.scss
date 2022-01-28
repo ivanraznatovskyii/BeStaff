@@ -1,0 +1,66 @@
+@import 'src/styles/variables';
+
+.partners-container {
+  box-sizing: content-box;
+  margin: 0 auto;
+  text-align: -webkit-center;
+  padding: 50px 0;
+}
+
+.partners {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.partners-item {
+  padding: 0 25px;
+  opacity: 0.5;
+}
+
+.heading {
+  font-size: 52px;
+  line-height: 78px;
+  font-weight: 600;
+}
+
+.centered-text {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.counts {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 35px 0;
+}
+
+.count {
+  width: 100%;
+}
+
+.benefit-item:not(:last-child) .count {
+  border-right: 2px dashed #284057;
+}
+
+.num {
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 800;
+  color: $orange-logo-color;
+}
+
+.small-text {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.text-content {
+  text-align: center;
+  max-width: 580px;
+}
