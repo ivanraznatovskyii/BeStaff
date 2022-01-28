@@ -1,10 +1,27 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .header-wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   color: $header-font-color;
+}
+
+.logo {
+  text-align: center;
+
+  @include respond-to($media-left-align-logo) {
+    text-align: initial;
+  }
+}
+
+.main-menu {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: block;
+  }
 }
 
 .bg-color {
@@ -25,9 +42,17 @@
 
 .rest {
   display: inline-flex;
-  justify-content: space-between;
+  flex-direction: column;
   box-sizing: content-box;
-  align-items: center;
+  min-height: 71px;
+  align-items: end;
+  justify-content: center;
+
+  @include respond-to($media_large) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .right-block {
@@ -35,6 +60,14 @@
   justify-content: space-between;
   box-sizing: content-box;
   align-items: center;
+  padding-right: 45px;
+
+  @include respond-to($media_large) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
 }
 
  .mat-select-value-text {
@@ -64,8 +97,12 @@
   /* border: 1px solid white;
   border-radius: 6px;
   height: 36px; */
-  display: flex;
+  display: none;
   align-items: inherit;
+
+  @include respond-to($media_large) {
+    display: flex;
+  }
 }
 
 .lang-item {
@@ -97,12 +134,14 @@
     color: $header-bg-color;
     background-color: $header-font-color;
   }
-
-
 }
 
 .auth-buttons {
   margin: 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 
   & button {
     margin-left: 10px;
@@ -111,6 +150,12 @@
     font-weight: 500;
 
     &:first-child {
+      display: none;
+
+      @include respond-to($media_large) {
+        display: initial;
+      }
+
       background-color: transparent;
       border: 1px solid $header-font-color;
 
@@ -196,11 +241,15 @@
 }
 
 .banner {
-  height: 530px;
+  height: 850px;
   width: 100%;
   max-width: 100%;
   background-color: transparent;
-  transition: all .3s ease-in-out;
+  transition: all .2s ease;
+
+  @include respond-to($media_large) {
+    height: 530px;
+  }
 }
 
 .hide-block {
@@ -215,8 +264,8 @@
   width: 9px;
   height: 9px;
   transform: rotate(135deg);
-  border-bottom: 2px solid $header-bg-color;
-  border-left: 2px solid $header-bg-color;
+  border-bottom: 2px solid #a8adbd;
+  border-left: 2px solid #a8adbd;
   transition: transform 0.5 ease-in-out;
 }
 
@@ -235,8 +284,88 @@
   border-radius: 25px;
   background-color: white;
   vertical-align: middle;
-  color: black;
+  color: $header-bg-color;
   cursor: pointer;
   margin: 0 auto;
   transform: translateY(-20px);
+}
+
+.burger-container {
+  width: 35px;
+  height: 35px;
+}
+
+
+
+
+
+
+
+
+input[type="checkbox"]:checked ~ #sidebarMenu {
+  transform: translatey(0);
+  top:50px /*change here related your top menu height*/
+}
+input[type=checkbox] {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: none;
+}
+.sidebarIconToggle {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  height: 32px;
+  width: 32px;
+  right:24px;
+  top:28px;
+  border-radius: 3px;
+  /* display: none */
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 6px;
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 6px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -12px;
 }

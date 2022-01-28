@@ -1,4 +1,5 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .calc-wrapper {
   min-height: 500px;
@@ -28,8 +29,18 @@
 }
 
 .calc-content {
-  margin: 100px 0 0 0;
+  margin: 0 auto;
+  padding: 0 15px;
   max-width: 500px;
+  text-align: center;
+  order: 2;
+
+  @include respond-to($media_large) {
+    order: 1;
+    margin: 100px 0 0 0;
+    padding: 0;
+    text-align: right;
+  }
 }
 
 .text-content {
@@ -37,8 +48,33 @@
 }
 
 .calc-image {
-  margin: 30px;
-  position: absolute;
+  margin: 30px 0;
+  position: relative;
   box-sizing: content-box;
   text-align: end;
+  justify-content: center;
+  display: flex;
+  order: 1;
+
+  @include respond-to($media_large) {
+    order: 2;
+    position: absolute;
+    margin: 30px;
+  }
+}
+
+.big-img {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: block;
+  }
+}
+
+.mini-img {
+  display: block;
+
+  @include respond-to($media_large) {
+    display: none;
+  }
 }

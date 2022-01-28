@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +11,9 @@ import { MatAccordion } from '@angular/material/expansion';
 export class HeaderComponent implements OnInit {
 
   isShowed: boolean = true;
+  isMenuOpenedCheckox: FormControl = new FormControl();
 
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
+  @ViewChild('mobileMenu', { static: true }) mobileMenu!: MatMenu;
 
   constructor() { }
 
@@ -19,6 +22,10 @@ export class HeaderComponent implements OnInit {
 
   visibilityToggle() {
     this.isShowed = !this.isShowed;
+  }
+
+  onMobileMenuClose() {
+    this.isMenuOpenedCheckox.setValue(!this.isMenuOpenedCheckox.value);
   }
 
 }

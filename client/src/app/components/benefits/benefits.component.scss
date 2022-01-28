@@ -1,4 +1,5 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .benefits-container {
   max-width: 1200px;
@@ -37,13 +38,26 @@
   width: 100%;
   display: inline-flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0 auto;
   padding: 35px 0;
+
+  @include respond-to($media_large) {
+    flex-wrap: nowrap;
+  }
 }
 
 .count {
   width: 100%;
+}
+
+.benefit-item:first-child + div .count {
+  border: none;
+
+  @include respond-to($media_large) {
+    border-right: 2px dashed #284057;
+  }
 }
 
 .benefit-item:not(:last-child) .count {

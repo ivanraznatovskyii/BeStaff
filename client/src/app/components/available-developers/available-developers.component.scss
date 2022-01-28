@@ -1,9 +1,14 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .av-dev-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 0 80px ;
+  padding: 0 15px 80px 15px;
+
+  @include respond-to($media_large) {
+    padding: 0 0 80px;
+  }
 }
 
 .heading {
@@ -11,7 +16,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 50px 0 10px 0;
+  padding: 0 0 10px 0;
+
+  @include respond-to($media_large) {
+    padding: 50px 0 10px 0;
+  }
 }
 
 .see-more-link {
@@ -28,15 +37,20 @@ h2 {
 }
 
 .dev-card-list {
-  width: 100%;
+  width: auto;
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 div.dev-card {
-  max-width: 370px;
+  width: 370px;
   padding: 30px;
   background-color: white;
 }
@@ -95,8 +109,13 @@ h3.card-heading {
   font-size: 16px;
   font-weight: 500;
   margin-right: 24px;
+  margin-bottom: 10px;
   background-color: $skills-button-bg;
   opacity: 1 !important;
+
+  @include respond-to($media_large) {
+    margin-bottom: 0;
+  }
 }
 
 ::ng-deep .mat-tab-label-active {
@@ -113,4 +132,13 @@ h3.card-heading {
 
 ::ng-deep .mat-tab-label-container {
   padding: 0 0 40px 0;
+}
+
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-before,
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-after {
+  display: none;
+}
+
+::ng-deep .mat-tab-labels {
+  flex-wrap: wrap;
 }
