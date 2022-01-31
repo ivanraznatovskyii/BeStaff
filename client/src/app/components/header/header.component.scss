@@ -293,6 +293,11 @@
 .burger-container {
   width: 35px;
   height: 35px;
+  display: initial;
+
+  @include respond-to($media_large) {
+    display: none;
+  }
 }
 
 

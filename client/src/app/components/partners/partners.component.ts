@@ -22,10 +22,10 @@ export class PartnersComponent implements OnInit {
         el = document.querySelector('#fst');
         break;
       case 2:
-        el = document.querySelector('#scd')
+        el = document.querySelector('#scd');
         break;
       case 3:
-        el = document.querySelector('#trd')
+        el = document.querySelector('#trd');
         break;
       default: el = document.querySelector('#fst');
     }

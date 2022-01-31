@@ -31,6 +31,8 @@ import { AvailableDevelopersComponent } from './components/available-developers/
 import { AdCalculationComponent } from './components/ad-calculation/ad-calculation.component';
 import { BenefitsComponent } from './components/benefits/benefits.component';
 import { PartnersComponent } from './components/partners/partners.component';
+import { RegistrationComponent } from './components/pages/registration/registration.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { PartnersComponent } from './components/partners/partners.component';
     AvailableDevelopersComponent,
     AdCalculationComponent,
     BenefitsComponent,
-    PartnersComponent
+    PartnersComponent,
+    RegistrationComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

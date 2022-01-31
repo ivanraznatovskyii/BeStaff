@@ -8,7 +8,7 @@
         <div class="main-menu">
           <ul class="main-menu-list">
             <li class="main-menu-item">About</li>
-            <li class="main-menu-item">Developers</li>
+            <li class="main-menu-item" [routerLink]="['/developers']">Developers</li>
             <li class="main-menu-item arrow-itm" [matMenuTriggerFor]="menu">Services
               <mat-menu #menu="matMenu">
                 <button mat-menu-item>Lorem ipsum</button>
@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="auth-buttons">
-            <button mat-flat-button color="primary">Register</button>
+            <button mat-flat-button color="primary" [routerLink]="['/register']">Register</button>
             <button mat-flat-button>Login</button>
             <div class="burger-container">
               <input type="checkbox"
@@ -48,7 +48,7 @@
               </label>
               <mat-menu #mobileMenu="matMenu" (close)="onMobileMenuClose()">
                 <button mat-menu-item>About</button>
-                <button mat-menu-item>Developers</button>
+                <button mat-menu-item [routerLink]="['/developers']">Developers</button>
                 <button mat-menu-item>Clients</button>
                 <button mat-menu-item>Career</button>
                 <button mat-menu-item>Contacts</button>

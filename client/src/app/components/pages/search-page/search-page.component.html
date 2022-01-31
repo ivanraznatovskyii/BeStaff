@@ -1,1 +1,35 @@
-<p>search-page works!</p>
+<div class="search-wrapper">
+  <div class="search-container">
+    <app-breadcrumbs></app-breadcrumbs>
+    <div class="search-intro">
+      <div class="row heading">
+          <h2>
+            Available Developers
+          </h2>
+        <div class="intro-text">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi numquam iste sit vitae provident, nobis architecto est nihil blanditiis rem?
+        </div>
+      </div>
+    </div>
+    <div class="search-form-container">
+      <form action="">
+        <input type="text" name="" id="">
+      </form>
+    </div>
+    <div class="searching-results">
+      <div class="searching-results-content">
+        <div class="results-count">
+          Found 3 developers
+        </div>
+        <div class="col-6 see-more-link" [routerLink]="['/developers']">
+          See more &#10142;
+        </div>
+      </div>
+      <div class="searching-results-paginator">
+
+      </div>
+    </div>
+    <app-ad-calculation></app-ad-calculation>
+  </div>
+</div>
+

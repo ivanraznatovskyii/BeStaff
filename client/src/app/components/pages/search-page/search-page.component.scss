@@ -1,0 +1,20 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.see-more-link {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: $header-hover-link-color;
+  text-align: right;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 48px;
+}
