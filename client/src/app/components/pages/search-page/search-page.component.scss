@@ -6,6 +6,10 @@
   margin: 0 auto;
 }
 
+.search-intro {
+  padding: 30px 0;
+}
+
 .see-more-link {
   font-size: 20px;
   line-height: 30px;
@@ -14,7 +18,21 @@
   text-align: right;
 }
 
-h2 {
+.heading h2 {
   font-size: 32px;
   line-height: 48px;
+  font-weight: 600;
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.results-count {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $found-font-color;
 }
