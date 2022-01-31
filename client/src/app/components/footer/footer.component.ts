@@ -9,6 +9,7 @@ import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 export class FooterComponent implements OnInit {
 
   faCopyright = faCopyright;
+  currentYear: number = new Date().getFullYear();
 
   constructor() { }
 

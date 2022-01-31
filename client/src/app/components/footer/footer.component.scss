@@ -1,4 +1,5 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .footer-wrapper {
   display: inline-flex;
@@ -9,8 +10,7 @@
   color: $header-font-color;
 }
 
-.footer-container,
-.footer-bottom {
+.footer-container {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -21,6 +21,26 @@
 
 .footer-container {
   margin-top: 15px;
+  justify-content: center;
+
+  & div:not(:first-child) {
+    display: none;
+
+    @include respond-to($media_large) {
+      display: initial;
+    }
+  }
+
+  & div:first-child {
+    text-align: center;
+    width: auto;
+
+    & h3 {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
 }
 
 .rights-text {
@@ -84,4 +104,27 @@ h3 {
   font-size: 18px;
   line-height: 27px;
   padding: 0 10px;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  
+
+  & div {
+    width: 100%;
+    padding: 15px 0 0;
+
+    &:last-child {
+      transform: translateX(-40px);
+    }
+  }
+
+  @include respond-to($media_large) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

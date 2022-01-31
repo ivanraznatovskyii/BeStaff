@@ -1,15 +1,15 @@
 
 <div class="partners-wrapper">
   <div class="partners-container">
-    <!-- <div class="partners">
-      <div class="partners-item">
+    <div class="partners" >
+      <div class="partners-item"  id="fst">
         <img src="../../../assets/daxx.svg" alt="">
       </div>
       <div class="partners-item">
         <img src="../../../assets/epam.svg" alt="">
       </div>
       <div class="partners-item">
-        <img src="../../../assets/sigma.svg" alt="">
+        <img src="../../../assets/sigma.svg" alt="" id="scd">
       </div>
       <div class="partners-item">
         <img src="../../../assets/SoftServe.svg" alt="">
@@ -18,50 +18,18 @@
         <img src="../../../assets/DataArt.svg" alt="">
       </div>
       <div class="partners-item">
-        <img src="../../../assets/ciklum.svg" alt="">
+        <img src="../../../assets/ciklum.svg" alt="" id="trd">
       </div>
       <div class="partners-item">
         <img src="../../../assets/Luxoft.svg" alt="">
       </div>
     </div>
-    <div class="slider-btns">
-      <span class="slider-item"></span>
-      <span class="slider-item"></span>
-      <span class="slider-item"></span>
-    </div> -->
-
-
-
-
-
-    <div class="partners">
-      <mat-tab-group headerPosition="below">
-        <mat-tab label="">
-          <div class="partners-item">
-            <img src="../../../assets/daxx.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/epam.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/sigma.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/SoftServe.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/DataArt.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/ciklum.svg" alt="">
-          </div>
-          <div class="partners-item">
-            <img src="../../../assets/Luxoft.svg" alt="">
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-
-
   </div>
+  <div class="slider-btns">
+      <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
+        <mat-radio-button [value]="1" class="radio-item" checked></mat-radio-button>
+        <mat-radio-button [value]="2" class="radio-item"></mat-radio-button>
+        <mat-radio-button [value]="3" class="radio-item"></mat-radio-button>
+      </mat-radio-group>
+    </div>
 </div>

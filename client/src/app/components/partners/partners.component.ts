@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartnersComponent implements OnInit {
 
+  radioItem: FormControl = new FormControl('1')
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  change() {
+    let el;
+    console.log(this.radioItem.value);
+    switch(this.radioItem.value) {
+      case 1:
+        el = document.querySelector('#fst');
+        break;
+      case 2:
+        el = document.querySelector('#scd')
+        break;
+      case 3:
+        el = document.querySelector('#trd')
+        break;
+      default: el = document.querySelector('#fst');
+    }
+    el?.scrollIntoView({ block: 'center', inline: 'start' })
   }
 
 }
