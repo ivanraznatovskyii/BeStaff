@@ -17,7 +17,6 @@ export class PartnersComponent implements OnInit {
 
   change() {
     let el;
-    console.log(this.radioItem.value);
     switch(this.radioItem.value) {
       case 1:
         el = document.querySelector('#fst');

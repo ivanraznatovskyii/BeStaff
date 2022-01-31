@@ -9,6 +9,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatRippleModule} from '@angular/material/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +68,7 @@ import { PartnersComponent } from './components/partners/partners.component';
     MatMenuModule,
     MatExpansionModule,
     MatRadioModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
