@@ -2,6 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatRippleModule} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,8 +23,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
 import { SocialsComponent } from './components/socials/socials.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BannerComponent } from './components/banner/banner.component';
+import { AvailableDevelopersComponent } from './components/available-developers/available-developers.component';
+import { AdCalculationComponent } from './components/ad-calculation/ad-calculation.component';
+import { BenefitsComponent } from './components/benefits/benefits.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { RegistrationComponent } from './components/pages/registration/registration.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 
 @NgModule({
@@ -25,14 +48,39 @@ import { PaymentsComponent } from './components/payments/payments.component';
     NotFoundComponent,
     ContuctFormComponent,
     SocialsComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    BannerComponent,
+    AvailableDevelopersComponent,
+    AdCalculationComponent,
+    BenefitsComponent,
+    PartnersComponent,
+    RegistrationComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatSelectModule
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    FontAwesomeModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

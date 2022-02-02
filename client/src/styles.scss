@@ -42,17 +42,8 @@ $bestaff-theme: mat.define-light-theme((
 @import 'src/styles/variables';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Poppins, sans-serif;}
+body { margin: 0; font-family: Poppins, sans-serif; color: $dev-card-heading-color;}
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Poppins, 'Poppins', sans-serif;
-}
 
 .mat-badge-content {
   font-weight: 600;
@@ -3129,4 +3120,8 @@ td.mat-footer-cell {
   & button {
     color: white;
   }
+}
+
+.row {
+  --bs-gutter-x: 0;
 }

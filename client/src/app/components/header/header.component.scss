@@ -1,19 +1,59 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .header-wrapper {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  background-color: $header-bg-color;
   color: $header-font-color;
+  background-color: $bg-color-light;
 }
 
-.container {
+.logo {
+  text-align: center;
+
+  @include respond-to($media-left-align-logo) {
+    text-align: initial;
+  }
+}
+
+.main-menu {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: block;
+  }
+}
+
+.bg-color {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: $header-bg-color;
+}
+
+.header-container {
   display: inline-flex;
+  flex-direction: row;
   justify-content: space-between;
-  box-sizing: content-box;
   align-items: center;
   width: 1200px;
   margin: 0 auto;
+}
+
+.rest {
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  min-height: 71px;
+  align-items: end;
+  justify-content: center;
+
+  @include respond-to($media_large) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .right-block {
@@ -21,6 +61,14 @@
   justify-content: space-between;
   box-sizing: content-box;
   align-items: center;
+  padding-right: 45px;
+
+  @include respond-to($media_large) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
 }
 
  .mat-select-value-text {
@@ -33,6 +81,7 @@
   flex-wrap: wrap;
   list-style-type: none;
   line-height: 19px;
+  margin: 0;
   font-weight: 500;
 }
 
@@ -46,11 +95,15 @@
 }
 
 .language {
-  border: 1px solid white;
+  /* border: 1px solid white;
   border-radius: 6px;
-  height: 36px;
-  display: flex;
+  height: 36px; */
+  display: none;
   align-items: inherit;
+
+  @include respond-to($media_large) {
+    display: flex;
+  }
 }
 
 .lang-item {
@@ -82,12 +135,14 @@
     color: $header-bg-color;
     background-color: $header-font-color;
   }
-
-
 }
 
 .auth-buttons {
   margin: 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 
   & button {
     margin-left: 10px;
@@ -96,6 +151,12 @@
     font-weight: 500;
 
     &:first-child {
+      display: none;
+
+      @include respond-to($media_large) {
+        display: initial;
+      }
+
       background-color: transparent;
       border: 1px solid $header-font-color;
 
@@ -121,13 +182,37 @@
 }
 
 .mat-form-field {
-  width: 80px;
+  width: 85px;
   color: white;
 
   &::after {
     position: absolute;
     top: 24px;
     right: 20px;
+    width: 9px;
+    height: 9px;
+    content: '';
+    color: white;
+    transform: rotate(-45deg);
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+  }
+}
+
+.mat-menu-item {
+  &:hover {
+    color: $orange-logo-color;
+  }
+}
+
+.main-menu-item.arrow-itm {
+  position: relative;
+  padding-right: 35px;
+
+  &::after {
+    position: absolute;
+    top: 13px;
+    right: 15px;
     width: 9px;
     height: 9px;
     content: '';
@@ -149,9 +234,144 @@
 
 ::ng-deep .mat-select-panel,
 ::ng-deep .mat-select-value-text {
-  color: $header-font-color;
+  color: $header-hover-link-color;
 }
 
 ::ng-deep .mat-select-panel mat-option.mat-option {
   color: $header-bg-color;
+}
+
+.banner {
+  height: 850px;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  transition: all .2s ease;
+
+  @include respond-to($media_large) {
+    height: 530px;
+  }
+}
+
+.hide-block {
+  height: 0;
+  transform: scaleY(0);
+}
+
+.toggle-arrow {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  width: 9px;
+  height: 9px;
+  transform: rotate(135deg);
+  border-bottom: 2px solid #a8adbd;
+  border-left: 2px solid #a8adbd;
+  transition: transform 0.5 ease-in-out;
+}
+
+.rotate-arrow {
+  transform: rotate(315deg);
+  top: 13px;
+  right: 20px;
+}
+
+.banner-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 39px;
+  border-radius: 25px;
+  background-color: white;
+  vertical-align: middle;
+  color: $header-bg-color;
+  cursor: pointer;
+  margin: 0 auto;
+  transform: translateY(-20px);
+}
+
+.burger-container {
+  width: 35px;
+  height: 35px;
+  display: initial;
+
+  @include respond-to($media_large) {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+input[type="checkbox"]:checked ~ #sidebarMenu {
+  transform: translatey(0);
+  top:50px /*change here related your top menu height*/
+}
+input[type=checkbox] {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: none;
+}
+.sidebarIconToggle {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  height: 32px;
+  width: 32px;
+  right:24px;
+  top:28px;
+  border-radius: 3px;
+  /* display: none */
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 6px;
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 6px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -12px;
 }

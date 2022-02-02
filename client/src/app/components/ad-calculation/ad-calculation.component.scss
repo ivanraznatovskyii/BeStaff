@@ -1,0 +1,82 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.calc-wrapper {
+  min-height: 500px;
+  background-color: $ad-block-bg-color;
+  align-items: center;
+}
+
+.calc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.elipse-button {
+  height: 54px;
+  width: 317px;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}
+
+.calc-heading {
+  font-size: 52px;
+  line-height: 78px;
+  font-weight: 600;
+  margin: 0 0 23px;
+}
+
+.calc-content {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 500px;
+  text-align: center;
+  order: 2;
+
+  @include respond-to($media_large) {
+    order: 1;
+    margin: 100px 0 0 0;
+    padding: 0;
+    text-align: right;
+  }
+}
+
+.text-content {
+  margin: 0 0 35px;
+}
+
+.calc-image {
+  margin: 30px 0;
+  position: relative;
+  box-sizing: content-box;
+  text-align: end;
+  justify-content: center;
+  display: flex;
+  order: 1;
+
+  @include respond-to($media_large) {
+    order: 2;
+    position: absolute;
+    margin: 30px;
+    display: block;
+  }
+}
+
+.big-img {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: initial;
+  }
+}
+
+.mini-img {
+  display: block;
+
+  @include respond-to($media_large) {
+    display: none;
+  }
+}

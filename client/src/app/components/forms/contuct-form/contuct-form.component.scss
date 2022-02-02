@@ -1,0 +1,48 @@
+@import 'src/styles/variables';
+
+.contact-wrapper {
+  padding: 15px;
+}
+
+.contact-header {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+
+.mat-form-field {
+  width: 80px;
+  color: white;
+
+  /* &::after {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    width: 9px;
+    height: 9px;
+    content: '';
+    color: white;
+    transform: rotate(-45deg);
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+  } */
+}
+
+::ng-deep div.mat-select-arrow {
+  border: none;
+}
+
+::ng-deep .mat-form-field-underline,
+.mat-form-field-subscript-wrapper {
+  width: 0 !important;
+}
+
+::ng-deep .mat-select-panel,
+::ng-deep .mat-select-value-text {
+  color: $header-font-color;
+}
+
+::ng-deep span.mat-form-field-label-wrapper {
+  color: $header-font-color !important;
+}

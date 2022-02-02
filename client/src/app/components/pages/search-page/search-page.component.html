@@ -1,1 +1,184 @@
-<p>search-page works!</p>
+<div class="search-wrapper">
+  <div class="search-container">
+    <app-breadcrumbs></app-breadcrumbs>
+    <div class="search-intro">
+      <div class="row heading">
+          <h2>
+            Available Developers
+          </h2>
+        <div class="intro-text">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi numquam iste sit vitae provident, nobis architecto est nihil blanditiis rem?
+        </div>
+      </div>
+    </div>
+    <div class="search-form-container">
+      <div class="row query-row">
+        <div class=" query-col col-10">
+          <mat-form-field class="query-input">
+            <input matInput
+                  type="text"
+                  [formControl]="query"
+                  placeholder="Search by Keywords">
+          </mat-form-field>
+        </div>
+        <div class="btn-col col-2">
+          <button type="button"
+                  mat-raised-button
+                  class="search-btn">
+            <span class="search-btn-text"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="row forms-row">
+        <div class="col-12">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Search by Stack
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              <div class="form-container">
+                <div class="left-block checkboxes-container">
+                  <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
+                    <input type="checkbox" formControlName="frontend" id="frontend">
+                    <label for="frontend" [ngClass]="{ 'label_chacked': searchFormGroup.get('frontend')?.value }">Frontend</label>
+                    <input type="checkbox" formControlName="backend" id="backend">
+                    <label for="backend" [ngClass]="{ 'label_chacked': searchFormGroup.get('backend')?.value }">Backend</label>
+                    <input type="checkbox" formControlName="cCharp" id="cCharp">
+                    <label for="cCharp" [ngClass]="{ 'label_chacked': searchFormGroup.get('cCharp')?.value }">C#</label>
+                    <input type="checkbox" formControlName="js" id="js">
+                    <label for="js" [ngClass]="{ 'label_chacked': searchFormGroup.get('js')?.value }">Java Script</label>
+                    <input type="checkbox" formControlName="dotNet" id="dotNet">
+                    <label for="dotNet" [ngClass]="{ 'label_chacked': searchFormGroup.get('dotNet')?.value }">.NET</label>
+                    <input type="checkbox" formControlName="sql" id="sql">
+                    <label for="sql" [ngClass]="{ 'label_chacked': searchFormGroup.get('sql')?.value }">SQL</label>
+                    <input type="checkbox" formControlName="qa" id="qa">
+                    <label for="qa" [ngClass]="{ 'label_chacked': searchFormGroup.get('qa')?.value }">QA</label>
+                    <input type="checkbox" formControlName="php" id="php">
+                    <label for="php" [ngClass]="{ 'label_chacked': searchFormGroup.get('php')?.value }">PHP</label>
+                    <input type="checkbox" formControlName="magento" id="magento">
+                    <label for="magento" [ngClass]="{ 'label_chacked': searchFormGroup.get('magento')?.value }">Magento</label>
+                    <input type="checkbox" formControlName="java" id="java">
+                    <label for="java" [ngClass]="{ 'label_chacked': searchFormGroup.get('java')?.value }">Java</label>
+                    <input type="checkbox" formControlName="ruby" id="ruby">
+                    <label for="ruby" [ngClass]="{ 'label_chacked': searchFormGroup.get('ruby')?.value }">Ruby</label>
+                    <input type="checkbox" formControlName="angular" id="angular">
+                    <label for="angular" [ngClass]="{ 'label_chacked': searchFormGroup.get('angular')?.value }">Angular</label>
+                    <input type="checkbox" formControlName="android" id="android">
+                    <label for="android" [ngClass]="{ 'label_chacked': searchFormGroup.get('android')?.value }">Android</label>
+                    <input type="checkbox" formControlName="ios" id="ios">
+                    <label for="ios" [ngClass]="{ 'label_chacked': searchFormGroup.get('ios')?.value }">IOS</label>
+                    <input type="checkbox" formControlName="devOps" id="devOps">
+                    <label for="devOps" [ngClass]="{ 'label_chacked': searchFormGroup.get('devOps')?.value }">DevOps</label>
+                    <input type="checkbox" formControlName="azure" id="azure">
+                    <label for="azure" [ngClass]="{ 'label_chacked': searchFormGroup.get('azure')?.value }">Azure</label>
+                    <input type="checkbox" formControlName="react" id="react">
+                    <label for="react" [ngClass]="{ 'label_chacked': searchFormGroup.get('react')?.value }">React</label>
+                    <input type="checkbox" formControlName="vue" id="vue">
+                    <label for="vue" [ngClass]="{ 'label_chacked': searchFormGroup.get('vue')?.value }">Vue</label>
+                  </form>
+                </div>
+                <div class="right-block">
+                  <div class="ex-slider-wrapper">
+                    <div class="slider-heading">
+                      Experience in years
+                    </div>
+                    <mat-slider [displayWith]="currentYearsExp"
+                                tickInterval="1"
+                                [value]="sliderValue"
+                                thumbLabel="true"
+                                displayValue="true"
+                                step="1"
+                                min="0"
+                                max="10"
+                                color="primary"
+                                aria-label="units"
+                                class="ex-slider">
+                    </mat-slider>
+                  </div>
+                  <div class="seniority-wrapper">
+                    <div class="slider-heading">
+                      Seniority
+                    </div>
+                    <div class="checkboxes-seniority-container">
+                      <mat-checkbox [formControl]="seniorityJunior" id="seniority-junior">
+                        <label for="seniority-junior" class="seniority-item-label">Junior</label>
+                      </mat-checkbox>
+                      <mat-checkbox [formControl]="seniorityMiddle" id="seniority-middle">
+                        <label for="seniority-middle" class="seniority-item-label">Middle</label>
+                      </mat-checkbox>
+                      <mat-checkbox [formControl]="senioritySenior" id="seniority-senior">
+                        <label for="seniority-senior" class="seniority-item-label">Senior</label>
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="row btn-container">
+                <button type="button"
+                        mat-raised-button
+                        (click)="clearFilters()"
+                        class="clear-btn_buttom">
+                  Clear filters
+                </button>
+                <button type="button"
+                        mat-raised-button
+                        class="search-btn_buttom">
+                  Search 
+                </button>
+              </div>
+            </ng-template>
+            
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </div>
+    <div class="searching-results">
+      <div class="row searching-results-content">
+        <div class="col-6 results-count">
+          Found 3 developers
+        </div>
+        <div class="col-6 see-more-link" [routerLink]="['/developers']">
+          See more &#10142;
+        </div>
+      </div>
+      <div class="row" style="overflow: scroll;">
+        <div class="col-12">
+          <div class="dev-card-list">
+            <div class="dev-card" *ngFor="let dev of showedCards">
+              <h3 class="card-heading">{{ dev.username }}</h3>
+              <div class="position">{{ dev.position }}</div>
+              <div class="skills">Specialization:</div>
+              <div class="skills-text">
+                {{ dev.specialization }}
+              </div>
+              <div class="skills">Email:</div>
+              <div class="skills-text">
+                {{ dev.email }}
+              </div>
+              <mat-checkbox>
+                <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
+              </mat-checkbox>
+              <button mat-flat-button class="elipse-button">Open CV</button>
+              <!-- <b>{{ dev.id }}</b> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="searching-results-paginator">
+        <div class="prev-page" (click)="changeCurrentPage('-')"></div>
+          <div class="pages" 
+               [ngClass]="{ 'pages_active': num === currentPage }" 
+               *ngFor="let num of pagesNumberArray"
+               (click)="changeCurrentPage(num)">
+            {{ num }}
+          </div>
+        <div class="next-page" (click)="changeCurrentPage('+')"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-ad-calculation></app-ad-calculation>

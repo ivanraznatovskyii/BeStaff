@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCopyright, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+
+  faCopyright = faCopyright;
+  faComment = faCommentDots;
+  currentYear: number = new Date().getFullYear();
 
   constructor() { }
 
