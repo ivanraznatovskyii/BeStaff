@@ -4,7 +4,7 @@
 .banner-wrapper {
   position: relative;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   min-height: 850px;
   width: 100%;
   background-image: linear-gradient(to bottom, #18263400, #18263433, #18263455, #182634dd, #182634ff), url('../../../assets/bg-mobile.png');
@@ -15,7 +15,7 @@
 
   @include respond-to($media_large) {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     min-height: 530px;
     background-position: center;
     background-image: url('../../../assets/banner-bg.png');

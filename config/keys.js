@@ -1,7 +1,7 @@
-const { json } = require("body-parser");
+if(process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys.prod')
+} else {
+  module.exports = require('./keys.dev')
+}
 
-module.exports = {
-  mongoURI: 'mongodb+srv://ivan_matador:angular_pass15@cluster0.o1usf.mongodb.net/angularService?retryWrites=true&w=majority',
-  jsonWebToken: 'dev-jwt'
-};
 

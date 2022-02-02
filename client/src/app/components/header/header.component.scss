@@ -46,7 +46,7 @@
   flex-direction: column;
   box-sizing: content-box;
   min-height: 71px;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
 
   @include respond-to($media_large) {
