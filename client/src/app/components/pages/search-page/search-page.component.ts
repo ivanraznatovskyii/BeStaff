@@ -38,6 +38,8 @@ export class SearchPageComponent implements OnInit {
   senioritySenior: FormControl = new FormControl();
   searchFormGroup!: FormGroup;
 
+  sliderValue: number = 0;
+
 
 
   devs: any = [
@@ -189,6 +191,13 @@ export class SearchPageComponent implements OnInit {
 
   developersSearch() {
 
+  }
+
+  clearFilters() {
+    this.searchFormGroup.reset();
+    this.seniorityJunior.reset();
+    this.seniorityMiddle.reset();
+    this.senioritySenior.reset();
   }
 
 }

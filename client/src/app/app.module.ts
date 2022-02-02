@@ -23,9 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
 import { SocialsComponent } from './components/socials/socials.component';
-import { PaymentsComponent } from './components/payments/payments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -37,6 +35,8 @@ import { BenefitsComponent } from './components/benefits/benefits.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { RegistrationComponent } from './components/pages/registration/registration.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
+import { PaymentsComponent } from './components/payments/payments.component';
 
 @NgModule({
   declarations: [

@@ -87,9 +87,9 @@
                     </div>
                     <mat-slider [displayWith]="currentYearsExp"
                                 tickInterval="1"
+                                [value]="sliderValue"
                                 thumbLabel="true"
                                 displayValue="true"
-                                valueText="'qqq'"
                                 step="1"
                                 min="0"
                                 max="10"
@@ -120,6 +120,7 @@
               <div class="row btn-container">
                 <button type="button"
                         mat-raised-button
+                        (click)="clearFilters()"
                         class="clear-btn_buttom">
                   Clear 
                 </button>
