@@ -34,13 +34,11 @@ export class AvailableDevelopersComponent implements OnInit {
     }
   ];
 
-  @ViewChild('devCard') devCard!: TemplateRef<any>;
-
   constructor() {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
-          {label: 'Frontend', template: this.devCard },
+          {label: 'Frontend', content: 'Contennt 1' },
           {label: 'Backend', content: 'Content 2'},
           {label: 'FullStack', content: 'Content 3'},
           {label: 'QA', content: 'Content 3'},

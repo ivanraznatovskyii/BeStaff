@@ -2,6 +2,7 @@
 @import 'src/styles/mixins';
 
 .footer-wrapper {
+  position: relative;
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
@@ -17,11 +18,7 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.footer-container {
   margin-top: 15px;
-  justify-content: center;
 
   & div:not(:first-child) {
     display: none;
@@ -126,5 +123,44 @@ h3 {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+.questions-button {
+  position: absolute;
+  display: inline-flex;
+  justify-content: normal;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  right: 16px;
+  top: 19px;
+  bottom: auto;
+  border-radius: 16px;
+  background-color: $orange-logo-color;
+  color: $header-font-color;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+
+  @include respond-to($media_large) {
+
+    width: 267px;
+    height: 54px;
+    right: 30px;
+    top: 35px;
+    justify-content: space-around;
+  }
+}
+
+.text-cols {
+  justify-content: end;
+}
+
+.btn-text {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: initial;
   }
 }

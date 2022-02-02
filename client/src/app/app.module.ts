@@ -10,6 +10,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatRippleModule} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -73,6 +77,10 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     MatExpansionModule,
     MatRadioModule,
     MatRippleModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

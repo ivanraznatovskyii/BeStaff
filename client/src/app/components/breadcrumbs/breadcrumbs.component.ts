@@ -19,7 +19,7 @@ export class BreadcrumbsComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute,) {
       this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
       this.breadcrumbs.unshift({label: 'Home', url: ''});
-      console.log(this.breadcrumbs)
+      /* console.log(this.breadcrumbs) */
     }
 
   ngOnInit(): void {
