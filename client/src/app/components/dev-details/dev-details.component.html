@@ -1,0 +1,107 @@
+<div class="details-wrapper details-wrapper_heading">
+  <div class="details-container details-container_heading">
+    <app-breadcrumbs></app-breadcrumbs>
+    <div class="heading-container">
+      <div class="heading-info">
+        <div class="details-name">
+          <h2 class="name">{{ 'Name Surname' }}</h2>
+        </div>
+        <div class="position">
+          {{ 'frontend developer' }}
+        </div>
+        <div class="location">
+          {{ 'sign Location' }}
+        </div>
+      </div>
+      <div class="photo">
+        <img src="" alt="">
+      </div>
+    </div>
+  </div>
+  <button mat-flat-button class="questions-button">
+    <fa-icon [icon]="faComment" style="font-size: 30px; margin-right: 10px"></fa-icon>
+    <span class="btn-text ">Questions? Contac us!</span>
+  </button>
+</div>
+<div class="details-wrapper details-wrapper_content">
+  <div class="details-container details-container_content">
+    <div class="left-block">
+      <div class="experience">
+        <div class="ex-heading">
+          Experience in years:
+        </div>
+        <div class="ex-count">
+          {{ '10 years' }} of experience
+        </div>
+      </div>
+      <div class="specialization">
+        <div class="ex-heading">
+          Specialization:
+        </div>
+        <div class="ex-count">
+          {{'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae officia quaerat repellendus ipsa veniam vero atque reprehenderit accusantium consectetur dignissimos unde accusamus, ducimus explicabo harum cum ea, tempora laborum tenetur fuga architecto corporis in earum. Architecto, inventore? Voluptate, error velit.'}}
+        </div>
+      </div>
+      <div class="tech-skills">
+        <div class="ex-heading">
+          Experience in years:
+        </div>
+        <ul class="skills-list">
+          <li class="skill-item">Frontend</li>
+          <li class="skill-item">Backend</li>
+          <li class="skill-item">C#</li>
+          <li class="skill-item">Java Script</li>
+          <li class="skill-item">.NET</li>
+          <li class="skill-item">SQL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="right-block">
+
+    </div>
+  </div>
+</div>
+<div class="details-wrapper details-wrapper_other-devs">
+  <div class="details-container details-container_other-devs">
+    <div class="row searching-results-content">
+      <div class="col-6 results-count">
+        Other developers
+      </div>
+      <div class="col-6 see-more-link" [routerLink]="['/developers']">
+        See more &#10142;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="dev-card-list">
+          <div class="dev-card" *ngFor="let dev of showedCards">
+            <h3 class="card-heading">{{ dev.username }}</h3>
+            <div class="position">{{ dev.position }}</div>
+            <div class="skills">Specialization:</div>
+            <div class="skills-text">
+              {{ dev.specialization }}
+            </div>
+            <div class="skills">Email:</div>
+            <div class="skills-text">
+              {{ dev.email }}
+            </div>
+            <mat-checkbox>
+              <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
+            </mat-checkbox>
+            <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
+            <!-- <b>{{ dev.id }}</b> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="details-wrapper details-wrapper_hiring-form">
+  <div class="details-container details-container_hiring-form">
+
+  </div>
+</div>
+  
+  
+    
+

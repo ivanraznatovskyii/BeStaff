@@ -1,4 +1,6 @@
+import { CommonService } from './../../services/common.service.ts.service';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
 @Component({
@@ -34,7 +36,7 @@ export class AvailableDevelopersComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private router: Router) {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -49,6 +51,14 @@ export class AvailableDevelopersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  navigateToCV() {
+    this.router.navigate(['/developers/details'], {
+      state: {
+        message: 'message'
+      }
+    })
   }
 
 }

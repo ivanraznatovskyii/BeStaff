@@ -35,8 +35,8 @@ import { BenefitsComponent } from './components/benefits/benefits.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { RegistrationComponent } from './components/pages/registration/registration.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { ContuctFormComponent } from './components/forms/contuct-form/contuct-form.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { DevDetailsComponent } from './components/dev-details/dev-details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { PaymentsComponent } from './components/payments/payments.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    ContuctFormComponent,
     SocialsComponent,
     PaymentsComponent,
     BannerComponent,
@@ -55,7 +54,8 @@ import { PaymentsComponent } from './components/payments/payments.component';
     BenefitsComponent,
     PartnersComponent,
     RegistrationComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    DevDetailsComponent
   ],
   imports: [
     BrowserModule,

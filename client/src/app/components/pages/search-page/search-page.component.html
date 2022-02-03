@@ -1,4 +1,4 @@
-<div class="search-wrapper">
+<div class="search-wrapper" *ngIf="!searchBlockIsShowed()">
   <div class="search-container">
     <app-breadcrumbs></app-breadcrumbs>
     <div class="search-intro">
@@ -24,7 +24,7 @@
         <div class="btn-col col-2">
           <button type="button"
                   mat-raised-button
-                  class="search-btn">
+                  class="elipse-button">
             <span class="search-btn-text"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
           </button>
         </div>
@@ -86,6 +86,7 @@
                       Experience in years
                     </div>
                     <mat-slider [displayWith]="currentYearsExp"
+                    [formControl]="exSlider"
                                 tickInterval="1"
                                 [value]="sliderValue"
                                 thumbLabel="true"
@@ -131,21 +132,27 @@
                 </button>
               </div>
             </ng-template>
-            
           </mat-expansion-panel>
         </div>
       </div>
     </div>
     <div class="searching-results">
       <div class="row searching-results-content">
-        <div class="col-6 results-count">
-          Found 3 developers
+        <div class="col-2 results-count">
+          Found {{ '3' }} developer{{ 's' }}
         </div>
-        <div class="col-6 see-more-link" [routerLink]="['/developers']">
-          See more &#10142;
+        <div class="col-10 searching-results-paginator">
+          <div class="prev-page" (click)="changeCurrentPage('-')"></div>
+            <div class="pages" 
+                 [ngClass]="{ 'pages_active': num === currentPage }" 
+                 *ngFor="let num of pagesNumberArray"
+                 (click)="changeCurrentPage(num)">
+              {{ num }}
+            </div>
+          <div class="next-page" (click)="changeCurrentPage('+')"></div>
         </div>
       </div>
-      <div class="row" style="overflow: scroll;">
+      <div class="row serch-cards-container">
         <div class="col-12">
           <div class="dev-card-list">
             <div class="dev-card" *ngFor="let dev of showedCards">
@@ -162,23 +169,16 @@
               <mat-checkbox>
                 <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
               </mat-checkbox>
-              <button mat-flat-button class="elipse-button">Open CV</button>
+              <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
               <!-- <b>{{ dev.id }}</b> -->
             </div>
           </div>
         </div>
       </div>
-      <div class="searching-results-paginator">
-        <div class="prev-page" (click)="changeCurrentPage('-')"></div>
-          <div class="pages" 
-               [ngClass]="{ 'pages_active': num === currentPage }" 
-               *ngFor="let num of pagesNumberArray"
-               (click)="changeCurrentPage(num)">
-            {{ num }}
-          </div>
-        <div class="next-page" (click)="changeCurrentPage('+')"></div>
-      </div>
     </div>
   </div>
 </div>
-<app-ad-calculation></app-ad-calculation>
+<div class="calc-block" *ngIf="!searchBlockIsShowed()">
+  <app-ad-calculation></app-ad-calculation>
+</div>
+<router-outlet></router-outlet>

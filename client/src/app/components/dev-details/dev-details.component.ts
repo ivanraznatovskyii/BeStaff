@@ -1,50 +1,30 @@
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { CommonService } from 'src/app/services/common.service.ts.service';
-import { Router } from '@angular/router';
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-search-page',
-  templateUrl: './search-page.component.html',
-  styleUrls: ['./search-page.component.scss']
+  selector: 'app-dev-details',
+  templateUrl: './dev-details.component.html',
+  styleUrls: ['./dev-details.component.scss']
 })
-export class SearchPageComponent implements OnInit {
+export class DevDetailsComponent implements OnInit {
 
-
-
-  panelOpenState = false; // FOR EXAMPLE
-  currentYearsExp(value: number) {
-    return value;
-  };
-
-
-  faSearch = faSearch;
-  
+  faComment = faCommentDots;
 
   asyncTabs!: Observable<any[]>;
-  username: string = 'User Name';
-  position: string = 'Java Developer';
+
   pagesCount!: number;
-  cardsPerPage: number = 6;
+  cardsPerPage: number = 3;
   currentPage: number = 1;
   specialization: string = '';
   experience: string = '';
   pagesNumberArray: any[] = [];
   showedCards: any[] = [];
   devsArr: any[] = [];
-  query: FormControl = new FormControl();
-  seniorityJunior: FormControl = new FormControl();
-  seniorityMiddle: FormControl = new FormControl();
-  senioritySenior: FormControl = new FormControl();
-  exSlider: FormControl = new FormControl();
   searchFormGroup!: FormGroup;
-
-  sliderValue: number = 0;
-
-
 
   devs: any = [
     {
@@ -103,12 +83,7 @@ export class SearchPageComponent implements OnInit {
     },
   ];
 
-  @ViewChild('searchForm') searchForm!: FormGroup;
-
-  constructor(private commonService: CommonService, private router: Router ) { 
-
-    this.commonService.isDevComponentVisible();
-    
+  constructor(private router: Router) {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -120,7 +95,7 @@ export class SearchPageComponent implements OnInit {
         ]);
       }, 1000);
     });
-   }
+  }
 
   ngOnInit(): void {
     for(let i = 0; i < 6; i++) {
@@ -142,10 +117,6 @@ export class SearchPageComponent implements OnInit {
     this.preparePaginator();
     this.initSearchForm();
   }
-
-  searchBlockIsShowed() {
-    return window.location.href.replace(window.location.origin + '/developers/', '') === 'details';
-  };
 
   preparePaginator() {
     for(let i = 1; i < this.pagesCount + 1; i++) {
@@ -198,18 +169,6 @@ export class SearchPageComponent implements OnInit {
       react: new FormControl(),
       vue: new FormControl(),
     });
-  }
-
-  developersSearch() {
-
-  }
-
-  clearFilters() {
-    this.searchFormGroup.reset();
-    this.seniorityJunior.reset();
-    this.seniorityMiddle.reset();
-    this.senioritySenior.reset();
-    this.exSlider.reset();
   }
 
   navigateToCV() {

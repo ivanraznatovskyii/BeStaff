@@ -5,6 +5,7 @@
   a,
   span {
     color: darkgrey;
+    cursor: pointer;
   }
   a:hover,
   span:hover {
@@ -26,4 +27,8 @@
   li:last-child::after {
     content: "";
   }
+}
+
+.breadcrumbs-container {
+  padding: 25px 0;
 }

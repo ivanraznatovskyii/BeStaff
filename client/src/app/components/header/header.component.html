@@ -1,7 +1,7 @@
 <div class="header-wrapper">
   <div class="bg-color">
     <div class="row header-container">
-      <div class="col-3 logo">
+      <div class="col-3 logo" [routerLink]="['/']">
         <img src="../../../assets/Logo.svg" alt="BeStaff">
       </div>
       <div class="col-9 rest">
@@ -59,10 +59,10 @@
       </div>
     </div>
   </div>
-  <div class="banner" [ngClass]="{ 'hide-block': !isShowed }">
+  <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
     <app-banner></app-banner>
   </div>
-  <div class="banner-toggle"  (click)="visibilityToggle()">
+  <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()">
     {{ isShowed ? 'Close this block' : 'Open this block' }}
     <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
   </div>
