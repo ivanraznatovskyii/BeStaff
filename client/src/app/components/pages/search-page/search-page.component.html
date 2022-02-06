@@ -42,6 +42,15 @@
               <div class="form-container">
                 <div class="left-block checkboxes-container">
                   <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
+                    <div class="skills-list">
+                      <div class="dynamic-skill-item" *ngFor="let skill of skillsList">
+                        <input type="checkbox" formControlName="{{ skill.id }}" id="{{ skill.id }}">
+                        <label for="{{ skill.id }}" [ngClass]="{ 'label_chacked': searchFormGroup.get(skill.id)?.value }">{{ skill.name }}</label>
+                      </div>
+                    </div>
+                    
+                  </form>
+                  <!-- <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
                     <input type="checkbox" formControlName="frontend" id="frontend">
                     <label for="frontend" [ngClass]="{ 'label_chacked': searchFormGroup.get('frontend')?.value }">Frontend</label>
                     <input type="checkbox" formControlName="backend" id="backend">
@@ -78,7 +87,7 @@
                     <label for="react" [ngClass]="{ 'label_chacked': searchFormGroup.get('react')?.value }">React</label>
                     <input type="checkbox" formControlName="vue" id="vue">
                     <label for="vue" [ngClass]="{ 'label_chacked': searchFormGroup.get('vue')?.value }">Vue</label>
-                  </form>
+                  </form> -->
                 </div>
                 <div class="right-block">
                   <div class="ex-slider-wrapper">
@@ -119,7 +128,15 @@
               </div>
               <mat-divider></mat-divider>
               <div class="row btn-container">
+                <button mat-raised-button class="elipse-button elipse-button_clear" (click)="clearFilters()">
+                  Clear filters
+                </button>
                 <button type="button"
+                        mat-raised-button
+                        class="elipse-button elipse-button_search">
+                  Search 
+                </button>
+                <!-- <button type="button"
                         mat-raised-button
                         (click)="clearFilters()"
                         class="clear-btn_buttom">
@@ -129,7 +146,7 @@
                         mat-raised-button
                         class="search-btn_buttom">
                   Search 
-                </button>
+                </button> -->
               </div>
             </ng-template>
           </mat-expansion-panel>
@@ -152,29 +169,40 @@
           <div class="next-page" (click)="changeCurrentPage('+')"></div>
         </div>
       </div>
+
+      <!-- cards template, should be showed in recursion -->
       <div class="row serch-cards-container">
         <div class="col-12">
           <div class="dev-card-list">
             <div class="dev-card" *ngFor="let dev of showedCards">
-              <h3 class="card-heading">{{ dev.username }}</h3>
-              <div class="position">{{ dev.position }}</div>
-              <div class="skills">Specialization:</div>
-              <div class="skills-text">
-                {{ dev.specialization }}
+              <div class="card-content">
+                <h3 class="card-heading">{{ dev.username }}</h3>
+                <div class="position">{{ dev.position }}</div>
+                <div class="skills">Experience in years:</div>
+                <div class="skills-text">
+                  {{ dev.experience }}
+                </div>
+                <div class="skills">Seniority:</div>
+                <div class="skills-text">
+                  {{ dev.seniority }}
+                </div>
+                <div class="skills">Technical skills:</div>
+                <ul class="skills-list">
+                  <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
+                </ul>
               </div>
-              <div class="skills">Email:</div>
-              <div class="skills-text">
-                {{ dev.email }}
+              <div class="cv-btn">
+                <mat-checkbox>
+                  <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
+                </mat-checkbox>
+                <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
               </div>
-              <mat-checkbox>
-                <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
-              </mat-checkbox>
-              <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
-              <!-- <b>{{ dev.id }}</b> -->
             </div>
           </div>
         </div>
       </div>
+      <!-- end cards template -->
+
     </div>
   </div>
 </div>

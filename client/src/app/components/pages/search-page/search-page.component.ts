@@ -1,37 +1,38 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { from, Observable, Observer } from 'rxjs';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { Router } from '@angular/router';
+import { DevelopersService } from 'src/app/services/developers.service';
+
+export interface Skill {
+  name: string,
+  id: string
+}
 
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
-  styleUrls: ['./search-page.component.scss']
+  styleUrls: ['./search-page.component.scss'],
+  providers: [CommonService]
 })
 export class SearchPageComponent implements OnInit {
 
 
 
   panelOpenState = false; // FOR EXAMPLE
-  currentYearsExp(value: number) {
-    return value;
-  };
+  
 
 
   faSearch = faSearch;
-  
+  skillsList: Skill[] = [];
 
   asyncTabs!: Observable<any[]>;
-  username: string = 'User Name';
-  position: string = 'Java Developer';
   pagesCount!: number;
   cardsPerPage: number = 6;
   currentPage: number = 1;
-  specialization: string = '';
-  experience: string = '';
   pagesNumberArray: any[] = [];
   showedCards: any[] = [];
   devsArr: any[] = [];
@@ -44,70 +45,92 @@ export class SearchPageComponent implements OnInit {
 
   sliderValue: number = 0;
 
+  @ViewChild('searchForm') searchForm!: FormGroup;
 
 
   devs: any = [
     {
-      username: 'User Name',
+      username: 'John Doe',
       position: 'Java Developer',
+      location: 'Kiyiv',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 1,
       id: 1,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Angular', 'NodeJS', 'NestJS'],
+      seniority: 'Senior',
     },
     {
-      username: 'User Name',
+      username: 'Mikkie Mouse',
       position: 'Java Developer',
+      location: 'Texas',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 2,
       id: 2,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React'],
+      seniority: 'Senior',
     },
     {
-      username: 'User Name',
-      position: 'Java Developer',
+      username: 'Gannibal Lecktor',
+      position: 'C# Developer',
+      location: 'Dallas',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 3,
       id: 3,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React', 'Vue'],
+      seniority: 'Senior',
     },
     {
-      username: 'User Name',
-      position: 'Java Developer',
+      username: 'Ilon Mask',
+      position: 'Tesla Developer',
+      location: 'New York',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 4,
       id: 4,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React', 'Vue', 'Angular'],
+      seniority: 'Senior',
     },
     {
-      username: 'User Name',
-      position: 'Java Developer',
+      username: 'Donald Trump',
+      position: 'USA Developer',
+      location: 'Paris',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 5,
       id: 5,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React', 'Vue', 'Angular', 'NodeJS'],
+      seniority: 'Senior',
     },
     {
-      username: 'User Name',
-      position: 'Java Developer',
+      username: 'Nikola Tesla',
+      position: 'Electricity Developer',
+      location: 'London',
       specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
+      experience: 6,
       id: 6,
       email: 'example@examp.com',
       agreementAccepted: true,
+      skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React', 'Vue', 'Angular', 'NodeJS', 'NestJS'],
+      seniority: 'Senior',
     },
   ];
 
-  @ViewChild('searchForm') searchForm!: FormGroup;
+  
 
-  constructor(private commonService: CommonService, private router: Router ) { 
+  constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService, private fb: FormBuilder ) { 
 
-    this.commonService.isDevComponentVisible();
+    devService.getSkills().subscribe(skills => {
+       this.skillsList = skills;
+       this.initSearchForm();
+    } );
     
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
@@ -132,16 +155,26 @@ export class SearchPageComponent implements OnInit {
           specialization: item.specialization,
           id: item.id * i,
           email: item.email,
-          agreementAccepted: true
+          agreementAccepted: true,
+          skills: item.skills,
+          seniority: item.seniority,
+          experience: item.experience,
+          location: item.location,
         });
       })
-      
+      this.devs.reverse();
     }
     this.computedPageNumber();
     this.addVisibleCards();
     this.preparePaginator();
-    this.initSearchForm();
+    //this.initSearchForm();
   }
+
+
+
+  currentYearsExp(value: number) {
+    return value;
+  };
 
   searchBlockIsShowed() {
     return window.location.href.replace(window.location.origin + '/developers/', '') === 'details';
@@ -178,7 +211,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   initSearchForm() {
-    this.searchFormGroup = new FormGroup({
+    /* this.searchFormGroup = new FormGroup({
       frontend: new FormControl(),
       backend: new FormControl(),
       cCharp: new FormControl(),
@@ -197,7 +230,17 @@ export class SearchPageComponent implements OnInit {
       azure: new FormControl(),
       react: new FormControl(),
       vue: new FormControl(),
+    }); */
+    /* this.searchFormGroup = this.fb.group({
+
+    }); */
+    let formObj = {};
+    this.skillsList.map(item => {
+      //@ts-ignore
+      formObj[item.id] = '';
     });
+    this.searchFormGroup = this.fb.group(formObj);
+
   }
 
   developersSearch() {
@@ -212,12 +255,18 @@ export class SearchPageComponent implements OnInit {
     this.exSlider.reset();
   }
 
-  navigateToCV() {
+  navigateToCV(dev: any) {
+    this.commonService.setDev(dev);
     this.router.navigate(['/developers/details'], {
       state: {
-        message: 'message'
+        data: 'dev'
       }
     })
   }
+
+  onOutletLoaded(component: any) {
+    //component.node = 'someValue';
+    //console.log(component)
+} 
 
 }

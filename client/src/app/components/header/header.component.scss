@@ -11,6 +11,7 @@
 
 .logo {
   text-align: center;
+  padding-left: 10px;
   cursor: pointer;
 
   @include respond-to($media-left-align-logo) {
@@ -28,9 +29,14 @@
 
 .bg-color {
   display: flex;
+  min-height: 100px;
   flex-wrap: wrap;
   width: 100%;
   background-color: $header-bg-color;
+
+  @include respond-to($media_large) {
+    min-height: auto;
+  }
 }
 
 .header-container {
@@ -151,12 +157,18 @@
     font-size: 14px;
     font-weight: 500;
 
-    &:first-child {
+    &:last-of-type {
       display: none;
 
       @include respond-to($media_large) {
         display: initial;
       }
+    }
+
+    &:first-child {
+      
+
+      
 
       background-color: transparent;
       border: 1px solid $header-font-color;
@@ -302,13 +314,6 @@
   }
 }
 
-
-
-
-
-
-
-
 input[type="checkbox"]:checked ~ #sidebarMenu {
   transform: translatey(0);
   top:50px /*change here related your top menu height*/
@@ -327,7 +332,7 @@ input[type=checkbox] {
   height: 32px;
   width: 32px;
   right:24px;
-  top:28px;
+  top:38px;
   border-radius: 3px;
   /* display: none */
 }

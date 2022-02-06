@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDots, faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { CommonService } from 'src/app/services/common.service.ts.service';
 
 @Component({
   selector: 'app-dev-details',
@@ -13,8 +14,10 @@ import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 export class DevDetailsComponent implements OnInit {
 
   faComment = faCommentDots;
+  faLocationArrow = faLocationArrow;
 
   asyncTabs!: Observable<any[]>;
+  currentDev: any = null;
 
   pagesCount!: number;
   cardsPerPage: number = 3;
@@ -83,7 +86,7 @@ export class DevDetailsComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private commonService: CommonService, private _route: ActivatedRoute) {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -116,6 +119,18 @@ export class DevDetailsComponent implements OnInit {
     this.addVisibleCards();
     this.preparePaginator();
     this.initSearchForm();
+    this.goToTop();
+
+    this.currentDev = this.commonService.getDev()
+    if(!this.currentDev) {
+      this.router.navigate(['/developers']);
+    }
+    console.log('details init')
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
   preparePaginator() {

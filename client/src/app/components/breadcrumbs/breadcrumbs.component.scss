@@ -1,29 +1,40 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
 .breadcrumb {
   background: none;
-  font-size: 0.8em;
+  font-size: 14px;
+  font-weight: 500;
   margin: 0;
   a,
   span {
-    color: darkgrey;
+    color: $rights-text;
     cursor: pointer;
   }
+
   a:hover,
   span:hover {
-    color: dimgrey;
+    color: $found-font-color;
     text-decoration: none;
   }
+
   li {
     list-style: none;
     float: left;
     margin: 5px;
+    color: $rights-text;
   }
+
   li:last-child {
     margin-right: 20px;
+    color: $found-font-color;
   }
+
   li::after {
-    content: "->";
-    color: darkgrey;
+    content: ">";
+    color: $rights-text;
   }
+
   li:last-child::after {
     content: "";
   }

@@ -11,6 +11,16 @@
   padding: 0 20px;
 }
 
+.dynamic-skill-item {
+  max-height: 40px;
+  margin-bottom: 10px;
+}
+
+.search-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .search-intro {
   padding: 30px 0;
 }
@@ -57,27 +67,35 @@
   }
 }
 
+/*  Cards styles  */
+
 div.dev-card {
   width: 370px;
+  height: 408px;
   padding: 15px 30px;
   margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   background-color: white;
 }
 
-.skills {
-  font-size: 14px;
-  line-height: 30px;
-  color: $skills-h5-font-color;
-}
-
-.skills-text {
-  padding: 5px 0 15px;
-  font-size: 14px;
-  line-height: 21px;
-  color: $dev-card-heading-color;
+.cv-btn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  
+  & button {
+    margin-top: 5px;
+  }
 }
 
 h3.card-heading {
+  width: 100%;
   margin: 0;
   font-size: 18px;
   line-height: 27px;
@@ -87,19 +105,101 @@ h3.card-heading {
 }
 
 .position {
-  margin: 0 0 15px;
+  margin-bottom: 10px;
+  width: 100%;
   line-height: 24px;
   font-size: 14px;
   color: $orange-logo-color;
 }
 
+.skills {
+  width: 100%;
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+.skills-list {
+  height: fit-content;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-item {
+  /* width: fit-content;
+  padding: 8px 12px;
+  margin: 0 10px 10px 0;
+  border-radius: 8px;
+  border: 1px solid $found-font-color;
+  background-color: $header-font-color; */
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $found-font-color;
+  margin-right: 15px;
+  /* cursor: pointer; */
+
+
+  /* &.label_chacked {
+    border-radius: 6px;
+    background-color:  $rights-text;
+    color: $header-font-color;
+  } */
+}
+
+
+/*  End cards styles  */
+
+
+
 .elipse-button {
   height: 40px;
   width: 160px;
-  margin: 30px 0;
   border-radius: 30px;
   color: $header-font-color;
   background-color: $orange-logo-color;
+
+  &_clear {
+    /* width: 150px; */
+
+    /* @include respond-to($media_large) {
+      width: 200px;
+    } */
+
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: $rights-text;
+    border: 1px solid $rights-text;
+    /* align-self: flex-end; */
+  }
+
+  &_search {
+    background-color: $orange-logo-color;
+    color: $header-font-color;
+    /* width: 150px;
+
+    @include respond-to($media_large) {
+      width: 200px;
+    } */
+
+    background-color: $orange-logo-color;
+    font-size: 14px;
+    font-weight: 500;
+    color: $header-font-color;
+    /* align-self: flex-end; */
+  }
 }
 
 ::ng-deep div.mat-tab-label {
@@ -362,6 +462,14 @@ h3.card-heading {
   }
 
   /* end checkbox styling */
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: $found-font-color !important;
+  }
 }
 
 .ex-slider-wrapper,
@@ -447,7 +555,7 @@ h3.card-heading {
   padding: 30px 0;
 }
 
-.search-btn_buttom {
+/* .search-btn_buttom {
   width: 150px;
 
   @include respond-to($media_large) {
@@ -461,9 +569,9 @@ h3.card-heading {
   font-weight: 500;
   color: $header-font-color;
   align-self: flex-end;
-}
+} */
 
-.clear-btn_buttom {
+ /*.clear-btn_buttom {
   width: 150px;
 
   @include respond-to($media_large) {
@@ -477,8 +585,8 @@ h3.card-heading {
   font-weight: 500;
   color: $rights-text;
   border: 1px solid $rights-text;
-  align-self: flex-end;
-}
+  align-self: flex-end; 
+}*/
 
 .serch-cards-container {
   overflow: scroll;
@@ -491,3 +599,5 @@ h3.card-heading {
 .searching-results-content {
   position: relative;
 }
+
+

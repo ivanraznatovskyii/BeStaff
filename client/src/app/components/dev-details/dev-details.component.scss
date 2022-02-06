@@ -35,6 +35,27 @@
   font-weight: 600;
 }
 
+.details-name .name {
+  font-size: 50px;
+  line-height: 75px;
+  font-weight: 600;
+}
+
+.position {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $orange-logo-color;
+}
+
+.location {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $skills-button-color;
+}
+
 .questions-button {
   position: absolute;
   display: inline-flex;
@@ -71,29 +92,29 @@
 }
 
 .skills-list {
+  display: inline-flex;
   list-style-type: none;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
+.tech-skills {
+  width: 100%;
+}
+
 .skill-item {
+  width: fit-content;
   padding: 8px 12px;
   margin: 0 10px 10px 0;
   border-radius: 8px;
-  border: 1px solid $found-font-color;
-  background-color: $header-font-color;
+  border: 1px solid $orange-logo-color;
+  background-color: transparent;
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
-  color: $found-font-color;
+  color: $orange-logo-color;
   cursor: pointer;
-
-
-  &.label_chacked {
-    border-radius: 6px;
-    background-color:  $rights-text;
-    color: $header-font-color;
-  }
 }
 
 .results-count {
@@ -143,13 +164,6 @@ h3.card-heading {
   color: $dev-card-heading-color;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.position {
-  margin: 0 0 15px;
-  line-height: 24px;
-  font-size: 14px;
-  color: $orange-logo-color;
 }
 
 .elipse-button {

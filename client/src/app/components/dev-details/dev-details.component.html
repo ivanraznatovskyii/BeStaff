@@ -1,16 +1,17 @@
-<div class="details-wrapper details-wrapper_heading">
+<div class="details-wrapper details-wrapper_heading" *ngIf="currentDev">
   <div class="details-container details-container_heading">
     <app-breadcrumbs></app-breadcrumbs>
     <div class="heading-container">
       <div class="heading-info">
         <div class="details-name">
-          <h2 class="name">{{ 'Name Surname' }}</h2>
+          <h2 class="name">{{ currentDev.username }}</h2>
         </div>
         <div class="position">
-          {{ 'frontend developer' }}
+          {{ currentDev.position }}
         </div>
         <div class="location">
-          {{ 'sign Location' }}
+          <fa-icon [icon]="faLocationArrow" style="font-size: 30px; margin-right: 10px"></fa-icon>
+          {{ currentDev.location }}
         </div>
       </div>
       <div class="photo">
@@ -23,7 +24,7 @@
     <span class="btn-text ">Questions? Contac us!</span>
   </button>
 </div>
-<div class="details-wrapper details-wrapper_content">
+<div class="details-wrapper details-wrapper_content" *ngIf="currentDev">
   <div class="details-container details-container_content">
     <div class="left-block">
       <div class="experience">
@@ -31,7 +32,7 @@
           Experience in years:
         </div>
         <div class="ex-count">
-          {{ '10 years' }} of experience
+          {{ currentDev.experience }} year{{ currentDev.experience > 1 ? 's' : '' }} of experience
         </div>
       </div>
       <div class="specialization">
@@ -39,20 +40,15 @@
           Specialization:
         </div>
         <div class="ex-count">
-          {{'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae officia quaerat repellendus ipsa veniam vero atque reprehenderit accusantium consectetur dignissimos unde accusamus, ducimus explicabo harum cum ea, tempora laborum tenetur fuga architecto corporis in earum. Architecto, inventore? Voluptate, error velit.'}}
+          {{ currentDev.specialization }}
         </div>
       </div>
       <div class="tech-skills">
         <div class="ex-heading">
-          Experience in years:
+          Technical skills:
         </div>
         <ul class="skills-list">
-          <li class="skill-item">Frontend</li>
-          <li class="skill-item">Backend</li>
-          <li class="skill-item">C#</li>
-          <li class="skill-item">Java Script</li>
-          <li class="skill-item">.NET</li>
-          <li class="skill-item">SQL</li>
+          <li class="skill-item" *ngFor="let skill of currentDev.skills">{{ skill }}</li>
         </ul>
       </div>
     </div>

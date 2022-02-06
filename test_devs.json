@@ -1,0 +1,74 @@
+[
+  {
+    "username": "John Doe",
+    "position": "Java Developer",
+    "location": "Kiyiv",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 1,
+    "id": 1,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Angular", "NodeJS", "NestJS"],
+    "seniority": "Senior"
+  },
+  {
+    "username": "Mikkie Mouse",
+    "position": "Java Developer",
+    "location": "Texas",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 2,
+    "id": 2,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Java", "React"],
+    "seniority": "Senior"
+  },
+  {
+    "username": "Gannibal Lecktor",
+    "position": "C# Developer",
+    "location": "Dallas",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 3,
+    "id": 3,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Java", "React", "Vue"],
+    "seniority": "Senior"
+  },
+  {
+    "username": "Ilon Mask",
+    "position": "Tesla Developer",
+    "location": "New York",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 4,
+    "id": 4,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Java", "React", "Vue", "Angular"],
+    "seniority": "Senior"
+  },
+  {
+    "username": "Donald Trump",
+    "position": "USA Developer",
+    "location": "Paris",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 5,
+    "id": 5,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Java", "React", "Vue", "Angular", "NodeJS"],
+    "seniority": "Senior"
+  },
+  {
+    "username": "Nikola Tesla",
+    "position": "Electricity Developer",
+    "location": "London",
+    "specialization": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.",
+    "experience": 6,
+    "id": 6,
+    "email": "example@examp.com",
+    "agreementAccepted": true,
+    "skills": ["Frontend", "Backend", "C#", "Java Script", "Java", "React", "Vue", "Angular", "NodeJS", "NestJS"],
+    "seniority": "Senior"
+  }
+]

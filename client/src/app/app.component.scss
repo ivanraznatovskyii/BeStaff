@@ -1,1 +1,37 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.questions-button {
+  position: fixed;
+  display: inline-flex;
+  justify-content: normal;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  right: 16px;
+  bottom: 19px;
+  border-radius: 16px;
+  background-color: $orange-logo-color;
+  color: $header-font-color;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  z-index: 100;
+
+  @include respond-to($media_large) {
+    width: 267px;
+    height: 54px;
+    right: 30px;
+    bottom: 35px;
+    top: auto;
+    justify-content: space-around;
+  }
+}
+
+.btn-text {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: inline;
+  }
+}
