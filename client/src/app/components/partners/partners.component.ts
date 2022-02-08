@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartnersComponent implements OnInit {
 
-  radioItem: FormControl = new FormControl('1')
+  radioItem: FormControl = new FormControl('1');
 
   constructor() { }
 
@@ -16,18 +16,21 @@ export class PartnersComponent implements OnInit {
   }
 
   change() {
-    let el;
+    const el = document.querySelector('.partners') as HTMLElement;
     switch(this.radioItem.value) {
       case 1:
-        el = document.querySelector('#fst');
+        el.style.transform = 'translateX(0)'; 
         break;
       case 2:
-        el = document.querySelector('#scd');
+        el.style.transform = 'translateX(-27%)';
         break;
       case 3:
-        el = document.querySelector('#trd');
+        el.style.transform = 'translateX(-60%)';
         break;
-      default: el = document.querySelector('#fst');
+      case 4:
+        el.style.transform = 'translateX(-71%)';
+        break;
+      default: el.style.transform = 'translateX(0)';
     }
     el?.scrollIntoView({ block: 'center', inline: 'start' })
   }

@@ -1,6 +1,6 @@
 <div class="av-dev-wrapper">
   <div class="row heading">
-    <div class="col-6">
+    <div class="col-6 heading-col">
       <h2>
         Available developers
       </h2>
@@ -14,21 +14,20 @@
         <ng-container *ngIf="(asyncTabs | async) === null">
           Loading tabs...
         </ng-container>
-
-        <mat-tab-group>
-          <mat-tab *ngFor="let tab of asyncTabs | async">
+        <mat-tab-group *ngIf="devs && tabs.length">
+          <mat-tab *ngFor="let tab of tabs; let idx = index">
             <ng-template mat-tab-label>{{tab.label}}</ng-template>
             <div class="dev-card-list">
-              <div class="dev-card" *ngFor="let dev of devs">
-                <h3 class="card-heading">{{ dev.username }}</h3>
+              <div class="dev-card" *ngFor="let dev of tab.devs">
+                <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>
                 <div class="skills">Specialization:</div>
                 <div class="skills-text">
-                  {{ dev.specialization }}
+                  {{ dev.speciality }}
                 </div>
                 <div class="skills">Experience:</div>
                 <div class="skills-text">
-                  {{ dev.experience }}
+                  {{ dev.experienceYears }}
                 </div>
                 <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
               </div>

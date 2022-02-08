@@ -4,11 +4,22 @@ const moment = require('moment');
 const { request } = require('express');
 
 module.exports.getAllDevelopers = async function(req, res){
-  console.log(req)
+  let limit = null;
+  const result = [];
+  if(req.query.limit) limit = req.query.limit;
   try {
-    console.log(allUsers)
+    // console.log(allUsers)
     const allDevs = await allUsers;
-    return res.status(200).json(allDevs);
+    if(allDevs && limit) {
+      for(let i = 0; i < limit; i++) {
+        result.push(allDevs[i]);
+        
+      }
+      return res.status(200).json(result);
+    } else if(allDevs) {
+        return res.status(200).json(allDevs); 
+    }
+    
   } catch (err) {
     throw new Error(err)
   }

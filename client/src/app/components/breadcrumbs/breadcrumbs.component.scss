@@ -8,7 +8,7 @@
   margin: 0;
   a,
   span {
-    color: $rights-text;
+    /* color: $rights-text; */
     cursor: pointer;
   }
 
@@ -28,6 +28,7 @@
   li:last-child {
     margin-right: 20px;
     color: $found-font-color;
+    font-weight: 600;
   }
 
   li::after {

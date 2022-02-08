@@ -3,6 +3,7 @@
 
 .search-wrapper {
   background-color: $bg-color-light;
+  padding-bottom: 20px;
 }
 
 .search-container {
@@ -47,7 +48,14 @@
 }
 
 .results-count {
-  position: absolute;
+  position: inherit;
+  width: 100%;
+
+  @include respond-to($media_large) {
+    position: absolute;
+    width: auto;
+  }
+
   font-size: 16px;
   line-height: 30px;
   font-weight: 600;
@@ -67,13 +75,49 @@
   }
 }
 
+div.slider-btns {
+  display: inherit;
+  padding: 40px;
+  text-align: center;
+
+  @include respond-to($media_large) {
+    display: none;
+  } 
+}
+
+.radio-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep {
+  span.mat-radio-outer-circle {
+    width: 10px;
+    height: 10px;
+    border: 1px solid $orange-logo-color;
+  }
+
+  .mat-radio-button.mat-accent span.mat-radio-inner-circle {
+    background-color: $orange-logo-color;
+    left: -5px;
+    top: -5px;
+  }
+
+  span.mat-radio-container {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+
 /*  Cards styles  */
 
 div.dev-card {
   width: 370px;
   height: 408px;
   padding: 15px 30px;
-  margin: 15px 0;
+  margin: 15px 10px 0 0;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -182,6 +226,15 @@ h3.card-heading {
     font-weight: 500;
     color: $rights-text;
     border: 1px solid $rights-text;
+    border-radius: 6px;
+
+    @include respond-to-less-than($media-iphone) {
+      width: 130px;
+    }
+
+    @include respond-to-less-than($media-smallest) {
+      width: 110px;
+    }
     /* align-self: flex-end; */
   }
 
@@ -194,10 +247,19 @@ h3.card-heading {
       width: 200px;
     } */
 
+    @include respond-to-less-than($media-iphone) {
+      width: 130px;
+    }
+
+    @include respond-to-less-than($media-smallest) {
+      width: 110px;
+    }
+
     background-color: $orange-logo-color;
     font-size: 14px;
     font-weight: 500;
     color: $header-font-color;
+    border-radius: 6px;
     /* align-self: flex-end; */
   }
 }
@@ -488,6 +550,14 @@ h3.card-heading {
 .ex-slider {
   width: 250px;
 
+  @include respond-to-less-than($media-iphone) {
+    width: 200px;
+  }
+
+  @include respond-to-less-than($media-smallest) {
+    width: 170px;
+  }
+
   @include respond-to($media_large) {
     width: 350px;
   }
@@ -588,8 +658,8 @@ h3.card-heading {
   align-self: flex-end; 
 }*/
 
-.serch-cards-container {
-  overflow: scroll;
+.search-cards-container {
+  overflow: hidden;
 
   @include respond-to($media_large) {
     overflow: hidden;

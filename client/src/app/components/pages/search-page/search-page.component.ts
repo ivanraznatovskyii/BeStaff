@@ -28,6 +28,7 @@ export class SearchPageComponent implements OnInit {
 
   faSearch = faSearch;
   skillsList: Skill[] = [];
+  radioArr: number[] = [];
 
   asyncTabs!: Observable<any[]>;
   pagesCount!: number;
@@ -41,6 +42,7 @@ export class SearchPageComponent implements OnInit {
   seniorityMiddle: FormControl = new FormControl();
   senioritySenior: FormControl = new FormControl();
   exSlider: FormControl = new FormControl();
+  radioItem: FormControl = new FormControl('1');
   searchFormGroup!: FormGroup;
 
   sliderValue: number = 0;
@@ -164,13 +166,17 @@ export class SearchPageComponent implements OnInit {
       })
       this.devs.reverse();
     }
+    this.makeRadioArr();
     this.computedPageNumber();
     this.addVisibleCards();
     this.preparePaginator();
-    //this.initSearchForm();
   }
 
-
+  makeRadioArr() {
+    for(let i = 0; i < this.cardsPerPage; i++) {
+      this.radioArr.push(+(i + 1));
+    }
+  }
 
   currentYearsExp(value: number) {
     return value;
@@ -208,32 +214,10 @@ export class SearchPageComponent implements OnInit {
       this.currentPage = arg;
     }
     this.addVisibleCards();
+    this.radioItem.setValue(1);
   }
 
   initSearchForm() {
-    /* this.searchFormGroup = new FormGroup({
-      frontend: new FormControl(),
-      backend: new FormControl(),
-      cCharp: new FormControl(),
-      js: new FormControl(),
-      dotNet: new FormControl(),
-      sql: new FormControl(),
-      qa: new FormControl(),
-      php: new FormControl(),
-      magento: new FormControl(),
-      java: new FormControl(),
-      ruby: new FormControl(),
-      angular: new FormControl(),
-      android: new FormControl(),
-      ios: new FormControl(),
-      devOps: new FormControl(),
-      azure: new FormControl(),
-      react: new FormControl(),
-      vue: new FormControl(),
-    }); */
-    /* this.searchFormGroup = this.fb.group({
-
-    }); */
     let formObj = {};
     this.skillsList.map(item => {
       //@ts-ignore
@@ -262,6 +246,33 @@ export class SearchPageComponent implements OnInit {
         data: 'dev'
       }
     })
+  }
+
+  change() {
+    const step = (100 / this.cardsPerPage);
+    const el = document.querySelector('.dev-card-list') as HTMLElement;
+    switch(this.radioItem.value) {
+      case 1:
+        el.style.transform = `translateX(-${step * 0}%)`; 
+        break;
+      case 2:
+        el.style.transform = `translateX(-${step * 1}%)`;
+        break;
+      case 3:
+        el.style.transform = `translateX(-${step * 2}%)`;
+        break;
+      case 4:
+        el.style.transform = `translateX(-${step * 3}%)`;
+        break;
+      case 5:
+        el.style.transform = `translateX(-${step * 4}%)`;
+        break;
+      case 6:
+        el.style.transform = `translateX(-${step * 5}%)`;
+        break;
+      default: el.style.transform = 'translateX(0)';
+    }
+    el?.scrollIntoView({ block: 'center', inline: 'start' })
   }
 
   onOutletLoaded(component: any) {

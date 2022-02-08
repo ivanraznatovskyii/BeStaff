@@ -7,7 +7,7 @@
       <div class="col-9 rest">
         <div class="main-menu">
           <ul class="main-menu-list">
-            <li class="main-menu-item">About</li>
+            <li class="main-menu-item" [routerLink]="['/about']">About</li>
             <li class="main-menu-item" [routerLink]="['/developers']">Developers</li>
             <li class="main-menu-item arrow-itm" [matMenuTriggerFor]="menu">Services
               <mat-menu #menu="matMenu">
@@ -47,7 +47,7 @@
                   <div class="spinner diagonal part-2"></div>
               </label>
               <mat-menu #mobileMenu="matMenu" (close)="onMobileMenuClose()">
-                <button mat-menu-item>About</button>
+                <button mat-menu-item [routerLink]="['/about']">About</button>
                 <button mat-menu-item [routerLink]="['/developers']">Developers</button>
                 <button mat-menu-item>Clients</button>
                 <button mat-menu-item>Career</button>
@@ -59,12 +59,12 @@
       </div>
     </div>
   </div>
-  <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
+  <!-- <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
     <app-banner></app-banner>
   </div>
   <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()">
     {{ isShowed ? 'Close this block' : 'Open this block' }}
     <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
-  </div>
+  </div> -->
 </div>
 

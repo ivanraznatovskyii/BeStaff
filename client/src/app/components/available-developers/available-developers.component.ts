@@ -1,7 +1,9 @@
+import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from './../../services/common.service.ts.service';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
+import { Developer } from 'src/app/interfaces/developer';
 
 @Component({
   selector: 'app-available-developers',
@@ -11,32 +13,11 @@ import { Observable, Observer } from 'rxjs';
 export class AvailableDevelopersComponent implements OnInit {
 
   asyncTabs: Observable<any[]>;
-  username: string = 'User Name';
-  position: string = 'Java Developer';
-  specialization: string = '';
-  experience: string = '';
-  devs: any = [
-    {
-      username: 'User Name',
-      position: 'Java Developer',
-      specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-    },
-    {
-      username: 'User Name',
-      position: 'Java Developer',
-      specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-    },
-    {
-      username: 'User Name',
-      position: 'Java Developer',
-      specialization: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-      experience: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta perspiciatis, officiis amet voluptatum voluptate explicabo.',
-    }
-  ];
+  devs: Developer[] = [];
+  tabs: any[] = [];
+  positions!: Set<string>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private devService: DevelopersService) {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -48,9 +29,32 @@ export class AvailableDevelopersComponent implements OnInit {
         ]);
       }, 1000);
     });
+
+    devService.getAllDevs().subscribe(devs => {
+      this.sortByPositions(devs);
+      this.fillArrayByPositions(this.positions, this.tabs, devs);
+      this.devs = devs;
+    })
   }
 
   ngOnInit(): void {
+  }
+
+  sortByPositions(devs: Developer[]) {
+    this.positions = new Set();
+    devs.map(dev => {
+      this.positions.add(dev.position.replace(' Developer', ''));
+    });
+  }
+
+  fillArrayByPositions(set: Set<string>, tabs: any[], devs: Developer[]) {
+    for(let str of set) {
+      const result = devs.filter(item => item.position.replace(' Developer', '') === str);
+      tabs.push({
+        label: str,
+        devs: result
+      })
+    }
   }
 
   navigateToCV() {

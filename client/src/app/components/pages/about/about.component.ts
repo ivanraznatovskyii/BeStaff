@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class AboutComponent implements OnInit {
 
   showBanner: boolean = true;
   isShowed: boolean = true;
@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
   }
 
   bannerIsShowed() {
-    return window.location.href.replace(window.location.origin + '/', '') === '';
+    return window.location.href.replace(window.location.origin + '/about', '') === '';
   };
 
   visibilityToggle() {

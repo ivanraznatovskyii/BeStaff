@@ -14,6 +14,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSliderModule} from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +40,9 @@ import { RegistrationComponent } from './components/pages/registration/registrat
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { DevDetailsComponent } from './components/dev-details/dev-details.component';
+import { AboutComponent } from './components/pages/about/about.component';
+import { CenterTableComponent } from './components/center-table/center-table.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +61,9 @@ import { DevDetailsComponent } from './components/dev-details/dev-details.compon
     PartnersComponent,
     RegistrationComponent,
     BreadcrumbsComponent,
-    DevDetailsComponent
+    DevDetailsComponent,
+    AboutComponent,
+    CenterTableComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +89,9 @@ import { DevDetailsComponent } from './components/dev-details/dev-details.compon
     MatCheckboxModule,
     MatDividerModule,
     MatSliderModule,
+    MatFormFieldModule,
+    MatProgressBarModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

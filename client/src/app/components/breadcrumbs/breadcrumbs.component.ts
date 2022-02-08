@@ -1,3 +1,4 @@
+import { CommonService } from 'src/app/services/common.service.ts.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged } from 'rxjs';
@@ -15,12 +16,14 @@ export interface Breadcrumbs {
 export class BreadcrumbsComponent implements OnInit {
 
   breadcrumbs: Breadcrumbs[] = [];
+  currentUser: any = {};
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
+      this.currentUser = this.commonService.getDev();
       this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
       this.breadcrumbs.unshift({label: 'Home', url: ''});
       /* console.log(this.breadcrumbs) */
-    }
+  }
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -55,11 +58,13 @@ export class BreadcrumbsComponent implements OnInit {
     };
     // Only adding route with non-empty label
     const newBreadcrumbs = breadcrumb.label ? [ ...breadcrumbs, breadcrumb ] : [ ...breadcrumbs];
+    //console.log(newBreadcrumbs)
     if (route.firstChild) {
         //If we are not on our current path yet,
         //there will be more children to look after, to build our breadcumb
         return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
+
     return newBreadcrumbs;
   }
 

@@ -2,13 +2,19 @@
 @import 'src/styles/mixins';
 
 .av-dev-wrapper {
+  background-color: transparent;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px 80px 15px;
 
   @include respond-to($media_large) {
     padding: 0 0 80px;
+    background-color: transparent;
   }
+}
+
+.av-dev {
+  background-color: transparent;
 }
 
 .heading {
@@ -23,6 +29,13 @@
   }
 }
 
+.heading-col {
+  @include respond-to-less-than($media_ipad) {
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
 .see-more-link {
   font-size: 20px;
   line-height: 30px;
@@ -30,6 +43,16 @@
   color: $header-hover-link-color;
   text-align: right;
   cursor: pointer;
+
+  @include respond-to-less-than($media-iphone) {
+    width: 100%;
+    padding: 0 0 15px 0;
+  }
+
+  @include respond-to-less-than($media_ipad) {
+    width: 100%;
+    padding: 20px 0;
+  }
 }
 
 h2 {
@@ -41,7 +64,7 @@ h2 {
   width: auto;
   display: inline-flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   @include respond-to($media_large) {
@@ -53,7 +76,7 @@ h2 {
 div.dev-card {
   width: 370px;
   padding: 15px 30px;
-  margin: 15px 0;
+  margin: 15px 10px;
   background-color: white;
 }
 

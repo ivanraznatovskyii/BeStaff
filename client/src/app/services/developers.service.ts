@@ -12,4 +12,12 @@ export class DevelopersService {
   getSkills(): Observable<any> {
     return this.http.get<any[]>(`/api/developers/stacks`);
   }
+
+  getAllDevs(): Observable<any> {
+    return this.http.get<any[]>(`/api/developers/alldevs`);
+  }
+
+  getTreeDevs(): Observable<any> {
+    return this.http.get<any[]>(`/api/developers/alldevs?limit=3`);
+  }
 }

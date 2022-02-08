@@ -12,11 +12,10 @@
   margin: 0 auto;
   text-align: -webkit-center;
   padding: 0;
-  overflow: scroll;
+  overflow: hidden;
 
   @include respond-to($media_large) {
     padding: 50px 0;
-    overflow: hidden;
   }
 
   &::-webkit-scrollbar { 
@@ -26,7 +25,7 @@
 
 div.slider-btns {
   display: inherit;
-  padding: 40px;
+  padding: 30px 0;
 
   @include respond-to($media_large) {
     display: none;
@@ -76,9 +75,9 @@ div.slider-btns {
   width: 100%;
 }
 
-.benefit-item:not(:last-child) .count {
+/* .benefit-item:not(:last-child) .count {
   border-right: 2px dashed #284057;
-}
+} */
 
 .num {
   font-size: 60px;

@@ -10,7 +10,7 @@
           {{ currentDev.position }}
         </div>
         <div class="location">
-          <fa-icon [icon]="faLocationArrow" style="font-size: 30px; margin-right: 10px"></fa-icon>
+          <fa-icon [icon]="faMapMarkerAlt" style="font-size: 16px; margin-right: 5px"></fa-icon>
           {{ currentDev.location }}
         </div>
       </div>
@@ -19,10 +19,6 @@
       </div>
     </div>
   </div>
-  <button mat-flat-button class="questions-button">
-    <fa-icon [icon]="faComment" style="font-size: 30px; margin-right: 10px"></fa-icon>
-    <span class="btn-text ">Questions? Contac us!</span>
-  </button>
 </div>
 <div class="details-wrapper details-wrapper_content" *ngIf="currentDev">
   <div class="details-container details-container_content">
@@ -53,7 +49,39 @@
       </div>
     </div>
     <div class="right-block">
-
+      <div class="cv-request-form">
+        <h2>Request a full CV</h2>
+        <form [formGroup]="cvForm">
+          <div class="cv-input">
+            <input matInput
+                  type="text"
+                  formControlName="name"
+                  placeholder="Name">
+          </div>
+          <div class="cv-input">
+            <input matInput
+                  type="text"
+                  formControlName="surname"
+                  placeholder="Surname">
+          </div>
+          <div class="cv-input">
+            <input matInput
+                  type="text"
+                  formControlName="email"
+                  placeholder="Email">
+          </div>
+          <div class="bottom-block">
+            <mat-checkbox formControName="agreementAccepted">
+              <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
+            </mat-checkbox>
+            <button type="button"
+                    mat-raised-button
+                    class="elipse-button elipse-button_cv">
+              Request CV 
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -67,25 +95,30 @@
         See more &#10142;
       </div>
     </div>
-    <div class="row">
+    <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="isDevsLoading"></mat-progress-bar>
+    <div class="row card-row">
       <div class="col-12">
         <div class="dev-card-list">
           <div class="dev-card" *ngFor="let dev of showedCards">
-            <h3 class="card-heading">{{ dev.username }}</h3>
-            <div class="position">{{ dev.position }}</div>
-            <div class="skills">Specialization:</div>
-            <div class="skills-text">
-              {{ dev.specialization }}
+            <div class="card-content">
+              <h3 class="card-heading">{{ dev.username }}</h3>
+              <div class="position">{{ dev.position }}</div>
+              <div class="skills">Experience in years:</div>
+              <div class="skills-text">
+                {{ dev.experience }}
+              </div>
+              <div class="skills">Seniority:</div>
+              <div class="skills-text">
+                {{ dev.seniority }}
+              </div>
+              <div class="skills">Technical skills:</div>
+              <ul class="skills-list_details">
+                <li class="skill-item_details" *ngFor="let skill of dev.skills">{{ skill }}</li>
+              </ul>
             </div>
-            <div class="skills">Email:</div>
-            <div class="skills-text">
-              {{ dev.email }}
+            <div class="cv-btn">
+              <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
             </div>
-            <mat-checkbox>
-              <span  class="skills">I Agree BeStaff Terms and Private Policy</span>
-            </mat-checkbox>
-            <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
-            <!-- <b>{{ dev.id }}</b> -->
           </div>
         </div>
       </div>
@@ -94,7 +127,49 @@
 </div>
 <div class="details-wrapper details-wrapper_hiring-form">
   <div class="details-container details-container_hiring-form">
-
+    <div class="hiring-form">
+      <h2>Custom hiring form</h2>
+      <p class="hiring-intro-text">
+        Didn't find developer in our Base? Fill in form, describe your position and we will find
+      </p>
+      <form [formGroup]="hiringForm">
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="name"
+                placeholder="Name">
+        </div>
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="surname"
+                placeholder="Surname">
+        </div>
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="email"
+                placeholder="Email">
+        </div>
+        <div class="hiring-input">
+          <textarea matInput
+                formControlName="text"
+                placeholder="Your text"
+                rows="5">
+          </textarea>
+        </div>
+        <div class="bottom-block bottom-block_hiring-form">
+          <mat-checkbox formControName="agreementAccepted" class="hiring-checkbox">
+            <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
+          </mat-checkbox>
+          <button type="button"
+                  mat-raised-button
+                  class="elipse-button elipse-button_cv">
+            Send request 
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
   

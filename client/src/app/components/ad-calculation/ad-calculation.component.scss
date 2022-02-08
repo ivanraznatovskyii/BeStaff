@@ -20,6 +20,10 @@
   border-radius: 30px;
   color: $header-font-color;
   background-color: $orange-logo-color;
+
+  @include respond-to-less-than($media-smallest) {
+    width: 300px;
+  }
 }
 
 .calc-heading {
