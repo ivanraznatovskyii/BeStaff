@@ -22,10 +22,8 @@ export class SearchPageComponent implements OnInit {
 
 
 
-  panelOpenState = false; // FOR EXAMPLE
+  panelOpenState = false;
   
-
-
   faSearch = faSearch;
   skillsList: Skill[] = [];
   radioArr: number[] = [];
@@ -129,7 +127,7 @@ export class SearchPageComponent implements OnInit {
 
   constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService, private fb: FormBuilder ) { 
 
-    devService.getSkills().subscribe(skills => {
+    this.devService.getSkills().subscribe(skills => {
        this.skillsList = skills;
        this.initSearchForm();
     } );

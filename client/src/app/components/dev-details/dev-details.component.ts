@@ -35,7 +35,7 @@ export class DevDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initHiringForm();
+    // this.initHiringForm();
     this.initSVForm();
     this.goToTop();
 
@@ -59,7 +59,7 @@ export class DevDetailsComponent implements OnInit {
     })
   }
 
-  initHiringForm() {
+/*   initHiringForm() {
     this.hiringForm = this.fb.group({
       name: [''],
       surname: [''],
@@ -67,7 +67,7 @@ export class DevDetailsComponent implements OnInit {
       text: [''],
       agreementAccepted: [false]
     })
-  }
+  } */
 
   navigateToCV(dev: any) {
     this.commonService.setDev(dev);

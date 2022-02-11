@@ -25,10 +25,10 @@ export class PartnersComponent implements OnInit {
         el.style.transform = 'translateX(-27%)';
         break;
       case 3:
-        el.style.transform = 'translateX(-60%)';
+        el.style.transform = 'translateX(-63%)';
         break;
       case 4:
-        el.style.transform = 'translateX(-71%)';
+        el.style.transform = 'translateX(-78%)';
         break;
       default: el.style.transform = 'translateX(0)';
     }

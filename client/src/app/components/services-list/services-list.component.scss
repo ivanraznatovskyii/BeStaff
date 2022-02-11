@@ -1,0 +1,103 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.services-list-wrapper {
+  background-color: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px 80px 15px;
+
+  @include respond-to($media_large) {
+    padding: 0 0 80px;
+    background-color: transparent;
+  }
+}
+
+.services-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-list {
+  padding: 55px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.services-item {
+  max-width: 370px;
+  height: 330px;
+  margin: 0 15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 6px;
+
+  &-heading {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    max-width: 370px;
+    height: 100px;
+    border-radius: 6px 6px 0 0;
+    background-color: $skills-active-button-bg;
+    box-shadow: 0px 4px 40px rgba(40, 64, 87, 0.05);
+
+    & .heading {
+      display: flex;
+      align-items: flex-end;
+      padding: 15px 30px;
+      max-width: 75%;
+      height: 100%;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 36px;
+      vertical-align: bottom;
+    }
+
+    & .items-icon {
+      width: 60px;
+      height: 60px;
+      transform: translateX(-10px);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &-text {
+    max-width: 370px;
+    height: 230px;
+    padding: 30px;
+    border-radius: 0 0 6px 6px;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: $found-font-color;
+    background-color: $header-font-color;
+    overflow-y: scroll;
+
+    @include respond-to($media_large) {
+      overflow-y: hidden;
+    }
+  }
+}
+
+
+.position {
+  margin: 0 0 15px;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  margin: 30px 0;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}

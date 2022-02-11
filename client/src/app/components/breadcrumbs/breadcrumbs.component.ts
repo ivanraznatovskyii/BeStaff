@@ -68,4 +68,8 @@ export class BreadcrumbsComponent implements OnInit {
     return newBreadcrumbs;
   }
 
+  changeColor() {
+    return window.location.href.replace(window.location.origin + '/', '') === 'contacts' ? true :  false ;
+  }
+
 }

@@ -1,0 +1,15 @@
+<div class="services-list-wrapper">
+  <div class="services-list-container">
+    <div class="services-list">
+        <div class="services-item" *ngFor="let item of servicesArray">
+          <div class="services-item-heading">
+            <div class="heading">{{ item.headingText }}</div>
+            <div class="items-icon" [ngStyle]="{ 'background-image': item.icon }"></div>
+          </div>
+          <div class="services-item-text">
+            {{ item.servicesText }}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

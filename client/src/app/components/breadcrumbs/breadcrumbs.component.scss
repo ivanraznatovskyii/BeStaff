@@ -8,7 +8,6 @@
   margin: 0;
   a,
   span {
-    /* color: $rights-text; */
     cursor: pointer;
   }
 
@@ -43,4 +42,11 @@
 
 .breadcrumbs-container {
   padding: 25px 0;
+}
+
+.contact-page {
+  li:last-child {
+    font-weight: 500;
+    color: $header-font-color;
+  }
 }

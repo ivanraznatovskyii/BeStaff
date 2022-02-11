@@ -42,6 +42,13 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { DevDetailsComponent } from './components/dev-details/dev-details.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { CenterTableComponent } from './components/center-table/center-table.component';
+import { CalculateComponent } from './components/pages/calculate/calculate.component';
+import { CalculatorComponent } from './components/calculator/calculator.component';
+import { ServicesComponent } from './components/pages/services/services.component';
+import { HiringFormComponent } from './components/hiring-form/hiring-form.component';
+import { ServicesListComponent } from './components/services-list/services-list.component';
+import { ContactsComponent } from './components/pages/contacts/contacts.component';
+import { CareerComponent } from './components/pages/career/career.component';
 
 
 @NgModule({
@@ -63,7 +70,14 @@ import { CenterTableComponent } from './components/center-table/center-table.com
     BreadcrumbsComponent,
     DevDetailsComponent,
     AboutComponent,
-    CenterTableComponent
+    CenterTableComponent,
+    CalculateComponent,
+    CalculatorComponent,
+    ServicesComponent,
+    HiringFormComponent,
+    ServicesListComponent,
+    ContactsComponent,
+    CareerComponent
   ],
   imports: [
     BrowserModule,

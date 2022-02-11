@@ -9,10 +9,10 @@
     background-color: $bg-color-strong;
   }
 
-  &_hiring-form {
+  /* &_hiring-form {
     min-height: 680px;
     background-image: url('../../../assets/bg-hiring.png');
-  }
+  } */
 }
 
 .details-container {
@@ -26,12 +26,12 @@
     display: inherit;
   }
 
-  &_hiring-form {
+  /* &_hiring-form {
     justify-content: flex-start;
     align-items: center;
     height: 100%;
     max-width: 1200px;
-  }
+  } */
 }
 
 .see-more-link {
@@ -509,7 +509,7 @@ h3.card-heading {
   color: $rights-text;
   margin: 25px 0;
 }
-
+/* 
 .bottom-block {
   display: flex;
   flex-wrap: wrap;
@@ -563,7 +563,7 @@ h3.card-heading {
   & .mat-input-element::placeholder {
     color: $header-font-color;
   }
-}
+} */
 
 ::ng-deep {
   .mat-input-element::placeholder {

@@ -9,15 +9,15 @@
           <ul class="main-menu-list">
             <li class="main-menu-item" [routerLink]="['/about']">About</li>
             <li class="main-menu-item" [routerLink]="['/developers']">Developers</li>
-            <li class="main-menu-item arrow-itm" [matMenuTriggerFor]="menu">Services
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>Lorem ipsum</button>
-                <button mat-menu-item>Lorem ipsum</button>
+            <li class="main-menu-item arrow-itm" [matMenuTriggerFor]="servisesSubmenu">Services
+              <mat-menu #servisesSubmenu="matMenu">
+                <button mat-menu-item [routerLink]="['/services']">Lorem ipsum</button>
+                <button mat-menu-item [routerLink]="['/services']">Lorem ipsum</button>
               </mat-menu>
             </li>
             <li class="main-menu-item">Clients</li>
-            <li class="main-menu-item">Career</li>
-            <li class="main-menu-item">Contacts</li>
+            <li class="main-menu-item" [routerLink]="['/career']">Career</li>
+            <li class="main-menu-item" [routerLink]="['/contacts']">Contacts</li>
           </ul>
         </div>
         <div class="right-block">

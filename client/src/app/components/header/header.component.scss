@@ -78,7 +78,7 @@
   }
 }
 
- .mat-select-value-text {
+.mat-select-value-text {
   color: $header-hover-link-color;
 }
 
@@ -242,9 +242,8 @@
   width: 0 !important;
 }
 
-::ng-deep .mat-select-panel,
-::ng-deep .mat-select-value-text {
-  color: $header-hover-link-color;
+ ::ng-deep span.mat-select-value-text {
+  color: $header-hover-link-color !important;
 }
 
 ::ng-deep .mat-select-panel mat-option.mat-option {

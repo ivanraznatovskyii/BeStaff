@@ -13,13 +13,12 @@ module.exports.getAllDevelopers = async function(req, res){
     if(allDevs && limit) {
       for(let i = 0; i < limit; i++) {
         result.push(allDevs[i]);
-        
       }
+      console.log(result)
       return res.status(200).json(result);
     } else if(allDevs) {
-        return res.status(200).json(allDevs); 
+      return res.status(200).json(allDevs); 
     }
-    
   } catch (err) {
     throw new Error(err)
   }

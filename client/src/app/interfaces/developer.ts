@@ -11,4 +11,8 @@ export interface Developer {
   agreementAccepted: boolean,
   skills: string[];
   otherSkills: string[];
+  rate?: {
+    hours: number;
+    months: number;
+  };
 }

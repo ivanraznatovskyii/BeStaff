@@ -1,0 +1,47 @@
+<div class="hiring-wrapper hiring-wrapper_hiring-form">
+  <div class="hiring-container hiring-container_hiring-form">
+    <div class="hiring-form" [ngStyle]="{ 'padding-top' : paddingTop() }">
+      <h2>{{ hiringFormTitle }}</h2>
+      <p class="hiring-intro-text">
+        Didn't find developer in our Base? Fill in form, describe your position and we will find
+      </p>
+      <form [formGroup]="hiringForm">
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="name"
+                placeholder="Name">
+        </div>
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="surname"
+                placeholder="Surname">
+        </div>
+        <div class="hiring-input">
+          <input matInput
+                type="text"
+                formControlName="email"
+                placeholder="Email">
+        </div>
+        <div class="hiring-input">
+          <textarea matInput
+                formControlName="text"
+                placeholder="Your text"
+                rows="5">
+          </textarea>
+        </div>
+        <div class="bottom-block bottom-block_hiring-form">
+          <mat-checkbox formControName="agreementAccepted" class="hiring-checkbox">
+            <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
+          </mat-checkbox>
+          <button type="button"
+                  mat-raised-button
+                  class="elipse-button elipse-button_cv">
+            Send request 
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
