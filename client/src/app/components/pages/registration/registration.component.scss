@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.reg-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.reg-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

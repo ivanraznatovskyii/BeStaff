@@ -21,7 +21,15 @@ export class CareerComponent implements OnInit {
   seniorityMiddle: FormControl = new FormControl();
   senioritySenior: FormControl = new FormControl();
   exSlider: FormControl = new FormControl();
+  /* jobTitle: FormControl = new FormControl();
+  city: FormControl = new FormControl();
+  category: FormControl = new FormControl(); */
   searchFormGroup!: FormGroup;
+  addCVFormGroup: FormGroup = new FormGroup({
+    jobTitle: new FormControl(),
+    city: new FormControl(),
+    category: new FormControl()
+  });
   sliderValue: number = 0;
   screenWidth: number = document.documentElement.scrollWidth;
 
@@ -38,10 +46,10 @@ export class CareerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.onresize = function(event) {
+    /* window.onresize = function(event) {
       console.log(event)
-    };
-    
+    }; */
+    this.initSearchForm();
   }
 
   getWidth() {
@@ -65,7 +73,12 @@ export class CareerComponent implements OnInit {
   }
 
   initSearchForm() {
-    let formObj = {};
+    let formObj = {
+      seniorityJunior: '',
+      seniorityMiddle: '',
+      senioritySenior: '',
+      exSlider: '',
+    };
     this.skillsList.map(item => {
       //@ts-ignore
       formObj[item.id] = '';

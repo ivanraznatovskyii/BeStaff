@@ -17,6 +17,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTableModule} from '@angular/material/table';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -106,6 +107,7 @@ import { CareerComponent } from './components/pages/career/career.component';
     MatFormFieldModule,
     MatProgressBarModule,
     MatTableModule,
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

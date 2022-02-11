@@ -23,30 +23,30 @@
           </div>
         </div>
         <div class="job-form" >
-          <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm'>
+          <form [formGroup]="addCVFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm'>
             <div class="row centered query-row">
               <div class="input-col my-col-3" >
                 <div class="inner-input">
                   <input matInput
                       type="text"
-                      [formControl]="query"
-                      placeholder="Search by Keywords">
+                      formControlName="jobTitle"
+                      placeholder="Job title">
                 </div>
               </div>
               <div class="input-col my-col-4">
                 <div class="inner-input">
                   <input matInput
                       type="text"
-                      [formControl]="query"
-                      placeholder="Search by Keywords">
+                      formControlName="city"
+                      placeholder="City">
                 </div>
               </div>
               <div class="input-col query-col my-col-5">
                 <div class="inner-input">
                   <input matInput
                       type="text"
-                      [formControl]="query"
-                      placeholder="Search by Keywords">
+                      formControlName="category"
+                      placeholder="Category">
                 <button type="button"
                         mat-raised-button
                         class="elipse-button elipse-button_icon">
@@ -55,6 +55,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <div class="row forms-row centered">
               <div class=" for-padding col-12">
                 <mat-expansion-panel (opened)="panelOpenState = true"
@@ -129,7 +130,7 @@
                 </mat-expansion-panel>
               </div>
             </div>
-          </form>
+          
         </div>
       </div>
       <!-- <div class="banner-toggle-container">
