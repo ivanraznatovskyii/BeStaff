@@ -2696,10 +2696,15 @@ td.mat-footer-cell {
   );
 }
 
+.mat-step-header {
+  flex-direction: column-reverse;
+}
+
 .mat-step-header.cdk-keyboard-focused,
 .mat-step-header.cdk-program-focused,
 .mat-step-header:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  /* background-color: rgba(0, 0, 0, 0.04); */
+  background-color: transparent;
 }
 
 @media (hover: none) {

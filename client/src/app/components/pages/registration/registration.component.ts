@@ -1,6 +1,6 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true},
+      useValue: {
+        showError: false,
+        displayDefaultIndicatorType: false,
+        disableRipple: true
+      },
     },
   ],
 })
@@ -17,16 +21,27 @@ export class RegistrationComponent implements OnInit {
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
-  therdGroup!: FormGroup;
+  therdFormGroup!: FormGroup;
+
+  loremOne: FormControl = new FormControl();
+  loremTwo: FormControl = new FormControl();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
       firstCtrl: ['', Validators.required],
+      jobTitle: ['', Validators.required],
+      text: ['', Validators.required],
     });
     this.secondFormGroup = this.fb.group({
-      secondCtrl: ['', Validators.required],
+      skill: ['', Validators.required],
+      otherSkills: ['', Validators.required],
+      exYears: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
+      cvFile: ['']
+    });
+    this.therdFormGroup = this.fb.group({
+      therdCtrl: ['', Validators.required],
     });
   }
 

@@ -1,5 +1,170 @@
 <div class="reg-wrapper">
   <div class="reg-container">
+    <div class="heading">
+      <h2>Registration</h2>
+    </div>
+    <div class="stepper-conaiter">
+      <mat-stepper labelPosition="bottom" [disableRipple]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Step 1</ng-template>
+            <label for="name">Name</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="jobTitle"
+                  placeholder="Name"
+                  id="name">
+            </div>
+            <label for="surname">Surname</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="jobTitle"
+                  placeholder="Surname"
+                  id="surname">
+            </div>
+            <label for="email">Email</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="jobTitle"
+                  placeholder="Email"
+                  id="email">
+            </div>
+            <label for="location">Location</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="jobTitle"
+                  placeholder="Location"
+                  id="location">
+            </div>
+            <label for="position">Position</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="jobTitle"
+                  placeholder="Position"
+                  id="position">
+            </div>
+            <div class="under-text">
+              <sup>*</sup>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dicta nesciunt laborum inventore maxime hic obcaecati maiores saepe, deleniti velit praesentium ea provident possimus enim?
+              </span>
+            </div>
+            <label for="shortDescription">Short Description</label>
+            <div class="inner-input inner-input_textarea">
+              <textarea matInput
+                        formControlName="text"
+                        placeholder="Short Description"
+                        id="shortDescription"
+                        rows="4">
+              </textarea>
+            </div>
+            <div class="under-text">
+              <sup>*</sup>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dicta nesciunt laborum inventore maxime hic obcaecati maiores saepe, deleniti velit praesentium ea provident possimus enim?
+              </span>
+            </div>
+            <div class="checkbox-container">
+              <mat-checkbox [formControl]="loremOne" id="first">
+                <label for="first" class="seniority-item-label">Lorem</label>
+              </mat-checkbox>
+              <mat-checkbox [formControl]="loremTwo" id="second">
+                <label for="second" class="seniority-item-label">Ipsum</label>
+              </mat-checkbox>
+            </div>
+            <div class="under-text">
+              <sup>*</sup>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dicta nesciunt laborum inventore maxime hic obcaecati maiores saepe, deleniti velit praesentium ea provident possimus enim?
+              </span>
+            </div>
+            <div class="next-btn-container">
+              <button mat-button matStepperNext class="elipse-button elipse-button_next">Next  &#10142;</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Step 2</ng-template>
+            <label for="skill">Add skill</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="skill"
+                  placeholder="Add skill"
+                  id="skill">
+            </div>
+            <div class="under-text">
+              <sup>*</sup>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dicta nesciunt laborum inventore maxime hic obcaecati maiores saepe, deleniti velit praesentium ea provident possimus enim?
+              </span>
+            </div>
+            <label for="otherSkills">Other Skills</label>
+            <div class="inner-input inner-input_textarea">
+              <textarea matInput
+                        formControlName="otherSkills"
+                        placeholder="Other Skills"
+                        id="otherSkills"
+                        rows="4">
+              </textarea>
+            </div>
+            <div class="under-text">
+              <sup>*</sup>
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dicta nesciunt laborum inventore maxime hic obcaecati maiores saepe, deleniti velit praesentium ea provident possimus enim?
+              </span>
+            </div>
+            <label for="exYears">Experience in years</label>
+            <div class="inner-input">
+              <input matInput
+                  type="text"
+                  formControlName="exYears"
+                  placeholder="Experience in years"
+                  id="exYears">
+            </div>
+            <div class="inner-input cv-file">
+              <input type="file"
+                      formControlName="cvFile"
+                      placeholder="Attach CV"
+                      id="cvFile">
+            </div>
+            <div class="next-btn-container">
+              <button mat-button matStepperNext class="elipse-button elipse-button_next">Next  &#10142;</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="therdFormGroup">
+          <form [formGroup]="therdFormGroup">
+            <ng-template matStepLabel>Step 3</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="therdCtrl"
+                    required>
+            </mat-form-field>
+            <div>
+              <p>Go to a different step to see the error state</p>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step> -->
+        <button mat-button matStepperNext>Next</button>
+      </mat-stepper>
+    </div>
     
   </div>
 </div>
