@@ -129,10 +129,29 @@
                   id="exYears">
             </div>
             <div class="inner-input cv-file">
-              <input type="file"
+              <button type="button"
+                      mat-button
+                      (click)="fileInput.click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 16H7C4.79086 16 3 14.2091 3 12V12C3 9.79086 4.79086 8 7 8H10" stroke="#95B0C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 12H8" stroke="#95B0C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 16H17C19.2091 16 21 14.2091 21 12V12C21 9.79086 19.2091 8 17 8H14" stroke="#95B0C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="inner-btn-text">{{ cvFilename }}</span>
+                <!-- <fa-icon [icon]="faLink" style="font-size: 30px; margin-right: 10px"></fa-icon> -->
+              </button>
+              <input #fileInput hidden (change)="onFileSelected($event.target)" type="file" id="file" formControlName="cvFile"
+                    accept="application/xml, application/pdf, text/txt">
+              <!-- <label for="cvFile" class="cv-file-label"></label> -->
+              <!-- <input type="file"
                       formControlName="cvFile"
                       placeholder="Attach CV"
-                      id="cvFile">
+                      id="cvFile"
+                      hidden> -->
+              <div class="remove-file" (click)="removeFiles()" *ngIf="cvFilename">
+                <fa-icon [icon]="faTimes"></fa-icon>
+                <span> Remove</span>
+              </div>
             </div>
             <div class="next-btn-container">
               <button mat-button matStepperNext class="elipse-button elipse-button_next">Next  &#10142;</button>
@@ -165,6 +184,6 @@
         <button mat-button matStepperNext>Next</button>
       </mat-stepper>
     </div>
-    
+
   </div>
 </div>

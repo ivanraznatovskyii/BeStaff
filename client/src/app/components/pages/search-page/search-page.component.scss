@@ -72,6 +72,7 @@
   @include respond-to($media_large) {
     width: 100%;
     flex-wrap: wrap;
+    transform: translateX(0) !important;
   }
 }
 
@@ -82,7 +83,7 @@ div.slider-btns {
 
   @include respond-to($media_large) {
     display: none;
-  } 
+  }
 }
 
 .radio-group {
@@ -115,7 +116,7 @@ div.slider-btns {
 
 div.dev-card {
   width: 370px;
-  height: 408px;
+  /* height: 408px; */
   padding: 15px 30px;
   margin: 15px 10px 0 0;
   display: flex;
@@ -660,10 +661,6 @@ h3.card-heading {
 
 .search-cards-container {
   overflow: hidden;
-
-  @include respond-to($media_large) {
-    overflow: hidden;
-  }
 }
 
 .searching-results-content {

@@ -1,12 +1,12 @@
 <div class="services-page-wrapper">
   <div class="services-page-container">
+    <div class="breadcrumbs centered">
+      <app-breadcrumbs></app-breadcrumbs>
+    </div>
     <div class="ban-cont">
       <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
         <div class="services-banner centered">
           <div class="banner-bg">
-            <div class="breadcrumbs">
-              <app-breadcrumbs></app-breadcrumbs>
-            </div>
             <div class="banner-content">
               <h1 class="page-name">
                 Services
@@ -21,12 +21,12 @@
           </div>
         </div>
       </div>
-      <div class="banner-toggle-container">
+      <!-- <div class="banner-toggle-container" [ngStyle]="{ 'transform' : !isShowed ? 'translateY(-80px)' : 'none' }">
         <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()">
           {{ isShowed ? 'Close this block' : 'Open this block' }}
           <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <app-services-list></app-services-list>

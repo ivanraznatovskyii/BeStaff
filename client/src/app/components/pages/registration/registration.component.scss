@@ -25,8 +25,14 @@
 }
 
 .stepper-conaiter {
+
+  position: relative;
   margin: 0 auto;
   max-width: 600px;
+
+  @include respond-to-less-than($media_ipad) {
+    padding: 0 10px;
+  }
 
   & label {
     padding: 5px 0;
@@ -38,12 +44,9 @@
 }
 
 .inner-input {
-  position: relative;
+  /* position: relative; */
   margin: 0 0 10px;
 
-    @include respond-to($media_large) {
-      position: initial;
-    }
 
     & input, textarea {
       color: $skills-h5-font-color;
@@ -57,6 +60,22 @@
     width: 100%;
     border: 1px solid $skills-h5-font-color;
     border-radius: 6px;
+
+    & button {
+      width: 40px;
+      height: auto;
+      min-width: 30px;
+      padding: 0 15px;
+    }
+}
+
+.inner-btn-text {
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  color: $skills-h5-font-color;
+  opacity: .7;
 }
 
 ::ng-deep {
@@ -193,6 +212,14 @@
 }
 
 ::ng-deep {
+  .mat-input-element::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: $skills-h5-font-color;
+    opacity: .7;
+  }
+
   .mat-checkbox-checkmark-path {
     stroke: $orange-logo-color !important;
     stroke-width: 3px !important;
@@ -209,4 +236,47 @@
   span.mat-checkbox-background {
     opacity: 1;
   }
+}
+
+.remove-file {
+  position: absolute;
+  right: -12%;
+
+  @include respond-to-less-than(780px) {
+    right: 2%;
+  }
+
+  bottom: 22%;
+  color: $orange-logo-color;
+  cursor: pointer;
+
+  & span {
+    padding-left: 8px;
+    vertical-align: middle;
+    font-size: 10px;
+    line-height: 14px;
+    opacity: .6;
+  }
+
+  & fa-icon {
+    font-size: 14px;
+    line-height: 14px;
+    opacity: 1 !important;
+  }
+}
+
+.cv-file {
+  @include respond-to-less-than(780px) {
+    position: relative;
+  }
+
+  /* &::after {
+    position: relative;
+    right: 100%;
+    top: 0;
+    content: "";
+    width: 100px;
+    height: 40px;
+    background-color: red;
+  } */
 }

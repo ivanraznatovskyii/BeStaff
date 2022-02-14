@@ -4,7 +4,7 @@
 .calculator-wrapper {
   width: 100%;
   max-width: 100%;
-  min-height: 900px;
+  min-height: 500px;
   overflow-x: scroll;
 
   @include respond-to($media_large) {
@@ -104,7 +104,7 @@ td.mat-footer-cell:last-of-type {
 
 .total-pay {
   padding-right: 15px;  
-  width: 62%;
+  width: 53%;
   font-size: 24px;
   line-height: 36px;
   font-weight: 600;
@@ -193,6 +193,7 @@ td.mat-footer-cell:last-of-type {
 .heading-table {
   min-width: 230px;
   text-transform: uppercase;
+  text-align: center;
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;

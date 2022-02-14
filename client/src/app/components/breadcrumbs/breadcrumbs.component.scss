@@ -6,6 +6,7 @@
   font-size: 14px;
   font-weight: 500;
   margin: 0;
+
   a,
   span {
     cursor: pointer;
@@ -45,8 +46,20 @@
 }
 
 .contact-page {
-  li:last-child {
+  & li:first-child {
+    padding-left: 15px;
+  }
+
+  & li {
+    color: $bg-color-strong;
+  }
+
+  & li:last-child {
     font-weight: 500;
     color: $header-font-color;
+  }
+
+  & li span:hover {
+    color: $skills-h5-font-color;
   }
 }

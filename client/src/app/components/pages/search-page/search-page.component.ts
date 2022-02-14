@@ -23,10 +23,12 @@ export class SearchPageComponent implements OnInit {
 
 
   panelOpenState = false;
-  
+  isDevsLoaded: boolean = false;
+
   faSearch = faSearch;
   skillsList: Skill[] = [];
   radioArr: number[] = [];
+  cardsHeight: string = '378px';
 
   asyncTabs!: Observable<any[]>;
   pagesCount!: number;
@@ -48,7 +50,7 @@ export class SearchPageComponent implements OnInit {
   @ViewChild('searchForm') searchForm!: FormGroup;
 
 
-  devs: any = [
+  devs: any = [/* 
     {
       username: 'John Doe',
       position: 'Java Developer',
@@ -120,18 +122,32 @@ export class SearchPageComponent implements OnInit {
       agreementAccepted: true,
       skills: ['Frontend', 'Backend', 'C#', 'Java Script', 'Java', 'React', 'Vue', 'Angular', 'NodeJS', 'NestJS'],
       seniority: 'Senior',
-    },
+    }, */
   ];
 
-  
 
-  constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService, private fb: FormBuilder ) { 
+
+  constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService, private fb: FormBuilder ) {
 
     this.devService.getSkills().subscribe(skills => {
        this.skillsList = skills;
        this.initSearchForm();
     } );
-    
+
+    this.devService.getAllDevs().subscribe(devs => {
+      this.devs = devs;
+      this.fakeDevs();
+      this.makeRadioArr();
+      this.computedPageNumber();
+      this.addVisibleCards();
+      this.preparePaginator();
+
+
+
+
+      this.isDevsLoaded = true;
+    })
+
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -143,31 +159,30 @@ export class SearchPageComponent implements OnInit {
         ]);
       }, 1000);
     });
-   }
+  }
 
   ngOnInit(): void {
-    for(let i = 0; i < 6; i++) {
+  }
+
+  fakeDevs() {
+    for(let i = 0; i < 3; i++) {
       const newItms = this.devs;
       newItms.map((item: any) => {
         this.devsArr.push({
-          username: item.username,
+          name: item.name,
           position: item.position,
           specialization: item.specialization,
-          id: item.id * i,
+          developerId: item.developerId,
           email: item.email,
           agreementAccepted: true,
           skills: item.skills,
           seniority: item.seniority,
-          experience: item.experience,
+          experience: item.experienceYears,
           location: item.location,
         });
       })
       this.devs.reverse();
     }
-    this.makeRadioArr();
-    this.computedPageNumber();
-    this.addVisibleCards();
-    this.preparePaginator();
   }
 
   makeRadioArr() {
@@ -188,7 +203,7 @@ export class SearchPageComponent implements OnInit {
     for(let i = 1; i < this.pagesCount + 1; i++) {
       this.pagesNumberArray.push(i);
     }
-    
+
   }
 
   computedPageNumber() {
@@ -201,9 +216,11 @@ export class SearchPageComponent implements OnInit {
     for(let i = start; i < start + this.cardsPerPage; i++) {
       this.showedCards.push(this.devsArr[i])
     }
+    this.getCardsHeight();
   }
 
   changeCurrentPage(arg: string | number) {
+    const el = document.querySelector('.dev-card-list') as HTMLElement;
     if(arg === '-') {
       this.currentPage > 1 ? this.currentPage-- : this.currentPage;
     } else if (arg === '+') {
@@ -213,6 +230,7 @@ export class SearchPageComponent implements OnInit {
     }
     this.addVisibleCards();
     this.radioItem.setValue(1);
+    el.style.transform = `translateX(0)`;
   }
 
   initSearchForm() {
@@ -239,7 +257,8 @@ export class SearchPageComponent implements OnInit {
 
   navigateToCV(dev: any) {
     this.commonService.setDev(dev);
-    this.router.navigate(['/developers/details'], {
+    console.log(dev)
+    this.router.navigate([`/developers/details:${dev.developerId}`], {
       state: {
         data: 'dev'
       }
@@ -251,7 +270,7 @@ export class SearchPageComponent implements OnInit {
     const el = document.querySelector('.dev-card-list') as HTMLElement;
     switch(this.radioItem.value) {
       case 1:
-        el.style.transform = `translateX(-${step * 0}%)`; 
+        el.style.transform = `translateX(-${step * 0}%)`;
         break;
       case 2:
         el.style.transform = `translateX(-${step * 1}%)`;
@@ -276,6 +295,17 @@ export class SearchPageComponent implements OnInit {
   onOutletLoaded(component: any) {
     //component.node = 'someValue';
     //console.log(component)
-} 
+  }
+
+  getCardsHeight() {
+    this.showedCards.map((dev: any) => {
+      if(dev && dev.skills && dev.skills.length) {
+        const newHeight = +dev.skills.join(' ').length;
+        if(newHeight > +this.cardsHeight.replace('px', '')) {
+          this.cardsHeight = newHeight + 'px';
+        }
+      }
+    })
+  }
 
 }

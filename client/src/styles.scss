@@ -710,6 +710,7 @@ input.mat-input-element {
 
 .mat-ripple:not(:empty) {
   transform: translateZ(0);
+  margin: 10px;
 }
 
 .mat-ripple.mat-ripple-unbounded {

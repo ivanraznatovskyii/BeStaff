@@ -48,7 +48,6 @@
                         <label for="{{ skill.id }}" [ngClass]="{ 'label_chacked': searchFormGroup.get(skill.id)?.value }">{{ skill.name }}</label>
                       </div>
                     </div>
-                    
                   </form>
                 </div>
                 <div class="right-block">
@@ -96,7 +95,7 @@
                 <button type="button"
                         mat-raised-button
                         class="elipse-button elipse-button_search">
-                  Search 
+                  Search
                 </button>
               </div>
             </ng-template>
@@ -107,12 +106,12 @@
     <div class="searching-results">
       <div class="row searching-results-content">
         <div class="col-2 results-count">
-          Found {{ '3' }} developer{{ 's' }}
+          Found {{ devsArr.length }} developer{{ devsArr.length > 1 || devsArr.length === 0 ? 's' : '' }}
         </div>
-        <div class="col-10 searching-results-paginator">
+        <div class="col-10 searching-results-paginator" *ngIf="isDevsLoaded && devs && devs.length && devsArr.length">
           <div class="prev-page" (click)="changeCurrentPage('-')"></div>
-            <div class="pages" 
-                 [ngClass]="{ 'pages_active': num === currentPage }" 
+            <div class="pages"
+                 [ngClass]="{ 'pages_active': num === currentPage }"
                  *ngFor="let num of pagesNumberArray"
                  (click)="changeCurrentPage(num)">
               {{ num }}
@@ -120,18 +119,18 @@
           <div class="next-page" (click)="changeCurrentPage('+')"></div>
         </div>
       </div>
-
+      <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevsLoaded || !devs || !devs.length || !devsArr.length"></mat-progress-bar>
       <!-- cards template, should be showed in recursion -->
-      <div class="row search-cards-container">
+      <div class="row search-cards-container" *ngIf="isDevsLoaded && devs && devs.length && devsArr.length">
         <div class="col-12">
           <div class="dev-card-list">
-            <div class="dev-card" *ngFor="let dev of showedCards">
-              <div class="card-content">
-                <h3 class="card-heading">{{ dev.username }}</h3>
+            <div class="dev-card" *ngFor="let dev of showedCards" [ngStyle]="{ 'height': cardsHeight }">
+              <div class="card-content" *ngIf="dev && dev.name">
+                <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>
                 <div class="skills">Experience in years:</div>
                 <div class="skills-text">
-                  {{ dev.experience }}
+                  {{ dev.experienceYears }}
                 </div>
                 <div class="skills">Seniority:</div>
                 <div class="skills-text">
@@ -142,7 +141,7 @@
                   <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
                 </ul>
               </div>
-              <div class="cv-btn">
+              <div class="cv-btn"  *ngIf="dev && dev.name">
                 <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
               </div>
             </div>
@@ -153,9 +152,6 @@
       <div class="slider-btns">
         <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
           <mat-radio-button [value]="+item" class="radio-item" *ngFor="let item of radioArr" [checked]="+radioItem.value === +item"></mat-radio-button>
-          <!-- <mat-radio-button [value]="2" class="radio-item"></mat-radio-button>
-          <mat-radio-button [value]="3" class="radio-item"></mat-radio-button>
-          <mat-radio-button [value]="4" class="radio-item"></mat-radio-button> -->
         </mat-radio-group>
       </div>
     </div>
