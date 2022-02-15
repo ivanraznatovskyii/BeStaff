@@ -164,6 +164,12 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDevById(id: string) {
+    this.devService.getDevById(id).subscribe(dev => {
+      this.commonService.setDev(dev);
+    })
+  }
+
   fakeDevs() {
     for(let i = 0; i < 3; i++) {
       const newItms = this.devs;
@@ -196,7 +202,7 @@ export class SearchPageComponent implements OnInit {
   };
 
   searchBlockIsShowed() {
-    return window.location.href.replace(window.location.origin + '/developers/', '') === 'details';
+    return window.location.href.replace(window.location.origin + '/developers/', '').includes('details');
   };
 
   preparePaginator() {
@@ -257,11 +263,13 @@ export class SearchPageComponent implements OnInit {
 
   navigateToCV(dev: any) {
     this.commonService.setDev(dev);
-    console.log(dev)
-    this.router.navigate([`/developers/details:${dev.developerId}`], {
+    // console.log(dev)
+    const params = { developerId: dev.developerId };
+    this.router.navigate([`/developers/details/`], {
       state: {
         data: 'dev'
-      }
+      },
+      queryParams: params
     })
   }
 

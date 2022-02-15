@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -108,6 +109,7 @@ import { CareerComponent } from './components/pages/career/career.component';
     MatProgressBarModule,
     MatTableModule,
     MatStepperModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

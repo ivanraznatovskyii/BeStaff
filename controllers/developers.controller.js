@@ -1,10 +1,10 @@
-// const allUsers = require('../test_devs');
+const allUsers = require('../test_devs');
 const allSkills = require('../test_skills');
 const moment = require('moment');
 const { request } = require('express');
-let allUsers;
+/* let allUsers;
 
-const http = require('http');
+сonst http = require('http');
 let url = "http://20.107.45.74/api/developers/available";
 http.get(url,(res) => {
     let body = "";
@@ -24,7 +24,7 @@ http.get(url,(res) => {
 
 }).on("error", (error) => {
     console.error(error.message);
-});
+}); */
 
 
 module.exports.getAllDevelopers = async function(req, res){
@@ -48,6 +48,23 @@ module.exports.getAllDevelopers = async function(req, res){
   }
 };
 
+module.exports.getDevById = async function(req, res){
+  let developerId = null;
+  let result;
+  if(req.query.developerId) developerId = req.query.developerId;
+  try {
+    // console.log(allUsers)
+    const allDevs = await allUsers;
+    if(allDevs && developerId) {
+      result = allDevs.find(dev => dev.developerId = developerId);
+      console.log(result)
+      return res.status(200).json(result);
+    }
+  } catch (err) {
+    throw new Error(err)
+  }
+};
+
 module.exports.getAllSkills = async function(req, res){
   try {
     const skills = await allSkills;
@@ -56,3 +73,4 @@ module.exports.getAllSkills = async function(req, res){
     throw new Error(err)
   }
 };
+

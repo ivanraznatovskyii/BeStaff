@@ -16,32 +16,37 @@ export class DevDetailsComponent implements OnInit {
 
   faComment = faCommentDots;
   faMapMarkerAlt = faMapMarkerAlt;
-  currentDev: any = null;
+  currentDev: any;
   showedCards: any[] = [];
   devsArr: any[] = [];
   isDevsLoading: boolean = true;
+  isDevLoaded: boolean = false;
   cvForm!: FormGroup;
   hiringForm!: FormGroup;
 
-  constructor(private router: Router, 
-              private commonService: CommonService, 
-              private _route: ActivatedRoute, 
-              private fb: FormBuilder, 
+  constructor(private router: Router,
+              private commonService: CommonService,
+              private _route: ActivatedRoute,
+              private fb: FormBuilder,
               private devService: DevelopersService ) {
-    devService.getTreeDevs().subscribe(devs => {
+    this.devService.getTreeDevs().subscribe(devs => {
       this.showedCards = devs;
       this.isDevsLoading = false;
+      this.loadUser();
     })
   }
 
   ngOnInit(): void {
-    // this.initHiringForm();
-    this.initSVForm();
-    this.goToTop();
+  }
 
-    this.currentDev = this.commonService.getDev()
-    if(!this.currentDev) {
-      this.router.navigate(['/developers']);
+  loadUser() {
+    this.currentDev = this.commonService.getDev();
+    const fromLS = localStorage.getItem('currentDev');
+    if(!this.currentDev && fromLS) {
+      this.currentDev = JSON.parse(fromLS);
+      this.isDevLoaded = true;
+      this.initSVForm();
+      this.goToTop();
     }
   }
 
@@ -70,12 +75,9 @@ export class DevDetailsComponent implements OnInit {
   } */
 
   navigateToCV(dev: any) {
-    this.commonService.setDev(dev);
-    this.router.navigate(['/developers/details'], {
-      state: {
-        message: 'message'
-      }
-    })
+    localStorage.setItem('currentDev', JSON.stringify(dev));
+    this.goToTop();
+    this.currentDev = dev;
   }
 
 }

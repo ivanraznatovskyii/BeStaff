@@ -1,10 +1,11 @@
-<div class="details-wrapper details-wrapper_heading" *ngIf="currentDev">
+<mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevLoaded"></mat-progress-bar>
+<div class="details-wrapper details-wrapper_heading" *ngIf="isDevLoaded && currentDev">
   <div class="details-container details-container_heading">
     <app-breadcrumbs></app-breadcrumbs>
     <div class="heading-container">
       <div class="heading-info">
         <div class="details-name">
-          <h2 class="name">{{ currentDev.username }}</h2>
+          <h2 class="name">{{ currentDev.name }}</h2>
         </div>
         <div class="position">
           {{ currentDev.position }}
@@ -20,7 +21,7 @@
     </div>
   </div>
 </div>
-<div class="details-wrapper details-wrapper_content" *ngIf="currentDev">
+<div class="details-wrapper details-wrapper_content" *ngIf="isDevLoaded && currentDev">
   <div class="details-container details-container_content">
     <div class="left-block">
       <div class="experience">
@@ -77,7 +78,7 @@
             <button type="button"
                     mat-raised-button
                     class="elipse-button elipse-button_cv">
-              Request CV 
+              Request CV
             </button>
           </div>
         </form>
@@ -101,7 +102,7 @@
         <div class="dev-card-list">
           <div class="dev-card" *ngFor="let dev of showedCards">
             <div class="card-content">
-              <h3 class="card-heading">{{ dev.username }}</h3>
+              <h3 class="card-heading">{{ dev.name }}</h3>
               <div class="position">{{ dev.position }}</div>
               <div class="skills">Experience in years:</div>
               <div class="skills-text">

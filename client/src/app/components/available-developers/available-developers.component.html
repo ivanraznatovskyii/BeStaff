@@ -23,13 +23,13 @@
                 <div class="position">{{ dev.position }}</div>
                 <div class="skills">Specialization:</div>
                 <div class="skills-text">
-                  {{ dev.speciality }}
+                  {{ dev.specialty }}
                 </div>
                 <div class="skills">Experience:</div>
                 <div class="skills-text">
                   {{ dev.experienceYears }}
                 </div>
-                <button mat-raised-button class="elipse-button" (click)="navigateToCV()">Open CV</button>
+                <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
               </div>
             </div>
           </mat-tab>

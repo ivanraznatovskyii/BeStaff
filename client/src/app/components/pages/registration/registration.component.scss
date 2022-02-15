@@ -7,7 +7,8 @@
   background-color: $bg-color-light;
 }
 
-.reg-container {
+.reg-container,
+.reg-completed-container {
   max-width: 1200px;
   padding: 35px 0;
   margin: 0 auto;
@@ -159,6 +160,7 @@
 }
 
 .under-text {
+  padding-bottom: 20px;
   font-size: 10px;
   font-weight: 400;
   line-height: 14px;
@@ -166,7 +168,7 @@
 }
 
 .checkbox-container {
-  padding: 15px 0 5px 0;
+  padding: 0 0 5px 0;
 
   & mat-checkbox {
     padding: 10px 40px 10px 12px;
@@ -269,14 +271,122 @@
   @include respond-to-less-than(780px) {
     position: relative;
   }
+}
 
-  /* &::after {
-    position: relative;
-    right: 100%;
-    top: 0;
-    content: "";
-    width: 100px;
-    height: 40px;
-    background-color: red;
-  } */
+.heading-text {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.instruction {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $found-font-color;
+}
+
+.instruction-text {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: $found-font-color;
+}
+
+
+.start-test-link {
+  padding: 25px 0;
+
+  & a {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+    color: $orange-logo-color;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.skills-container {
+  min-height: 50px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 6px;
+}
+
+.skills-list-inner {
+  padding: 4px;
+  margin-bottom: 0;
+  /* position: absolute;
+  top: 2px;
+  left: 2px; */
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.skills-item-inner {
+  display: block;
+  padding: 6px;
+  margin: 0 5px 5px 0;
+  border-radius: 6px;
+  border: 1px solid $orange-logo-color;
+  background-color: transparent;
+  color: $orange-logo-color;
+
+  & span:first-child {
+    padding-right: 5px;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+  }
+
+  & span:last-child {
+    color: $skills-h5-font-color;
+    font-size: 14px;
+  }
+}
+
+.complite-img {
+  margin-top: 170px;
+  width: 100%;
+  min-height: 205px;
+  text-align: center;
+
+  & img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 575px;
+    padding: 15px;
+  }
+}
+
+.go-home-button {
+  padding: 70px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include respond-to-less-than($media_large) {
+    padding: 10px 0 40px;
+  }
+
+  & button {
+    width: 206px;
+    height: 54px;
+  }
 }

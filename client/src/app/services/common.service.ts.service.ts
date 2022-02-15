@@ -19,10 +19,15 @@ export class CommonService {
 
   setDev(dev: any) {
     this.developer = dev;
+    localStorage.setItem('currentDev', JSON.stringify(dev));
   }
 
   getDev() {
-    return this.developer;
+    if(this.developer) {
+      return this.developer;
+    } else {
+      localStorage.getItem('currentDev');
+    }
   }
 
 

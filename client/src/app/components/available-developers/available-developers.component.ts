@@ -16,8 +16,9 @@ export class AvailableDevelopersComponent implements OnInit {
   devs: Developer[] = [];
   tabs: any[] = [];
   positions!: Set<string>;
+  currentDev!: Developer;
 
-  constructor(private router: Router, private devService: DevelopersService) {
+  constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService) {
     this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
@@ -57,12 +58,16 @@ export class AvailableDevelopersComponent implements OnInit {
     }
   }
 
-  navigateToCV() {
-    this.router.navigate(['/developers/details'], {
+  navigateToCV(dev: any) {
+    console.log(dev)
+    this.commonService.setDev(dev);
+    const params = { developerId: dev.developerId };
+    this.router.navigate([`/developers/details/`], {
       state: {
-        message: 'message'
-      }
-    })
+        data: 'dev'
+      },
+      queryParams: params
+    });
   }
 
 }
