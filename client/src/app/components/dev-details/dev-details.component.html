@@ -1,7 +1,7 @@
 <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevLoaded"></mat-progress-bar>
 <div class="details-wrapper details-wrapper_heading" *ngIf="isDevLoaded && currentDev">
   <div class="details-container details-container_heading">
-    <app-breadcrumbs></app-breadcrumbs>
+    <app-breadcrumbs [newCurrentUser]="currentDev"></app-breadcrumbs>
     <div class="heading-container">
       <div class="heading-info">
         <div class="details-name">
@@ -129,54 +129,4 @@
 <div class="hiring-">
   <app-hiring-form></app-hiring-form>
 </div>
-<!-- <div class="details-wrapper details-wrapper_hiring-form">
-  <div class="details-container details-container_hiring-form">
-    <div class="hiring-form">
-      <h2>Custom hiring form</h2>
-      <p class="hiring-intro-text">
-        Didn't find developer in our Base? Fill in form, describe your position and we will find
-      </p>
-      <form [formGroup]="hiringForm">
-        <div class="hiring-input">
-          <input matInput
-                type="text"
-                formControlName="name"
-                placeholder="Name">
-        </div>
-        <div class="hiring-input">
-          <input matInput
-                type="text"
-                formControlName="surname"
-                placeholder="Surname">
-        </div>
-        <div class="hiring-input">
-          <input matInput
-                type="text"
-                formControlName="email"
-                placeholder="Email">
-        </div>
-        <div class="hiring-input">
-          <textarea matInput
-                formControlName="text"
-                placeholder="Your text"
-                rows="5">
-          </textarea>
-        </div>
-        <div class="bottom-block bottom-block_hiring-form">
-          <mat-checkbox formControName="agreementAccepted" class="hiring-checkbox">
-            <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
-          </mat-checkbox>
-          <button type="button"
-                  mat-raised-button
-                  class="elipse-button elipse-button_cv">
-            Send request 
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-  
-  
-    
 

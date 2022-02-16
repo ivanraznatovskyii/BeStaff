@@ -141,10 +141,6 @@ export class SearchPageComponent implements OnInit {
       this.computedPageNumber();
       this.addVisibleCards();
       this.preparePaginator();
-
-
-
-
       this.isDevsLoaded = true;
     })
 
@@ -162,6 +158,15 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /* const devFromLS = localStorage.getItem('currentDev');
+    if(devFromLS) {
+      const devsId = JSON.parse(devFromLS).developerId;
+      if(devsId) {
+        this.devService.getDevById(devsId).subscribe(dev => {
+          console.log(dev)
+        })
+      }
+    } */
   }
 
   getDevById(id: string) {
@@ -265,12 +270,7 @@ export class SearchPageComponent implements OnInit {
     this.commonService.setDev(dev);
     // console.log(dev)
     const params = { developerId: dev.developerId };
-    this.router.navigate([`/developers/details/`], {
-      state: {
-        data: 'dev'
-      },
-      queryParams: params
-    })
+    this.router.navigate([`/developers/details/`], { queryParams: params });
   }
 
   change() {

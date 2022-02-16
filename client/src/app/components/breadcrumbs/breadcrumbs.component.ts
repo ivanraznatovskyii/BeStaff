@@ -1,7 +1,7 @@
 import { CommonService } from 'src/app/services/common.service.ts.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { filter, distinctUntilChanged } from 'rxjs';
+import { filter, distinctUntilChanged, Subject, BehaviorSubject } from 'rxjs';
 
 export interface Breadcrumbs {
   label: string;
@@ -11,29 +11,39 @@ export interface Breadcrumbs {
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+  styleUrls: ['./breadcrumbs.component.scss'],
 })
-export class BreadcrumbsComponent implements OnInit {
+export class BreadcrumbsComponent implements OnInit, OnChanges {
+
+  @Input() newCurrentUser: any;
 
   breadcrumbs: Breadcrumbs[] = [];
   currentUser: any = {};
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
-      //this.currentUser = this.commonService.getDev();
-      const devFromLS = JSON.parse(localStorage.getItem('currentDev') as string);
-      if(devFromLS && devFromLS.developerId) this.currentUser = devFromLS;
-      this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-      this.breadcrumbs.unshift({label: 'Home', url: ''});
-      /* console.log(this.breadcrumbs) */
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private commonService: CommonService,
+              private changeDetection: ChangeDetectorRef) {
+    const devFromLS = JSON.parse(localStorage.getItem('currentDev') as string);
+    if(devFromLS && devFromLS.developerId) this.currentUser = devFromLS;
+    this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+    this.breadcrumbs.unshift({label: 'Home', url: ''});
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.changeDetection.detectChanges();
+    this.currentUser = this.newCurrentUser;
+    this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+    this.breadcrumbs.unshift({label: 'Home', url: ''});
   }
 
   ngOnInit(): void {
     this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd),
-        distinctUntilChanged(),
+      filter(event => event instanceof NavigationEnd),
+      distinctUntilChanged(),
     ).subscribe(() => {
-        this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-    })
+      this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+    });
   }
 
   buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumbs[] = []): Breadcrumbs[] {
@@ -66,7 +76,6 @@ export class BreadcrumbsComponent implements OnInit {
         //there will be more children to look after, to build our breadcumb
         return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
-
     if(newBreadcrumbs[newBreadcrumbs.length - 1].label === "Developer`s details" && this.currentUser) newBreadcrumbs[newBreadcrumbs.length - 1].label = this.currentUser.name;
     return newBreadcrumbs;
   }

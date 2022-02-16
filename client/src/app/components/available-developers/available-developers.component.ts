@@ -59,15 +59,9 @@ export class AvailableDevelopersComponent implements OnInit {
   }
 
   navigateToCV(dev: any) {
-    console.log(dev)
     this.commonService.setDev(dev);
     const params = { developerId: dev.developerId };
-    this.router.navigate([`/developers/details/`], {
-      state: {
-        data: 'dev'
-      },
-      queryParams: params
-    });
+    this.router.navigate([`/developers/details/`], { queryParams: params });
   }
 
 }

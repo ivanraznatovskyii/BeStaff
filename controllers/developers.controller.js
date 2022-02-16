@@ -38,7 +38,6 @@ module.exports.getAllDevelopers = async function(req, res){
       for(let i = 0; i < limit; i++) {
         result.push(allDevs[i]);
       }
-      console.log(result)
       return res.status(200).json(result);
     } else if(allDevs) {
       return res.status(200).json(allDevs);
@@ -53,11 +52,9 @@ module.exports.getDevById = async function(req, res){
   let result;
   if(req.query.developerId) developerId = req.query.developerId;
   try {
-    // console.log(allUsers)
     const allDevs = await allUsers;
     if(allDevs && developerId) {
       result = allDevs.find(dev => dev.developerId = developerId);
-      console.log(result)
       return res.status(200).json(result);
     }
   } catch (err) {

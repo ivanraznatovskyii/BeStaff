@@ -23,7 +23,6 @@ export class DevelopersService {
   }
 
   getDevById(id: string): Observable<any> {
-    console.log(id)
-    return this.http.get<Developer>(`/api/developers/alldevs?developerId=${id}`);
+    return this.http.get<Developer>(`/api/developers/devById`, { params: { developerId: id } });
   }
 }
