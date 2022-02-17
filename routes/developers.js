@@ -5,6 +5,8 @@ const router = express.Router();
 router.get('/devById', controller.getDevById);
 router.get('/alldevs', controller.getAllDevelopers);
 router.get('/stacks', controller.getAllSkills);
+router.post('/devCVById', controller.requestCVDevById);
+
 
 
 module.exports = router;

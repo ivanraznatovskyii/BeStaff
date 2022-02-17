@@ -15,9 +15,11 @@ const app = express();
 //mongoose.connect(keys.mongoURI) устарел
 //необходимо использовать новый формат с настройками:
 //mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
-mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
+/* mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => console.log('MondoDB connected'))
-.catch(error => console.log(`error ${error}`));
+.catch(error => console.log(`error ${error}`)); */
+
+
 
 app.use(passport.initialize());
 require('./middleware/passport')(passport);

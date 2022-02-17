@@ -30,6 +30,13 @@ export class DevDetailsComponent implements OnInit {
               private _route: ActivatedRoute,
               private fb: FormBuilder,
               private devService: DevelopersService ) {
+    //this.devService.getDevById('61ca71f7-9134-ec11-8388-ccd9acdd6ef8').subscribe(dev => console.log(dev));   // EXEMPLE get developer by developerId
+    const body = {
+      name: 'name',
+      email: 'email',
+      text: 'text'
+    };
+    this.devService.submitRequestForCVDevById('61ca71f7-9134-ec11-8388-ccd9acdd6ef8', body).subscribe(dev => console.log(dev));   // EXEMPLE get developer by developerId
     this.devService.getTreeDevs().subscribe(devs => {
       this.showedCards = devs;
       this.isDevsLoading = false;

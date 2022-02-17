@@ -25,4 +25,8 @@ export class DevelopersService {
   getDevById(id: string): Observable<any> {
     return this.http.get<Developer>(`/api/developers/devById`, { params: { developerId: id } });
   }
+
+  submitRequestForCVDevById(id: string, body: any): Observable<any> {
+    return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
+  }
 }
