@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { faCommentDots, faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,28 @@ import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bestaff';
+
+  showToTopButton: boolean = false;
+
+@HostListener("window:scroll", []) onWindowScroll() {
+  const verticalOffset = window.pageYOffset
+        || document.documentElement.scrollTop
+        || document.body.scrollTop || 0;
+  this.getOffset(verticalOffset);
+}
+
+
+  title = 'BeStaff';
 
   faComment = faCommentDots;
+  faArrowAltCircleUp = faArrowAltCircleUp;
+
+  getOffset(offcet: number) {
+    offcet > 600 ? this.showToTopButton = true : this.showToTopButton = false;
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
+  }
 }

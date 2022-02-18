@@ -97,4 +97,13 @@
   background-color: $orange-logo-color;
 }
 
+.bottom-block mat-checkbox {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.error-checkbox-label {
+  border: 1px solid red;
+}
 

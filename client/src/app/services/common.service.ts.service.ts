@@ -35,12 +35,5 @@ export class CommonService {
     this.dev.next(data);
   }
 
-  /* isDevComponentVisible() {
-    if(window.location.href.replace(window.location.origin + '/developers/', '') === 'details') {
-      console.log('details')
-    } else if(window.location.href.replace(window.location.origin + '/developers/', '') === '') {
-      console.log('NO')
-    }
-  } */
 
 }

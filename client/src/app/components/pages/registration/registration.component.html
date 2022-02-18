@@ -3,7 +3,7 @@
     <div class="heading">
       <h2>Registration</h2>
     </div>
-    <div class="stepper-conaiter">
+    <div class="stepper-conaiter" *ngIf="isFormsLoaded">
       <mat-stepper labelPosition="bottom" [disableRipple]="true" #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
@@ -12,7 +12,7 @@
             <div class="inner-input">
               <input matInput
                   type="text"
-                  formControlName="jobTitle"
+                  formControlName="name"
                   placeholder="Name"
                   id="name">
             </div>
@@ -20,7 +20,7 @@
             <div class="inner-input">
               <input matInput
                   type="text"
-                  formControlName="jobTitle"
+                  formControlName="surname"
                   placeholder="Surname"
                   id="surname">
             </div>
@@ -28,7 +28,7 @@
             <div class="inner-input">
               <input matInput
                   type="text"
-                  formControlName="jobTitle"
+                  formControlName="email"
                   placeholder="Email"
                   id="email">
             </div>
@@ -36,7 +36,7 @@
             <div class="inner-input">
               <input matInput
                   type="text"
-                  formControlName="jobTitle"
+                  formControlName="location"
                   placeholder="Location"
                   id="location">
             </div>
@@ -44,10 +44,16 @@
             <div class="inner-input">
               <input matInput
                   type="text"
-                  formControlName="jobTitle"
+                  formControlName="position"
                   placeholder="Position"
-                  id="position">
+                  id="position"
+                  [matAutocomplete]="autoPositions">
             </div>
+            <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList" (optionSelected)="optionWasSelected($event)">
+              <mat-option *ngFor="let position of filteredPositions | async" [value]="position.name">
+                {{position.name}}
+              </mat-option>
+            </mat-autocomplete>
             <div class="under-text">
               <sup>*</sup>
               <span>

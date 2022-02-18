@@ -6,11 +6,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { Router } from '@angular/router';
 import { DevelopersService } from 'src/app/services/developers.service';
-
-export interface Skill {
-  name: string,
-  id: string
-}
+import { SearchService } from 'src/app/services/search.service';
+import { Skills } from 'src/app/interfaces/skills';
+import { Stacks } from 'src/app/interfaces/stacks';
 
 @Component({
   selector: 'app-search-page',
@@ -26,7 +24,8 @@ export class SearchPageComponent implements OnInit {
   isDevsLoaded: boolean = false;
 
   faSearch = faSearch;
-  skillsList: Skill[] = [];
+  skillsList: Skills[] = [];
+  stacksList: Stacks[] = [];
   radioArr: number[] = [];
   cardsHeight: string = '378px';
 
@@ -50,7 +49,7 @@ export class SearchPageComponent implements OnInit {
   @ViewChild('searchForm') searchForm!: FormGroup;
 
 
-  devs: any = [/* 
+  devs: any = [/*
     {
       username: 'John Doe',
       position: 'Java Developer',
@@ -127,10 +126,14 @@ export class SearchPageComponent implements OnInit {
 
 
 
-  constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService, private fb: FormBuilder ) {
+  constructor(private commonService: CommonService,
+              private router: Router,
+              private devService: DevelopersService,
+              private fb: FormBuilder,
+              private searchService: SearchService, ) {
 
-    this.devService.getSkills().subscribe(skills => {
-       this.skillsList = skills;
+    this.devService.getStacks().subscribe(stacks => {
+       this.skillsList = stacks;
        this.initSearchForm();
     } );
 
@@ -268,7 +271,6 @@ export class SearchPageComponent implements OnInit {
 
   navigateToCV(dev: any) {
     this.commonService.setDev(dev);
-    // console.log(dev)
     const params = { developerId: dev.developerId };
     this.router.navigate([`/developers/details/`], { queryParams: params });
   }
@@ -314,6 +316,56 @@ export class SearchPageComponent implements OnInit {
         }
       }
     })
+  }
+
+  searchByQuery() {
+    if(this.query.status === 'VALID') {
+      this.searchService.searchByQuery(this.query.value).subscribe(devs => {
+        console.log(devs)
+        /* this.devsArr = devs; */
+      })
+    }
+  }
+
+  searchByStackQuery() {
+    const params = {
+      searchstring: '',
+      experienceYears: null,
+      stacks: [],
+      seniority: [],
+      page: 1,
+      resultsonpage: 6,
+    };
+    if(this.searchFormGroup.status === 'VALID'
+        && this.exSlider.status === 'VALID'
+        && this.seniorityJunior.status === 'VALID'
+        && this.seniorityMiddle.status === 'VALID'
+        && this.senioritySenior.status === 'VALID') {
+      const skills = this.getSelectedSkills(params.stacks);
+      if(this.exSlider.value) params.experienceYears = this.exSlider.value;
+      // @ts-ignore
+      if(this.seniorityJunior.value) params.seniority.push('Junior');
+      // @ts-ignore
+      if(this.seniorityMiddle.value) params.seniority.push('Middle');
+      // @ts-ignore
+      if(this.senioritySenior.value) params.seniority.push('Senior');
+      console.log(params)
+      if(this.query.value) params.searchstring = this.query.value;
+      // this.searchService.searchByParams(this.query.value).subscribe(devs => {
+      //   console.log(devs)
+      //   /* this.devsArr = devs; */
+      // })
+    }
+  }
+
+  getSelectedSkills(skillsArr: any[]): any {
+    for(let item in this.searchFormGroup.controls) {
+      if(this.searchFormGroup.get(item)!.value) {
+        skillsArr.push(this.skillsList.find(skill => skill.id === item))
+      }
+    }
+
+    return skillsArr;
   }
 
 }

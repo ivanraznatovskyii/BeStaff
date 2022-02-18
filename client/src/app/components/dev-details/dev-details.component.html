@@ -53,31 +53,37 @@
       <div class="cv-request-form">
         <h2>Request a full CV</h2>
         <form [formGroup]="cvForm">
-          <div class="cv-input">
+          <div class="cv-input"
+                [ngStyle]="{ 'border-color': cvForm.controls['name'].touched
+                && cvForm.controls['name'].status === 'INVALID' ? 'red' : 'initial' }">
             <input matInput
                   type="text"
                   formControlName="name"
                   placeholder="Name">
           </div>
-          <div class="cv-input">
+          <div class="cv-input" [ngStyle]="{ 'border-color': cvForm.controls['surname'].touched && cvForm.controls['surname'].status === 'INVALID' ? 'red' : 'initial' }">
             <input matInput
                   type="text"
                   formControlName="surname"
                   placeholder="Surname">
           </div>
-          <div class="cv-input">
+          <div class="cv-input" [ngStyle]="{ 'border-color': cvForm.controls['email'].touched && cvForm.controls['email'].status === 'INVALID' ? 'red' : 'initial' }">
             <input matInput
                   type="text"
                   formControlName="email"
                   placeholder="Email">
           </div>
           <div class="bottom-block">
-            <mat-checkbox formControName="agreementAccepted">
+            <mat-checkbox formControName="agreementAccepted"
+                          [ngClass]="{ 'error-checkbox-label':
+                          cvForm.touched && isSubmit && !isAgreementAccepted }"
+                          (change)="isAgreementAccepted = !isAgreementAccepted">
               <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
             </mat-checkbox>
             <button type="button"
                     mat-raised-button
-                    class="elipse-button elipse-button_cv">
+                    class="elipse-button elipse-button_cv"
+                    (click)="submitRequestForCVDevById()">
               Request CV
             </button>
           </div>

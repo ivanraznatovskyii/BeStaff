@@ -10,8 +10,17 @@ export class DevelopersService {
 
   constructor(private http: HttpClient) { }
 
-  getSkills(): Observable<any> {
+  getStacks(): Observable<any> {
     return this.http.get<any[]>(`/api/developers/stacks`);
+  }
+
+  getSkills(): Observable<any> {
+    console.log('Get skills state')
+    return this.http.get<any[]>(`/api/developers/skills`);
+  }
+
+  getAllPositions() {
+    return this.http.get<any[]>(`/api/registration/positions`);
   }
 
   getAllDevs(): Observable<any> {
@@ -26,7 +35,8 @@ export class DevelopersService {
     return this.http.get<Developer>(`/api/developers/devById`, { params: { developerId: id } });
   }
 
-  submitRequestForCVDevById(id: string, body: any): Observable<any> {
-    return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
+  submitRequestForCVDevById(id: string, body: any)/* : Observable<any> */ {
+    console.log('request must be submitted')
+    //return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
   }
 }

@@ -15,7 +15,7 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque ipsa commodi nihil tempora ratione, perspiciatis deleniti harum molestias suscipit. Minima eum tempora placeat eos blanditiis. Dolores quam, doloribus corporis quasi deleniti distinctio doloremque quia? Maxime nisi suscipit architecto eum soluta! Itaque commodi ipsam deleniti dolor eveniet ut excepturi sint?
               </div>
               <div class="start-career-btn">
-                <button mat-raised-button class="send-cv elipse-button" (click)="sendCV()">Send CV</button>
+                <button mat-raised-button class="send-cv elipse-button" [routerLink]="['/register']" (click)="sendCV()">Send CV</button>
               </div>
             </div>
             <div class="banner-img">
@@ -30,9 +30,17 @@
                   <input matInput
                       type="text"
                       formControlName="jobTitle"
-                      placeholder="Job title">
+                      placeholder="Job title"
+                      [matAutocomplete]="autoPositions">
                 </div>
               </div>
+
+              <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList" (optionSelected)="optionWasSelected($event)">
+                <mat-option *ngFor="let position of filteredPositions | async" [value]="position.name">
+                  {{position.name}}
+                </mat-option>
+              </mat-autocomplete>
+
               <div class="input-col my-col-4">
                 <div class="inner-input">
                   <input matInput
@@ -51,7 +59,7 @@
                         mat-raised-button
                         class="elipse-button elipse-button_icon">
                   <span class="search-btn-text"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
-                </button>    
+                </button>
                 </div>
               </div>
             </div>
@@ -70,12 +78,12 @@
                       <div class="left-block checkboxes-container">
                         <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
                           <div class="skills-list">
-                            <div class="dynamic-skill-item" *ngFor="let skill of skillsList">
-                              <input type="checkbox" formControlName="{{ skill.id }}" id="{{ skill.id }}">
-                              <label for="{{ skill.id }}" [ngClass]="{ 'label_chacked': searchFormGroup.get(skill.id)?.value }">{{ skill.name }}</label>
+                            <div class="dynamic-skill-item" *ngFor="let stack of stacksList">
+                              <input type="checkbox" formControlName="{{ stack.id }}" id="{{ stack.id }}">
+                              <label for="{{ stack.id }}" [ngClass]="{ 'label_chacked': searchFormGroup.get(stack.id)?.value }">{{ stack.name }}</label>
                             </div>
                           </div>
-                          
+
                         </form>
                       </div>
                       <div class="right-block">
@@ -122,15 +130,16 @@
                       </button>
                       <button type="button"
                               mat-raised-button
-                              class="elipse-button elipse-button_search">
-                        Search 
+                              class="elipse-button elipse-button_search"
+                              (click)="searchByStackQuery()">
+                        Search
                       </button>
                     </div>
                   </ng-template>
                 </mat-expansion-panel>
               </div>
             </div>
-          
+
         </div>
       </div>
       <!-- <div class="banner-toggle-container">

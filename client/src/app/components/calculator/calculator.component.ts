@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Developer } from 'src/app/interfaces/developer';
 import { Skills } from 'src/app/interfaces/skills';
+import { Stacks } from 'src/app/interfaces/stacks';
 
 @Component({
   selector: 'app-calculator',
@@ -23,6 +24,7 @@ export class CalculatorComponent implements OnInit {
   calculatorInput: FormControl = new FormControl();
 
   skills: Skills[] = [];
+  stacks: Stacks[] = [];
 
   data = [
     {
@@ -43,11 +45,10 @@ export class CalculatorComponent implements OnInit {
         mounth: 52
       }
     }
-    
+
   ];
 
-  constructor(private devService: DevelopersService) { 
-    
+  constructor(private devService: DevelopersService) {
    }
 
   ngOnInit(): void {
@@ -56,17 +57,17 @@ export class CalculatorComponent implements OnInit {
   }
 
   getTreeUsers() {
-    this.devService.getSkills().subscribe(skills => {
-      this.skills = skills;
-      this.addSkills(this.skills)
+    this.devService.getStacks().subscribe(stacks => {
+      this.stacks = stacks;
+      this.addStacks(this.stacks)
       // this.calculatorSource = new MatTableDataSource<any>(this.devs);
       this.isDevsLoading = false;
     })
   }
 
-  addSkills(skills: Skills[]) {
+  addStacks(stacks: Stacks[]) {
     this.data.forEach(item => {
-      return (item.technologyStach as Array<Skills>).push(...skills);
+      return (item.technologyStach as Array<Skills>).push(...stacks);
     })
   }
 

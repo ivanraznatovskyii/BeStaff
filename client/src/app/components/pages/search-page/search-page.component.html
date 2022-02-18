@@ -24,15 +24,16 @@
         <div class="btn-col col-2">
           <button type="button"
                   mat-raised-button
-                  class="elipse-button">
-            <span class="search-btn-text"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
+                  class="elipse-button"
+                  (click)="searchByQuery()">
+            <span class="search-btn-text" id="querySearch"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
           </button>
         </div>
       </div>
       <div class="row forms-row">
         <div class="col-12">
           <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+                               (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Search by Stack
@@ -56,7 +57,7 @@
                       Experience in years
                     </div>
                     <mat-slider [displayWith]="currentYearsExp"
-                    [formControl]="exSlider"
+                                [formControl]="exSlider"
                                 tickInterval="1"
                                 [value]="sliderValue"
                                 thumbLabel="true"
@@ -94,7 +95,8 @@
                 </button>
                 <button type="button"
                         mat-raised-button
-                        class="elipse-button elipse-button_search">
+                        class="elipse-button elipse-button_search"
+                        (click)="searchByStackQuery()">
                   Search
                 </button>
               </div>

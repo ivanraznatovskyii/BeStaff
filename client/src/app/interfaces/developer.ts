@@ -16,3 +16,12 @@ export interface Developer {
     months: number;
   };
 }
+
+/* export interface SearchQueryObject {
+  searchstring: string,
+  experienceYears: number,
+  stacks: any[],
+  seniority: string[],
+  page: number,
+  resultsonpage: number,
+} */

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-hiring-form',
@@ -10,12 +11,19 @@ export class HiringFormComponent implements OnInit {
 
   hiringForm!: FormGroup;
   hiringFormTitle: string = 'Custom hiring form';
+  isAgreementAccepted: boolean = false;
+  isSubmit: boolean = false;
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initHiringForm();
     this.hiringFormTitle = this.initTitle();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   initTitle() {
@@ -28,12 +36,31 @@ export class HiringFormComponent implements OnInit {
 
   initHiringForm() {
     this.hiringForm = this.fb.group({
-      name: [''],
-      surname: [''],
-      email: [''],
-      text: [''],
-      agreementAccepted: [false]
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.required],
+      text: ['', Validators.required],
+      agreementAccepted: []
     })
+  }
+
+  sendHiringForm() {
+    this.isSubmit = true;
+    this.hiringForm.controls['agreementAccepted'].patchValue(this.isAgreementAccepted);
+    for(let item in this.hiringForm.controls) {
+      this.hiringForm.controls[item].markAsTouched();
+    }
+    this.hiringForm.updateValueAndValidity();
+    const body = {
+      name: this.hiringForm.get('name')!.value,
+      surname: this.hiringForm.get('surname')!.value,
+      email: this.hiringForm.get('email')!.value,
+      text: this.hiringForm.get('text')!.value,
+    };
+    if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
+      //this.devService.submitRequestForCVDevById(this.devId, body)
+      this.openSnackBar('Request has been submitted!', 'close')
+    }
   }
 
 }

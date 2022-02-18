@@ -8,6 +8,31 @@
   justify-content: space-between;
 }
 
+.to-top-button {
+  position: fixed;
+  display: none;
+  justify-content: normal;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+
+  @include respond-to($media_large) {
+    right: 50px;
+    top: 50px;
+  }
+
+  color: $skills-button-color;
+  opacity: .5;
+  font-size: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.show {
+  display: block;
+}
+
 .questions-button {
   position: fixed;
   display: inline-flex;

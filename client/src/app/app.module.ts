@@ -19,6 +19,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,7 +80,7 @@ import { CareerComponent } from './components/pages/career/career.component';
     HiringFormComponent,
     ServicesListComponent,
     ContactsComponent,
-    CareerComponent
+    CareerComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +111,7 @@ import { CareerComponent } from './components/pages/career/career.component';
     MatTableModule,
     MatStepperModule,
     MatAutocompleteModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -598,4 +598,13 @@ h3.card-heading {
   /* end checkbox styling */
 }
 
+.bottom-block mat-checkbox {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.error-checkbox-label {
+  border: 1px solid red;
+}
 

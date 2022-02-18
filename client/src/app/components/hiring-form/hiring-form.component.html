@@ -6,25 +6,31 @@
         Didn't find developer in our Base? Fill in form, describe your position and we will find
       </p>
       <form [formGroup]="hiringForm">
-        <div class="hiring-input">
+        <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['name'].touched
+                && hiringForm.controls['name'].status === 'INVALID' ? 'red' : 'initial' }">
           <input matInput
                 type="text"
                 formControlName="name"
-                placeholder="Name">
+                placeholder="Name"
+                >
         </div>
-        <div class="hiring-input">
+        <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['surname'].touched
+                && hiringForm.controls['surname'].status === 'INVALID' ? 'red' : 'initial' }">
           <input matInput
                 type="text"
                 formControlName="surname"
-                placeholder="Surname">
+                placeholder="Surname"
+                >
         </div>
-        <div class="hiring-input">
+        <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['email'].touched
+                && hiringForm.controls['email'].status === 'INVALID' ? 'red' : 'initial' }">
           <input matInput
                 type="text"
                 formControlName="email"
                 placeholder="Email">
         </div>
-        <div class="hiring-input">
+        <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['text'].touched
+                && hiringForm.controls['text'].status === 'INVALID' ? 'red' : 'initial' }">
           <textarea matInput
                 formControlName="text"
                 placeholder="Your text"
@@ -32,13 +38,18 @@
           </textarea>
         </div>
         <div class="bottom-block bottom-block_hiring-form">
-          <mat-checkbox formControName="agreementAccepted" class="hiring-checkbox">
+          <mat-checkbox formControName="agreementAccepted"
+                        class="hiring-checkbox"
+                        [ngClass]="{ 'error-checkbox-label':
+                        hiringForm.touched && isSubmit && !isAgreementAccepted }"
+                        (change)="isAgreementAccepted = !isAgreementAccepted">
             <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
           </mat-checkbox>
           <button type="button"
                   mat-raised-button
-                  class="elipse-button elipse-button_cv">
-            Send request 
+                  class="elipse-button elipse-button_cv"
+                  (click)="sendHiringForm()">
+            Send request
           </button>
         </div>
       </form>
