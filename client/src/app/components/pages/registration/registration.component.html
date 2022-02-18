@@ -5,7 +5,7 @@
     </div>
     <div class="stepper-conaiter" *ngIf="isFormsLoaded">
       <mat-stepper labelPosition="bottom" [disableRipple]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" >
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Step 1</ng-template>
             <label for="name">Name</label>

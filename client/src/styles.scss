@@ -856,7 +856,10 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-option {
-  color: rgba(0, 0, 0, 0.87);
+  color: $found-font-color;
+  opacity: .7;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .mat-option:hover:not(.mat-option-disabled),
@@ -1067,7 +1070,7 @@ textarea.cdk-textarea-autosize-measuring {
 
 .mat-autocomplete-panel {
   background: #fff;
-  color: rgba(0, 0, 0, 0.87);
+  color: $found-font-color !important;
 }
 
 .mat-autocomplete-panel:not([class*='mat-elevation-z']) {
@@ -1081,7 +1084,7 @@ textarea.cdk-textarea-autosize-measuring {
 
 .mat-autocomplete-panel
   .mat-option.mat-selected:not(.mat-active):not(:hover):not(.mat-option-disabled) {
-  color: rgba(0, 0, 0, 0.87);
+  color: $found-font-color !important;
 }
 
 .mat-badge-content {

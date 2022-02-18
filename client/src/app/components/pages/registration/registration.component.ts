@@ -17,7 +17,7 @@ import { positionsMathesDirective } from 'src/app/directives/positions-mathes.di
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: {
-        showError: false,
+        showError: true,
         displayDefaultIndicatorType: false,
         disableRipple: true
       },
@@ -132,6 +132,7 @@ export class RegistrationComponent implements OnInit {
     let fileExtension;
     let splittedStringLength;
     if(files.files[0]) {
+      //console.log(files.files[0])
       file = files.files[0];
       filename = file.name.split('.')[0];
       this.cvFilename = filename;
@@ -155,7 +156,7 @@ export class RegistrationComponent implements OnInit {
         this.choosedSkills.push(choosedSkill);
       }
     };
-    console.log(this.choosedSkills)
+    //console.log(this.choosedSkills)
     this.secondFormGroup.get('skill')?.reset();
     this._filterStacks('');
   }
@@ -179,6 +180,34 @@ export class RegistrationComponent implements OnInit {
 
   compliteRegistration() {
     this.registrationHaveBeenCompleted = true;
+    const body = {};
+    if(this.firstFormGroup.status === 'VALID'
+        && this.secondFormGroup.status === 'VALID'
+        && this.therdFormGroup.status === 'VALID') {
+      
+      for(let item in this.firstFormGroup.controls) {
+        body[item] = this.firstFormGroup.controls[item].value;
+      }
+      for(let item in this.secondFormGroup.controls) {
+        body[item] = this.secondFormGroup.controls[item].value;
+      }
+      for(let item in this.therdFormGroup.controls) {
+        body[item] = this.therdFormGroup.controls[item].value;
+      }
+    } else {
+      this.firstFormGroup.updateValueAndValidity();
+      this.secondFormGroup.updateValueAndValidity();
+      this.therdFormGroup.updateValueAndValidity();
+    }
+    console.log(this.firstFormGroup.status)
+    console.log(this.secondFormGroup.status)
+    console.log(this.therdFormGroup.status)
+    console.log(body)
+    /* console.log(this.firstFormGroup.controls)
+    console.log(this.secondFormGroup.controls)
+    console.log(this.therdFormGroup.controls)
+    console.log(this.loremOne)
+    console.log(this.loremTwo) */
   }
 
 }

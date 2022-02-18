@@ -42,7 +42,7 @@
             <ng-template matExpansionPanelContent>
               <div class="form-container">
                 <div class="left-block checkboxes-container">
-                  <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
+                  <form [formGroup]="searchFormGroup" #searchForm='ngForm' class="search-card">
                     <div class="skills-list">
                       <div class="dynamic-skill-item" *ngFor="let skill of skillsList">
                         <input type="checkbox" formControlName="{{ skill.id }}" id="{{ skill.id }}">

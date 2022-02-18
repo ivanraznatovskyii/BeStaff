@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="job-form" >
-          <form [formGroup]="addCVFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm'>
+          <form [formGroup]="addCVFormGroup" #searchForm='ngForm'>
             <div class="row centered query-row">
               <div class="input-col my-col-3" >
                 <div class="inner-input">
@@ -35,7 +35,10 @@
                 </div>
               </div>
 
-              <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList" (optionSelected)="optionWasSelected($event)">
+              <mat-autocomplete #autoPositions="matAutocomplete" 
+                                [hidden]="!positionsList" 
+                                (optionSelected)="optionWasSelected($event)"
+                                overlayPanelClass="auto-class">
                 <mat-option *ngFor="let position of filteredPositions | async" [value]="position.name">
                   {{position.name}}
                 </mat-option>
@@ -76,7 +79,7 @@
                   <ng-template matExpansionPanelContent>
                     <div class="form-container">
                       <div class="left-block checkboxes-container">
-                        <form [formGroup]="searchFormGroup" (ngSubmit)="developersSearch()" #searchForm='ngForm' class="search-card">
+                        <form [formGroup]="searchFormGroup" #searchForm='ngForm' class="search-card">
                           <div class="skills-list">
                             <div class="dynamic-skill-item" *ngFor="let stack of stacksList">
                               <input type="checkbox" formControlName="{{ stack.id }}" id="{{ stack.id }}">
