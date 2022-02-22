@@ -596,3 +596,161 @@
 
 
 /* End query form */
+
+.search-cards-container {
+  overflow: hidden;
+}
+
+.searching-results-content {
+  position: relative;
+  min-height: 30px;
+  padding-left: 30px;
+}
+
+.dev-card-list {
+  width: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    flex-wrap: wrap;
+    transform: translateX(0) !important;
+  }
+}
+
+.dev-card-list {
+  width: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    flex-wrap: wrap;
+    transform: translateX(0) !important;
+  }
+}
+
+div.dev-card {
+  width: 370px;
+  /* height: 408px; */
+  padding: 15px 30px;
+  margin: 15px 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: white;
+}
+
+h3.card-heading {
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.position {
+  margin-bottom: 10px;
+  width: 100%;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.skills {
+  width: 100%;
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+.skills-list {
+  height: fit-content;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-item {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $found-font-color;
+  margin-right: 15px;
+}
+
+.searching-results-paginator {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  /* padding: 15px; */
+  align-items: center;
+}
+
+.pages {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: $found-font-color;
+
+  &_active {
+    font-weight: 600;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: $orange-logo-color;
+  }
+}
+
+.prev-page {
+  width: 13px;
+  height: 15px;
+  cursor: pointer;
+  background-image: url('../../../../assets/arrow-left.svg');
+  background-repeat: no-repeat;
+}
+
+.next-page {
+  width: 13px;
+  height: 15px;
+  cursor: pointer;
+  background-image: url('../../../../assets/arrow-left.svg');
+  transform: rotate(180deg);
+  background-repeat: no-repeat;
+}
+
+.results-count {
+  position: inherit;
+  width: 100%;
+
+  @include respond-to($media_large) {
+    position: absolute;
+    width: auto;
+  }
+
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 600;
+  color: $found-font-color;
+}
+

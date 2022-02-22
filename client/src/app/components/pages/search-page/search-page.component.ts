@@ -9,6 +9,7 @@ import { DevelopersService } from 'src/app/services/developers.service';
 import { SearchService } from 'src/app/services/search.service';
 import { Skills } from 'src/app/interfaces/skills';
 import { Stacks } from 'src/app/interfaces/stacks';
+import { Developer } from 'src/app/interfaces/developer';
 
 @Component({
   selector: 'app-search-page',
@@ -34,7 +35,9 @@ export class SearchPageComponent implements OnInit {
   cardsPerPage: number = 6;
   currentPage: number = 1;
   pagesNumberArray: any[] = [];
-  showedCards: any[] = [];
+  showedCards: Developer[] = [];
+  totalDevsCount: number = 0;
+  queryParams: Object = {};
   devsArr: any[] = [];
   query: FormControl = new FormControl();
   seniorityJunior: FormControl = new FormControl();
@@ -132,18 +135,26 @@ export class SearchPageComponent implements OnInit {
               private fb: FormBuilder,
               private searchService: SearchService, ) {
 
+   /*  this.devService.getOriginDevs().subscribe(devs => {
+      //console.log(stacks)
+      this.devs = devs;
+      console.log(devs)
+    }); */
+
     this.devService.getStacks().subscribe(stacks => {
-       this.skillsList = stacks;
-       this.initSearchForm();
-    } );
+      //console.log(stacks)
+      this.skillsList = stacks;
+      this.initSearchForm();
+    });
 
     this.devService.getAllDevs().subscribe(devs => {
+      console.log(devs)
       this.devs = devs;
-      this.fakeDevs();
+      //this.fakeDevs();
       this.makeRadioArr();
-      this.computedPageNumber();
+      //this.computedPageNumber();
       this.addVisibleCards();
-      this.preparePaginator();
+      // this.preparePaginator();
       this.isDevsLoaded = true;
     })
 
@@ -170,6 +181,7 @@ export class SearchPageComponent implements OnInit {
         })
       }
     } */
+    //this.createRequestBody()
   }
 
   getDevById(id: string) {
@@ -178,7 +190,7 @@ export class SearchPageComponent implements OnInit {
     })
   }
 
-  fakeDevs() {
+  /* fakeDevs() {
     for(let i = 0; i < 3; i++) {
       const newItms = this.devs;
       newItms.map((item: any) => {
@@ -197,7 +209,7 @@ export class SearchPageComponent implements OnInit {
       })
       this.devs.reverse();
     }
-  }
+  } */
 
   makeRadioArr() {
     for(let i = 0; i < this.cardsPerPage; i++) {
@@ -217,32 +229,51 @@ export class SearchPageComponent implements OnInit {
     for(let i = 1; i < this.pagesCount + 1; i++) {
       this.pagesNumberArray.push(i);
     }
-
   }
 
-  computedPageNumber() {
+  /* computedPageNumber() {
     this.pagesCount = Math.ceil(this.devsArr.length / this.cardsPerPage);
-  }
+  } */
 
   addVisibleCards() {
     this.showedCards = [];
-    const start = (this.currentPage - 1) * this.cardsPerPage;
+    this.isDevsLoaded = false;
+    this.pagesNumberArray = [];
+    /* const start = (this.currentPage - 1) * this.cardsPerPage;
     for(let i = start; i < start + this.cardsPerPage; i++) {
       this.showedCards.push(this.devsArr[i])
-    }
-    this.getCardsHeight();
+    } */
+    let query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
+    this.searchService.searchByParams(query).subscribe(devs => {
+      //console.log(devs);
+      this.showedCards = devs.items;
+      this.totalDevsCount = devs.totalCount;
+      //console.log('totalDevsCount', this.totalDevsCount)
+      this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);
+      //console.log('pagesCount', this.pagesCount)
+      this.preparePaginator();
+      //console.log('pagesNumberArray', this.pagesNumberArray)
+      this.isDevsLoaded = true;
+      this.getCardsHeight();
+    })
   }
 
   changeCurrentPage(arg: string | number) {
     const el = document.querySelector('.dev-card-list') as HTMLElement;
     if(arg === '-') {
-      this.currentPage > 1 ? this.currentPage-- : this.currentPage;
+      if(this.currentPage > 1) {
+        this.currentPage--;
+        this.addVisibleCards();
+      }
     } else if (arg === '+') {
-      this.currentPage < this.pagesCount ? this.currentPage++ : this.currentPage;
-    } else if(typeof arg === 'number') {
+      if(this.currentPage < this.pagesCount) {
+        this.currentPage++;
+        this.addVisibleCards();
+      }
+    } else if(typeof arg === 'number' && arg !== this.currentPage) {
       this.currentPage = arg;
+      this.addVisibleCards();
     }
-    this.addVisibleCards();
     this.radioItem.setValue(1);
     el.style.transform = `translateX(0)`;
   }
@@ -257,16 +288,13 @@ export class SearchPageComponent implements OnInit {
 
   }
 
-  developersSearch() {
-
-  }
-
   clearFilters() {
     this.searchFormGroup.reset();
     this.seniorityJunior.reset();
     this.seniorityMiddle.reset();
     this.senioritySenior.reset();
     this.exSlider.reset();
+    this.queryParams = {};
   }
 
   navigateToCV(dev: any) {
@@ -319,43 +347,38 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchByQuery() {
-    if(this.query.status === 'VALID') {
-      this.searchService.searchByQuery(this.query.value).subscribe(devs => {
-        console.log(devs)
-        /* this.devsArr = devs; */
-      })
+    if(this.query.status === 'VALID' && this.query.value.length > 2) {
+      this.queryParams = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, 'SearchString': this.query.value };
+      this.addVisibleCards();
     }
   }
 
   searchByStackQuery() {
-    const params = {
-      searchstring: '',
-      experienceYears: null,
-      stacks: [],
-      seniority: [],
-      page: 1,
-      resultsonpage: 6,
-    };
+    const body = {};
     if(this.searchFormGroup.status === 'VALID'
         && this.exSlider.status === 'VALID'
         && this.seniorityJunior.status === 'VALID'
         && this.seniorityMiddle.status === 'VALID'
-        && this.senioritySenior.status === 'VALID') {
-      const skills = this.getSelectedSkills(params.stacks);
-      if(this.exSlider.value) params.experienceYears = this.exSlider.value;
-      // @ts-ignore
-      if(this.seniorityJunior.value) params.seniority.push('Junior');
-      // @ts-ignore
-      if(this.seniorityMiddle.value) params.seniority.push('Middle');
-      // @ts-ignore
-      if(this.senioritySenior.value) params.seniority.push('Senior');
-      console.log(params)
-      if(this.query.value) params.searchstring = this.query.value;
-      // this.searchService.searchByParams(this.query.value).subscribe(devs => {
-      //   console.log(devs)
-      //   /* this.devsArr = devs; */
-      // })
+        && this.senioritySenior.status === 'VALID'
+        && this.query.status === 'VALID') {
+    this.createRequestBody(body);
+    this.queryParams = body;
+    this.addVisibleCards();
     }
+  }
+
+  createRequestBody(body: Object) {
+    const stacks = [];
+    const skills = this.getSelectedSkills(stacks);
+    if(this.query.value && this.query.value.length > 2) body['SearchString'] = this.query.value;
+    if(this.exSlider.value) body['Expirience'] = this.exSlider.value;
+    if(this.seniorityJunior.value) body['Seniority'] = '344F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
+    if(this.seniorityMiddle.value) body['Seniority'] = '334F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
+    if(this.senioritySenior.value) body['Seniority'] = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
+    if(skills) skills.map(skill => body['Stacks'] = skill.id);
+    body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
+    body['Page'] = JSON.stringify(this.currentPage);
+    return body;
   }
 
   getSelectedSkills(skillsArr: any[]): any {

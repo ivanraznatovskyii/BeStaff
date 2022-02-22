@@ -9,13 +9,9 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  searchByQuery(query: string): Observable<any> {
-    console.log('query', query)
-    return this.http.post<any[]>(`/api/developers/search`, { SearchString : query });
+  searchByParams(body: Object): Observable<any> {
+    console.log('Body', body)
+    return this.http.post<any[]>(`/api/developers/search/params`, body);
   }
 
-  searchByParams(query: string): Observable<any> {
-    console.log('query', query)
-    return this.http.post<any[]>(`/api/developers/search`, query);
-  }
 }
