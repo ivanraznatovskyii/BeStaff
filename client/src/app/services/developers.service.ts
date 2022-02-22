@@ -10,69 +10,36 @@ export class DevelopersService {
 
   constructor(private http: HttpClient) { }
 
-  /* getStacks(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/available`);
-  }
-
-  getSkills(): Observable<any> {
-    console.log('Get skills state')
-    return this.http.get<any[]>(`/api/developers/skills`);
-  }
-
-  getAllPositions() {
-    return this.http.get<any[]>(`/api/registration/positions`);
-  }
-
-  getOriginDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/alldevs`);
-  }
-
-  getAllDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/alldevs`);
-  }
-
-  getTreeDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/alldevs?limit=3`);
-  }
-
-  getDevById(id: string): Observable<any> {
-    return this.http.get<Developer>(`/api/developers/devById`, { params: { developerId: id } });
-  }
-
-  submitRequestForCVDevById(id: string, body: any): Observable<any> {
-    console.log('request must be submitted')
-    //return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
-  }
- */
-
-
-
   getStacks(): Observable<any> {
+    //console.log('getStacks')
     return this.http.get<any[]>(`/api/developers/stacks`);
   }
 
   getSkills(): Observable<any> {
-    console.log('Get skills state')
+    //console.log('getSkills')
     return this.http.get<any[]>(`/api/registration/skills`);
   }
 
   getAllPositions() {
+    //console.log('getAllPositions')
     return this.http.get<any[]>(`/api/registration/positions`);
   }
 
-  /* getOriginDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/alldevs`);
-  } */
-
   getAllDevs(): Observable<any> {
+    //console.log('getAllDevs')
     return this.http.get<any[]>(`/api/developers/available`);
   }
 
   getTreeDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/available`);
+    //console.log('getTreeDevs')
+    const props = new FormData();
+    props.append('ResultsOnPage', '3');
+    props.append('Page', '1');
+    return this.http.post<any[]>(`/api/developers/search`, props);
   }
 
   getDevById(id: string): Observable<any> {
+    //console.log('getDevById')
     return this.http.get<Developer>(`/api/developers/developer/${id}`/* , { params: { developerId: id } } */);
   }
 
@@ -81,7 +48,4 @@ export class DevelopersService {
     //return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
   }
 
-
-
-  
 }

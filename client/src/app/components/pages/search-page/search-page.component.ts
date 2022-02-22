@@ -148,7 +148,6 @@ export class SearchPageComponent implements OnInit {
     });
 
     this.devService.getAllDevs().subscribe(devs => {
-      console.log(devs)
       this.devs = devs;
       //this.fakeDevs();
       this.makeRadioArr();
