@@ -13,6 +13,7 @@ export class ServicesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.goToTop();
   }
 
   bannerIsShowed() {
@@ -21,6 +22,11 @@ export class ServicesComponent implements OnInit {
 
   visibilityToggle() {
     this.isShowed = !this.isShowed;
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
 }

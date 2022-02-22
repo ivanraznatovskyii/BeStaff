@@ -12,14 +12,14 @@ import { Developer } from 'src/app/interfaces/developer';
 })
 export class AvailableDevelopersComponent implements OnInit {
 
-  asyncTabs: Observable<any[]>;
+  /* asyncTabs: Observable<any[]>; */
   devs: Developer[] = [];
   tabs: any[] = [];
   positions!: Set<string>;
   currentDev!: Developer;
 
   constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService) {
-    this.asyncTabs = new Observable((observer: Observer<any[]>) => {
+    /* this.asyncTabs = new Observable((observer: Observer<any[]>) => {
       setTimeout(() => {
         observer.next([
           {label: 'Frontend', content: 'Contennt 1' },
@@ -28,8 +28,8 @@ export class AvailableDevelopersComponent implements OnInit {
           {label: 'QA', content: 'Content 3'},
           {label: 'DevOps', content: 'Content 3'},
         ]);
-      }, 1000);
-    });
+      }, 0);
+    }); */
 
     devService.getAllDevs().subscribe(devs => {
       this.sortByPositions(devs);

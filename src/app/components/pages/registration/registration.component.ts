@@ -63,6 +63,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.goToTop();
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
   initFilters() {

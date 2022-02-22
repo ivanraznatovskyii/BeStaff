@@ -34,15 +34,13 @@ export class DevDetailsComponent implements OnInit {
               private fb: FormBuilder,
               private devService: DevelopersService,
               private _snackBar: MatSnackBar ) {
-    //this.devService.getDevById('61ca71f7-9134-ec11-8388-ccd9acdd6ef8').subscribe(dev => console.log(dev));   // EXEMPLE get developer by developerId
     const body = {
       name: 'name',
       email: 'email',
       text: 'text'
     };
-    // this.devService.submitRequestForCVDevById('61ca71f7-9134-ec11-8388-ccd9acdd6ef8', body).subscribe(dev => console.log(dev));   // EXEMPLE post for CV of the developer by developerId
     this.devService.getTreeDevs().subscribe(devs => {
-      this.showedCards = devs;
+      this.showedCards = devs.items;
       this.isDevsLoading = false;
       this.loadUser();
     })

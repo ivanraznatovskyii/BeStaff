@@ -13,15 +13,20 @@ export class CalculateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.goToTop();
   }
 
-  
   bannerIsShowed() {
     return window.location.href.replace(window.location.origin + '/calculate', '') === '';
   };
 
   visibilityToggle() {
     this.isShowed = !this.isShowed;
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
 }

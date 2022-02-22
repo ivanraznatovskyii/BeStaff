@@ -74,6 +74,7 @@ export class CareerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.goToTop();
     this.initFilters();
   }
 
@@ -321,6 +322,11 @@ export class CareerComponent implements OnInit {
     this.commonService.setDev(dev);
     const params = { developerId: dev.developerId };
     this.router.navigate([`/developers/details/`], { queryParams: params });
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
 }

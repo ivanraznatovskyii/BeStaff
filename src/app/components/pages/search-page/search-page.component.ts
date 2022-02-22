@@ -173,6 +173,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.goToTop();
     /* const devFromLS = localStorage.getItem('currentDev');
     if(devFromLS) {
       const devsId = JSON.parse(devFromLS).developerId;
@@ -183,6 +184,11 @@ export class SearchPageComponent implements OnInit {
       }
     } */
     //this.createRequestBody()
+  }
+
+  goToTop() {
+    const el = document.querySelector('.logo');
+    el?.scrollIntoView(true);
   }
 
   openSnackBar(message: string, action: string) {
