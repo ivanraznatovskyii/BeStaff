@@ -90,7 +90,12 @@
               </span>
             </div>
             <div class="next-btn-container">
-              <button mat-button matStepperNext class="elipse-button elipse-button_next">Next  &#10142;</button>
+              <button mat-button
+                      matStepperNext
+                      class="elipse-button elipse-button_next"
+                      [disabled]="firstFormGroup.status === 'INVALID'">
+                      Next  &#10142;
+              </button>
             </div>
           </form>
         </mat-step>
@@ -166,7 +171,12 @@
               </div>
             </div>
             <div class="next-btn-container">
-              <button mat-button matStepperNext class="elipse-button elipse-button_next">Next  &#10142;</button>
+              <button mat-button
+                      matStepperNext
+                      class="elipse-button elipse-button_next"
+                      [disabled]="secondFormGroup.status === 'INVALID'">
+                      Next  &#10142;
+              </button>
             </div>
           </form>
         </mat-step>
@@ -213,7 +223,13 @@
                   id="vocabularyResults">
             </div>
             <div class="next-btn-container">
-              <button mat-button matStepperNext class="elipse-button elipse-button_next uppercase" (click)="compliteRegistration()">Register</button>
+              <button mat-button
+                      matStepperNext
+                      class="elipse-button elipse-button_next uppercase"
+                      (click)="compliteRegistration()"
+                      [disabled]="therdFormGroup.get('')?.status === 'INVALID'">
+                      Register
+              </button>
             </div>
           </form>
         </mat-step>

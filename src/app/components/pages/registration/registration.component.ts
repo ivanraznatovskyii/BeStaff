@@ -1,3 +1,4 @@
+import { CommonService } from 'src/app/services/common.service.ts.service';
 import { DevelopersService } from 'src/app/services/developers.service';
 import { Skills } from 'src/app/interfaces/skills';
 import { Stacks } from 'src/app/interfaces/stacks';
@@ -8,6 +9,7 @@ import { faLink, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith } from 'rxjs';
 import { Positions } from 'src/app/interfaces/positions';
 import { positionsMathesDirective } from 'src/app/directives/positions-mathes.directive';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-registration',
@@ -42,7 +44,8 @@ export class RegistrationComponent implements OnInit {
   loremOne: FormControl = new FormControl();
   loremTwo: FormControl = new FormControl();
 
-  @ViewChild('fileInput') fileInput: any;
+  @ViewChild('fileInput', {static: true }) fileInput: any;
+  @ViewChild('stepper', {static: true }) stepper!: MatStepper
 
   skills: Skills[] = [];
   isSkillsLoaded: boolean = false;
@@ -54,7 +57,9 @@ export class RegistrationComponent implements OnInit {
   filteredOptionsForStacks!: Observable<Stacks[]>;
   choosedStackss: Stacks[] = [];
 
-  constructor(private fb: FormBuilder, private devService: DevelopersService) {
+  constructor(private fb: FormBuilder,
+              private devService: DevelopersService,
+              private commonService: CommonService) {
     devService.getStacks().subscribe((stacks: Stacks[]) => {
       this.stacks = stacks;
       this.isStacksLoaded = true;
@@ -138,7 +143,6 @@ export class RegistrationComponent implements OnInit {
     let fileExtension;
     let splittedStringLength;
     if(files.files[0]) {
-      //console.log(files.files[0])
       file = files.files[0];
       filename = file.name.split('.')[0];
       this.cvFilename = filename;
@@ -162,7 +166,6 @@ export class RegistrationComponent implements OnInit {
         this.choosedSkills.push(choosedSkill);
       }
     };
-    //console.log(this.choosedSkills)
     this.secondFormGroup.get('skill')?.reset();
     this._filterStacks('');
   }
@@ -190,7 +193,7 @@ export class RegistrationComponent implements OnInit {
     if(this.firstFormGroup.status === 'VALID'
         && this.secondFormGroup.status === 'VALID'
         && this.therdFormGroup.status === 'VALID') {
-      
+
       for(let item in this.firstFormGroup.controls) {
         body[item] = this.firstFormGroup.controls[item].value;
       }
@@ -205,15 +208,17 @@ export class RegistrationComponent implements OnInit {
       this.secondFormGroup.updateValueAndValidity();
       this.therdFormGroup.updateValueAndValidity();
     }
-    console.log(this.firstFormGroup.status)
-    console.log(this.secondFormGroup.status)
-    console.log(this.therdFormGroup.status)
+    // console.log(this.firstFormGroup.status)
+    // console.log(this.secondFormGroup.status)
+    // console.log(this.therdFormGroup.status)
     console.log(body)
-    /* console.log(this.firstFormGroup.controls)
-    console.log(this.secondFormGroup.controls)
-    console.log(this.therdFormGroup.controls)
-    console.log(this.loremOne)
-    console.log(this.loremTwo) */
+
+    this.commonService.makeBody(body)
+    // console.log(this.firstFormGroup.controls)
+    // console.log(this.secondFormGroup.controls)
+    // console.log(this.therdFormGroup.controls)
+    // console.log(this.loremOne)
+    // console.log(this.loremTwo)
   }
 
 }
