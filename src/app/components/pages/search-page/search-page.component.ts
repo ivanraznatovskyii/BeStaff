@@ -10,6 +10,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { Skills } from 'src/app/interfaces/skills';
 import { Stacks } from 'src/app/interfaces/stacks';
 import { Developer } from 'src/app/interfaces/developer';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search-page',
@@ -133,7 +134,8 @@ export class SearchPageComponent implements OnInit {
               private router: Router,
               private devService: DevelopersService,
               private fb: FormBuilder,
-              private searchService: SearchService, ) {
+              private searchService: SearchService,
+              private _snackBar: MatSnackBar ) {
 
    /*  this.devService.getOriginDevs().subscribe(devs => {
       //console.log(stacks)
@@ -181,6 +183,10 @@ export class SearchPageComponent implements OnInit {
       }
     } */
     //this.createRequestBody()
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   getDevById(id: string) {
@@ -346,9 +352,13 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchByQuery() {
-    if(this.query.status === 'VALID' && this.query.value.length > 2) {
+    if(this.query.status === 'VALID' && this.query.value && this.query.value.length > 2) {
       this.queryParams = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, 'SearchString': this.query.value };
       this.addVisibleCards();
+    } else if(this.query.status === 'VALID' && this.query.value && this.query.value.length <= 2) {
+      this.openSnackBar('Search string length must be more than 3 characters', 'close');
+    } else if(this.query.status === 'INVALID') {
+      this.openSnackBar('Search string is invalid', 'close');
     }
   }
 
