@@ -112,12 +112,15 @@ export class DevDetailsComponent implements OnInit {
     this.cvForm.updateValueAndValidity();
     const body = {
       name: this.cvForm.get('name')!.value,
-      surname: this.cvForm.get('surname')!.value,
+      text: this.cvForm.get('surname')!.value,
       email: this.cvForm.get('email')!.value,
     };
     if(this.cvForm.status === 'VALID' && this.isAgreementAccepted) {
-      //this.devService.submitRequestForCVDevById(this.devId, body)
-      this.openSnackBar('Request has been submitted!', 'close')
+      this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {
+        if(response.status === 200) {
+          this.openSnackBar('Request has been submitted!', 'close')
+        }
+      })
     }
   }
 

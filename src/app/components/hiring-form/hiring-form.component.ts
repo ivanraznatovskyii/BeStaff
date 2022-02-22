@@ -22,16 +22,20 @@ export class HiringFormComponent implements OnInit {
     this.hiringFormTitle = this.initTitle();
   }
 
+  isContactsPage() {
+    return window.location.href.replace(window.location.origin + '/', '') === 'contacts';
+  }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
 
   initTitle() {
-    return window.location.href.replace(window.location.origin + '/', '') === 'contacts' ? 'Contacts' :  'Custom hiring form' ;
+    return this.isContactsPage() ? 'Contacts' :  'Custom hiring form' ;
   }
 
   paddingTop() {
-    return window.location.href.replace(window.location.origin + '/', '') === 'contacts' ? '50px' :  '0' ;
+    return this.isContactsPage() ? '50px' :  '0' ;
   }
 
   initHiringForm() {
@@ -59,6 +63,7 @@ export class HiringFormComponent implements OnInit {
     };
     if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
       //this.devService.submitRequestForCVDevById(this.devId, body)
+      console.log(body)
       this.openSnackBar('Request has been submitted!', 'close')
     }
   }
