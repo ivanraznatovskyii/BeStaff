@@ -31,7 +31,7 @@ export class AvailableDevelopersComponent implements OnInit {
       }, 1000);
     });
 
-    devService.getAllDevs().subscribe(devs => {
+    this.devService.getAllDevs().subscribe(devs => {
       this.sortByPositions(devs);
       this.fillArrayByPositions(this.positions, this.tabs, devs);
       this.devs = devs;

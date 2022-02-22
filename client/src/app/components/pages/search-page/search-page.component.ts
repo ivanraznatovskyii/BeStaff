@@ -135,12 +135,6 @@ export class SearchPageComponent implements OnInit {
               private fb: FormBuilder,
               private searchService: SearchService, ) {
 
-   /*  this.devService.getOriginDevs().subscribe(devs => {
-      //console.log(stacks)
-      this.devs = devs;
-      console.log(devs)
-    }); */
-
     this.devService.getStacks().subscribe(stacks => {
       //console.log(stacks)
       this.skillsList = stacks;
