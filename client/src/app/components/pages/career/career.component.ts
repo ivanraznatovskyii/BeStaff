@@ -134,7 +134,7 @@ export class CareerComponent implements OnInit {
       this.getStacks();
       this.getSkills();
       this.initSearchForm();
-      this.addVisibleCards();
+      //this.addVisibleCards();
     });
   }
 
