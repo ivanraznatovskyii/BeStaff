@@ -8,11 +8,6 @@
     position: relative;
     background-color: $bg-color-strong;
   }
-
-  /* &_hiring-form {
-    min-height: 680px;
-    background-image: url('../../../assets/bg-hiring.png');
-  } */
 }
 
 .details-container {
@@ -25,13 +20,6 @@
   &_heading {
     display: inherit;
   }
-
-  /* &_hiring-form {
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    max-width: 1200px;
-  } */
 }
 
 .see-more-link {
@@ -167,7 +155,7 @@ div.dev-card {
   align-items: center;
   justify-content: center;
   align-self: flex-end;
-  
+
   & button {
     margin-top: 5px;
   }
@@ -509,61 +497,6 @@ h3.card-heading {
   color: $rights-text;
   margin: 25px 0;
 }
-/* 
-.bottom-block {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-
-  &_hiring-form {
-    justify-content: flex-start;
-
-    & button {
-      width: 160px;
-      margin: 25px 0;
-    }
-
-    & .hiring-checkbox {
-      width: 100%;
-    }
-  }
-}
-
-.hiring-form {
-  color: $header-font-color;
-
-  & h2 {
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 51px;
-    letter-spacing: 3%;
-    color: $header-font-color;
-  }
-}
-
-.hiring-intro-text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-}
-
-.hiring-input {
-  padding: 10px;
-  border: 1px solid $rights-text;
-  border-radius: 6px;
-  color: $header-font-color;
-  margin: 25px 0;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  background-color: $lessTransparentWhite;
-
-  & .mat-input-element::placeholder {
-    color: $header-font-color;
-  }
-} */
 
 ::ng-deep {
   .mat-input-element::placeholder {

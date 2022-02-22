@@ -44,14 +44,9 @@ export class DevelopersService {
   }
 
   submitRequestForCVDevById(id: string, body: any): Observable<any> {
-    console.log('request must be submitted')
-    // console.log('id', id)
-    console.log('body', body)
-    const props = new FormData();
-    for(let item in body) {
-      props.append(item, body[item]);
-    }
-    return this.http.post<Developer>(`/api/developer/${id}/cv`, props, {observe: 'response'});
+    // console.log('request must be submitted')
+    // console.log('body', body)
+    return this.http.post<Developer>(`/api/developer/${id}/cv`, body, {observe: 'response'});
   }
 
 }

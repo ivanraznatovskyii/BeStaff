@@ -102,9 +102,6 @@
 }
 
 .language {
-  /* border: 1px solid white;
-  border-radius: 6px;
-  height: 36px; */
   display: none;
   align-items: inherit;
 
@@ -312,7 +309,7 @@
 
 input[type="checkbox"]:checked ~ #sidebarMenu {
   transform: translatey(0);
-  top:50px /*change here related your top menu height*/
+  top: 50px;  /*change here related your top menu height*/
 }
 input[type=checkbox] {
   transition: all 0.3s;

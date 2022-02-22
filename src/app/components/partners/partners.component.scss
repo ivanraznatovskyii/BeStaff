@@ -18,8 +18,8 @@
     padding: 50px 0;
   }
 
-  &::-webkit-scrollbar { 
-    display: none; 
+  &::-webkit-scrollbar {
+    display: none;
 }
 }
 
@@ -29,7 +29,7 @@ div.slider-btns {
 
   @include respond-to($media_large) {
     display: none;
-  } 
+  }
 }
 
 .partners {
@@ -74,10 +74,6 @@ div.slider-btns {
 .count {
   width: 100%;
 }
-
-/* .benefit-item:not(:last-child) .count {
-  border-right: 2px dashed #284057;
-} */
 
 .num {
   font-size: 60px;

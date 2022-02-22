@@ -133,7 +133,7 @@ div.dev-card {
   align-items: center;
   justify-content: center;
   align-self: flex-end;
-  
+
   & button {
     margin-top: 5px;
   }
@@ -182,25 +182,11 @@ h3.card-heading {
 }
 
 .skill-item {
-  /* width: fit-content;
-  padding: 8px 12px;
-  margin: 0 10px 10px 0;
-  border-radius: 8px;
-  border: 1px solid $found-font-color;
-  background-color: $header-font-color; */
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
   color: $found-font-color;
   margin-right: 15px;
-  /* cursor: pointer; */
-
-
-  /* &.label_chacked {
-    border-radius: 6px;
-    background-color:  $rights-text;
-    color: $header-font-color;
-  } */
 }
 
 
@@ -216,12 +202,6 @@ h3.card-heading {
   background-color: $orange-logo-color;
 
   &_clear {
-    /* width: 150px; */
-
-    /* @include respond-to($media_large) {
-      width: 200px;
-    } */
-
     background-color: transparent;
     font-size: 14px;
     font-weight: 500;
@@ -236,17 +216,11 @@ h3.card-heading {
     @include respond-to-less-than($media-smallest) {
       width: 110px;
     }
-    /* align-self: flex-end; */
   }
 
   &_search {
     background-color: $orange-logo-color;
     color: $header-font-color;
-    /* width: 150px;
-
-    @include respond-to($media_large) {
-      width: 200px;
-    } */
 
     @include respond-to-less-than($media-iphone) {
       width: 130px;
@@ -261,7 +235,6 @@ h3.card-heading {
     font-weight: 500;
     color: $header-font-color;
     border-radius: 6px;
-    /* align-self: flex-end; */
   }
 }
 
@@ -484,11 +457,11 @@ h3.card-heading {
     border-radius: 50% !important;
     background-color: white !important;
     border: 1px solid $skills-button-color !important;
-    
-  }  
+
+  }
   .mat-slider-thumb {
     transform: scale(0) !important;
-  }  
+  }
   .mat-slider-thumb-label-text {
     opacity: 1 !important;
     font-size: 16px !important;
@@ -625,39 +598,6 @@ h3.card-heading {
   width: 100%;
   padding: 30px 0;
 }
-
-/* .search-btn_buttom {
-  width: 150px;
-
-  @include respond-to($media_large) {
-    width: 200px;
-  }
-
-  height: 43px;
-  border-radius: 6px;
-  background-color: $orange-logo-color;
-  font-size: 14px;
-  font-weight: 500;
-  color: $header-font-color;
-  align-self: flex-end;
-} */
-
- /*.clear-btn_buttom {
-  width: 150px;
-
-  @include respond-to($media_large) {
-    width: 200px;
-  }
-
-  height: 43px;
-  border-radius: 6px;
-  background-color: transparent;
-  font-size: 14px;
-  font-weight: 500;
-  color: $rights-text;
-  border: 1px solid $rights-text;
-  align-self: flex-end; 
-}*/
 
 .search-cards-container {
   overflow: hidden;

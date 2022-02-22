@@ -150,7 +150,7 @@
           <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
         </div>
       </div> -->
-      
+
 
       <div class="searching-results centered" *ngIf="isDevsLoaded && showedCards && showedCards.length">
         <div class="row searching-results-content">
@@ -169,7 +169,7 @@
           </div>
         </div>
         <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevsLoaded || !showedCards"></mat-progress-bar>
-        
+
         <!-- cards template, should be showed in recursion -->
         <div class="row search-cards-container" *ngIf="isDevsLoaded && showedCards && showedCards.length">
           <div class="col-12">
@@ -199,7 +199,7 @@
           </div>
         </div>
         <!-- end cards template -->
-  
+
         <div class="slider-btns">
           <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
             <mat-radio-button [value]="+item" class="radio-item" *ngFor="let item of radioArr" [checked]="+radioItem.value === +item"></mat-radio-button>
@@ -215,6 +215,6 @@
       <div class="row">
         <app-partners></app-partners>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

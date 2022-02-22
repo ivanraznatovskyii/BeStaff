@@ -72,7 +72,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   openSelect() {
-    
+
   }
 
   leveSelect() {

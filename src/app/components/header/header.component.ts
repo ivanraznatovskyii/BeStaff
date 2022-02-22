@@ -20,10 +20,6 @@ export class HeaderComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit(): void {
-    /* if(window.location.href.replace(window.location.origin + '/', '') === '') {
-      this.showBanner = true;
-    }
-    console.log(window.location.href.replace(window.location.origin + '/', '')) */
   }
 
   bannerIsShowed() {

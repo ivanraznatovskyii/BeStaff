@@ -56,7 +56,10 @@ export class DevDetailsComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 
   loadUser() {
@@ -89,7 +92,7 @@ export class DevDetailsComponent implements OnInit {
     this.cvForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       agreementAccepted: [' ']
     })
   }
@@ -116,7 +119,7 @@ export class DevDetailsComponent implements OnInit {
       email: this.cvForm.get('email')!.value,
     };
     if(this.cvForm.status === 'VALID' && this.isAgreementAccepted) {
-      this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {
+      this.devService.submitRequestForCVDevById(this.devId, this.commonService.makeBody(body)).subscribe(response => {
         if(response.status === 200) {
           this.openSnackBar('Request has been submitted!', 'close')
         }

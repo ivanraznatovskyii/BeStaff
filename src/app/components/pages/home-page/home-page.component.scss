@@ -10,14 +10,6 @@
   background-color: #F5FAFF;
 }
 
-
-
-
-
-
-
-
-
 .banner {
   height: 850px;
   width: 100%;
@@ -63,10 +55,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  @include respond-to($media_large) {
-    
   }
 
   display: flex;

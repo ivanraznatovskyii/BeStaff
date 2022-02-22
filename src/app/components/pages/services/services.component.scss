@@ -37,9 +37,7 @@
 
   width: 100%;
   max-width: 100%;
-  background-image: /* linear-gradient(to top, transparent,transparent, transparent, transparent, transparent, #F1F9FF22, #F1F9FFff),
-                    linear-gradient(to bottom, transparent, transparent, transparent, #F1F9FFdd, #F1F9FFee, #F1F9FFff, #F1F9FFff), */
-                    url('../../../../assets/services-bg.png');
+  background-image: url('../../../../assets/services-bg.png');
   background-repeat: no-repeat;
   background-position-x: right;
   background-color: $bg-color-light;
@@ -101,7 +99,6 @@
 
 .banner-content {
   max-width: 580px;
-  /* padding: 430px 10px; */
 
   @include respond-to($media_large) {
     padding: 0;
@@ -117,7 +114,7 @@
   font-size: 64px;
   font-weight: 600;
   line-height: 96px;
-  
+
   @include respond-to-less-than($media-iphone) {
     font-size: 32px;
     font-weight: 600;

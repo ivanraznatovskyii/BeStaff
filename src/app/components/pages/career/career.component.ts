@@ -69,8 +69,6 @@ export class CareerComponent implements OnInit {
               private router: Router,) {
 
     this.getPositions();
-    /* this.getStacks();
-    this.getSkills(); */
   }
 
   ngOnInit(): void {
@@ -129,13 +127,10 @@ export class CareerComponent implements OnInit {
 
   getPositions() {
     this.devService.getAllPositions().subscribe(positions => {
-      //console.log(positions)
-      //localStorage.setItem('positions', JSON.stringify(positions));
       this.positionsList = positions;
       this.getStacks();
       this.getSkills();
       this.initSearchForm();
-      //this.addVisibleCards();
     });
   }
 
@@ -259,11 +254,10 @@ export class CareerComponent implements OnInit {
     const skills = this.getSelectedSkills(stacks);
     if(this.query.value && this.query.value.length > 2) body['SearchString'] = this.query.value;
     if(this.exSlider.value) body['Expirience'] = this.exSlider.value;
-    if(this.seniorityJunior.value) body['Seniority'] = '344F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    if(this.seniorityMiddle.value) body['Seniority'] = '334F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    if(this.senioritySenior.value) body['Seniority'] = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    console.log(skills)
-    //if(skills) skills.map(skill => body['Stacks'] = skill.id);
+    if(this.seniorityJunior.value) body['Seniority'] = '344F6AD6-9134-EC11-8388-CCD9ACDD6EF8'; // need to find-out
+    if(this.seniorityMiddle.value) body['Seniority'] = '334F6AD6-9134-EC11-8388-CCD9ACDD6EF8'; // need to find-out
+    if(this.senioritySenior.value) body['Seniority'] = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8'; // need to find-out
+    if(skills) skills.map(skill => body['Stacks'] = skill.id);
     body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
     body['Page'] = JSON.stringify(this.currentPage);
     return body;

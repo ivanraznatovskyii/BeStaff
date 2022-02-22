@@ -4,7 +4,6 @@
 .calculate-wrapper {
   width: 100%;
   max-width: 100%;
-  /* background-image: linear-gradient(to bottom, #D3E8F8 0%, #FFFFFF 100%), url(); */
 }
 
 .bg-color {
@@ -53,8 +52,7 @@
   width: 100%;
   max-width: 100%;
   background-image: linear-gradient(to top, transparent,transparent, transparent, transparent, transparent, #F1F9FF22, #F1F9FFff),
-                    linear-gradient(to bottom, transparent, transparent, transparent, #F1F9FFdd, #F1F9FFee, #F1F9FFff, #F1F9FFff)/* ,
-                    url('../../../../assets/calc-bg.png') */;
+                    linear-gradient(to bottom, transparent, transparent, transparent, #F1F9FFdd, #F1F9FFee, #F1F9FFff, #F1F9FFff);
   background-repeat: no-repeat;
   background-position-x: center;
   background-color: $about-banner-bg;
@@ -63,7 +61,6 @@
 
   @include respond-to($media_large) {
     height: 530px;
-    /* background-image: url('../../../../assets/calc-bg.png'); */
   }
 }
 
@@ -115,7 +112,7 @@
 }
 
 .banner-content {
-  
+
   padding: 430px 10px;
 
   @include respond-to($media_large) {
@@ -133,7 +130,7 @@
   font-size: 64px;
   font-weight: 600;
   line-height: 96px;
-  
+
   @include respond-to-less-than($media-iphone) {
     font-size: 32px;
     font-weight: 600;

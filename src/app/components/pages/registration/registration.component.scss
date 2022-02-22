@@ -45,14 +45,11 @@
 }
 
 .inner-input {
-  /* position: relative; */
   margin: 0 0 10px;
-
 
     & input, textarea {
       color: $skills-h5-font-color;
       padding: 12px;
-
     }
 
     height: 100%;
@@ -328,9 +325,6 @@
 .skills-list-inner {
   padding: 4px;
   margin-bottom: 0;
-  /* position: absolute;
-  top: 2px;
-  left: 2px; */
   list-style-type: none;
   display: inline-flex;
   flex-wrap: wrap;

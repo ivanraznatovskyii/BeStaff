@@ -35,5 +35,14 @@ export class CommonService {
     this.dev.next(data);
   }
 
+  makeBody(body: Object) {
+    const props = new FormData();
+    for(let item in body) {
+      props.append(item, body[item]);
+    }
+    console.log('Converted');
+    return props;
+  }
+
 
 }

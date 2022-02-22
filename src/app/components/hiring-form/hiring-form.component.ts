@@ -1,6 +1,10 @@
+import { DevelopersService } from 'src/app/services/developers.service';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service.ts.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isJSDocThisTag } from 'typescript';
 
 @Component({
   selector: 'app-hiring-form',
@@ -15,7 +19,10 @@ export class HiringFormComponent implements OnInit {
   isSubmit: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private commonService: CommonService,
+              private router: Router,
+              private devService: DevelopersService) { }
 
   ngOnInit(): void {
     this.initHiringForm();
@@ -27,7 +34,10 @@ export class HiringFormComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 
   initTitle() {
@@ -42,7 +52,7 @@ export class HiringFormComponent implements OnInit {
     this.hiringForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       text: ['', Validators.required],
       agreementAccepted: []
     })
@@ -63,8 +73,20 @@ export class HiringFormComponent implements OnInit {
     };
     if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
       //this.devService.submitRequestForCVDevById(this.devId, body)
-      console.log(body)
-      this.openSnackBar('Request has been submitted!', 'close')
+      //console.log(body)
+      this.devService.submitRequestForCVDevById(/* this.devId */'sddfsdf', this.commonService.makeBody(body)).subscribe(response => {
+        if(response.status === 200) {
+          this.openSnackBar('Request has been submitted!', 'close');
+          this.hiringForm.reset();
+          setTimeout(()=>this.router.navigate(['/']), 5000);
+        } else {
+          this.openSnackBar('Something went wrong!', 'close');
+        }
+      })
+    } else if(!this.isAgreementAccepted) {
+      this.openSnackBar('You need to accept BeStaff agreement and Terms of use!', 'close')
+    } else if(this.hiringForm.status === 'INVALID') {
+      this.openSnackBar('The form is invalid!', 'close')
     }
   }
 

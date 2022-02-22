@@ -31,7 +31,6 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //this.changeDetection.detectChanges();
     this.currentUser = this.newCurrentUser;
     this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
     this.breadcrumbs.unshift({label: 'Home', url: ''});

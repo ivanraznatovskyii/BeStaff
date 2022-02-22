@@ -4,7 +4,6 @@
 .career-page-wrapper {
   width: 100%;
   max-width: 100%;
-  /* background-image: linear-gradient(to bottom, #D3E8F8 0%, #FFFFFF 100%), url(); */
 }
 
 .bg-color {
@@ -33,7 +32,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* background-color: transparent; */
   background-image: linear-gradient(to top, #F1F9FFff 37%, #F1F9FFaa 47%, #F1F9FF55 65%, #F1F9FF33 60%, #F1F9FFaa 71%, #F1F9FF22 82%, #F1F9FF11 93%);
 
   @include respond-to($media_large) {
@@ -128,7 +126,7 @@
   font-size: 64px;
   font-weight: 600;
   line-height: 96px;
-  
+
   @include respond-to-less-than($media-iphone) {
     font-size: 32px;
     font-weight: 600;
@@ -361,11 +359,12 @@
     border-radius: 50% !important;
     background-color: white !important;
     border: 1px solid $skills-button-color !important;
-    
-  }  
+  }
+
   .mat-slider-thumb {
     transform: scale(0) !important;
-  }  
+  }
+
   .mat-slider-thumb-label-text {
     opacity: 1 !important;
     font-size: 16px !important;
@@ -515,7 +514,6 @@
   &:not(:last-of-type) {
     padding-right: 15px;
   }
-  
 
   & .inner-input {
     position: relative;
@@ -533,7 +531,7 @@
     &:not(:last-of-type) {
       padding-left: 10px;
     }
-    
+
     height: 100%;
     background-color: white;
     display: inline-flex;
@@ -575,7 +573,7 @@
   @include respond-to-less-than($media-mediana) {
     width: 100%;
   }
-  
+
 }
 
 .my-col-3 {
@@ -701,7 +699,6 @@ h3.card-heading {
   display: inline-flex;
   width: 100%;
   justify-content: center;
-  /* padding: 15px; */
   align-items: center;
 }
 
