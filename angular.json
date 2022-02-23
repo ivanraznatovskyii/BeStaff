@@ -21,14 +21,14 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "docs/",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "index": "src/docs/index.html",
+            "main": "src/docs/main.ts",
+            "polyfills": "src/docs/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/docs/favicon.ico",
+              "src/docs/assets"
             ],
             "styles": [
               "src/styles.scss"
