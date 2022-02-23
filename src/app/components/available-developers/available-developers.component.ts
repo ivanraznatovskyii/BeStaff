@@ -15,12 +15,15 @@ export class AvailableDevelopersComponent implements OnInit {
   devs: Developer[] = [];
   tabs: any[] = [];
   positions!: Set<string>;
+  specialties!: Set<string>;
   currentDev!: Developer;
 
   constructor(private commonService: CommonService, private router: Router, private devService: DevelopersService) {
     devService.getAllDevs().subscribe(devs => {
-      this.sortByPositions(devs);
-      this.fillArrayByPositions(this.positions, this.tabs, devs);
+      //this.sortByPositions(devs);
+      this.sortBySpecialty(devs);
+      //this.fillArrayByPositions(this.positions, this.tabs, devs);
+      this.fillArrayBySpecialties(this.specialties, this.tabs, devs);
       this.devs = devs;
     })
   }
@@ -35,9 +38,26 @@ export class AvailableDevelopersComponent implements OnInit {
     });
   }
 
+  sortBySpecialty(devs: Developer[]) {
+    this.specialties = new Set();
+    devs.map(dev => {
+      this.specialties.add(dev.specialty);
+    });
+  }
+
   fillArrayByPositions(set: Set<string>, tabs: any[], devs: Developer[]) {
     for(let str of set) {
       const result = devs.filter(item => item.position.replace(' Developer', '') === str);
+      tabs.push({
+        label: str,
+        devs: result
+      })
+    }
+  }
+
+  fillArrayBySpecialties(set: Set<string>, tabs: any[], devs: Developer[]) {
+    for(let str of set) {
+      const result = devs.filter(item => item.specialty === str);
       tabs.push({
         label: str,
         devs: result

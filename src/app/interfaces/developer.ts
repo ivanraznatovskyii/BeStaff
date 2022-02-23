@@ -4,7 +4,7 @@ export interface Developer {
   location: string;
   position: string;
   seniority: string;
-  speciality: string;
+  specialty: string;
   experienceYears: number;
   description: string;
   email: string;
