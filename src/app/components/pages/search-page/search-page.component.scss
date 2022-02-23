@@ -114,9 +114,14 @@ div.slider-btns {
 
 /*  Cards styles  */
 
+.skills-container {
+  max-height: 185px;
+}
+
 div.dev-card {
   width: 370px;
-  height: 408px;
+  /* height: 408px; */
+  height: 500px;
   padding: 15px 30px;
   margin: 15px 10px 0 0;
   display: flex;
@@ -124,7 +129,6 @@ div.dev-card {
   align-items: flex-start;
   justify-content: flex-start;
   background-color: white;
-  overflow-y: scroll;
 }
 
 .cv-btn {

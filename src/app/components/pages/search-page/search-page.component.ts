@@ -29,7 +29,7 @@ export class SearchPageComponent implements OnInit {
   skillsList: Skills[] = [];
   stacksList: Stacks[] = [];
   radioArr: number[] = [];
-  cardsHeight: string = '378px';
+  cardsHeight: string = '580px';
 
   asyncTabs!: Observable<any[]>;
   pagesCount!: number;
@@ -268,7 +268,6 @@ export class SearchPageComponent implements OnInit {
       this.preparePaginator();
       //console.log('pagesNumberArray', this.pagesNumberArray)
       this.isDevsLoaded = true;
-      this.getCardsHeight();
     })
   }
 
@@ -349,15 +348,12 @@ export class SearchPageComponent implements OnInit {
     //console.log(component)
   }
 
-  getCardsHeight() {
-    this.showedCards.map((dev: any) => {
-      if(dev && dev.skills && dev.skills.length) {
-        const newHeight = +dev.skills.join(' ').length;
-        if(newHeight > +this.cardsHeight.replace('px', '')) {
-          this.cardsHeight = newHeight + 'px';
-        }
+  getOverflow(dev) {
+      if(dev && dev.skills && dev.skills.length && +dev.skills.join(' ').length > 300) {
+        return 'scroll';
+      } else {
+        return 'hidden';
       }
-    })
   }
 
   searchByQuery() {

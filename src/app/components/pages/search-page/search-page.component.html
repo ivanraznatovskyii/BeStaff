@@ -127,7 +127,7 @@
       <div class="row search-cards-container" *ngIf="isDevsLoaded && showedCards && showedCards.length">
         <div class="col-12">
           <div class="dev-card-list">
-            <div class="dev-card" *ngFor="let dev of showedCards" [ngStyle]="{ 'height': cardsHeight }">
+            <div class="dev-card" *ngFor="let dev of showedCards">
               <div class="card-content" *ngIf="dev && dev.name">
                 <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>
@@ -140,9 +140,11 @@
                   {{ dev.seniority }}
                 </div>
                 <div class="skills">Technical skills:</div>
-                <ul class="skills-list">
-                  <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
-                </ul>
+                <div class="skills-container" [ngStyle]="{ 'overflow-y': getOverflow(dev) }">
+                  <ul class="skills-list">
+                    <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
+                  </ul>
+                </div>
               </div>
               <div class="cv-btn"  *ngIf="dev && dev.name">
                 <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
