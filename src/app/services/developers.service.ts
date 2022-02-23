@@ -26,7 +26,7 @@ export class DevelopersService {
   }
 
   getAllDevs(): Observable<any> {
-    //console.log('getAllDevs')
+    console.log('getAllDevs')
     return this.http.get<any[]>(`/api/developers/available`);
   }
 
