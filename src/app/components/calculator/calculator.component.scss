@@ -1,0 +1,288 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.calculator-wrapper {
+  width: 100%;
+  max-width: 100%;
+  min-height: 500px;
+  overflow-x: scroll;
+
+  @include respond-to($media_large) {
+    overflow: hidden;
+  }
+}
+
+.calculator-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-container {
+  padding: 20px;
+}
+
+.calculator-table {
+  border-radius: 6px;
+}
+
+.mat-table{    
+  border-radius: 6px;
+  overflow:hidden !important;
+}
+
+.header-table {
+  background-color: $table-header-bg;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+  color: $header-bg-color;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+mat-row {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $header-bg-color;
+
+  /* &:nth-child(even) {
+    background-color: $table-row-bg;
+  } */
+  
+}
+
+td.mat-footer-cell {
+  border: none;
+}
+
+.footer-container {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-to-less-than(800px) {
+    flex-wrap: wrap;
+  }
+}
+
+.footer-heading {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  color: $header-bg-color;
+
+}
+
+td.mat-footer-cell:first-of-type {
+  @include respond-to-less-than(800px) {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+td.mat-footer-cell:last-of-type {
+  @include respond-to-less-than(800px) {
+    width: 100%;
+    padding: 0 15px 15px 15px;
+    text-align: center;
+  }
+  
+}
+
+.second-header {
+  height: 40px;
+}
+
+.add-position {
+  line-height: 14px;
+  font-weight: 400;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.total-pay {
+  padding-right: 15px;  
+  width: 53%;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.total-rate {
+  padding-left: 15px;
+  line-height: 36px;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  color: $orange-logo-color;
+}
+
+
+.month-rate,
+.hour-rate {
+  line-height: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.footer-input-list {
+  width: 100%;
+  display: inline-flex;
+}
+
+.footer-input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid $rights-text;
+  border-radius: 6px;
+  color: $rights-text;
+  margin: 25px 10px;
+
+  @include respond-to-less-than(800px) {
+    margin: 0;
+  }
+}
+
+.footer-button {
+  text-align: center;
+
+
+  @include respond-to-less-than($media_large) {
+    transform: translateX(0);
+  }
+}
+
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  border-radius: 6px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+
+  @include respond-to-less-than(800px) {
+    width: 100%;
+  }
+}
+
+.calculator-footer {
+  width: 50%;
+
+  @include respond-to-less-than(800px) {
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+::ng-deep {
+  .mat-input-element::placeholder {
+    color: $rights-text;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .mat-form-field-label {
+    padding: 0 15px;
+  }
+}
+
+.heading-table {
+  min-width: 230px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  background-color: $table-header-bg;
+}
+
+.total {
+  background: linear-gradient(269.56deg, #EEF3FF -0.97%, #EFF7FF -0.96%, #FFFFFF 99.62%);
+}
+
+/* Select rules */
+
+
+/* .mat-select-trigger .mat-select-value span.mat-select-value-text span.mat-select-min-line {
+  color: $header-bg-color !important;
+} */
+
+.td-select-regular {
+  width: 100%;
+  padding: 5px 10px;
+  border: 2px solid $skills-h5-font-color;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  color: $header-bg-color;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.td-select {
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid $skills-h5-font-color;
+    border-top: 2px solid $skills-h5-font-color;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 27px;
+    right: 27px;
+  }
+}
+
+  
+
+
+td.mat-cell {
+  padding: 15px;
+}
+
+.mat-select {
+  padding: 6px 15px;
+  border: 2px solid $skills-h5-font-color;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: $header-bg-color;
+}
+
+
+
+.td-select .td-select-mat  div.mat-select-arrow {
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  transform: rotate(-45deg);
+}
+
+
+/* End select rules */
+
+.salary {
+  text-align: center;
+}
+
+.underheading {
+  padding-left: 15px;
+  font-size: 10px;
+  line-height: 17px;
+  font-weight: 400;
+  text-align: center;
+}

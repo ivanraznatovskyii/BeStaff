@@ -1,0 +1,14 @@
+  <div class="app-container">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+
+    <div class="to-top-button" [ngClass]="{ 'show': showToTopButton }" (click)="goToTop()">
+      <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
+    </div>
+    <button mat-flat-button class="questions-button" [routerLink]="['/contacts']">
+      <fa-icon [icon]="faComment" style="font-size: 30px; margin-right: 10px"></fa-icon>
+      <span class="btn-text ">Questions? Contac us!</span>
+    </button>
+  </div>
+

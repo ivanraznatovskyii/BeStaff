@@ -1,0 +1,150 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.footer-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 250px;
+  background-color: $header-bg-color;
+  color: $header-font-color;
+}
+
+.footer-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+
+  & div:not(:first-child) {
+    display: none;
+
+    @include respond-to($media_large) {
+      display: initial;
+      justify-content: space-between;
+    }
+  }
+
+  & div:first-child {
+    text-align: center;
+    width: auto;
+
+    & h3 {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+}
+
+.rights-text {
+  color: $rights-text;
+}
+
+hr {
+  width: 100%;
+  height: 2px;
+  margin-bottom: 0;
+  color: white;
+}
+
+.footer-column {
+  height: 100%;
+  width: 100%;
+  padding: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text {
+  width: 100%;
+}
+
+.socials {
+  align-items: flex-end;
+}
+
+.payments {
+  align-self: flex-start;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0 10px;
+
+  & li {
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 0 10px;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  
+
+  & div {
+    width: 100%;
+    padding: 15px 0 0;
+  }
+
+  @include respond-to($media_large) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.questions-button {
+  position: absolute;
+  display: inline-flex;
+  justify-content: normal;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  right: 16px;
+  top: 19px;
+  bottom: auto;
+  border-radius: 16px;
+  background-color: $orange-logo-color;
+  color: $header-font-color;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+
+  @include respond-to($media_large) {
+
+    width: 267px;
+    height: 54px;
+    right: 30px;
+    top: 35px;
+    justify-content: space-around;
+  }
+}
+
+.text-cols {
+  justify-content: end;
+}
+
+.btn-text {
+  display: none;
+
+  @include respond-to($media_large) {
+    display: initial;
+  }
+}

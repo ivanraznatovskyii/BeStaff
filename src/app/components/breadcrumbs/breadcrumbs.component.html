@@ -1,0 +1,10 @@
+<div class="breadcrumbs-container">
+  <ol class="breadcrumb" [ngClass]="{ 'contact-page': changeColor() }">
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        {{ breadcrumb.label }}
+      </span>
+    </li>
+  </ol>
+</div>
+

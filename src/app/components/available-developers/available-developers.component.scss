@@ -1,0 +1,169 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.av-dev-wrapper {
+  background-color: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px 80px 15px;
+
+  @include respond-to($media_large) {
+    padding: 0 0 80px;
+    background-color: transparent;
+  }
+}
+
+.av-dev {
+  background-color: transparent;
+}
+
+.heading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 0 10px 0;
+
+  @include respond-to($media_large) {
+    padding: 50px 0 10px 0;
+  }
+}
+
+.heading-col {
+  @include respond-to-less-than($media_ipad) {
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
+.see-more-link {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: $header-hover-link-color;
+  text-align: right;
+  cursor: pointer;
+
+  @include respond-to-less-than($media-iphone) {
+    width: 100%;
+    padding: 0 0 15px 0;
+  }
+
+  @include respond-to-less-than($media_ipad) {
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.dev-card-list {
+  width: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+div.dev-card {
+  width: 370px;
+  padding: 15px 30px;
+  margin: 15px 10px;
+  background-color: white;
+}
+
+.skills {
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  padding: 5px 0 15px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+h3.card-heading {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.position {
+  margin: 0 0 15px;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  margin: 30px 0;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+}
+
+::ng-deep div.mat-tab-label {
+  height: 40px;
+  width: 125px;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  color: $skills-button-color;
+  font-weight: 500;
+}
+
+::ng-deep .mat-tab-label {
+  line-height: 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 24px;
+  margin-bottom: 10px;
+  background-color: $skills-button-bg;
+  opacity: 1 !important;
+
+  @include respond-to($media_large) {
+    margin-bottom: 0;
+  }
+}
+
+::ng-deep .mat-tab-label-active {
+  background-color: $skills-active-button-bg;
+}
+
+::ng-deep .mat-ink-bar {
+  display: none;
+}
+
+::ng-deep .mat-tab-header {
+  border: none;
+}
+
+::ng-deep .mat-tab-label-container {
+  padding: 0 0 40px 0;
+}
+
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-before,
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-after {
+  display: none;
+}
+
+::ng-deep .mat-tab-labels {
+  flex-wrap: wrap;
+}

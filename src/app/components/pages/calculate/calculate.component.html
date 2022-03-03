@@ -1,0 +1,35 @@
+<div class="calculate-wrapper">
+  <div class="calculate-container">
+    <div class="ban-cont">
+      <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
+        <div class="about-banner centered">
+          <div class="banner-bg">
+            <div class="breadcrumbs">
+              <app-breadcrumbs></app-breadcrumbs>
+            </div>
+            <div class="banner-content">
+              <h1 class="page-name">
+                Lorem ipsum dolor
+              </h1>
+              <div class="banner-page-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque ipsa commodi nihil tempora ratione, perspiciatis deleniti harum molestias suscipit. Minima eum tempora placeat eos blanditiis. Dolores quam, doloribus corporis quasi deleniti distinctio doloremque quia?
+              </div>
+            </div>
+            <div class="banner-img">
+              <img src="../../../../assets/calc-bg.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="banner-toggle-container">
+        <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()">
+          {{ isShowed ? 'Close this block' : 'Open this block' }}
+          <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
+        </div>
+      </div> -->
+    </div>
+    <div class="row calculator">
+      <app-calculator></app-calculator>
+    </div>
+  </div>
+</div>

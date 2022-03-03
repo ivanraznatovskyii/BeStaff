@@ -1,0 +1,543 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.details-wrapper {
+  background-color: $bg-color-light;
+
+  &_heading {
+    position: relative;
+    background-color: $bg-color-strong;
+  }
+}
+
+.details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+  &_heading {
+    display: inherit;
+  }
+}
+
+.see-more-link {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: $header-hover-link-color;
+  text-align: right;
+  cursor: pointer;
+}
+
+.heading h2 {
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 600;
+}
+
+.details-name .name {
+  font-size: 50px;
+  line-height: 75px;
+  font-weight: 600;
+}
+
+.heading-info {
+  margin-bottom: 25px;
+}
+
+.ex-heading {
+  margin: 15px 0;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  color: $dev-card-heading-color;
+}
+
+.ex-count {
+  margin-bottom: 25px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $dev-card-heading-color;
+}
+
+.position {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $orange-logo-color;
+}
+
+.location {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $skills-button-color;
+}
+
+
+.skills-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tech-skills {
+  width: 100%;
+}
+
+.skill-item {
+  width: fit-content;
+  padding: 8px 12px;
+  margin: 0 10px 10px 0;
+  border-radius: 8px;
+  border: 1px solid $orange-logo-color;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $orange-logo-color;
+}
+
+.searching-results-content {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.results-count {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $found-font-color;
+}
+
+.dev-card-list {
+  width: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+/*  Cards styles  */
+
+div.dev-card {
+  width: 370px;
+  height: 408px;
+  padding: 15px 30px;
+  margin: 15px 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: white;
+}
+
+.cv-btn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+
+  & button {
+    margin-top: 5px;
+  }
+}
+
+h3.card-heading {
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.position {
+  margin-bottom: 10px;
+  width: 100%;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.skills {
+  width: 100%;
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+
+  & a {
+    color: $skills-h5-font-color;
+
+    &:visited {
+      color: $skills-h5-font-color;
+    }
+
+    &:hover {
+      color: $skills-button-color;
+    }
+  }
+}
+
+.skills-text {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+.skills-list_details {
+  height: fit-content;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-item_details {
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $found-font-color;
+  margin-right: 15px;
+
+}
+
+
+/*  End cards styles  */
+
+
+div.dev-card {
+  width: 370px;
+  padding: 15px 30px;
+  margin: 15px 10px;
+
+  @include respond-to($media_large) {
+    margin: 15px 0;
+  }
+
+  background-color: white;
+}
+
+.skills {
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+h3.card-heading {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+
+  &_cv {
+    width: 90%;
+  }
+}
+
+.card-row {
+  overflow: scroll;
+
+  @include respond-to($media_large) {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+::ng-deep div.mat-tab-label {
+  height: 40px;
+  width: 125px;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  color: $skills-button-color;
+  font-weight: 500;
+}
+
+::ng-deep .mat-tab-label {
+  line-height: 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 24px;
+  margin-bottom: 10px;
+  background-color: $skills-button-bg;
+  opacity: 1 !important;
+
+  @include respond-to($media_large) {
+    margin-bottom: 0;
+  }
+}
+
+::ng-deep .mat-tab-label-active {
+  background-color: $skills-active-button-bg;
+}
+
+::ng-deep .mat-ink-bar {
+  display: none;
+}
+
+::ng-deep .mat-tab-header {
+  border: none;
+}
+
+::ng-deep .mat-tab-label-container {
+  padding: 0 0 40px 0;
+}
+
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-before,
+::ng-deep div.mat-tab-header-pagination.mat-tab-header-pagination-after {
+  display: none;
+}
+
+::ng-deep .mat-tab-labels {
+  flex-wrap: wrap;
+}
+
+.searching-results-paginator {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  padding: 15px;
+  align-items: center;
+}
+
+.pages {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: $found-font-color;
+
+  &_active {
+    font-weight: 600;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: $orange-logo-color;
+  }
+}
+
+::ng-deep span.mat-checkbox-background {
+  border: 1px solid $rights-text;
+  opacity: 50%;
+}
+
+.query-row {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: $header-font-color;
+}
+
+.query-col {
+  height: 44px;
+  color: $rights-text;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-col {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+::ng-deep .mat-form-field-appearance-legacy div.mat-form-field-wrapper {
+  padding-left: 20px;
+}
+
+.mat-form-field {
+  top: -3px;
+}
+
+.search-btn {
+  background-color: $orange-logo-color;
+  color: $header-font-color;
+  border-radius: 6px;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  height: 60px;
+  width: 200px;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.mat-expansion-panel-header-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: $skills-button-color;
+}
+
+::ng-deep span.mat-expansion-indicator::after {
+  padding: 4px;
+  border-color: $orange-logo-color;
+}
+
+.forms-row {
+  margin-bottom: 20px;
+}
+
+.checkboxes-container input[type=checkbox] {
+  display: none;
+}
+
+.checkboxes-container form label {
+  padding: 8px 12px;
+  margin: 0 10px 10px 0;
+  border-radius: 8px;
+  border: 1px solid $found-font-color;
+  background-color: $header-font-color;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $found-font-color;
+  cursor: pointer;
+
+
+  &.label_chacked {
+    border-radius: 6px;
+    background-color:  $rights-text;
+    color: $header-font-color;
+  }
+}
+
+.form-container {
+  padding: 20px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.cv-request-form {
+  width: 370px;
+  height: 410px;
+  padding: 20px;
+  background-color: $header-font-color;
+
+  & h2 {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 600;
+  }
+}
+
+.left-block {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @include respond-to($media_large) {
+    width: 65%;
+  }
+}
+
+.right-block {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @include respond-to($media_large) {
+    width: 35%;
+    padding-left: 40px;
+  }
+}
+
+.cv-input {
+  padding: 10px;
+  border: 1px solid $rights-text;
+  border-radius: 6px;
+  color: $rights-text;
+  margin: 25px 0;
+}
+
+::ng-deep {
+  .mat-input-element::placeholder {
+    color: $rights-text;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .mat-form-field-label {
+    padding: 0 15px;
+  }
+
+  /* checkbox styling */
+  .mat-checkbox-checkmark-path {
+    stroke: $orange-logo-color !important;
+    stroke-width: 3px !important;
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: transparent;
+  }
+
+  .mat-checkbox-frame {
+    border: 1px solid $rights-text !important;
+  }
+
+  span.mat-checkbox-background {
+    opacity: 1;
+  }
+
+  /* end checkbox styling */
+}
+
+.bottom-block mat-checkbox {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.error-checkbox-label {
+  border: 1px solid red;
+}
+

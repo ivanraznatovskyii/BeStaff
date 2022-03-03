@@ -1,0 +1,386 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.reg-wrapper {
+  width: 100%;
+  max-width: 100%;
+  background-color: $bg-color-light;
+}
+
+.reg-container,
+.reg-completed-container {
+  max-width: 1200px;
+  padding: 35px 0;
+  margin: 0 auto;
+}
+
+.heading h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: center;
+}
+
+.mat-stepper-horizontal {
+  background-color: $bg-color-light;
+}
+
+.stepper-conaiter {
+
+  position: relative;
+  margin: 0 auto;
+  max-width: 600px;
+
+  @include respond-to-less-than($media_ipad) {
+    padding: 0 10px;
+  }
+
+  & label {
+    padding: 5px 0;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    color: $found-font-color;
+  }
+}
+
+.inner-input {
+  margin: 0 0 10px;
+
+    & input, textarea {
+      color: $skills-h5-font-color;
+      padding: 12px;
+    }
+
+    height: 100%;
+    background-color: white;
+    display: inline-flex;
+    width: 100%;
+    border: 1px solid $skills-h5-font-color;
+    border-radius: 6px;
+
+    & button {
+      width: 40px;
+      height: auto;
+      min-width: 30px;
+      padding: 0 15px;
+    }
+}
+
+.inner-btn-text {
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  color: $skills-h5-font-color;
+  opacity: .7;
+}
+
+::ng-deep {
+
+  div.mat-horizontal-content-container {
+    padding: 0 0 24px 0;
+  }
+
+  .mat-step-header .mat-step-icon { // not active icon bg
+    background-color: transparent;
+    border: 1px solid $orange-logo-color;
+    width: 8px;
+    height: 8px;
+  }
+
+  .mat-step-header .mat-step-icon-selected { // active icon bg
+    background-color: $orange-logo-color;
+  }
+
+  .mat-step-icon .mat-icon { // icon
+    display: none;
+  }
+
+  .mat-step-icon-content span {  // number
+    display: none;
+  }
+
+  .mat-step-label {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 15px;
+    color: $orange-logo-color !important;
+    opacity: .5;
+  }
+
+  .mat-step-header div.mat-step-label.mat-step-label-active.mat-step-label-selected {  // active label
+    color: $orange-logo-color !important;
+    opacity: 1;
+  }
+
+  .mat-stepper-label-position-bottom mat-step-header.mat-horizontal-stepper-header:not(:last-child)::after, 
+  .mat-stepper-label-position-bottom mat-step-header.mat-horizontal-stepper-header:not(:first-child)::before {
+    border-top-width: 2px;
+    border-top-style: dashed;
+    border-color: $orange-logo-color;
+    transform: translateY(-1px);
+  }
+
+  .mat-stepper-label-position-bottom div.mat-horizontal-stepper-header-container {
+    width: 323px;
+    margin: 0 auto;
+    justify-content: center !important;
+  }
+
+  .mat-step-header {
+    box-sizing: border-box;
+    flex-direction: column-reverse !important;
+    height: auto;
+    padding: 24px;
+  }
+
+  .mat-step-header .mat-step-label {
+    padding: 0px 0px 16px !important;
+  }
+
+  .mat-stepper-label-position-bottom .mat-horizontal-stepper-header:not(:first-child)::before, 
+  .mat-stepper-label-position-bottom .mat-horizontal-stepper-header:not(:last-child)::after {
+    top: 60px !important;
+  }
+
+  .mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
+    border-top-width: 2px;
+    border-top-style: dashed;
+    border-color: $orange-logo-color;
+    transform: translateY(23px);
+  }
+
+  .mat-step-header:hover:not([aria-disabled]) {
+    background-color: transparent;
+  }
+}
+
+.under-text {
+  padding-bottom: 20px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  color: $found-font-color;
+}
+
+.checkbox-container {
+  padding: 0 0 5px 0;
+
+  & mat-checkbox {
+    padding: 10px 40px 10px 12px;
+  }
+}
+
+.next-btn-container {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  & button {
+    margin: 25px auto;
+  }
+}
+
+.elipse-button {
+  height: 40px;
+  width: 160px;
+  border-radius: 30px;
+  color: $header-font-color;
+  background-color: $orange-logo-color;
+
+  &_next {
+    background-color: $orange-logo-color;
+    color: $header-font-color;
+
+    @include respond-to-less-than($media-iphone) {
+      width: 130px;
+    }
+
+    @include respond-to-less-than($media-smallest) {
+      width: 110px;
+    }
+
+    background-color: $orange-logo-color;
+    font-size: 14px;
+    font-weight: 500;
+    color: $header-font-color;
+    border-radius: 6px;
+  }
+}
+
+::ng-deep {
+  .mat-input-element::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: $skills-h5-font-color;
+    opacity: .7;
+  }
+
+  .mat-checkbox-checkmark-path {
+    stroke: $orange-logo-color !important;
+    stroke-width: 3px !important;
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: transparent;
+  }
+
+  .mat-checkbox-frame {
+    border: 1px solid $rights-text !important;
+  }
+
+  span.mat-checkbox-background {
+    opacity: 1;
+  }
+}
+
+.remove-file {
+  position: absolute;
+  right: -12%;
+
+  @include respond-to-less-than(780px) {
+    right: 2%;
+  }
+
+  bottom: 22%;
+  color: $orange-logo-color;
+  cursor: pointer;
+
+  & span {
+    padding-left: 8px;
+    vertical-align: middle;
+    font-size: 10px;
+    line-height: 14px;
+    opacity: .6;
+  }
+
+  & fa-icon {
+    font-size: 14px;
+    line-height: 14px;
+    opacity: 1 !important;
+  }
+}
+
+.cv-file {
+  @include respond-to-less-than(780px) {
+    position: relative;
+  }
+}
+
+.heading-text {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.instruction {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $found-font-color;
+}
+
+.instruction-text {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: $found-font-color;
+}
+
+
+.start-test-link {
+  padding: 25px 0;
+
+  & a {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+    color: $orange-logo-color;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.skills-container {
+  min-height: 50px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 6px;
+}
+
+.skills-list-inner {
+  padding: 4px;
+  margin-bottom: 0;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.skills-item-inner {
+  display: block;
+  padding: 6px;
+  margin: 0 5px 5px 0;
+  border-radius: 6px;
+  border: 1px solid $orange-logo-color;
+  background-color: transparent;
+  color: $orange-logo-color;
+
+  & span:first-child {
+    padding-right: 5px;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+  }
+
+  & span:last-child {
+    color: $skills-h5-font-color;
+    font-size: 14px;
+  }
+}
+
+.complite-img {
+  margin-top: 170px;
+  width: 100%;
+  min-height: 205px;
+  text-align: center;
+
+  & img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 575px;
+    padding: 15px;
+  }
+}
+
+.go-home-button {
+  padding: 70px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include respond-to-less-than($media_large) {
+    padding: 10px 0 40px;
+  }
+
+  & button {
+    width: 206px;
+    height: 54px;
+  }
+}

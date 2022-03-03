@@ -1,0 +1,169 @@
+<div class="search-wrapper" *ngIf="!searchBlockIsShowed()">
+  <div class="search-container">
+    <app-breadcrumbs></app-breadcrumbs>
+    <div class="search-intro">
+      <div class="row heading">
+          <h2>
+            Available Developers
+          </h2>
+        <div class="intro-text">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi numquam iste sit vitae provident, nobis architecto est nihil blanditiis rem?
+        </div>
+      </div>
+    </div>
+    <div class="search-form-container">
+      <div class="row query-row">
+        <div class=" query-col col-10">
+          <mat-form-field class="query-input">
+            <input matInput
+                  type="text"
+                  [formControl]="query"
+                  placeholder="Search by Keywords">
+          </mat-form-field>
+        </div>
+        <div class="btn-col col-2">
+          <button type="button"
+                  mat-raised-button
+                  class="elipse-button"
+                  (click)="searchByQuery()">
+            <span class="search-btn-text" id="querySearch"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="row forms-row">
+        <div class="col-12">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Search by Stack
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              <div class="form-container">
+                <div class="left-block checkboxes-container">
+                  <form [formGroup]="searchFormGroup" #searchForm='ngForm' class="search-card" *ngIf="skillsList">
+                    <div class="skills-list">
+                      <div class="dynamic-skill-item" *ngFor="let skill of skillsList">
+                        <input type="checkbox" formControlName="{{ skill.id }}" id="{{ skill.id }}">
+                        <label for="{{ skill.id }}" [ngClass]="{ 'label_chacked': searchFormGroup.get(skill.id)?.value }">{{ skill.name }}</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="right-block">
+                  <div class="ex-slider-wrapper">
+                    <div class="slider-heading">
+                      Experience in years
+                    </div>
+                    <mat-slider [displayWith]="currentYearsExp"
+                                [formControl]="exSlider"
+                                tickInterval="1"
+                                [value]="sliderValue"
+                                thumbLabel="true"
+                                displayValue="true"
+                                step="1"
+                                min="0"
+                                max="10"
+                                color="primary"
+                                aria-label="units"
+                                class="ex-slider">
+                    </mat-slider>
+                  </div>
+                  <div class="seniority-wrapper">
+                    <div class="slider-heading">
+                      Seniority
+                    </div>
+                    <div class="checkboxes-seniority-container">
+                      <mat-checkbox [formControl]="seniorityJunior" id="seniority-junior">
+                        <label for="seniority-junior" class="seniority-item-label">Junior</label>
+                      </mat-checkbox>
+                      <mat-checkbox [formControl]="seniorityMiddle" id="seniority-middle">
+                        <label for="seniority-middle" class="seniority-item-label">Middle</label>
+                      </mat-checkbox>
+                      <mat-checkbox [formControl]="senioritySenior" id="seniority-senior">
+                        <label for="seniority-senior" class="seniority-item-label">Senior</label>
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="row btn-container">
+                <button mat-raised-button class="elipse-button elipse-button_clear" (click)="clearFilters()">
+                  Clear filters
+                </button>
+                <button type="button"
+                        mat-raised-button
+                        class="elipse-button elipse-button_search"
+                        (click)="searchByStackQuery()">
+                  Search
+                </button>
+              </div>
+            </ng-template>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </div>
+    <div class="searching-results">
+      <div class="row searching-results-content">
+        <div class="col-2 results-count">
+          Found {{ totalDevsCount }} developer{{ totalDevsCount > 1 ? 's' : '' }}
+        </div>
+        <div class="col-10 searching-results-paginator" *ngIf="isDevsLoaded && showedCards && totalDevsCount && pagesCount">
+          <div class="prev-page" (click)="changeCurrentPage('-')"></div>
+            <div class="pages"
+                 [ngClass]="{ 'pages_active': num === currentPage }"
+                 *ngFor="let num of pagesNumberArray"
+                 (click)="changeCurrentPage(num)">
+              {{ num }}
+            </div>
+          <div class="next-page" (click)="changeCurrentPage('+')"></div>
+        </div>
+      </div>
+      <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevsLoaded || !showedCards"></mat-progress-bar>
+      
+      <!-- cards template, should be showed in recursion -->
+      <div class="row search-cards-container" *ngIf="isDevsLoaded && showedCards && showedCards.length">
+        <div class="col-12">
+          <div class="dev-card-list">
+            <div class="dev-card" *ngFor="let dev of showedCards">
+              <div class="card-content" *ngIf="dev && dev.name">
+                <h3 class="card-heading">{{ dev.name }}</h3>
+                <div class="position">{{ dev.position }}</div>
+                <div class="skills">Experience in years:</div>
+                <div class="skills-text">
+                  {{ dev.experienceYears }}
+                </div>
+                <div class="skills">Seniority:</div>
+                <div class="skills-text">
+                  {{ dev.seniority }}
+                </div>
+                <div class="skills">Technical skills:</div>
+                <div class="skills-container" [ngStyle]="{ 'overflow-y': getOverflow(dev) }">
+                  <ul class="skills-list">
+                    <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="cv-btn"  *ngIf="dev && dev.name">
+                <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end cards template -->
+
+      <div class="slider-btns">
+        <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
+          <mat-radio-button [value]="+item" class="radio-item" *ngFor="let item of radioArr" [checked]="+radioItem.value === +item"></mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="calc-block" *ngIf="!searchBlockIsShowed()">
+  <app-ad-calculation></app-ad-calculation>
+</div>
+<router-outlet></router-outlet>

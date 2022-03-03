@@ -1,0 +1,134 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.services-page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  background-image: linear-gradient(to right, $bg-color-light, $bg-color-light), url('../../../../assets/services-bg.png');
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.services-page-container {
+  width: 100%;
+}
+
+.centered {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.banner-bg {
+  max-width: 1200px;
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+
+.banner {
+  height: auto;
+  padding-bottom: 30px;
+
+  @include respond-to($media_large) {
+    height: 850px;
+    padding-bottom: 0;
+  }
+
+  width: 100%;
+  max-width: 100%;
+  background-image: url('../../../../assets/services-bg.png');
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-color: $bg-color-light;
+  transition: all .2s ease;
+  color: $header-font-color;
+
+  @include respond-to($media_large) {
+    height: 530px;
+    background-image: url('../../../../assets/services-bg.png');
+  }
+}
+
+.hide-block {
+  height: 0;
+  transform: scaleY(0);
+}
+
+.toggle-arrow {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  width: 9px;
+  height: 9px;
+  transform: rotate(135deg);
+  border-bottom: 2px solid #a8adbd;
+  border-left: 2px solid #a8adbd;
+  transition: transform 0.5 ease-in-out;
+}
+
+.rotate-arrow {
+  transform: rotate(315deg);
+  top: 13px;
+  right: 20px;
+}
+
+.banner-toggle {
+  position: absolute;
+
+  &-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 39px;
+  border-radius: 25px;
+  background-color: white;
+  vertical-align: middle;
+  color: $header-bg-color;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.banner-content {
+  max-width: 580px;
+
+  @include respond-to($media_large) {
+    padding: 0;
+  }
+}
+
+.services-banner {
+  color: $header-bg-color;
+  position: relative;
+}
+
+.page-name {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 96px;
+
+  @include respond-to-less-than($media-iphone) {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 42px;
+  }
+}
+
+.banner-content {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  padding: 10px;
+}
+
+.breadcrumbs {
+  width: 100%;
+}
