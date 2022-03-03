@@ -9,6 +9,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
+<<<<<<< HEAD
   searchByParams(body: Object): Observable<any> {
     //console.log('Body', body)
     const props = new FormData();
@@ -16,6 +17,11 @@ export class SearchService {
       props.append(item, body[item]);
     }
     return this.http.post<any[]>(`/api/developers/search`, props);
+=======
+  searchByParams(body: FormData): Observable<any> {
+    //console.log('Body', body)
+    return this.http.post<any[]>(`/api/developers/search`, body);
+>>>>>>> without_proxy_server
   }
 
 }

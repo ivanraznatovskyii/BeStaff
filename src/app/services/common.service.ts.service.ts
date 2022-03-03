@@ -40,7 +40,11 @@ export class CommonService {
     for(let item in body) {
       props.append(item, body[item]);
     }
+<<<<<<< HEAD
     console.log('Converted');
+=======
+    //console.log('Converted');
+>>>>>>> without_proxy_server
     return props;
   }
 

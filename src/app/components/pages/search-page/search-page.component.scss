@@ -136,7 +136,7 @@ div.dev-card {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   align-self: flex-end;
 
   & button {

@@ -144,6 +144,10 @@ export class SearchPageComponent implements OnInit {
     });
 
     this.devService.getAllDevs().subscribe(devs => {
+<<<<<<< HEAD
+=======
+      //console.log(devs)
+>>>>>>> without_proxy_server
       this.devs = devs;
       //this.fakeDevs();
       this.makeRadioArr();
@@ -252,8 +256,9 @@ export class SearchPageComponent implements OnInit {
       this.showedCards.push(this.devsArr[i])
     } */
     let query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
-    this.searchService.searchByParams(query).subscribe(devs => {
-      //console.log(devs);
+    //console.log('addVisibleCards')
+    this.searchService.searchByParams(this.commonService.makeBody(query)).subscribe(devs => {
+      console.log(devs);
       this.showedCards = devs.items;
       this.totalDevsCount = devs.totalCount;
       //console.log('totalDevsCount', this.totalDevsCount)

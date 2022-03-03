@@ -4,8 +4,8 @@
       <h2>Registration</h2>
     </div>
     <div class="stepper-conaiter" *ngIf="isFormsLoaded">
-      <mat-stepper labelPosition="bottom" [disableRipple]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup" >
+      <mat-stepper labelPosition="bottom" [disableRipple]="true" #stepper [linear]="true">
+        <mat-step [stepControl]="firstFormGroup" [completed]="firstFormGroup.status === 'VALID'">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Step 1</ng-template>
             <label for="name">Name</label>
@@ -14,7 +14,8 @@
                   type="text"
                   formControlName="name"
                   placeholder="Name"
-                  id="name">
+                  id="name"
+                  required>
             </div>
             <label for="surname">Surname</label>
             <div class="inner-input">
@@ -22,7 +23,8 @@
                   type="text"
                   formControlName="surname"
                   placeholder="Surname"
-                  id="surname">
+                  id="surname"
+                  required>
             </div>
             <label for="email">Email</label>
             <div class="inner-input">
@@ -30,7 +32,8 @@
                   type="text"
                   formControlName="email"
                   placeholder="Email"
-                  id="email">
+                  id="email"
+                  required>
             </div>
             <label for="location">Location</label>
             <div class="inner-input">
@@ -38,7 +41,8 @@
                   type="text"
                   formControlName="location"
                   placeholder="Location"
-                  id="location">
+                  id="location"
+                  required>
             </div>
             <label for="position">Position</label>
             <div class="inner-input">
@@ -47,6 +51,7 @@
                   formControlName="position"
                   placeholder="Position"
                   id="position"
+                  required
                   [matAutocomplete]="autoPositions">
             </div>
             <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList" (optionSelected)="optionWasSelected($event)">
@@ -99,7 +104,7 @@
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
+        <mat-step [stepControl]="secondFormGroup" [completed]="secondFormGroup.status === 'VALID'">
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Step 2</ng-template>
             <label for="skill" style="width: 100%;"> <span style="padding-bottom: 10px;">Add skill</span></label>
@@ -116,8 +121,9 @@
                   placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
                   [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '0': 'inherit' }"
                   [matAutocomplete]="autoSkills"
-                  id="skill">
-              <mat-autocomplete #autoSkills="matAutocomplete" [hidden]="!skills" (optionSelected)="optionWasSelected($event)">
+                  id="skill"
+                  (keypress)="hendleAddSkill($event)">
+              <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="optionWasSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
                   {{skill.name}}
                 </mat-option>
@@ -180,9 +186,9 @@
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="therdFormGroup">
+        <mat-step [stepControl]="therdFormGroup" [completed]="therdFormGroup.status === 'VALID'">
           <form [formGroup]="therdFormGroup">
-            <ng-template matStepLabel>Step 1</ng-template>
+            <ng-template matStepLabel>Step 3</ng-template>
 
             <div class="heading-text">
               <h2>English test:</h2>
