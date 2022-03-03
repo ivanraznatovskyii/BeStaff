@@ -9,9 +9,9 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  searchByParams(body: Object): Observable<any> {
-    console.log('Body', body)
-    return this.http.post<any[]>(`/api/developers/search/params`, body);
+  searchByParams(body: FormData): Observable<any> {
+    //console.log('Body', body)
+    return this.http.post<any[]>(`/api/developers/search`, body);
   }
 
 }

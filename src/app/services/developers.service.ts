@@ -11,35 +11,42 @@ export class DevelopersService {
   constructor(private http: HttpClient) { }
 
   getStacks(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/available`);
+    //console.log('getStacks')
+    return this.http.get<any[]>(`/api/developers/stacks`);
   }
 
   getSkills(): Observable<any> {
-    //console.log('Get skills state')
-    return this.http.get<any[]>(`/api/developers/skills`);
+    //console.log('getSkills')
+    return this.http.get<any[]>(`/api/registration/skills`);
   }
 
   getAllPositions() {
+    //console.log('getAllPositions')
     return this.http.get<any[]>(`/api/registration/positions`);
   }
 
   getAllDevs(): Observable<any> {
     //console.log('getAllDevs')
-    return this.http.get<any[]>(`/api/developers/alldevs`);
+    return this.http.get<any[]>(`/api/developers/available`);
   }
 
   getTreeDevs(): Observable<any> {
-    return this.http.get<any[]>(`/api/developers/alldevs?limit=3`);
+    //console.log('getTreeDevs')
+    const props = new FormData();
+    props.append('ResultsOnPage', '3');
+    props.append('Page', '1');
+    return this.http.post<any[]>(`/api/developers/search`, props);
   }
 
   getDevById(id: string): Observable<any> {
-    return this.http.get<Developer>(`/api/developers/devById`, { params: { developerId: id } });
+    //console.log('getDevById')
+    return this.http.get<Developer>(`/api/developers/developer/${id}`/* , { params: { developerId: id } } */);
   }
 
-  submitRequestForCVDevById(id: string, body: any)/* : Observable<any> */ {
-    console.log('request must be submitted')
-    //return this.http.post<Developer>(`/api/developers/devCVById`, { params: { developerId: id }, body } );
+  submitRequestForCVDevById(id: string, body: any): Observable<any> {
+    // console.log('request must be submitted')
+    // console.log('body', body)
+    return this.http.post<Developer>(`/api/developer/${id}/cv`, body, {observe: 'response'});
   }
-
 
 }

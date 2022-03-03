@@ -133,7 +133,7 @@ export class CareerComponent implements OnInit {
       this.positionsList = positions;
       this.getStacks();
       this.getSkills();
-      this.initSearchForm();
+      //this.initSearchForm();
       this.addVisibleCards();
     });
   }
@@ -233,7 +233,7 @@ export class CareerComponent implements OnInit {
   searchByQuery() {
     if(this.query.status === 'VALID' && this.query.value > 2) {
       let query = { 'SearchString': this.query.value, 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
-      this.searchService.searchByParams(query).subscribe(devs => {
+      this.searchService.searchByParams(this.commonService.makeBody(query)).subscribe(devs => {
         console.log(devs)
       })
     }
@@ -261,7 +261,7 @@ export class CareerComponent implements OnInit {
     if(this.seniorityJunior.value) body['Seniority'] = '344F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
     if(this.seniorityMiddle.value) body['Seniority'] = '334F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
     if(this.senioritySenior.value) body['Seniority'] = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    console.log(skills)
+    //console.log(skills)
     //if(skills) skills.map(skill => body['Stacks'] = skill.id);
     body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
     body['Page'] = JSON.stringify(this.currentPage);
@@ -275,8 +275,8 @@ export class CareerComponent implements OnInit {
     let query = {};
     this.queryParams ? query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams }
                      : query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage };
-    this.searchService.searchByParams(query).subscribe(devs => {
-      console.log(devs)
+    this.searchService.searchByParams(this.commonService.makeBody(query)).subscribe(devs => {
+      //console.log(devs)
       this.showedCards = devs.items;
       this.totalDevsCount = devs.totalCount;
       this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);

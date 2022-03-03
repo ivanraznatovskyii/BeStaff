@@ -8,6 +8,7 @@ import { faLink, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith } from 'rxjs';
 import { Positions } from 'src/app/interfaces/positions';
 import { positionsMathesDirective } from 'src/app/directives/positions-mathes.directive';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,7 @@ import { positionsMathesDirective } from 'src/app/directives/positions-mathes.di
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: {
-        showError: true,
+        showError: false,
         displayDefaultIndicatorType: false,
         disableRipple: true
       },
@@ -54,15 +55,19 @@ export class RegistrationComponent implements OnInit {
   filteredOptionsForStacks!: Observable<Stacks[]>;
   choosedStackss: Stacks[] = [];
 
-  constructor(private fb: FormBuilder, private devService: DevelopersService) {
-    devService.getStacks().subscribe((stacks: Stacks[]) => {
-      this.stacks = stacks;
-      this.isStacksLoaded = true;
+  constructor(private fb: FormBuilder, private devService: DevelopersService, private _snackBar: MatSnackBar) {
+    devService.getSkills().subscribe((skills: Skills[]) => {
+      this.skills = skills;
+      this.isSkillsLoaded = true;
     });
     this.getPositions();
   }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   initFilters() {
@@ -72,13 +77,20 @@ export class RegistrationComponent implements OnInit {
         map(value => this._filterPositions(value)),
       );
     }
+
+    if(this.secondFormGroup && this.secondFormGroup.get('skill')) {
+      this.filteredOptions = this.secondFormGroup.get('skill')!.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterSkills(value)),
+      );
+    }
   }
 
   initForms() {
     this.firstFormGroup = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       location: ['', Validators.required],
       position: ['', [Validators.required, positionsMathesDirective(this.positionsList)]],
       text: ['', Validators.required],
@@ -87,8 +99,8 @@ export class RegistrationComponent implements OnInit {
     this.secondFormGroup = this.fb.group({
       skill: ['', Validators.required],
       otherSkills: ['', Validators.required],
-      exYears: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
-      cvFile: ['']
+      exYears: ['', [Validators.required, Validators.pattern('[0-9]')]],
+      cvFile: ['', Validators.required]
     });
 
     this.therdFormGroup = this.fb.group({
@@ -108,7 +120,7 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  _filterStacks(value: string): Stacks[] {
+  _filterSkills(value: string): Stacks[] {
     if(value) {
       const filterValue = value.toLowerCase();
       return this.skills.filter(option => option.name.toLowerCase().includes(filterValue));
@@ -148,17 +160,27 @@ export class RegistrationComponent implements OnInit {
     this.cvFilename = '';
   }
 
-  optionWasSelected(event: any) {
-    const skillName = event.option.value;
+  optionWasSelected(event: any, value?: string) {
+    const skillName = event && event.option.value ? event.option.value : value;
+    ///console.log(skillName);
+    const isFull = this.choosedSkills.length >= 10;
     const choosedSkill = this.skills.find(item => item.name === skillName);
-    if(choosedSkill) {
-      if(this.checkIsCopy(choosedSkill)) {
+    if(choosedSkill && this.checkIsCopy(choosedSkill)) {
+      if(!isFull) {
         this.choosedSkills.push(choosedSkill);
+      } else if(isFull) {
+        this.openSnackBar('Skills count must be less then 10', 'OK')
+      }
+    } else if(!choosedSkill && value) {
+      if(!isFull) {
+        this.choosedSkills.push({id: '', name: value});
+      } else if(isFull) {
+        this.openSnackBar('Skills count must be less then 10', 'OK')
       }
     };
     //console.log(this.choosedSkills)
     this.secondFormGroup.get('skill')?.reset();
-    this._filterStacks('');
+    this._filterSkills('');
   }
 
   checkIsCopy(skillCandidate: Stacks) {
@@ -208,6 +230,13 @@ export class RegistrationComponent implements OnInit {
     console.log(this.therdFormGroup.controls)
     console.log(this.loremOne)
     console.log(this.loremTwo) */
+  }
+
+  hendleAddSkill(event: any) {
+    if(event.code === 'Enter') {
+      event.preventDefault();
+      this.optionWasSelected(null, this.secondFormGroup.get('skill')!.value);
+    }
   }
 
 }
