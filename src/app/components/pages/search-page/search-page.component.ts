@@ -144,10 +144,7 @@ export class SearchPageComponent implements OnInit {
     });
 
     this.devService.getAllDevs().subscribe(devs => {
-<<<<<<< HEAD
-=======
       //console.log(devs)
->>>>>>> without_proxy_server
       this.devs = devs;
       //this.fakeDevs();
       this.makeRadioArr();

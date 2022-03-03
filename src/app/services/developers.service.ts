@@ -26,11 +26,7 @@ export class DevelopersService {
   }
 
   getAllDevs(): Observable<any> {
-<<<<<<< HEAD
-    console.log('getAllDevs')
-=======
     //console.log('getAllDevs')
->>>>>>> without_proxy_server
     return this.http.get<any[]>(`/api/developers/available`);
   }
 
