@@ -311,11 +311,13 @@ input[type="checkbox"]:checked ~ #sidebarMenu {
   transform: translatey(0);
   top: 50px;  /*change here related your top menu height*/
 }
+
 input[type=checkbox] {
   transition: all 0.3s;
   box-sizing: border-box;
   display: none;
 }
+
 .sidebarIconToggle {
   transition: all 0.3s;
   box-sizing: border-box;
@@ -329,6 +331,7 @@ input[type=checkbox] {
   border-radius: 3px;
   /* display: none */
 }
+
 .spinner {
   transition: all 0.3s;
   box-sizing: border-box;
@@ -337,6 +340,7 @@ input[type=checkbox] {
   width: 100%;
   background-color: white;
 }
+
 .horizontal {
   transition: all 0.3s;
   box-sizing: border-box;
@@ -344,12 +348,14 @@ input[type=checkbox] {
   float: left;
   margin-top: 6px;
 }
+
 .diagonal.part-1 {
   position: relative;
   transition: all 0.3s;
   box-sizing: border-box;
   float: left;
 }
+
 .diagonal.part-2 {
   transition: all 0.3s;
   box-sizing: border-box;
@@ -357,17 +363,20 @@ input[type=checkbox] {
   float: left;
   margin-top: 6px;
 }
+
 input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
   transition: all 0.3s;
   box-sizing: border-box;
   opacity: 0;
 }
+
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
   transition: all 0.3s;
   box-sizing: border-box;
   transform: rotate(135deg);
   margin-top: 8px;
 }
+
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   transition: all 0.3s;
   box-sizing: border-box;
