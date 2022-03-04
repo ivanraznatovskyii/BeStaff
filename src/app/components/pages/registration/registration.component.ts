@@ -10,8 +10,8 @@ import { Skills } from 'src/app/interfaces/skills';
 import { Stacks } from 'src/app/interfaces/stacks';
 import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from 'src/app/services/common.service.ts.service';
-import { positionsMathesDirective } from 'src/app/directives/positions-mathes.directive';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
 
 @Component({
   selector: 'app-registration',
@@ -55,9 +55,12 @@ export class RegistrationComponent implements OnInit {
   isStacksLoaded: boolean = false;
   registrationHaveBeenCompleted: boolean = false;
   filteredOptions!: Observable<Skills[]>;
+  filteredOtherOptions!: Observable<Skills[]>;
   choosedSkills: Skills[] = [];
+  choosedOtherSkills: Skills[] = [];
   filteredOptionsForStacks!: Observable<Stacks[]>;
   choosedStackss: Stacks[] = [];
+  lenguageLevels: string[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   constructor(private fb: FormBuilder, 
               private devService: DevelopersService, 
@@ -97,6 +100,13 @@ export class RegistrationComponent implements OnInit {
         map(value => this._filterSkills(value)),
       );
     }
+
+    if(this.secondFormGroup && this.secondFormGroup.get('otherSkills')) {
+      this.filteredOtherOptions = this.secondFormGroup.get('otherSkills')!.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterSkills(value)),
+      );
+    }
   }
 
   initForms() {
@@ -105,21 +115,20 @@ export class RegistrationComponent implements OnInit {
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       location: ['', Validators.required],
-      position: ['', [Validators.required, positionsMathesDirective(this.positionsList)]],
+      position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
       text: ['', Validators.required],
     });
 
     this.secondFormGroup = this.fb.group({
-      skill: ['', Validators.required],
-      otherSkills: ['', Validators.required],
+      skill: [''],
+      otherSkills: [''],
       exYears: ['', [Validators.required, Validators.pattern('[0-9]')]],
       cvFile: ['', Validators.required]
     });
 
     this.therdFormGroup = this.fb.group({
       listenResults: ['', Validators.required],
-      grammarResults: ['', Validators.required],
-      vocabularyResults: ['', Validators.required],
+      grammarResults: ['', Validators.required]
     });
 
     this.isFormsLoaded = true;
@@ -141,6 +150,15 @@ export class RegistrationComponent implements OnInit {
       return this.skills;
     }
   }
+
+  /* _filterOtherSkills(value: string): Stacks[] {
+    if(value) {
+      const filterValue = value.toLowerCase();
+      return this.skills.filter(option => option.name.toLowerCase().includes(filterValue));
+    } else {
+      return this.skills;
+    }
+  } */
 
   _filterPositions(value: string): Positions[] {
     if(value) {
@@ -172,30 +190,41 @@ export class RegistrationComponent implements OnInit {
     this.cvFilename = '';
   }
 
-  optionWasSelected(event: any, value?: string) {
+  addSkillSelected(event: any) {
+    this.optionWasSelected(event, 'skill');
+  }
+
+  otherSkillsSelected(event: any, value: string) {
+    this.optionWasSelected(event, 'otherSkills', value);
+  }
+
+  optionWasSelected(event: any, controlName: string, value?: string) {
     const skillName = event && event.option.value ? event.option.value : value;
     ///console.log(skillName);
-    const isFull = this.choosedSkills.length >= 10;
+    const isFull = controlName === 'skill' ? this.choosedSkills.length >= 10 : this.choosedOtherSkills.length >= 30;
     const choosedSkill = this.skills.find(item => item.name === skillName);
-    if(choosedSkill && this.checkIsCopy(choosedSkill)) {
+    if(choosedSkill && this.checkIsCopy(choosedSkill, controlName)) {
       if(!isFull) {
-        this.choosedSkills.push(choosedSkill);
+        controlName === 'skill' ? this.choosedSkills.push(choosedSkill) : this.choosedOtherSkills.push(choosedSkill);
       } else if(isFull) {
         this.openSnackBar('Skills count must be less then 10', 'OK')
       }
     } else if(!choosedSkill && value) {
       if(!isFull) {
-        this.choosedSkills.push({id: '', name: value});
+        controlName === 'skill' ? this.choosedSkills.push({id: '', name: value}) : this.choosedOtherSkills.push({id: '', name: value});
       } else if(isFull) {
-        this.openSnackBar('Skills count must be less then 10', 'OK')
+        this.openSnackBar('Other skills count must be less then 30', 'OK')
       }
     };
-    this.secondFormGroup.get('skill')?.reset();
+
+    this.secondFormGroup.get(controlName)?.reset();
     this._filterSkills('');
   }
 
-  checkIsCopy(skillCandidate: Stacks) {
-    const isFind = this.choosedSkills.find(item => item.id === skillCandidate.id);
+  checkIsCopy(skillCandidate: Stacks, controlName: string) {
+    let isFind
+    controlName === 'skill' ? isFind = this.choosedSkills.find(item => item.id === skillCandidate.id)
+                            : isFind = this.choosedOtherSkills.find(item => item.id === skillCandidate.id);
     if(isFind) {
       return false;
     } else {
@@ -207,8 +236,13 @@ export class RegistrationComponent implements OnInit {
     return this.choosedSkills.length > 0 ? '100%' : '0';
   }
 
-  removeSkill(id: string) {
-    this.choosedSkills = this.choosedSkills.filter(skill => skill.id !== id);
+  removeSkill(id: string, where: string) {
+    if(where === 'skill') {
+      this.choosedSkills = this.choosedSkills.filter(skill => skill.id !== id);
+    } else {
+      this.choosedOtherSkills = this.choosedOtherSkills.filter(skill => skill.id !== id);
+    }
+    
   }
 
   compliteRegistration() {
@@ -245,11 +279,16 @@ export class RegistrationComponent implements OnInit {
     // console.log(this.loremTwo)
   }
 
-  hendleAddSkill(event: any) {
+  hendleAddSkill(event: any, controlName: string) {
     if(event.code === 'Enter') {
       event.preventDefault();
-      this.optionWasSelected(null, this.secondFormGroup.get('skill')!.value);
+      this.optionWasSelected(null, controlName, this.secondFormGroup.get(controlName)!.value);
     }
+  }
+
+  showValue() {
+    console.log('listen', this.therdFormGroup.get('listenResults')?.value)
+    console.log('gram', this.therdFormGroup.get('grammarResults')?.value)
   }
 
 }

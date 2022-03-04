@@ -9,7 +9,10 @@
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Step 1</ng-template>
             <label for="name">Name</label>
-            <div class="inner-input">
+            <div class="inner-input" 
+                 [ngClass]="{ 'error': firstFormGroup.get('name') 
+                                       && firstFormGroup.get('name')!.status === 'INVALID'
+                                       && firstFormGroup.get('name')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="name"
@@ -18,7 +21,9 @@
                   required>
             </div>
             <label for="surname">Surname</label>
-            <div class="inner-input">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('surname') 
+                                                           && firstFormGroup.get('surname')!.status === 'INVALID'
+                                                           && firstFormGroup.get('surname')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="surname"
@@ -27,7 +32,9 @@
                   required>
             </div>
             <label for="email">Email</label>
-            <div class="inner-input">
+            <div class="inner-input"  [ngClass]="{ 'error': firstFormGroup.get('email') 
+                                                            && firstFormGroup.get('email')!.status === 'INVALID'
+                                                            && firstFormGroup.get('email')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="email"
@@ -36,7 +43,9 @@
                   required>
             </div>
             <label for="location">Location</label>
-            <div class="inner-input">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('location') 
+                                                            && firstFormGroup.get('location')!.status === 'INVALID'
+                                                            && firstFormGroup.get('location')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="location"
@@ -45,7 +54,9 @@
                   required>
             </div>
             <label for="position">Position</label>
-            <div class="inner-input">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('position') 
+                                                            && firstFormGroup.get('position')!.status === 'INVALID'
+                                                            && firstFormGroup.get('position')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="position"
@@ -54,7 +65,7 @@
                   required
                   [matAutocomplete]="autoPositions">
             </div>
-            <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList" (optionSelected)="optionWasSelected($event)">
+            <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList">
               <mat-option *ngFor="let position of filteredPositions | async" [value]="position.name">
                 {{position.name}}
               </mat-option>
@@ -66,7 +77,9 @@
               </span>
             </div>
             <label for="shortDescription">Short Description</label>
-            <div class="inner-input inner-input_textarea">
+            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': firstFormGroup.get('text') 
+                                                                                && firstFormGroup.get('text')!.status === 'INVALID'
+                                                                                && firstFormGroup.get('text')!.dirty }">
               <textarea matInput
                         formControlName="text"
                         placeholder="Short Description"
@@ -108,22 +121,24 @@
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Step 2</ng-template>
             <label for="skill" style="width: 100%;"> <span style="padding-bottom: 10px;">Add skill</span></label>
-            <div class="inner-input skills-container">
+            <div class="inner-input skills-container" [ngClass]="{ 'error': secondFormGroup.get('skill') 
+                                                                            && secondFormGroup.get('skill')!.status === 'INVALID'
+                                                                            && secondFormGroup.get('skill')!.dirty }">
               <ul class="skills-list-inner" *ngIf="choosedSkills.length" [ngStyle]="{ 'width': ulWidth() }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedSkills">
                   <span>{{ skill.name }}</span>
-                  <span (click)="removeSkill(skill.id)"><fa-icon [icon]="faTimes"></fa-icon></span>
+                  <span (click)="removeSkill(skill.id, 'skill')"><fa-icon [icon]="faTimes"></fa-icon></span>
                 </li>
               </ul>
               <input matInput
                   type="text"
                   formControlName="skill"
                   placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
-                  [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '0': 'inherit' }"
+                  [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
                   [matAutocomplete]="autoSkills"
                   id="skill"
-                  (keypress)="hendleAddSkill($event)">
-              <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="optionWasSelected($event)">
+                  (keypress)="hendleAddSkill($event, 'skill')">
+              <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
                   {{skill.name}}
                 </mat-option>
@@ -136,13 +151,29 @@
               </span>
             </div>
             <label for="otherSkills">Other Skills</label>
-            <div class="inner-input inner-input_textarea">
+            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': secondFormGroup.get('otherSkills') 
+                                                                                && secondFormGroup.get('otherSkills')!.status === 'INVALID'
+                                                                                && secondFormGroup.get('otherSkills')!.dirty }">
+              <ul class="skills-list-inner" *ngIf="choosedOtherSkills.length" [ngStyle]="{ 'width': ulWidth() }">
+                <li class="skills-item-inner" *ngFor="let skill of choosedOtherSkills">
+                  <span>{{ skill.name }}</span>
+                  <span (click)="removeSkill(skill.id, 'otherSkills')"><fa-icon [icon]="faTimes"></fa-icon></span>
+                </li>
+              </ul>
               <textarea matInput
                         formControlName="otherSkills"
-                        placeholder="Other Skills"
+                        placeholder="{{ !choosedOtherSkills.length ? 'Other Skills' : '' }}"
+                        [matAutocomplete]="autoOtherSkills"
+                        [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
                         id="otherSkills"
+                        (keypress)="hendleAddSkill($event, 'otherSkills')"
                         rows="4">
               </textarea>
+              <mat-autocomplete #autoOtherSkills="matAutocomplete" (optionSelected)="otherSkillsSelected($event, secondFormGroup.get('otherSkills')!.value)">
+                <mat-option *ngFor="let skill of filteredOtherOptions | async" [value]="skill.name">
+                  {{skill.name}}
+                </mat-option>
+              </mat-autocomplete>
             </div>
             <div class="under-text">
               <sup>*</sup>
@@ -151,14 +182,18 @@
               </span>
             </div>
             <label for="exYears">Experience in years</label>
-            <div class="inner-input">
+            <div class="inner-input" [ngClass]="{ 'error': secondFormGroup.get('exYears') 
+                                                            && secondFormGroup.get('exYears')!.status === 'INVALID'
+                                                            && secondFormGroup.get('exYears')!.dirty }">
               <input matInput
                   type="text"
                   formControlName="exYears"
                   placeholder="Experience in years"
                   id="exYears">
             </div>
-            <div class="inner-input cv-file">
+            <div class="inner-input cv-file" [ngClass]="{ 'error': secondFormGroup.get('cvFile') 
+                                                                    && secondFormGroup.get('cvFile')!.status === 'INVALID'
+                                                                    && secondFormGroup.get('cvFile')!.dirty }">
               <button type="button"
                       mat-button
                       (click)="fileInput.click()">
@@ -180,7 +215,7 @@
               <button mat-button
                       matStepperNext
                       class="elipse-button elipse-button_next"
-                      [disabled]="secondFormGroup.status === 'INVALID'">
+                      [disabled]="secondFormGroup.status === 'INVALID' || choosedOtherSkills.length === 0 || choosedSkills.length === 0 ">
                       Next  &#10142;
               </button>
             </div>
@@ -204,36 +239,40 @@
             <div class="start-test-link">
               <a >Start test here</a>
             </div>
-            <label for="listenResults">Listening Test Results</label>
-            <div class="inner-input">
-              <input matInput
-                  type="text"
-                  formControlName="listenResults"
-                  placeholder="Listening Test Results"
-                  id="listenResults">
-            </div>
-            <label for="grammarResults">Grammar Test Results</label>
-            <div class="inner-input">
-              <input matInput
-                  type="text"
-                  formControlName="grammarResults"
-                  placeholder="Grammar Test Results"
-                  id="grammarResults">
-            </div>
-            <label for="vocabularyResults">Vocabulary Test Results</label>
-            <div class="inner-input">
-              <input matInput
-                  type="text"
-                  formControlName="vocabularyResults"
-                  placeholder="Vocabulary Test Results"
-                  id="vocabularyResults">
+            <div class="row" style="margin-bottom: 15px;">
+              <div class="col-6 first">
+                <label for="listenResults">Listening Test Results</label>
+                <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('listenResults') 
+                                                                                      && therdFormGroup.get('listenResults')!.status === 'INVALID'
+                                                                                      && therdFormGroup.get('listenResults')!.dirty }">
+                  <mat-select panelClass="panel" formControlName="listenResults" empty="false" placeholder="Listen Results">
+                    <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix></mat-icon>
+                </div>
+              </div>
+              <div class="col-6 second">
+                <label for="grammarResults">Grammar Test Results</label>
+              <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('grammarResults') 
+                                                                                    && therdFormGroup.get('grammarResults')!.status === 'INVALID'
+                                                                                    && therdFormGroup.get('grammarResults')!.dirty }">
+                <mat-select panelClass="panel" formControlName="grammarResults" empty="false" placeholder="Grammar Results">
+                  <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
+                </mat-select>
+                <mat-icon matSuffix></mat-icon>
+              </div>
+              </div>
             </div>
             <div class="next-btn-container">
               <button mat-button
                       matStepperNext
                       class="elipse-button elipse-button_next uppercase"
                       (click)="compliteRegistration()"
-                      [disabled]="therdFormGroup.get('')?.status === 'INVALID'">
+                      [disabled]="firstFormGroup.status === 'INVALID' 
+                                  || secondFormGroup.status === 'INVALID' 
+                                  || therdFormGroup.status === 'INVALID'
+                                  || choosedOtherSkills.length === 0
+                                  || choosedSkills.length === 0" >
                       Register
               </button>
             </div>
