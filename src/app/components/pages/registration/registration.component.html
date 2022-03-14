@@ -18,6 +18,9 @@
                   formControlName="name"
                   placeholder="Name"
                   id="name"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('name') 
+                                              && firstFormGroup.get('name')!.status === 'INVALID'
+                                              && firstFormGroup.get('name')!.dirty }"
                   required>
             </div>
             <label for="surname">Surname</label>
@@ -29,6 +32,9 @@
                   formControlName="surname"
                   placeholder="Surname"
                   id="surname"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('surname') 
+                                              && firstFormGroup.get('surname')!.status === 'INVALID'
+                                              && firstFormGroup.get('surname')!.dirty }"
                   required>
             </div>
             <label for="email">Email</label>
@@ -40,6 +46,9 @@
                   formControlName="email"
                   placeholder="Email"
                   id="email"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('email') 
+                                              && firstFormGroup.get('email')!.status === 'INVALID'
+                                              && firstFormGroup.get('email')!.dirty }"
                   required>
             </div>
             <label for="location">Location</label>
@@ -51,6 +60,9 @@
                   formControlName="location"
                   placeholder="Location"
                   id="location"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('location') 
+                                        && firstFormGroup.get('location')!.status === 'INVALID'
+                                        && firstFormGroup.get('location')!.dirty }"
                   required>
             </div>
             <label for="position">Position</label>
@@ -62,6 +74,9 @@
                   formControlName="position"
                   placeholder="Position"
                   id="position"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('position') 
+                                        && firstFormGroup.get('position')!.status === 'INVALID'
+                                        && firstFormGroup.get('position')!.dirty }"
                   required
                   [matAutocomplete]="autoPositions">
             </div>
@@ -84,6 +99,9 @@
                         formControlName="text"
                         placeholder="Short Description"
                         id="shortDescription"
+                        [ngClass]="{ 'input-error': firstFormGroup.get('text') 
+                                                    && firstFormGroup.get('text')!.status === 'INVALID'
+                                                    && firstFormGroup.get('text')!.dirty }"
                         rows="4">
               </textarea>
             </div>
@@ -137,6 +155,9 @@
                   [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
                   [matAutocomplete]="autoSkills"
                   id="skill"
+                  [ngClass]="{ 'input-error': secondFormGroup.get('skill') 
+                                              && secondFormGroup.get('skill')!.status === 'INVALID'
+                                              && secondFormGroup.get('skill')!.dirty }"
                   (keypress)="hendleAddSkill($event, 'skill')">
               <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
@@ -166,6 +187,9 @@
                         [matAutocomplete]="autoOtherSkills"
                         [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
                         id="otherSkills"
+                        [ngClass]="{ 'input-error': secondFormGroup.get('otherSkills') 
+                                                    && secondFormGroup.get('otherSkills')!.status === 'INVALID'
+                                                    && secondFormGroup.get('otherSkills')!.dirty }"
                         (keypress)="hendleAddSkill($event, 'otherSkills')"
                         rows="4">
               </textarea>
@@ -189,7 +213,10 @@
                   type="text"
                   formControlName="exYears"
                   placeholder="Experience in years"
-                  id="exYears">
+                  id="exYears"
+                  [ngClass]="{ 'input-error': secondFormGroup.get('exYears') 
+                                              && secondFormGroup.get('exYears')!.status === 'INVALID'
+                                              && secondFormGroup.get('exYears')!.dirty }">
             </div>
             <div class="inner-input cv-file" [ngClass]="{ 'error': secondFormGroup.get('cvFile') 
                                                                     && secondFormGroup.get('cvFile')!.status === 'INVALID'
@@ -245,7 +272,13 @@
                 <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('listenResults') 
                                                                                       && therdFormGroup.get('listenResults')!.status === 'INVALID'
                                                                                       && therdFormGroup.get('listenResults')!.dirty }">
-                  <mat-select panelClass="panel" formControlName="listenResults" empty="false" placeholder="Listen Results">
+                  <mat-select panelClass="panel" 
+                              formControlName="listenResults"
+                              empty="false"
+                              placeholder="Listen Results"
+                              [ngClass]="{ 'input-error': therdFormGroup.get('listenResults') 
+                                                          && therdFormGroup.get('listenResults')!.status === 'INVALID'
+                                                          && therdFormGroup.get('listenResults')!.dirty }">
                     <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
                   </mat-select>
                   <mat-icon matSuffix></mat-icon>
@@ -256,7 +289,13 @@
               <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('grammarResults') 
                                                                                     && therdFormGroup.get('grammarResults')!.status === 'INVALID'
                                                                                     && therdFormGroup.get('grammarResults')!.dirty }">
-                <mat-select panelClass="panel" formControlName="grammarResults" empty="false" placeholder="Grammar Results">
+                <mat-select panelClass="panel"
+                            formControlName="grammarResults"
+                            empty="false"
+                            placeholder="Grammar Results"
+                            [ngClass]="{ 'input-error': therdFormGroup.get('grammarResults') 
+                                                        && therdFormGroup.get('grammarResults')!.status === 'INVALID'
+                                                        && therdFormGroup.get('grammarResults')!.dirty }">
                   <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix></mat-icon>

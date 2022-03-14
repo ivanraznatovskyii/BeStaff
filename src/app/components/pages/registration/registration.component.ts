@@ -12,6 +12,7 @@ import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
+import { emailsMatchesDirective } from 'src/app/directives/email-matches.directive';
 
 @Component({
   selector: 'app-registration',
@@ -107,13 +108,18 @@ export class RegistrationComponent implements OnInit {
         map(value => this._filterSkills(value)),
       );
     }
+
+    this.firstFormGroup.get('email')
+                   ?.setValidators([Validators.required, 
+                   Validators.email, 
+                   emailsMatchesDirective()])
   }
 
   initForms() {
     this.firstFormGroup = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [''],
       location: ['', Validators.required],
       position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
       text: ['', Validators.required],

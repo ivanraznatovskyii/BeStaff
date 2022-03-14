@@ -388,6 +388,7 @@ export class SearchPageComponent implements OnInit {
     if(skills) skills.map(skill => body['Stacks'] = skill.id);
     body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
     body['Page'] = JSON.stringify(this.currentPage);
+    console.log(body)
     return body;
   }
 
