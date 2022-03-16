@@ -52,6 +52,7 @@ import { HiringFormComponent } from './components/hiring-form/hiring-form.compon
 import { ServicesListComponent } from './components/services-list/services-list.component';
 import { ContactsComponent } from './components/pages/contacts/contacts.component';
 import { CareerComponent } from './components/pages/career/career.component';
+import { EmptyPageComponent } from './components/pages/empty-page/empty-page.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { CareerComponent } from './components/pages/career/career.component';
     ServicesListComponent,
     ContactsComponent,
     CareerComponent,
+    EmptyPageComponent,
   ],
   imports: [
     BrowserModule,

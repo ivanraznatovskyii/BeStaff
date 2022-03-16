@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { Skills } from '../interfaces/skills';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +36,44 @@ export class CommonService {
     this.dev.next(data);
   }
 
-  makeBody(body: Object) {
+  makeBody(body: Object, files?: FileList, skills?: Skills[], otherSkills?: Skills[]) {
     const props = new FormData();
+    //console.log(body)
     for(let item in body) {
-      props.append(item, body[item]);
+      if(item !== 'cvFile') {
+        //console.log(body[item])
+        props.append(item, body[item]);
+      } 
+      
+      if(files) {
+        //console.log(files)
+        for(let i = 0; i < files.length; i++){
+          props.append('Attachments', files[i]);
+        }
+      } 
+      
+      if(skills) {
+        //console.log(skills)
+        const list: Skills[] = [];
+        for(let i = 0; i < skills.length; i++){
+          list.push(skills[i])
+        }
+        props.append('Skills', JSON.stringify(list));
+      } 
+      
+      if(otherSkills) {
+        //console.log(otherSkills)
+        const list: Skills[] = [];
+        for(let i = 0; i < otherSkills.length; i++){
+          list.push(otherSkills[i])
+        }
+        props.append('OtherSkills', JSON.stringify(list));
+      } 
     }
+    
     //console.log('Converted');
+    // console.log({...props});
+    // props.forEach(item => console.log(item))
     return props;
   }
 

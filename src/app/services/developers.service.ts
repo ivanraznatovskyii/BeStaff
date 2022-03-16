@@ -49,4 +49,8 @@ export class DevelopersService {
     return this.http.post<Developer>(`/api/developer/${id}/cv`, body, {observe: 'response'});
   }
 
+  registerDev(body: FormData): Observable<any> {
+    return this.http.post<Developer>(`/api/registration`, body, {observe: 'response'});
+  }
+
 }

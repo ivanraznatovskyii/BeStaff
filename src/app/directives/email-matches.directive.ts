@@ -13,9 +13,8 @@ export function emailsMatchesDirective(): ValidatorFn  {
   return (control: AbstractControl): ValidationErrors | null => {
 
     const val = control.value.toLowerCase().replace(/(\W|^)[\w.\-]{0,25}@/, '');
-    //return null;
-    console.log(val);
-    return invalidEmailsList.findIndex(item => item.toLowerCase() === val.toLowerCase()) !== -1 ? {forbiddenName: { value: control.value }} : null;
+    return null;
+    //return invalidEmailsList.findIndex(item => item.toLowerCase() === val.toLowerCase()) !== -1 ? {forbiddenName: { value: control.value }} : null;
   }
 
 }

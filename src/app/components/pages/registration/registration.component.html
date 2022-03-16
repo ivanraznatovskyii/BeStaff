@@ -15,7 +15,7 @@
                                        && firstFormGroup.get('name')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="name"
+                  formControlName="Name"
                   placeholder="Name"
                   id="name"
                   [ngClass]="{ 'input-error': firstFormGroup.get('name') 
@@ -29,7 +29,7 @@
                                                            && firstFormGroup.get('surname')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="surname"
+                  formControlName="Surname"
                   placeholder="Surname"
                   id="surname"
                   [ngClass]="{ 'input-error': firstFormGroup.get('surname') 
@@ -43,7 +43,7 @@
                                                             && firstFormGroup.get('email')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="email"
+                  formControlName="Email"
                   placeholder="Email"
                   id="email"
                   [ngClass]="{ 'input-error': firstFormGroup.get('email') 
@@ -57,7 +57,7 @@
                                                             && firstFormGroup.get('location')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="location"
+                  formControlName="Location"
                   placeholder="Location"
                   id="location"
                   [ngClass]="{ 'input-error': firstFormGroup.get('location') 
@@ -71,7 +71,7 @@
                                                             && firstFormGroup.get('position')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="position"
+                  formControlName="Position"
                   placeholder="Position"
                   id="position"
                   [ngClass]="{ 'input-error': firstFormGroup.get('position') 
@@ -96,7 +96,7 @@
                                                                                 && firstFormGroup.get('text')!.status === 'INVALID'
                                                                                 && firstFormGroup.get('text')!.dirty }">
               <textarea matInput
-                        formControlName="text"
+                        formControlName="Description"
                         placeholder="Short Description"
                         id="shortDescription"
                         [ngClass]="{ 'input-error': firstFormGroup.get('text') 
@@ -211,7 +211,7 @@
                                                             && secondFormGroup.get('exYears')!.dirty }">
               <input matInput
                   type="text"
-                  formControlName="exYears"
+                  formControlName="Experience"
                   placeholder="Experience in years"
                   id="exYears"
                   [ngClass]="{ 'input-error': secondFormGroup.get('exYears') 
@@ -229,11 +229,11 @@
                   <path d="M16 12H8" stroke="#95B0C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M14 16H17C19.2091 16 21 14.2091 21 12V12C21 9.79086 19.2091 8 17 8H14" stroke="#95B0C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span class="inner-btn-text">{{ cvFilename }}</span>
+                <span class="inner-btn-text">{{ showFilenames() }}</span>
               </button>
               <input #fileInput hidden (change)="onFileSelected($event.target)" type="file" id="file" formControlName="cvFile"
-                    accept="application/xml, application/pdf, text/txt">
-              <div class="remove-file" (click)="removeFiles()" *ngIf="cvFilename">
+                    accept="application/xml, application/pdf, text/txt" multiple>
+              <div class="remove-file" (click)="removeFiles()" *ngIf="cvFilenames.length > 0">
                 <fa-icon [icon]="faTimes"></fa-icon>
                 <span> Remove</span>
               </div>
@@ -273,7 +273,7 @@
                                                                                       && therdFormGroup.get('listenResults')!.status === 'INVALID'
                                                                                       && therdFormGroup.get('listenResults')!.dirty }">
                   <mat-select panelClass="panel" 
-                              formControlName="listenResults"
+                              formControlName="EnglishListeningTest"
                               empty="false"
                               placeholder="Listen Results"
                               [ngClass]="{ 'input-error': therdFormGroup.get('listenResults') 
@@ -290,7 +290,7 @@
                                                                                     && therdFormGroup.get('grammarResults')!.status === 'INVALID'
                                                                                     && therdFormGroup.get('grammarResults')!.dirty }">
                 <mat-select panelClass="panel"
-                            formControlName="grammarResults"
+                            formControlName="EnglishGrammarTest"
                             empty="false"
                             placeholder="Grammar Results"
                             [ngClass]="{ 'input-error': therdFormGroup.get('grammarResults') 

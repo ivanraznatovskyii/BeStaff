@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.owner-page-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.owner-page-container {
+  width: 100%;
+}
+
+.centered {
+  max-width: 1200px;
+  margin: 0 auto;
+}

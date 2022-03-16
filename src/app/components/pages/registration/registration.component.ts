@@ -34,7 +34,8 @@ export class RegistrationComponent implements OnInit {
   faLink = faLink;
   faTimes =faTimes;
 
-  cvFilename: string = '';
+  cvFilenames: string[] = [];
+  files!: FileList;
 
   isFormsLoaded: boolean = false;
 
@@ -76,6 +77,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.goToTop();
+    this.initForms()
   }
 
   goToTop() {
@@ -117,24 +119,24 @@ export class RegistrationComponent implements OnInit {
 
   initForms() {
     this.firstFormGroup = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: [''],
-      location: ['', Validators.required],
-      position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
-      text: ['', Validators.required],
+      Name: ['', Validators.required],
+      Surname: ['', Validators.required],
+      Email: [''],
+      Location: ['', Validators.required],
+      Position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
+      Description: ['', Validators.required],
     });
 
     this.secondFormGroup = this.fb.group({
       skill: [''],
       otherSkills: [''],
-      exYears: ['', [Validators.required, Validators.pattern('[0-9]')]],
+      Experience: ['', [Validators.required, Validators.pattern('[0-9]')]],
       cvFile: ['', Validators.required]
     });
 
     this.therdFormGroup = this.fb.group({
-      listenResults: ['', Validators.required],
-      grammarResults: ['', Validators.required]
+      EnglishListeningTest: ['', Validators.required],
+      EnglishGrammarTest: ['', Validators.required]
     });
 
     this.isFormsLoaded = true;
@@ -180,20 +182,33 @@ export class RegistrationComponent implements OnInit {
     let filename;
     let fileExtension;
     let splittedStringLength;
-    if(files.files[0]) {
-      file = files.files[0];
-      filename = file.name.split('.')[0];
-      this.cvFilename = filename;
-      splittedStringLength = file.name.split('.').length;
-      fileExtension = file.name.split('.')[splittedStringLength - 1];
+    if(files.files.length > 0) {
+      this.files = files.files;
+
+      for(let i = 0; i < files.files.length; i++) {
+        file = files.files[i];
+        filename = file.name.split('.')[0];
+        this.cvFilenames.push(filename);
+        // splittedStringLength = file.name.split('.').length;
+        // fileExtension = file.name.split('.')[splittedStringLength - 1];
+      }
     } else {
-      this.cvFilename = '';
+      this.cvFilenames = [];
     }
+  }
+
+  showFilenames() {
+    let string = '';
+    for(let item of this.cvFilenames) {
+      string += item + ', ';
+    }
+    
+    return string.slice(-string.length, -2);
   }
 
   removeFiles() {
     this.secondFormGroup.get('cvFile')?.reset();
-    this.cvFilename = '';
+    this.cvFilenames = [];
   }
 
   addSkillSelected(event: any) {
@@ -252,7 +267,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   compliteRegistration() {
-    this.registrationHaveBeenCompleted = true;
+    //this.registrationHaveBeenCompleted = true;
     const body = {};
     if(this.firstFormGroup.status === 'VALID'
         && this.secondFormGroup.status === 'VALID'
@@ -275,9 +290,11 @@ export class RegistrationComponent implements OnInit {
     // console.log(this.firstFormGroup.status)
     // console.log(this.secondFormGroup.status)
     // console.log(this.therdFormGroup.status)
-    console.log(body)
+    // console.log(body)
 
-    this.commonService.makeBody(body)
+    this.devService.registerDev(this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills)).subscribe(res => {
+      console.log(res)
+    })
     // console.log(this.firstFormGroup.controls)
     // console.log(this.secondFormGroup.controls)
     // console.log(this.therdFormGroup.controls)
