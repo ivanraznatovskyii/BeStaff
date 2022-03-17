@@ -1,5 +1,5 @@
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { from, Observable, Observer } from 'rxjs';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SearchPageComponent implements OnInit {
 
+  width = window.innerWidth;
+  cardsWidth = '370';
+  cardsPadding = '5px';
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.width = event.target.innerWidth;
+    this.changeSize();
+  }
 
   panelOpenState = false;
   isDevsLoaded: boolean = false;
@@ -182,8 +190,9 @@ export class SearchPageComponent implements OnInit {
   }
 
   goToTop() {
-    const el = document.querySelector('.logo');
-    el?.scrollIntoView(true);
+    window.scrollTo(0,0)
+    // const el = document.querySelector('.logo');
+    // el?.scrollIntoView(true);
   }
 
   openSnackBar(message: string, action: string) {
@@ -382,10 +391,19 @@ export class SearchPageComponent implements OnInit {
     const skills = this.getSelectedSkills(stacks);
     if(this.query.value && this.query.value.length > 2) body['SearchString'] = this.query.value;
     if(this.exSlider.value) body['Expirience'] = this.exSlider.value;
-    if(this.seniorityJunior.value) body['Seniority'] = '344F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    if(this.seniorityMiddle.value) body['Seniority'] = '334F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    if(this.senioritySenior.value) body['Seniority'] = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
-    if(skills) skills.map(skill => body['Stacks'] = skill.id);
+    const junId = '334f6ad6-9134-ec11-8388-ccd9acdd6ef8';
+    const midId = '344f6ad6-9134-ec11-8388-ccd9acdd6ef8';
+    const sinId = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
+    const sinList: string[] = [];
+    if(this.seniorityJunior.value) sinList.push(junId);
+    if(this.seniorityMiddle.value) sinList.push(midId);
+    if(this.senioritySenior.value) sinList.push(sinId);
+    if(sinList.length > 0) body['Seniority'] = sinList;
+    //if(sinList.length > 0) body['Seniority'] = JSON.stringify(sinList);
+    const skillsList: string[] = [];
+    if(skills) skills.map(skill => skillsList.push(skill.id));
+    //if(skillsList.length > 0) body['Stacks'] = JSON.stringify(skillsList);
+    if(skillsList.length > 0) body['Stacks'] = skillsList;
     body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
     body['Page'] = JSON.stringify(this.currentPage);
     console.log(body)
@@ -400,6 +418,20 @@ export class SearchPageComponent implements OnInit {
     }
 
     return skillsArr;
+  }
+
+  changeSize() {
+    const cardWidth = document.querySelector('.dev-card')?.clientWidth || 370;
+    const twoCardsWidth = (cardWidth + 30) * 2;
+    const treCardsWidth = (cardWidth + 30) * 3;
+    if( this.width < twoCardsWidth ) {
+      this.cardsPadding = ((this.width - cardWidth) / 2) + 'px';
+    } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
+      this.cardsPadding = ((this.width - twoCardsWidth) / 3) + 'px';
+    } else if(this.width > treCardsWidth) {
+      this.cardsPadding = 'auto';
+    }
+    //console.log(document.querySelector('.dev-card-list')?.clientWidth)
   }
 
 }

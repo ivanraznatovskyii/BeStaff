@@ -295,6 +295,7 @@ h3.card-heading {
 
 .searching-results-paginator {
   display: inline-flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   /* padding: 15px; */
@@ -556,7 +557,7 @@ h3.card-heading {
 
   &::after {
     position: absolute;
-    content: '10';
+    content: '9';
     top: 11px;
     right: -30px;
     font-size: 16px;

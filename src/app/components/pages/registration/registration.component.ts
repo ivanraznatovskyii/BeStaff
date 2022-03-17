@@ -77,12 +77,13 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.goToTop();
-    this.initForms()
+    //this.initForms()
   }
 
   goToTop() {
-    const el = document.querySelector('.logo');
-    el?.scrollIntoView(true);
+    window.scrollTo(0,0)
+    // const el = document.querySelector('.logo');
+    // el?.scrollIntoView(true);
   }
 
   openSnackBar(message: string, action: string) {
@@ -90,8 +91,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   initFilters() {
-    if(this.firstFormGroup && this.firstFormGroup.get('position')) {
-      this.filteredPositions = this.firstFormGroup.get('position')!.valueChanges.pipe(
+    if(this.firstFormGroup && this.firstFormGroup.get('Position')) {
+      this.filteredPositions = this.firstFormGroup.get('Position')!.valueChanges.pipe(
         startWith(''),
         map(value => this._filterPositions(value)),
       );
@@ -111,7 +112,7 @@ export class RegistrationComponent implements OnInit {
       );
     }
 
-    this.firstFormGroup.get('email')
+    this.firstFormGroup.get('Email')
                    ?.setValidators([Validators.required, 
                    Validators.email, 
                    emailsMatchesDirective()])
@@ -130,7 +131,7 @@ export class RegistrationComponent implements OnInit {
     this.secondFormGroup = this.fb.group({
       skill: [''],
       otherSkills: [''],
-      Experience: ['', [Validators.required, Validators.pattern('[0-9]')]],
+      Experience: ['', [Validators.required, Validators.pattern('[0-9]{1}')]],
       cvFile: ['', Validators.required]
     });
 
@@ -277,7 +278,9 @@ export class RegistrationComponent implements OnInit {
         body[item] = this.firstFormGroup.controls[item].value;
       }
       for(let item in this.secondFormGroup.controls) {
-        body[item] = this.secondFormGroup.controls[item].value;
+        if(item !== 'cvFile' && item !== 'skill' && item !== 'otherSkills') {
+          body[item] = this.secondFormGroup.controls[item].value;
+        }
       }
       for(let item in this.therdFormGroup.controls) {
         body[item] = this.therdFormGroup.controls[item].value;
@@ -290,9 +293,9 @@ export class RegistrationComponent implements OnInit {
     // console.log(this.firstFormGroup.status)
     // console.log(this.secondFormGroup.status)
     // console.log(this.therdFormGroup.status)
-    // console.log(body)
-
-    this.devService.registerDev(this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills)).subscribe(res => {
+    console.log(body)
+    const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
+    this.devService.registerDev(preparedBody).subscribe(res => {
       console.log(res)
     })
     // console.log(this.firstFormGroup.controls)
@@ -310,8 +313,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   showValue() {
-    console.log('listen', this.therdFormGroup.get('listenResults')?.value)
-    console.log('gram', this.therdFormGroup.get('grammarResults')?.value)
+    console.log('listen', this.therdFormGroup.get('EnglishListeningTest')?.value)
+    console.log('gram', this.therdFormGroup.get('EnglishGrammarTest')?.value)
   }
 
 }

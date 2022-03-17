@@ -1,5 +1,5 @@
 <div class="search-wrapper" *ngIf="!searchBlockIsShowed()">
-  <div class="search-container">
+  <div class="search-container" (resize)="changeSize()">
     <app-breadcrumbs></app-breadcrumbs>
     <div class="search-intro">
       <div class="row heading">
@@ -65,7 +65,7 @@
                                 displayValue="true"
                                 step="1"
                                 min="0"
-                                max="10"
+                                max="9"
                                 color="primary"
                                 aria-label="units"
                                 class="ex-slider">
@@ -108,9 +108,15 @@
     </div>
     <div class="searching-results">
       <div class="row searching-results-content">
-        <div class="col-2 results-count">
+        <div class="col-2 results-count" *ngIf="totalDevsCount; else devsNotFound">
           Found {{ totalDevsCount }} developer{{ totalDevsCount > 1 ? 's' : '' }}
         </div>
+        <ng-template #devsNotFound>
+          <div class="col-2 results-count">
+          Developers not found
+        </div>
+        </ng-template>
+        
         <div class="col-10 searching-results-paginator" *ngIf="isDevsLoaded && showedCards && totalDevsCount && pagesCount">
           <div class="prev-page" (click)="changeCurrentPage('-')"></div>
             <div class="pages"
@@ -128,7 +134,7 @@
       <div class="row search-cards-container" *ngIf="isDevsLoaded && showedCards && showedCards.length">
         <div class="col-12">
           <div class="dev-card-list">
-            <div class="dev-card" *ngFor="let dev of showedCards">
+            <div class="dev-card" *ngFor="let dev of showedCards" [ngStyle]="{ 'margin-right': cardsPadding, 'margin-left': cardsPadding }">
               <div class="card-content" *ngIf="dev && dev.name">
                 <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>

@@ -25,8 +25,9 @@ export class AboutComponent implements OnInit {
   }
 
   goToTop() {
-    const el = document.querySelector('.logo');
-    el?.scrollIntoView(true);
+    window.scrollTo(0,0)
+    // const el = document.querySelector('.logo');
+    // el?.scrollIntoView(true);
   }
 
 }

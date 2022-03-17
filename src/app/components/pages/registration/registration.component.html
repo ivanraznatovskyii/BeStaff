@@ -10,73 +10,70 @@
             <ng-template matStepLabel>Step 1</ng-template>
             <label for="name">Name</label>
             <div class="inner-input" 
-                 [ngClass]="{ 'error': firstFormGroup.get('name') 
-                                       && firstFormGroup.get('name')!.status === 'INVALID'
-                                       && firstFormGroup.get('name')!.dirty }">
+                 [ngClass]="{ 'error': firstFormGroup.get('Name') 
+                                       && firstFormGroup.get('Name')!.status === 'INVALID'
+                                       && (firstFormGroup.get('Name')!.touched || firstFormGroup.get('Name')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Name"
                   placeholder="Name"
                   id="name"
-                  [ngClass]="{ 'input-error': firstFormGroup.get('name') 
-                                              && firstFormGroup.get('name')!.status === 'INVALID'
-                                              && firstFormGroup.get('name')!.dirty }"
+                  [ngClass]="{ 'filled-input': firstFormGroup.get('Name') 
+                                              && firstFormGroup.get('Name')!.status === 'VALID'
+                                              && (firstFormGroup.get('Name')!.touched || firstFormGroup.get('Name')!.dirty) }"
                   required>
             </div>
             <label for="surname">Surname</label>
-            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('surname') 
-                                                           && firstFormGroup.get('surname')!.status === 'INVALID'
-                                                           && firstFormGroup.get('surname')!.dirty }">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Surname') 
+                                                           && firstFormGroup.get('Surname')!.status === 'INVALID'
+                                                           && (firstFormGroup.get('Surname')!.touched || firstFormGroup.get('Surname')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Surname"
                   placeholder="Surname"
                   id="surname"
-                  [ngClass]="{ 'input-error': firstFormGroup.get('surname') 
-                                              && firstFormGroup.get('surname')!.status === 'INVALID'
-                                              && firstFormGroup.get('surname')!.dirty }"
+                  [ngClass]="{ 'filled-input': firstFormGroup.get('Surname') 
+                                              && firstFormGroup.get('Surname')!.status === 'VALID'
+                                              && (firstFormGroup.get('Surname')!.touched || firstFormGroup.get('Surname')!.dirty) }"
                   required>
             </div>
             <label for="email">Email</label>
-            <div class="inner-input"  [ngClass]="{ 'error': firstFormGroup.get('email') 
-                                                            && firstFormGroup.get('email')!.status === 'INVALID'
-                                                            && firstFormGroup.get('email')!.dirty }">
+            <div class="inner-input"  [ngClass]="{ 'error': firstFormGroup.get('Email') 
+                                                            && firstFormGroup.get('Email')!.status === 'INVALID'
+                                                            && (firstFormGroup.get('Email')!.touched || firstFormGroup.get('Email')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Email"
                   placeholder="Email"
                   id="email"
-                  [ngClass]="{ 'input-error': firstFormGroup.get('email') 
-                                              && firstFormGroup.get('email')!.status === 'INVALID'
-                                              && firstFormGroup.get('email')!.dirty }"
+                  [ngClass]="{ 'input-error': firstFormGroup.get('Email') 
+                                              && firstFormGroup.get('Email')!.status === 'INVALID'
+                                              && (firstFormGroup.get('Email')!.touched || firstFormGroup.get('Email')!.dirty) }"
                   required>
             </div>
             <label for="location">Location</label>
-            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('location') 
-                                                            && firstFormGroup.get('location')!.status === 'INVALID'
-                                                            && firstFormGroup.get('location')!.dirty }">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Location') 
+                                                            && firstFormGroup.get('Location')!.status === 'INVALID'
+                                                            && (firstFormGroup.get('Location')!.touched || firstFormGroup.get('Location')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Location"
                   placeholder="Location"
                   id="location"
-                  [ngClass]="{ 'input-error': firstFormGroup.get('location') 
-                                        && firstFormGroup.get('location')!.status === 'INVALID'
-                                        && firstFormGroup.get('location')!.dirty }"
                   required>
             </div>
             <label for="position">Position</label>
-            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('position') 
-                                                            && firstFormGroup.get('position')!.status === 'INVALID'
-                                                            && firstFormGroup.get('position')!.dirty }">
+            <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Position') 
+                                                            && firstFormGroup.get('Position')!.status === 'INVALID'
+                                                            && (firstFormGroup.get('Position')!.touched || firstFormGroup.get('Position')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Position"
                   placeholder="Position"
                   id="position"
-                  [ngClass]="{ 'input-error': firstFormGroup.get('position') 
-                                        && firstFormGroup.get('position')!.status === 'INVALID'
-                                        && firstFormGroup.get('position')!.dirty }"
+                  [ngClass]="{ 'filled-input': firstFormGroup.get('Position') 
+                                              && firstFormGroup.get('Position')!.status === 'VALID'
+                                              && (firstFormGroup.get('Position')!.touched || firstFormGroup.get('Position')!.dirty) }"
                   required
                   [matAutocomplete]="autoPositions">
             </div>
@@ -92,16 +89,13 @@
               </span>
             </div>
             <label for="shortDescription">Short Description</label>
-            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': firstFormGroup.get('text') 
-                                                                                && firstFormGroup.get('text')!.status === 'INVALID'
-                                                                                && firstFormGroup.get('text')!.dirty }">
+            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': firstFormGroup.get('Description') 
+                                                                                && firstFormGroup.get('Description')!.status === 'INVALID'
+                                                                                && (firstFormGroup.get('Description')!.touched || firstFormGroup.get('Description')!.dirty) }">
               <textarea matInput
                         formControlName="Description"
                         placeholder="Short Description"
                         id="shortDescription"
-                        [ngClass]="{ 'input-error': firstFormGroup.get('text') 
-                                                    && firstFormGroup.get('text')!.status === 'INVALID'
-                                                    && firstFormGroup.get('text')!.dirty }"
                         rows="4">
               </textarea>
             </div>
@@ -112,11 +106,13 @@
               </span>
             </div>
             <div class="checkbox-container">
+              <label for="first" class="seniority-item-label"></label>
               <mat-checkbox [formControl]="loremOne" id="first">
-                <label for="first" class="seniority-item-label">Lorem</label>
+                Lorem
               </mat-checkbox>
+              <label for="second" class="seniority-item-label"></label>
               <mat-checkbox [formControl]="loremTwo" id="second">
-                <label for="second" class="seniority-item-label">Ipsum</label>
+                Ipsum
               </mat-checkbox>
             </div>
             <div class="under-text">
@@ -141,7 +137,7 @@
             <label for="skill" style="width: 100%;"> <span style="padding-bottom: 10px;">Add skill</span></label>
             <div class="inner-input skills-container" [ngClass]="{ 'error': secondFormGroup.get('skill') 
                                                                             && secondFormGroup.get('skill')!.status === 'INVALID'
-                                                                            && secondFormGroup.get('skill')!.dirty }">
+                                                                            && (secondFormGroup.get('skill')!.touched || secondFormGroup.get('skill')!.dirty) }">
               <ul class="skills-list-inner" *ngIf="choosedSkills.length" [ngStyle]="{ 'width': ulWidth() }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedSkills">
                   <span>{{ skill.name }}</span>
@@ -157,7 +153,7 @@
                   id="skill"
                   [ngClass]="{ 'input-error': secondFormGroup.get('skill') 
                                               && secondFormGroup.get('skill')!.status === 'INVALID'
-                                              && secondFormGroup.get('skill')!.dirty }"
+                                              && (secondFormGroup.get('skill')!.touched || secondFormGroup.get('skill')!.dirty) }"
                   (keypress)="hendleAddSkill($event, 'skill')">
               <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
@@ -174,7 +170,7 @@
             <label for="otherSkills">Other Skills</label>
             <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': secondFormGroup.get('otherSkills') 
                                                                                 && secondFormGroup.get('otherSkills')!.status === 'INVALID'
-                                                                                && secondFormGroup.get('otherSkills')!.dirty }">
+                                                                                && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }">
               <ul class="skills-list-inner" *ngIf="choosedOtherSkills.length" [ngStyle]="{ 'width': ulWidth() }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedOtherSkills">
                   <span>{{ skill.name }}</span>
@@ -189,7 +185,7 @@
                         id="otherSkills"
                         [ngClass]="{ 'input-error': secondFormGroup.get('otherSkills') 
                                                     && secondFormGroup.get('otherSkills')!.status === 'INVALID'
-                                                    && secondFormGroup.get('otherSkills')!.dirty }"
+                                                    && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }"
                         (keypress)="hendleAddSkill($event, 'otherSkills')"
                         rows="4">
               </textarea>
@@ -206,21 +202,21 @@
               </span>
             </div>
             <label for="exYears">Experience in years</label>
-            <div class="inner-input" [ngClass]="{ 'error': secondFormGroup.get('exYears') 
-                                                            && secondFormGroup.get('exYears')!.status === 'INVALID'
-                                                            && secondFormGroup.get('exYears')!.dirty }">
+            <div class="inner-input" [ngClass]="{ 'error': secondFormGroup.get('Experience') 
+                                                            && secondFormGroup.get('Experience')!.status === 'INVALID'
+                                                            && (secondFormGroup.get('Experience')!.touched || secondFormGroup.get('Experience')!.dirty) }">
               <input matInput
                   type="text"
                   formControlName="Experience"
                   placeholder="Experience in years"
                   id="exYears"
-                  [ngClass]="{ 'input-error': secondFormGroup.get('exYears') 
-                                              && secondFormGroup.get('exYears')!.status === 'INVALID'
-                                              && secondFormGroup.get('exYears')!.dirty }">
+                  [ngClass]="{ 'input-error': secondFormGroup.get('Experience') 
+                                              && secondFormGroup.get('Experience')!.status === 'INVALID'
+                                              && (secondFormGroup.get('Experience')!.touched || secondFormGroup.get('Experience')!.dirty) }">
             </div>
             <div class="inner-input cv-file" [ngClass]="{ 'error': secondFormGroup.get('cvFile') 
                                                                     && secondFormGroup.get('cvFile')!.status === 'INVALID'
-                                                                    && secondFormGroup.get('cvFile')!.dirty }">
+                                                                    && (secondFormGroup.get('cvFile')!.touched || secondFormGroup.get('cvFile')!.dirty) }">
               <button type="button"
                       mat-button
                       (click)="fileInput.click()">
@@ -232,7 +228,7 @@
                 <span class="inner-btn-text">{{ showFilenames() }}</span>
               </button>
               <input #fileInput hidden (change)="onFileSelected($event.target)" type="file" id="file" formControlName="cvFile"
-                    accept="application/xml, application/pdf, text/txt" multiple>
+                    accept="application/msword, application/pdf, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple>
               <div class="remove-file" (click)="removeFiles()" *ngIf="cvFilenames.length > 0">
                 <fa-icon [icon]="faTimes"></fa-icon>
                 <span> Remove</span>
@@ -269,16 +265,16 @@
             <div class="row" style="margin-bottom: 15px;">
               <div class="col-6 first">
                 <label for="listenResults">Listening Test Results</label>
-                <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('listenResults') 
-                                                                                      && therdFormGroup.get('listenResults')!.status === 'INVALID'
-                                                                                      && therdFormGroup.get('listenResults')!.dirty }">
+                <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('EnglishListeningTest') 
+                                                                                      && therdFormGroup.get('EnglishListeningTest')!.status === 'INVALID'
+                                                                                      && (therdFormGroup.get('EnglishListeningTest')!.touched || therdFormGroup.get('EnglishListeningTest')!.dirty) }">
                   <mat-select panelClass="panel" 
                               formControlName="EnglishListeningTest"
                               empty="false"
                               placeholder="Listen Results"
-                              [ngClass]="{ 'input-error': therdFormGroup.get('listenResults') 
-                                                          && therdFormGroup.get('listenResults')!.status === 'INVALID'
-                                                          && therdFormGroup.get('listenResults')!.dirty }">
+                              [ngClass]="{ 'input-error': therdFormGroup.get('EnglishListeningTest') 
+                                                          && therdFormGroup.get('EnglishListeningTest')!.status === 'INVALID'
+                                                          && (therdFormGroup.get('EnglishListeningTest')!.touched || therdFormGroup.get('EnglishListeningTest')!.dirty) }">
                     <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
                   </mat-select>
                   <mat-icon matSuffix></mat-icon>
@@ -286,16 +282,16 @@
               </div>
               <div class="col-6 second">
                 <label for="grammarResults">Grammar Test Results</label>
-              <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('grammarResults') 
-                                                                                    && therdFormGroup.get('grammarResults')!.status === 'INVALID'
-                                                                                    && therdFormGroup.get('grammarResults')!.dirty }">
+              <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': therdFormGroup.get('EnglishGrammarTest') 
+                                                                                    && therdFormGroup.get('EnglishGrammarTest')!.status === 'INVALID'
+                                                                                    && (therdFormGroup.get('EnglishGrammarTest')!.touched || therdFormGroup.get('EnglishGrammarTest')!.dirty) }">
                 <mat-select panelClass="panel"
                             formControlName="EnglishGrammarTest"
                             empty="false"
                             placeholder="Grammar Results"
-                            [ngClass]="{ 'input-error': therdFormGroup.get('grammarResults') 
-                                                        && therdFormGroup.get('grammarResults')!.status === 'INVALID'
-                                                        && therdFormGroup.get('grammarResults')!.dirty }">
+                            [ngClass]="{ 'input-error': therdFormGroup.get('EnglishGrammarTest') 
+                                                        && therdFormGroup.get('EnglishGrammarTest')!.status === 'INVALID'
+                                                        && (therdFormGroup.get('EnglishGrammarTest')!.touched || therdFormGroup.get('EnglishGrammarTest')!.dirty) }">
                   <mat-option [value]="option" *ngFor="let option of lenguageLevels">{{ option }}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix></mat-icon>
