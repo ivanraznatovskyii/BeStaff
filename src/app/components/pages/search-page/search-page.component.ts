@@ -371,7 +371,7 @@ export class SearchPageComponent implements OnInit {
 
   getSenioritiesList() {
     this.devService.getSeniorities().subscribe((list) => {
-      console.log(list)
+      //console.log(list)
       if(list){
         this.senioritiesList = list;
       }

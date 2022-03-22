@@ -7,6 +7,7 @@ import { Observable, Observer } from 'rxjs';
 import { faCommentDots, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { emailsMatchesDirective } from 'src/app/directives/email-matches.directive';
 
 @Component({
   selector: 'app-dev-details',
@@ -92,9 +93,9 @@ export class DevDetailsComponent implements OnInit {
 
   initSVForm() {
     this.cvForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email, emailsMatchesDirective()]],
       agreementAccepted: [' ']
     })
   }
