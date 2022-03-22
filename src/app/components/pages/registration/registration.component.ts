@@ -120,10 +120,10 @@ export class RegistrationComponent implements OnInit {
 
   initForms() {
     this.firstFormGroup = this.fb.group({
-      Name: ['', Validators.required],
-      Surname: ['', Validators.required],
+      Name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      Surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
       Email: [''],
-      Location: ['', Validators.required],
+      Location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
       Position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
       Description: ['', Validators.required],
     });
