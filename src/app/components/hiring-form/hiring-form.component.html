@@ -11,16 +11,14 @@
           <input matInput
                 type="text"
                 formControlName="name"
-                placeholder="Name"
-                >
+                placeholder="Name">
         </div>
         <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['surname'].touched
                 && hiringForm.controls['surname'].status === 'INVALID' ? 'red' : 'initial' }">
           <input matInput
                 type="text"
                 formControlName="surname"
-                placeholder="Surname"
-                >
+                placeholder="Surname">
         </div>
         <div class="hiring-input" [ngStyle]="{ 'border-color': hiringForm.controls['email'].touched
                 && hiringForm.controls['email'].status === 'INVALID' ? 'red' : 'initial' }">

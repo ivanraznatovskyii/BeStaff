@@ -4,7 +4,7 @@ import { CommonService } from 'src/app/services/common.service.ts.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isJSDocThisTag } from 'typescript';
+import { emailsMatchesDirective } from 'src/app/directives/email-matches.directive';
 
 @Component({
   selector: 'app-hiring-form',
@@ -50,9 +50,9 @@ export class HiringFormComponent implements OnInit {
 
   initHiringForm() {
     this.hiringForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email, emailsMatchesDirective()]],
       text: ['', Validators.required],
       agreementAccepted: []
     })
