@@ -53,6 +53,7 @@ export class DevDetailsComponent implements OnInit {
     };
     this.loadUser();
     this.devId = this.router.routerState.snapshot.url.replace('/developers/details?developerId=', '');
+    console.log(this.currentDev)
   }
 
   openSnackBar(message: string, action: string) {

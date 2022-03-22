@@ -172,3 +172,85 @@ h3.card-heading {
   width: 100%;
   margin: 0 auto;
 }
+
+/*  Cards styles  */
+
+.skills-container {
+  max-height: 185px;
+}
+
+div.dev-card {
+  width: 370px;
+  /* height: 408px; */
+  height: 500px;
+  padding: 15px 30px;
+  margin: 15px 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: white;
+}
+
+.cv-btn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+
+  & button {
+    margin-top: 5px;
+  }
+}
+
+h3.card-heading {
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: $dev-card-heading-color;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.position {
+  margin-bottom: 10px;
+  width: 100%;
+  line-height: 24px;
+  font-size: 14px;
+  color: $orange-logo-color;
+}
+
+.skills {
+  width: 100%;
+  font-size: 14px;
+  line-height: 30px;
+  color: $skills-h5-font-color;
+}
+
+.skills-text {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $dev-card-heading-color;
+}
+
+.skills-list {
+  height: fit-content;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-item {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $found-font-color;
+  margin-right: 15px;
+}

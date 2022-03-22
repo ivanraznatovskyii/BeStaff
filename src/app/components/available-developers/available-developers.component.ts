@@ -11,6 +11,10 @@ import { Developer } from 'src/app/interfaces/developer';
 })
 export class AvailableDevelopersComponent implements OnInit {
 
+  width = window.innerWidth;
+  cardsWidth = '370';
+  cardsPadding = '5px';
+
   devs: Developer[] = [];
   tabs: any[] = [];
   positions!: Set<string>;
@@ -68,6 +72,28 @@ export class AvailableDevelopersComponent implements OnInit {
     this.commonService.setDev(dev);
     const params = { developerId: dev.developerId };
     this.router.navigate([`/developers/details/`], { queryParams: params });
+  }
+
+  getOverflow(dev) {
+    if(dev && dev.skills && dev.skills.length && +dev.skills.join(' ').length > 300) {
+      return 'scroll';
+    } else {
+      return 'hidden';
+    }
+  }
+
+  changeSize() {
+    const cardWidth = document.querySelector('.dev-card')?.clientWidth || 370;
+    const twoCardsWidth = (cardWidth + 30) * 2;
+    const treCardsWidth = (cardWidth + 30) * 3;
+    if( this.width < twoCardsWidth ) {
+      this.cardsPadding = ((this.width - cardWidth) / 2) + 'px';
+    } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
+      this.cardsPadding = ((this.width - twoCardsWidth) / 3) + 'px';
+    } else if(this.width > treCardsWidth) {
+      this.cardsPadding = 'auto';
+    }
+    //console.log(document.querySelector('.dev-card-list')?.clientWidth)
   }
 
 }

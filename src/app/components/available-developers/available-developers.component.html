@@ -15,7 +15,7 @@
         <mat-tab-group *ngIf="devs && tabs.length">
           <mat-tab *ngFor="let tab of tabs; let idx = index">
             <ng-template mat-tab-label>{{tab.label}}</ng-template>
-            <div class="dev-card-list">
+            <!-- <div class="dev-card-list">
               <div class="dev-card" *ngFor="let dev of tab.devs">
                 <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>
@@ -31,7 +31,36 @@
                   <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
                 </div>
               </div>
-            </div>
+            </div> -->
+
+
+                <div class="dev-card-list">
+                  <div class="dev-card" *ngFor="let dev of tab.devs" [ngStyle]="{ 'margin-right': cardsPadding, 'margin-left': cardsPadding }">
+                    <div class="card-content" *ngIf="dev && dev.name">
+                      <h3 class="card-heading">{{ dev.name }}</h3>
+                      <div class="position">{{ dev.position }}</div>
+                      <div class="skills">Experience in years:</div>
+                      <div class="skills-text">
+                        {{ dev.experienceYears }}
+                      </div>
+                      <div class="skills">Seniority:</div>
+                      <div class="skills-text">
+                        {{ dev.seniority }}
+                      </div>
+                      <div class="skills">Technical skills:</div>
+                      <div class="skills-container" [ngStyle]="{ 'overflow-y': getOverflow(dev) }">
+                        <ul class="skills-list">
+                          <li class="skill-item" *ngFor="let skill of dev.skills">{{ skill }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="cv-btn"  *ngIf="dev && dev.name">
+                      <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
+                    </div>
+                  </div>
+                </div>
+
+
           </mat-tab>
         </mat-tab-group>
     </div>
