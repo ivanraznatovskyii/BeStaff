@@ -76,7 +76,12 @@
                       Seniority
                     </div>
                     <div class="checkboxes-seniority-container">
-                      <mat-checkbox [formControl]="seniorityJunior" id="seniority-junior">
+                      <form [formGroup]="seniorityFormGroup" #seniorityForm='ngForm' class="search-card" *ngIf="skillsList">
+                        <mat-checkbox [formControlName]="item.id" id="{{ item.id }}" *ngFor="let item of senioritiesList">
+                          <span class="seniority-item-label">{{ item.name }}</span>
+                        </mat-checkbox>
+                      </form>
+                      <!-- <mat-checkbox [formControl]="seniorityJunior" id="seniority-junior">
                         <span class="seniority-item-label">Junior</span>
                       </mat-checkbox>
                       <mat-checkbox [formControl]="seniorityMiddle" id="seniority-middle">
@@ -84,7 +89,7 @@
                       </mat-checkbox>
                       <mat-checkbox [formControl]="senioritySenior" id="seniority-senior">
                         <span class="seniority-item-label">Senior</span>
-                      </mat-checkbox>
+                      </mat-checkbox> -->
                     </div>
                   </div>
                 </div>

@@ -36,6 +36,7 @@ export class SearchPageComponent implements OnInit {
   faSearch = faSearch;
   skillsList: Skills[] = [];
   stacksList: Stacks[] = [];
+  senioritiesList: any[] = [];
   radioArr: number[] = [];
   cardsHeight: string = '580px';
 
@@ -49,12 +50,13 @@ export class SearchPageComponent implements OnInit {
   queryParams: Object = {};
   devsArr: any[] = [];
   query: FormControl = new FormControl();
-  seniorityJunior: FormControl = new FormControl();
+  /* seniorityJunior: FormControl = new FormControl();
   seniorityMiddle: FormControl = new FormControl();
-  senioritySenior: FormControl = new FormControl();
+  senioritySenior: FormControl = new FormControl(); */
   exSlider: FormControl = new FormControl();
   radioItem: FormControl = new FormControl('1');
   searchFormGroup!: FormGroup;
+  seniorityFormGroup!: FormGroup;
 
   sliderValue: number = 0;
 
@@ -148,7 +150,8 @@ export class SearchPageComponent implements OnInit {
     this.devService.getStacks().subscribe(stacks => {
       //console.log(stacks)
       this.skillsList = stacks;
-      this.initSearchForm();
+      this.getSenioritiesList();
+      //this.initSearchForm();
     });
 
     this.devService.getAllDevs().subscribe(devs => {
@@ -299,18 +302,23 @@ export class SearchPageComponent implements OnInit {
   initSearchForm() {
     let formObj = {};
     this.skillsList.map(item => {
-      //@ts-ignore
       formObj[item.id] = '';
     });
     this.searchFormGroup = this.fb.group(formObj);
+    this.initSeniorityForm();
+  }
 
+  initSeniorityForm() {
+    let formObj = {};
+    this.senioritiesList.map(item => {
+      formObj[item.id] = '';
+    });
+    this.seniorityFormGroup = this.fb.group(formObj);
   }
 
   clearFilters() {
     this.searchFormGroup.reset();
-    this.seniorityJunior.reset();
-    this.seniorityMiddle.reset();
-    this.senioritySenior.reset();
+    this.seniorityFormGroup.reset();
     this.exSlider.reset();
     this.queryParams = {};
   }
@@ -361,6 +369,16 @@ export class SearchPageComponent implements OnInit {
       }
   }
 
+  getSenioritiesList() {
+    this.devService.getSeniorities().subscribe((list) => {
+      console.log(list)
+      if(list){
+        this.senioritiesList = list;
+      }
+      this.initSearchForm();
+    });
+  }
+
   searchByQuery() {
     if(this.query.status === 'VALID' && this.query.value && this.query.value.length > 2) {
       this.queryParams = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, 'SearchString': this.query.value };
@@ -373,12 +391,11 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchByStackQuery() {
+    this.currentPage = 1;
     const body = {};
     if(this.searchFormGroup.status === 'VALID'
         && this.exSlider.status === 'VALID'
-        && this.seniorityJunior.status === 'VALID'
-        && this.seniorityMiddle.status === 'VALID'
-        && this.senioritySenior.status === 'VALID'
+        && this.seniorityFormGroup.status === 'VALID'
         && this.query.status === 'VALID') {
     this.createRequestBody(body);
     this.queryParams = body;
@@ -391,13 +408,22 @@ export class SearchPageComponent implements OnInit {
     const skills = this.getSelectedSkills(stacks);
     if(this.query.value && this.query.value.length > 2) body['SearchString'] = this.query.value;
     if(this.exSlider.value) body['Expirience'] = this.exSlider.value;
-    const junId = '334f6ad6-9134-ec11-8388-ccd9acdd6ef8';
+    /* const junId = '334f6ad6-9134-ec11-8388-ccd9acdd6ef8';
     const midId = '344f6ad6-9134-ec11-8388-ccd9acdd6ef8';
-    const sinId = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8';
+    const sinId = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8'; */
     const sinList: string[] = [];
-    if(this.seniorityJunior.value) sinList.push(junId);
-    if(this.seniorityMiddle.value) sinList.push(midId);
-    if(this.senioritySenior.value) sinList.push(sinId);
+    for(let item of this.senioritiesList) {
+      if(this.seniorityFormGroup.get(item.id) && this.seniorityFormGroup.get(item.id)!.value) sinList.push(item.id);
+    }
+    sinList.map(item => {
+      console.log(item, typeof item)
+    })
+    console.log('typeof seniority list', typeof sinList)
+    console.log('is Array seniority list', Array.isArray(sinList))
+    console.log('instanceof Object seniority list', sinList instanceof Object)
+    console.log('instanceof Array seniority list', sinList instanceof Array)
+
+
     if(sinList.length > 0) body['Seniority'] = sinList;
     //if(sinList.length > 0) body['Seniority'] = JSON.stringify(sinList);
     const skillsList: string[] = [];

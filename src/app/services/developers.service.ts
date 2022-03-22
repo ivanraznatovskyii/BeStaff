@@ -43,6 +43,10 @@ export class DevelopersService {
     return this.http.get<Developer>(`/api/developers/developer/${id}`/* , { params: { developerId: id } } */);
   }
 
+  getSeniorities(): Observable<any> {
+    return this.http.get<any[]>(`/api/developers/seniorities`);
+  }
+
   submitRequestForCVDevById(id: string, body: any): Observable<any> {
     // console.log('request must be submitted')
     // console.log('body', body)

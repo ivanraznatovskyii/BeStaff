@@ -54,18 +54,18 @@ export class CommonService {
       
       if(skills) {
         //console.log(skills)
-        const list: Skills[] = [];
+        const list: string[] = [];
         for(let i = 0; i < skills.length; i++){
-          list.push(skills[i])
+          list.push(skills[i].id)
         }
         props.append('Skills', JSON.stringify(list));
       } 
       
       if(otherSkills) {
         //console.log(otherSkills)
-        const list: Skills[] = [];
+        const list: string[] = [];
         for(let i = 0; i < otherSkills.length; i++){
-          list.push(otherSkills[i])
+          list.push(otherSkills[i].id)
         }
         props.append('OtherSkills', JSON.stringify(list));
       } 

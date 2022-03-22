@@ -207,6 +207,16 @@ export class RegistrationComponent implements OnInit {
     return string.slice(-string.length, -2);
   }
 
+  /* getSenioritiesList() {
+    this.devService.getSeniorities().subscribe((list) => {
+      console.log(list)
+      if(list){
+        this.senioritiesList = list;
+      }
+      this.initForms();
+    });
+  } */
+
   removeFiles() {
     this.secondFormGroup.get('cvFile')?.reset();
     this.cvFilenames = [];
@@ -295,6 +305,7 @@ export class RegistrationComponent implements OnInit {
     // console.log(this.therdFormGroup.status)
     console.log(body)
     const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
+    console.log(preparedBody)
     this.devService.registerDev(preparedBody).subscribe(res => {
       console.log(res)
     })
