@@ -46,8 +46,8 @@ export class RegistrationComponent implements OnInit {
   positionsList: Positions[] = [];
   filteredPositions!: Observable<Positions[]>;
 
-  loremOne: FormControl = new FormControl();
-  loremTwo: FormControl = new FormControl();
+  loremOne: FormControl = new FormControl(false, Validators.required);
+  loremTwo: FormControl = new FormControl(false, Validators.required);
 
   @ViewChild('fileInput', {static: true }) fileInput: any;
   @ViewChild('stepper', {static: true }) stepper!: MatStepper
@@ -56,6 +56,7 @@ export class RegistrationComponent implements OnInit {
   isSkillsLoaded: boolean = false;
   stacks: Stacks[] = [];
   isStacksLoaded: boolean = false;
+  isSkillsValid: boolean = false;
   registrationHaveBeenCompleted: boolean = false;
   filteredOptions!: Observable<Skills[]>;
   filteredOtherOptions!: Observable<Skills[]>;
@@ -112,24 +113,21 @@ export class RegistrationComponent implements OnInit {
         map(value => this._filterSkills(value)),
       );
     }
-
-    this.firstFormGroup.get('Email')
-                   ?.setValidators([Validators.required, 
-                   Validators.email])
   }
 
   initForms() {
     this.firstFormGroup = this.fb.group({
       Name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
       Surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
-      Email: [''],
-      Location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
+      Email: ['', [Validators.required, Validators.email]],
+      Location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z,-]*$/), Validators.minLength(2)]],
       Position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
       Description: ['', Validators.required],
     });
 
     this.secondFormGroup = this.fb.group({
-      skill: ['', [Validators.required, skillsMatchesDirective(this.skills)]],
+      skill: [''
+    ],
       otherSkills: [''],
       Experience: ['', [Validators.required, Validators.pattern('[0-9]{1}')]],
       cvFile: ['', Validators.required]
@@ -256,6 +254,13 @@ export class RegistrationComponent implements OnInit {
   optionWasSelected(event: any, controlName: string, value?: string) {
     const skillName = event && event.option.value ? event.option.value : value;
     ///console.log(skillName);
+    const successArr: boolean[] = [];
+    for(let item of this.choosedSkills) {
+      this.skills.map(el => {
+        if(item.name === el.name) successArr.push(true)
+      })
+    }
+    this.isSkillsValid = this.choosedSkills.length === successArr.length;
     const isFull = controlName === 'skill' ? this.choosedSkills.length >= 10 : this.choosedOtherSkills.length >= 30;
     const choosedSkill = this.skills.find(item => item.name === skillName);
     if(choosedSkill && this.checkIsCopy(choosedSkill, controlName)) {
@@ -305,7 +310,10 @@ export class RegistrationComponent implements OnInit {
     const body = {};
     if(this.firstFormGroup.status === 'VALID'
         && this.secondFormGroup.status === 'VALID'
-        && this.therdFormGroup.status === 'VALID') {
+        && this.therdFormGroup.status === 'VALID'
+        && this.loremOne.status === 'VALID'
+        && this.loremTwo.status === 'VALID'
+        && this.isSkillsValid) {
 
       for(let item in this.firstFormGroup.controls) {
         body[item] = this.firstFormGroup.controls[item].value;

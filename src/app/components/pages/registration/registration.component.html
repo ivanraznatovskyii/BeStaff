@@ -125,7 +125,7 @@
               <button mat-button
                       matStepperNext
                       class="elipse-button elipse-button_next"
-                      [disabled]="firstFormGroup.status === 'INVALID'">
+                      [disabled]="firstFormGroup.status === 'INVALID' || !loremOne.value || !loremTwo.value">
                       Next  &#10142;
               </button>
             </div>
@@ -136,7 +136,7 @@
             <ng-template matStepLabel>Step 2</ng-template>
             <label for="skill" style="width: 100%;"> <span style="padding-bottom: 10px;">Add skill</span></label>
             <div class="inner-input skills-container" [ngClass]="{ 'error': secondFormGroup.get('skill') 
-                                                                            && secondFormGroup.get('skill')!.status === 'INVALID'
+                                                                            && !isSkillsValid
                                                                             && (secondFormGroup.get('skill')!.touched || secondFormGroup.get('skill')!.dirty) }">
               <ul class="skills-list-inner" *ngIf="choosedSkills.length" [ngStyle]="{ 'width': ulWidth() }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedSkills">
