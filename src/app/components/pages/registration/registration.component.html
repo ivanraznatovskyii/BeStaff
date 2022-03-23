@@ -150,11 +150,7 @@
                   placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
                   [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
                   [matAutocomplete]="autoSkills"
-                  id="skill"
-                  [ngClass]="{ 'input-error': secondFormGroup.get('skill') 
-                                              && secondFormGroup.get('skill')!.status === 'INVALID'
-                                              && (secondFormGroup.get('skill')!.touched || secondFormGroup.get('skill')!.dirty) }"
-                  (keypress)="hendleAddSkill($event, 'skill')">
+                  id="skill">
               <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
                   {{skill.name}}

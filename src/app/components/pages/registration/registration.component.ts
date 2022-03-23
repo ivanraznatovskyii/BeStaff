@@ -13,6 +13,7 @@ import { CommonService } from 'src/app/services/common.service.ts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
 import { emailsMatchesDirective } from 'src/app/directives/email-matches.directive';
+import { skillsMatchesDirective } from 'src/app/directives/skillsmatches.directive';
 
 @Component({
   selector: 'app-registration',
@@ -114,8 +115,7 @@ export class RegistrationComponent implements OnInit {
 
     this.firstFormGroup.get('Email')
                    ?.setValidators([Validators.required, 
-                   Validators.email, 
-                   emailsMatchesDirective()])
+                   Validators.email])
   }
 
   initForms() {
@@ -129,7 +129,7 @@ export class RegistrationComponent implements OnInit {
     });
 
     this.secondFormGroup = this.fb.group({
-      skill: [''],
+      skill: ['', [Validators.required, skillsMatchesDirective(this.skills)]],
       otherSkills: [''],
       Experience: ['', [Validators.required, Validators.pattern('[0-9]{1}')]],
       cvFile: ['', Validators.required]
@@ -152,9 +152,32 @@ export class RegistrationComponent implements OnInit {
   }
 
   _filterSkills(value: string): Stacks[] {
-    if(value) {
+    if(value && value.length) {
+      let msxItemLength = 0;
+      for(let item of this.skills) {
+        if(item && item.name && item.name.length > msxItemLength) msxItemLength = item.name.length;
+      }
       const filterValue = value.toLowerCase();
-      return this.skills.filter(option => option.name.toLowerCase().includes(filterValue));
+      const filteredSkillsList = this.skills.filter(option => option.name.toLowerCase().includes(filterValue));
+      const filteredSkills: Skills[] = [];
+      let totalMatch = {id:'', name: ''};
+      filteredSkillsList.map(item => {
+        for(let i = 1; i < msxItemLength; i++) {
+          if(value && value.length && item && item.name && item.name.length === i && item.name.length === value.length && item.name.toLowerCase() === value.toLowerCase()) {
+            totalMatch = item;
+          } else if(item && item.name && item.name.length === i) {
+            if(filteredSkills.findIndex(el => el.name === item.name) === -1) {
+              if(item && item.name && item.name[0].toLowerCase() === value[0].toLowerCase()) {
+                filteredSkills.unshift(item)
+              } else {
+                filteredSkills.push(item) 
+              }
+            }
+          }
+        }
+      });
+      if(totalMatch.id && totalMatch.name) filteredSkills.unshift(totalMatch);
+      return filteredSkills;
     } else {
       return this.skills;
     }
