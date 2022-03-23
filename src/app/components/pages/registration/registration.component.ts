@@ -122,14 +122,14 @@ export class RegistrationComponent implements OnInit {
       Email: ['', [Validators.required, Validators.email]],
       Location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z,-]*$/), Validators.minLength(2)]],
       Position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
-      Description: ['', Validators.required],
+      Description: ['', [Validators.required, Validators.minLength(100)]],
     });
 
     this.secondFormGroup = this.fb.group({
       skill: [''
     ],
       otherSkills: [''],
-      Experience: ['', [Validators.required, Validators.pattern('[0-9]{1}')]],
+      Experience: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
       cvFile: ['', Validators.required]
     });
 
@@ -357,6 +357,23 @@ export class RegistrationComponent implements OnInit {
   showValue() {
     console.log('listen', this.therdFormGroup.get('EnglishListeningTest')?.value)
     console.log('gram', this.therdFormGroup.get('EnglishGrammarTest')?.value)
+  }
+
+  showErrors(errors) {
+    console.log(errors)
+    if(errors['pattern']) {
+      return 'pattern';
+    } else if(errors['required']) {
+      return 'required';
+    } else if(errors['minlength']) {
+      return 'minlength';
+    } else if(errors['email']) {
+      return 'email';
+    } else if(errors['forbiddenPosition']) {
+      return 'forbiddenPosition';
+    } else {
+      return false
+    }
   }
 
 }

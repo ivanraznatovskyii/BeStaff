@@ -90,4 +90,21 @@ export class HiringFormComponent implements OnInit {
     }
   }
 
+  showErrors(errors) {
+    console.log(errors)
+    if(errors['pattern']) {
+      return 'pattern';
+    } else if(errors['required']) {
+      return 'required';
+    } else if(errors['minlength']) {
+      return 'minlength';
+    } else if(errors['email']) {
+      return 'email';
+    } else if(errors['forbiddenEmail']) {
+      return 'forbiddenEmail';
+    } else {
+      return false
+    }
+  }
+
 }

@@ -23,6 +23,14 @@
                                               && (firstFormGroup.get('Name')!.touched || firstFormGroup.get('Name')!.dirty) }"
                   required>
             </div>
+            <div *ngIf="firstFormGroup.get('Name') 
+                  && firstFormGroup.get('Name')!.status === 'INVALID'
+                  && (firstFormGroup.get('Name')!.touched || firstFormGroup.get('Name')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(firstFormGroup.get('Name')!.errors) === 'pattern'">min 2 letters, not allowed digits or other symbols</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Name')!.errors) === 'required'">this field is required</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Name')!.errors) === 'minlength'">this field must be longer than 2 characters</span>
+            </div>
             <label for="surname">Surname</label>
             <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Surname') 
                                                            && firstFormGroup.get('Surname')!.status === 'INVALID'
@@ -36,6 +44,14 @@
                                               && firstFormGroup.get('Surname')!.status === 'VALID'
                                               && (firstFormGroup.get('Surname')!.touched || firstFormGroup.get('Surname')!.dirty) }"
                   required>
+                  <div *ngIf="firstFormGroup.get('Surname') 
+                        && firstFormGroup.get('Surname')!.status === 'INVALID'
+                        && (firstFormGroup.get('Surname')!.touched || firstFormGroup.get('Surname')!.dirty)"
+                        style="width: 100%; font-size: 10px; color: red;">
+                    <span *ngIf="showErrors(firstFormGroup.get('Surname')!.errors) === 'pattern'">min 2 letters, not allowed digits or other symbols</span>
+                    <span *ngIf="showErrors(firstFormGroup.get('Surname')!.errors) === 'required'">this field is required</span>
+                    <span *ngIf="showErrors(firstFormGroup.get('Surname')!.errors) === 'minlength'">this field must be longer than 2 characters</span>
+                  </div>
             </div>
             <label for="email">Email</label>
             <div class="inner-input"  [ngClass]="{ 'error': firstFormGroup.get('Email') 
@@ -50,6 +66,14 @@
                                               && firstFormGroup.get('Email')!.status === 'INVALID'
                                               && (firstFormGroup.get('Email')!.touched || firstFormGroup.get('Email')!.dirty) }"
                   required>
+                  
+            </div>
+            <div *ngIf="firstFormGroup.get('Email') 
+                  && firstFormGroup.get('Email')!.status === 'INVALID'
+                  && (firstFormGroup.get('Email')!.touched || firstFormGroup.get('Email')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(firstFormGroup.get('Email')!.errors) === 'email'">this field must have xxx@xxx.xx format</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Email')!.errors) === 'required'">this field is required</span>
             </div>
             <label for="location">Location</label>
             <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Location') 
@@ -61,6 +85,14 @@
                   placeholder="Location"
                   id="location"
                   required>
+            </div>
+            <div *ngIf="firstFormGroup.get('Location') 
+                  && firstFormGroup.get('Location')!.status === 'INVALID'
+                  && (firstFormGroup.get('Location')!.touched || firstFormGroup.get('Location')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(firstFormGroup.get('Location')!.errors) === 'pattern'">min 2 letters, "-" or "," , not allowed digits or other symbols</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Location')!.errors) === 'required'">this field is required</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Location')!.errors) === 'minlength'">this field must be longer than 2 characters</span>
             </div>
             <label for="position">Position</label>
             <div class="inner-input" [ngClass]="{ 'error': firstFormGroup.get('Position') 
@@ -76,6 +108,13 @@
                                               && (firstFormGroup.get('Position')!.touched || firstFormGroup.get('Position')!.dirty) }"
                   required
                   [matAutocomplete]="autoPositions">
+            </div>
+            <div *ngIf="firstFormGroup.get('Position') 
+                  && firstFormGroup.get('Position')!.status === 'INVALID'
+                  && (firstFormGroup.get('Position')!.touched || firstFormGroup.get('Position')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(firstFormGroup.get('Position')!.errors) === 'forbiddenPosition'">this field must be one of list of positions</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Position')!.errors) === 'required'">this field is required</span>
             </div>
             <mat-autocomplete #autoPositions="matAutocomplete" [hidden]="!positionsList">
               <mat-option *ngFor="let position of filteredPositions | async" [value]="position.name">
@@ -98,6 +137,15 @@
                         id="shortDescription"
                         rows="4">
               </textarea>
+              
+            </div>
+            <div style="padding: 5px 0;" *ngIf="firstFormGroup.get('Description')!.value.length > 0">typed {{ firstFormGroup.get('Description')!.value.length }} characters</div>
+            <div *ngIf="firstFormGroup.get('Description') 
+                  && firstFormGroup.get('Description')!.status === 'INVALID'
+                  && (firstFormGroup.get('Description')!.touched || firstFormGroup.get('Description')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(firstFormGroup.get('Description')!.errors) === 'required'">this field is required</span>
+              <span *ngIf="showErrors(firstFormGroup.get('Description')!.errors) === 'minlength'">this field must be longer than 100 characters</span>
             </div>
             <div class="under-text">
               <sup>*</sup>
@@ -157,6 +205,10 @@
                 </mat-option>
               </mat-autocomplete>
             </div>
+            <div *ngIf="!isSkillsValid || secondFormGroup.get('skill')!.errors">
+              <span *ngIf="!isSkillsValid">this field must be one of list of skills</span>
+              <span *ngIf="showErrors(secondFormGroup.get('skill')!.errors) === 'required'">this field is required</span>
+            </div>
             <div class="under-text">
               <sup>*</sup>
               <span>
@@ -209,6 +261,13 @@
                   [ngClass]="{ 'input-error': secondFormGroup.get('Experience') 
                                               && secondFormGroup.get('Experience')!.status === 'INVALID'
                                               && (secondFormGroup.get('Experience')!.touched || secondFormGroup.get('Experience')!.dirty) }">
+            </div>
+            <div *ngIf="secondFormGroup.get('Experience') 
+                  && secondFormGroup.get('Experience')!.status === 'INVALID'
+                  && (secondFormGroup.get('Experience')!.touched || secondFormGroup.get('Experience')!.dirty)"
+                  style="width: 100%; font-size: 10px; color: red;">
+              <span *ngIf="showErrors(secondFormGroup.get('Experience')!.errors) === 'pattern'">this field must be digits since 0 to 19</span>
+              <span *ngIf="showErrors(secondFormGroup.get('Experience')!.errors) === 'required'">this field is required</span>
             </div>
             <div class="inner-input cv-file" [ngClass]="{ 'error': secondFormGroup.get('cvFile') 
                                                                     && secondFormGroup.get('cvFile')!.status === 'INVALID'

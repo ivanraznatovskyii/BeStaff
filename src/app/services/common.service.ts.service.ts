@@ -65,7 +65,7 @@ export class CommonService {
         //console.log(otherSkills)
         const list: string[] = [];
         for(let i = 0; i < otherSkills.length; i++){
-          list.push(otherSkills[i].id)
+          list.push(otherSkills[i].name)
         }
         props.append('OtherSkills', JSON.stringify(list));
       } 
