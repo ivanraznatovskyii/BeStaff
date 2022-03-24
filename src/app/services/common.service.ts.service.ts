@@ -27,7 +27,7 @@ export class CommonService {
     if(this.developer) {
       return this.developer;
     } else {
-      localStorage.getItem('currentDev');
+      return localStorage.getItem('currentDev');
     }
   }
 

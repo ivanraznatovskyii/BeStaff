@@ -193,9 +193,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   goToTop() {
-    window.scrollTo(0,0)
-    // const el = document.querySelector('.logo');
-    // el?.scrollIntoView(true);
+    window.scrollTo(0,0);
   }
 
   openSnackBar(message: string, action: string) {
@@ -210,27 +208,6 @@ export class SearchPageComponent implements OnInit {
       this.commonService.setDev(dev);
     })
   }
-
-  /* fakeDevs() {
-    for(let i = 0; i < 3; i++) {
-      const newItms = this.devs;
-      newItms.map((item: any) => {
-        this.devsArr.push({
-          name: item.name,
-          position: item.position,
-          specialization: item.specialization,
-          developerId: item.developerId,
-          email: item.email,
-          agreementAccepted: true,
-          skills: item.skills,
-          seniority: item.seniority,
-          experience: item.experienceYears,
-          location: item.location,
-        });
-      })
-      this.devs.reverse();
-    }
-  } */
 
   makeRadioArr() {
     for(let i = 0; i < this.cardsPerPage; i++) {
@@ -252,29 +229,17 @@ export class SearchPageComponent implements OnInit {
     }
   }
 
-  /* computedPageNumber() {
-    this.pagesCount = Math.ceil(this.devsArr.length / this.cardsPerPage);
-  } */
-
   addVisibleCards() {
     this.showedCards = [];
     this.isDevsLoaded = false;
     this.pagesNumberArray = [];
-    /* const start = (this.currentPage - 1) * this.cardsPerPage;
-    for(let i = start; i < start + this.cardsPerPage; i++) {
-      this.showedCards.push(this.devsArr[i])
-    } */
     let query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
-    //console.log('addVisibleCards')
-    this.searchService.searchByParams(this.commonService.makeBody(query)).subscribe(devs => {
+      this.searchService.searchByParams(query).subscribe(devs => {
       console.log(devs);
       this.showedCards = devs.items;
       this.totalDevsCount = devs.totalCount;
-      //console.log('totalDevsCount', this.totalDevsCount)
       this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);
-      //console.log('pagesCount', this.pagesCount)
       this.preparePaginator();
-      //console.log('pagesNumberArray', this.pagesNumberArray)
       this.isDevsLoaded = true;
     })
   }
@@ -371,7 +336,6 @@ export class SearchPageComponent implements OnInit {
 
   getSenioritiesList() {
     this.devService.getSeniorities().subscribe((list) => {
-      //console.log(list)
       if(list){
         this.senioritiesList = list;
       }
@@ -408,31 +372,18 @@ export class SearchPageComponent implements OnInit {
     const skills = this.getSelectedSkills(stacks);
     if(this.query.value && this.query.value.length > 2) body['SearchString'] = this.query.value;
     if(this.exSlider.value) body['Expirience'] = this.exSlider.value;
-    /* const junId = '334f6ad6-9134-ec11-8388-ccd9acdd6ef8';
-    const midId = '344f6ad6-9134-ec11-8388-ccd9acdd6ef8';
-    const sinId = '324F6AD6-9134-EC11-8388-CCD9ACDD6EF8'; */
     const sinList: string[] = [];
     for(let item of this.senioritiesList) {
       if(this.seniorityFormGroup.get(item.id) && this.seniorityFormGroup.get(item.id)!.value) sinList.push(item.id);
     }
-    sinList.map(item => {
-      console.log(item, typeof item)
-    })
-    console.log('typeof seniority list', typeof sinList)
-    console.log('is Array seniority list', Array.isArray(sinList))
-    console.log('instanceof Object seniority list', sinList instanceof Object)
-    console.log('instanceof Array seniority list', sinList instanceof Array)
-
 
     if(sinList.length > 0) body['Seniority'] = sinList;
-    //if(sinList.length > 0) body['Seniority'] = JSON.stringify(sinList);
     const skillsList: string[] = [];
     if(skills) skills.map(skill => skillsList.push(skill.id));
-    //if(skillsList.length > 0) body['Stacks'] = JSON.stringify(skillsList);
     if(skillsList.length > 0) body['Stacks'] = skillsList;
-    body['ResultsOnPage'] = JSON.stringify(this.cardsPerPage);
-    body['Page'] = JSON.stringify(this.currentPage);
-    console.log(body)
+    body['ResultsOnPage'] = this.cardsPerPage;
+    body['Page'] = this.currentPage;
+    //console.log(body)
     return body;
   }
 

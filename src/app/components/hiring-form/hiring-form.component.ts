@@ -17,6 +17,7 @@ export class HiringFormComponent implements OnInit {
   hiringFormTitle: string = 'Custom hiring form';
   isAgreementAccepted: boolean = false;
   isSubmit: boolean = false;
+  devId: string = '';
 
   constructor(private fb: FormBuilder,
               private _snackBar: MatSnackBar,
@@ -27,6 +28,7 @@ export class HiringFormComponent implements OnInit {
   ngOnInit(): void {
     this.initHiringForm();
     this.hiringFormTitle = this.initTitle();
+    this.devId = this.commonService.getDev().developerId;
   }
 
   isContactsPage() {
@@ -72,9 +74,8 @@ export class HiringFormComponent implements OnInit {
       text: this.hiringForm.get('text')!.value,
     };
     if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
-      //this.devService.submitRequestForCVDevById(this.devId, body)
-      //console.log(body)
-      this.devService.submitRequestForCVDevById(/* this.devId */'sddfsdf', this.commonService.makeBody(body)).subscribe(response => {
+      //this.devService.submitRequestForCVDevById(this.devId, this.commonService.makeBody(body)).subscribe(response => {
+      this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {
         if(response.status === 200) {
           this.openSnackBar('Request has been submitted!', 'close');
           this.hiringForm.reset();

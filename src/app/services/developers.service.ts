@@ -31,10 +31,7 @@ export class DevelopersService {
   }
 
   getTreeDevs(): Observable<any> {
-    //console.log('getTreeDevs')
-    const props = new FormData();
-    props.append('ResultsOnPage', '3');
-    props.append('Page', '1');
+    const props = { 'ResultsOnPage': 3, 'Page': 1 };
     return this.http.post<any[]>(`/api/developers/search`, props);
   }
 
@@ -48,8 +45,8 @@ export class DevelopersService {
   }
 
   submitRequestForCVDevById(id: string, body: any): Observable<any> {
-    // console.log('request must be submitted')
-    // console.log('body', body)
+    console.log('request must be submitted')
+    console.log('body', body)
     return this.http.post<Developer>(`/api/developer/${id}/cv`, body, {observe: 'response'});
   }
 

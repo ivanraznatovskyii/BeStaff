@@ -54,7 +54,7 @@ export class DevDetailsComponent implements OnInit {
     };
     this.loadUser();
     this.devId = this.router.routerState.snapshot.url.replace('/developers/details?developerId=', '');
-    console.log(this.currentDev)
+    //console.log(this.currentDev)
   }
 
   openSnackBar(message: string, action: string) {
@@ -122,7 +122,8 @@ export class DevDetailsComponent implements OnInit {
       email: this.cvForm.get('email')!.value,
     };
     if(this.cvForm.status === 'VALID' && this.isAgreementAccepted) {
-      this.devService.submitRequestForCVDevById(this.devId, this.commonService.makeBody(body)).subscribe(response => {
+      //this.devService.submitRequestForCVDevById(this.devId, this.commonService.makeBody(body)).subscribe(response => {
+      this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {  
         if(response.status === 200) {
           this.openSnackBar('Request has been submitted!', 'close')
         }
