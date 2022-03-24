@@ -12,8 +12,6 @@ import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
-import { emailsMatchesDirective } from 'src/app/directives/email-matches.directive';
-import { skillsMatchesDirective } from 'src/app/directives/skillsmatches.directive';
 
 @Component({
   selector: 'app-registration',
@@ -36,7 +34,7 @@ export class RegistrationComponent implements OnInit {
   faTimes =faTimes;
 
   cvFilenames: string[] = [];
-  files!: FileList;
+  files: any[] = [];
 
   isFormsLoaded: boolean = false;
 
@@ -205,12 +203,31 @@ export class RegistrationComponent implements OnInit {
     let fileExtension;
     let splittedStringLength;
     if(files.files.length > 0) {
-      this.files = files.files;
+      //this.files = files.files;
+      const filesList = files.files;
 
-      for(let i = 0; i < files.files.length; i++) {
+      for(let i = 0; i < filesList.length; i++) {
+
         file = files.files[i];
         filename = file.name.split('.')[0];
         this.cvFilenames.push(filename);
+        
+        const reader = new FileReader();
+        reader.readAsDataURL(filesList[i]);
+        let base64File;
+        reader.onload = function () {
+          //console.log(reader.result);
+          base64File = reader.result;
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+        this.files.push(base64File);
+
+        //this.files.push(fileReader.readAsDataURL(filesList[i]));
+        // file = files.files[i];
+        // filename = file.name.split('.')[0];
+        // this.cvFilenames.push(filename);
         // splittedStringLength = file.name.split('.').length;
         // fileExtension = file.name.split('.')[splittedStringLength - 1];
       }
@@ -282,9 +299,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkIsCopy(skillCandidate: Stacks, controlName: string) {
-    let isFind
+    let isFind;
     controlName === 'skill' ? isFind = this.choosedSkills.find(item => item.id === skillCandidate.id)
-                            : isFind = this.choosedOtherSkills.find(item => item.id === skillCandidate.id);
+                            : isFind = this.choosedOtherSkills.find(item => item.name === skillCandidate.name);
     if(isFind) {
       return false;
     } else {
@@ -300,7 +317,7 @@ export class RegistrationComponent implements OnInit {
     if(where === 'skill') {
       this.choosedSkills = this.choosedSkills.filter(skill => skill.id !== id);
     } else {
-      this.choosedOtherSkills = this.choosedOtherSkills.filter(skill => skill.id !== id);
+      this.choosedOtherSkills = this.choosedOtherSkills.filter(skill => skill.name !== id);
     }
     
   }
@@ -331,20 +348,24 @@ export class RegistrationComponent implements OnInit {
       this.secondFormGroup.updateValueAndValidity();
       this.therdFormGroup.updateValueAndValidity();
     }
-    // console.log(this.firstFormGroup.status)
-    // console.log(this.secondFormGroup.status)
-    // console.log(this.therdFormGroup.status)
-    console.log(body)
-    const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
-    console.log(preparedBody)
-    this.devService.registerDev(preparedBody).subscribe(res => {
+    
+    console.log('body', body)
+    //const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
+    const preparedBody = this.makeBody(body);
+    console.log('preparedBody', preparedBody)
+    /* this.devService.registerDev(preparedBody).subscribe(res => {
       console.log(res)
-    })
-    // console.log(this.firstFormGroup.controls)
-    // console.log(this.secondFormGroup.controls)
-    // console.log(this.therdFormGroup.controls)
-    // console.log(this.loremOne)
-    // console.log(this.loremTwo)
+    }) */
+  }
+
+  makeBody(body): Object {
+    body['Attachments'] = this.files;
+    body['Skills'] = [];
+    this.choosedSkills.map(item => body['Skills'].push(item.id));
+    body['OtherSkills'] = [];
+    this.choosedOtherSkills.map(item => body['OtherSkills'].push(item.name));
+
+    return body;
   }
 
   hendleAddSkill(event: any, controlName: string) {
@@ -360,7 +381,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   showErrors(errors) {
-    console.log(errors)
+    //console.log(errors)
     if(errors['pattern']) {
       return 'pattern';
     } else if(errors['required']) {

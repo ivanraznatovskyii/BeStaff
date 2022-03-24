@@ -282,6 +282,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   clearFilters() {
+    this.query.reset();
     this.searchFormGroup.reset();
     this.seniorityFormGroup.reset();
     this.exSlider.reset();

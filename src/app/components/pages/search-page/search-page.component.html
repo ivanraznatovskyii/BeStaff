@@ -25,8 +25,9 @@
           <button type="button"
                   style="border-radius: 6px;"
                   mat-raised-button
+                  *ngIf="!panelOpenState"
                   class="elipse-button"
-                  (click)="searchByQuery()">
+                  (click)="searchByStackQuery()">
             <span class="search-btn-text" id="querySearch"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
           </button>
         </div>
@@ -81,15 +82,6 @@
                           <span class="seniority-item-label">{{ item.name }}</span>
                         </mat-checkbox>
                       </form>
-                      <!-- <mat-checkbox [formControl]="seniorityJunior" id="seniority-junior">
-                        <span class="seniority-item-label">Junior</span>
-                      </mat-checkbox>
-                      <mat-checkbox [formControl]="seniorityMiddle" id="seniority-middle">
-                        <span class="seniority-item-label">Middle</span>
-                      </mat-checkbox>
-                      <mat-checkbox [formControl]="senioritySenior" id="seniority-senior">
-                        <span class="seniority-item-label">Senior</span>
-                      </mat-checkbox> -->
                     </div>
                   </div>
                 </div>

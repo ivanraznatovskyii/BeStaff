@@ -2,8 +2,8 @@
   <div class="banner" [ngClass]="{ 'hide-block': !isShowed }" *ngIf="bannerIsShowed()">
     <app-banner></app-banner>
   </div>
-  <div class="banner-toggle-container">
-    <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()">
+  <div class="banner-toggle-container" [ngStyle]="{ 'z-index': !isShowed ? '101' : '1' }">
+    <div class="banner-toggle"  (click)="visibilityToggle()" *ngIf="bannerIsShowed()" [ngStyle]="{ 'position': !isShowed ? 'fixed' : '' }">
       {{ isShowed ? 'Close this block' : 'Open this block' }}
       <span class="toggle-arrow" [ngClass]="{ 'rotate-arrow': !isShowed }"></span>
     </div>
