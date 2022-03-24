@@ -6,9 +6,11 @@
     <div class="to-top-button" [ngClass]="{ 'show': showToTopButton }" (click)="goToTop()">
       <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
     </div>
-    <button mat-flat-button class="questions-button" [routerLink]="['/contacts']">
+    <button mat-flat-button class="questions-button" [routerLink]="['/contacts']" [ngStyle]="{ 'width': isQuestionShowed ? '267px' : '85px' }">
       <fa-icon [icon]="faComment" style="font-size: 30px; margin-right: 10px"></fa-icon>
-      <span class="btn-text ">Questions? Contac us!</span>
+      <span class="btn-text " [ngStyle]="{ 'display': isQuestionShowed ? 'inline-flex' : 'none' }">Questions? Contac us!</span>
+      <span class="minimize-btn" (click)="questionToggle()" [ngStyle]="{ 'transform': isQuestionShowed ? 'rotate(45deg)' : 'rotate(225deg)' }"></span>
     </button>
+    
   </div>
 

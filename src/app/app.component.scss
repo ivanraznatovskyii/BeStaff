@@ -38,7 +38,7 @@
   display: inline-flex;
   justify-content: normal;
   align-items: center;
-  width: 54px;
+  width: 85px;
   height: 54px;
   right: 16px;
   bottom: 19px;
@@ -48,6 +48,7 @@
   font-size: 16px;
   line-height: 22px;
   font-weight: 600;
+  transition: all .3s ease;
   z-index: 100;
 
   @include respond-to($media_large) {
@@ -66,4 +67,15 @@
   @include respond-to($media_large) {
     display: inline;
   }
+}
+
+.minimize-btn {
+  position: absolute;
+  top: 21px;
+  right: 7px;
+  width: 11px;
+  height: 11px;
+  border-top: 3px solid $header-font-color;
+  border-right: 3px solid $header-font-color;
+  transition: all .5s ease;
 }

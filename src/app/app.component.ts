@@ -24,9 +24,14 @@ export class AppComponent {
 
   faComment = faCommentDots;
   faArrowAltCircleUp = faArrowAltCircleUp;
+  isQuestionShowed: boolean = true;
 
   getOffset(offcet: number) {
     offcet > 600 ? this.showToTopButton = true : this.showToTopButton = false;
+  }
+
+  questionToggle() {
+    this.isQuestionShowed = !this.isQuestionShowed;
   }
 
   goToTop() {
