@@ -14,11 +14,11 @@
   justify-content: normal;
   align-items: center;
   right: 10px;
-  top: 10px;
+  top: 115px;
 
   @include respond-to($media_large) {
     right: 50px;
-    top: 50px;
+    top: 80px;
   }
 
   color: $skills-button-color;
@@ -38,7 +38,7 @@
   display: inline-flex;
   justify-content: normal;
   align-items: center;
-  width: 85px;
+  width: 54px;
   height: 54px;
   right: 16px;
   bottom: 19px;
@@ -54,7 +54,7 @@
   @include respond-to($media_large) {
     width: 267px;
     height: 54px;
-    right: 30px;
+    right: 40px;
     bottom: 35px;
     top: auto;
     justify-content: space-around;
@@ -69,13 +69,32 @@
   }
 }
 
+.min-container {
+  display: none;
+  position: fixed;
+  bottom: 48px;
+  right: 7px;
+  width: 20px;
+  height: 40px;
+  z-index: 101;
+
+  @include respond-to($media_large) {
+    display: block;
+  }
+}
+
 .minimize-btn {
   position: absolute;
   top: 21px;
   right: 7px;
   width: 11px;
   height: 11px;
-  border-top: 3px solid $header-font-color;
-  border-right: 3px solid $header-font-color;
+  border-top: 3px solid $orange-logo-color;
+  border-right: 3px solid $orange-logo-color;
   transition: all .5s ease;
+  z-index: 10;
+
+  @include respond-to($media_large) {
+    display: block;
+  }
 }

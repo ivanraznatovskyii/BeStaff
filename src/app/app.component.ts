@@ -19,15 +19,25 @@ export class AppComponent {
   this.getOffset(verticalOffset);
 }
 
+@HostListener('window:resize', []) onWindowResize() {
+  const horizontalOffset = +document.querySelector('.app-container')!.clientWidth;
+  this.getHorizontaleOffcet(horizontalOffset);
+}
+
 
   title = 'BeStaff';
 
   faComment = faCommentDots;
   faArrowAltCircleUp = faArrowAltCircleUp;
   isQuestionShowed: boolean = true;
+  isMinimize: boolean = false;
 
   getOffset(offcet: number) {
     offcet > 600 ? this.showToTopButton = true : this.showToTopButton = false;
+  }
+
+  getHorizontaleOffcet(offcet: number) {
+    offcet > 1050 ? this.isMinimize = false : this.isMinimize = true ;
   }
 
   questionToggle() {

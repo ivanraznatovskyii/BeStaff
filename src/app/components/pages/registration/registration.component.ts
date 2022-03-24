@@ -197,42 +197,33 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  onFileSelected(files: any) {
+  onFileSelected(filesObj: any) {
+    this.files = [];
     let file;
     let filename;
-    let fileExtension;
-    let splittedStringLength;
-    if(files.files.length > 0) {
-      //this.files = files.files;
-      const filesList = files.files;
 
-      for(let i = 0; i < filesList.length; i++) {
 
-        file = files.files[i];
+    const files = filesObj.files;
+    const fileReaderPromises: Promise<any>[] = [];
+    for (const i in files) {
+      if (files.hasOwnProperty(i) && files[i]) {
+        file = files[i];
         filename = file.name.split('.')[0];
         this.cvFilenames.push(filename);
-        
         const reader = new FileReader();
-        reader.readAsDataURL(filesList[i]);
-        let base64File;
-        reader.onload = function () {
-          //console.log(reader.result);
-          base64File = reader.result;
-        };
-        reader.onerror = function (error) {
-          console.log('Error: ', error);
-        };
-        this.files.push(base64File);
-
-        //this.files.push(fileReader.readAsDataURL(filesList[i]));
-        // file = files.files[i];
-        // filename = file.name.split('.')[0];
-        // this.cvFilenames.push(filename);
-        // splittedStringLength = file.name.split('.').length;
-        // fileExtension = file.name.split('.')[splittedStringLength - 1];
+        reader.readAsDataURL(files[i]);
+        const loadPromise = new Promise((resolve) => {
+          reader.onload = () => {
+            const attachment: any = reader.result as string;
+            resolve(attachment);
+          };
+        });
+        fileReaderPromises.push(loadPromise);
+        
       }
-    } else {
-      this.cvFilenames = [];
+      Promise.all(fileReaderPromises).then(res => {
+        this.files = res;
+      });
     }
   }
 
@@ -244,16 +235,6 @@ export class RegistrationComponent implements OnInit {
     
     return string.slice(-string.length, -2);
   }
-
-  /* getSenioritiesList() {
-    this.devService.getSeniorities().subscribe((list) => {
-      console.log(list)
-      if(list){
-        this.senioritiesList = list;
-      }
-      this.initForms();
-    });
-  } */
 
   removeFiles() {
     this.secondFormGroup.get('cvFile')?.reset();
@@ -270,7 +251,6 @@ export class RegistrationComponent implements OnInit {
 
   optionWasSelected(event: any, controlName: string, value?: string) {
     const skillName = event && event.option.value ? event.option.value : value;
-    ///console.log(skillName);
     const successArr: boolean[] = [];
     for(let item of this.choosedSkills) {
       this.skills.map(el => {
@@ -323,7 +303,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   compliteRegistration() {
-    //this.registrationHaveBeenCompleted = true;
     const body = {};
     if(this.firstFormGroup.status === 'VALID'
         && this.secondFormGroup.status === 'VALID'
@@ -333,11 +312,19 @@ export class RegistrationComponent implements OnInit {
         && this.isSkillsValid) {
 
       for(let item in this.firstFormGroup.controls) {
-        body[item] = this.firstFormGroup.controls[item].value;
+        if(item === 'Position') {
+          console.log('Position')
+          const fieldName = this.firstFormGroup.controls[item].value;
+          body[item] = this.positionsList.find(el => el.name === fieldName)!.id;
+        } else if(item !== 'Position') {
+          body[item] = this.firstFormGroup.controls[item].value;
+        }
       }
       for(let item in this.secondFormGroup.controls) {
-        if(item !== 'cvFile' && item !== 'skill' && item !== 'otherSkills') {
+        if(item !== 'cvFile' && item !== 'skill' && item !== 'otherSkills' && item !== 'Experience') {
           body[item] = this.secondFormGroup.controls[item].value;
+        } else if(item === 'Experience') {
+          body[item] = +this.secondFormGroup.controls[item].value;
         }
       }
       for(let item in this.therdFormGroup.controls) {
@@ -353,9 +340,9 @@ export class RegistrationComponent implements OnInit {
     //const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
     const preparedBody = this.makeBody(body);
     console.log('preparedBody', preparedBody)
-    /* this.devService.registerDev(preparedBody).subscribe(res => {
+    this.devService.registerDev(preparedBody).subscribe(res => {
       console.log(res)
-    }) */
+    })
   }
 
   makeBody(body): Object {
