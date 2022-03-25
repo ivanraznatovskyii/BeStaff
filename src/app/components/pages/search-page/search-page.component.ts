@@ -224,37 +224,43 @@ export class SearchPageComponent implements OnInit {
   };
 
   preparePaginator() {
-    this.addDevider();
-  }
-
-  addDevider() {
     if(this.pagesCount <= 10) {
       for(let i = 1; i < this.pagesCount + 1; i++) {
         this.pagesNumberArray.push(i);
       }
-    } else if ((this.pagesCount > 10 && this.currentPage < 5) || (this.pagesCount > 10 && this.currentPage >= this.pagesCount - 5 && this.currentPage <= this.pagesCount)) {
+    } else if (this.pagesCount > 10 && (this.currentPage < 5 || this.currentPage > this.pagesCount - 5)) {
       for(let i = 1; i < 6; i++) {
         this.pagesNumberArray.push(i);
       }
       this.pagesNumberArray.push('...');
       const tempArray: number[] = [];
-      for(let i = this.pagesCount; i > this.pagesCount - 6; i--) {
+      for(let i = this.pagesCount; i > this.pagesCount - 5; i--) {
         tempArray.push(i);
       }
       tempArray.reverse();
       this.pagesNumberArray.push(...tempArray);
-    } else if(this.pagesCount > 10 && this.currentPage >= 5 && this.currentPage < this.pagesCount - 5) {
+    } else if(this.pagesCount > 10 
+              && this.currentPage >= 5
+              && this.pagesCount - 5 > this.currentPage + 2
+              && this.currentPage + 2 < this.pagesCount - 5) {
+      this.pagesNumberArray.push('1');        
       this.pagesNumberArray.push('...');
       for(let i = this.currentPage - 2; i < this.currentPage + 3; i++) {
         this.pagesNumberArray.push(i);
       }
       this.pagesNumberArray.push('...');
       const tempArray: number[] = [];
-      for(let i = this.pagesCount; i > this.pagesCount - 6; i--) {
+      for(let i = this.pagesCount; i > this.pagesCount - 5; i--) {
         tempArray.push(i);
       }
       tempArray.reverse();
       this.pagesNumberArray.push(...tempArray);
+    } else {
+      this.pagesNumberArray.push('1');        
+      this.pagesNumberArray.push('...');
+      for(let i = this.currentPage - 2; i < this.pagesCount + 1; i++) {
+        this.pagesNumberArray.push(i);
+      }
     }
   }
 
