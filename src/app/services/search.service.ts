@@ -10,7 +10,7 @@ export class SearchService {
   constructor(private http: HttpClient) {}
 
   searchByParams(body: Object): Observable<any> {
-    console.log('Body', body)
+    //console.log('Body', body)
     return this.http.post<any[]>(`/api/developers/search`, body);
   }
 

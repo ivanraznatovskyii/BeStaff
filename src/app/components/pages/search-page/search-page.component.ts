@@ -224,8 +224,37 @@ export class SearchPageComponent implements OnInit {
   };
 
   preparePaginator() {
-    for(let i = 1; i < this.pagesCount + 1; i++) {
-      this.pagesNumberArray.push(i);
+    this.addDevider();
+  }
+
+  addDevider() {
+    if(this.pagesCount <= 10) {
+      for(let i = 1; i < this.pagesCount + 1; i++) {
+        this.pagesNumberArray.push(i);
+      }
+    } else if ((this.pagesCount > 10 && this.currentPage < 5) || (this.pagesCount > 10 && this.currentPage >= this.pagesCount - 5 && this.currentPage <= this.pagesCount)) {
+      for(let i = 1; i < 6; i++) {
+        this.pagesNumberArray.push(i);
+      }
+      this.pagesNumberArray.push('...');
+      const tempArray: number[] = [];
+      for(let i = this.pagesCount; i > this.pagesCount - 6; i--) {
+        tempArray.push(i);
+      }
+      tempArray.reverse();
+      this.pagesNumberArray.push(...tempArray);
+    } else if(this.pagesCount > 10 && this.currentPage >= 5 && this.currentPage < this.pagesCount - 5) {
+      this.pagesNumberArray.push('...');
+      for(let i = this.currentPage - 2; i < this.currentPage + 3; i++) {
+        this.pagesNumberArray.push(i);
+      }
+      this.pagesNumberArray.push('...');
+      const tempArray: number[] = [];
+      for(let i = this.pagesCount; i > this.pagesCount - 6; i--) {
+        tempArray.push(i);
+      }
+      tempArray.reverse();
+      this.pagesNumberArray.push(...tempArray);
     }
   }
 
@@ -235,7 +264,7 @@ export class SearchPageComponent implements OnInit {
     this.pagesNumberArray = [];
     let query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
       this.searchService.searchByParams(query).subscribe(devs => {
-      console.log(devs);
+      //console.log(devs);
       this.showedCards = devs.items;
       this.totalDevsCount = devs.totalCount;
       this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);

@@ -33,7 +33,7 @@ export class AppComponent {
   isMinimize: boolean = false;
 
   getOffset(offcet: number) {
-    offcet > 600 ? this.showToTopButton = true : this.showToTopButton = false;
+    offcet > 400 ? this.showToTopButton = true : this.showToTopButton = false;
   }
 
   getHorizontaleOffcet(offcet: number) {
