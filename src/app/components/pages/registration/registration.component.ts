@@ -290,7 +290,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ulWidth() {
-    return this.choosedSkills.length > 0 ? '100%' : '0';
+    return this.choosedSkills.length > 0 ? '100%' : '80px';
   }
 
   removeSkill(id: string, where: string) {

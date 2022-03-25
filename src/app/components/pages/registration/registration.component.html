@@ -186,19 +186,28 @@
             <div class="inner-input skills-container" [ngClass]="{ 'error': secondFormGroup.get('skill') 
                                                                             && !isSkillsValid
                                                                             && (secondFormGroup.get('skill')!.touched || secondFormGroup.get('skill')!.dirty) }">
-              <ul class="skills-list-inner" *ngIf="choosedSkills.length" [ngStyle]="{ 'width': ulWidth() }">
+              <ul class="skills-list-inner" [ngStyle]="{ 'min-width': ulWidth() }" >
                 <li class="skills-item-inner" *ngFor="let skill of choosedSkills">
                   <span>{{ skill.name }}</span>
                   <span (click)="removeSkill(skill.id, 'skill')"><fa-icon [icon]="faTimes"></fa-icon></span>
                 </li>
-              </ul>
-              <input matInput
+                <li>
+                  <input matInput
                   type="text"
                   formControlName="skill"
                   placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
                   [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
                   [matAutocomplete]="autoSkills"
                   id="skill">
+                </li>
+              </ul>
+              <!-- <input matInput
+                  type="text"
+                  formControlName="skill"
+                  placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
+                  [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
+                  [matAutocomplete]="autoSkills"
+                  id="skill"> -->
               <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
                   {{skill.name}}
