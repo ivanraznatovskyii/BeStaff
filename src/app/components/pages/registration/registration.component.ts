@@ -257,7 +257,7 @@ export class RegistrationComponent implements OnInit {
         if(item.name === el.name) successArr.push(true)
       })
     }
-    this.isSkillsValid = this.choosedSkills.length === successArr.length;
+    this.isSkillsValid = this.choosedSkills.length === successArr.length && this.choosedSkills.length > 0;
     const isFull = controlName === 'skill' ? this.choosedSkills.length >= 10 : this.choosedOtherSkills.length >= 30;
     const choosedSkill = this.skills.find(item => item.name === skillName);
     if(choosedSkill && this.checkIsCopy(choosedSkill, controlName)) {
@@ -379,6 +379,8 @@ export class RegistrationComponent implements OnInit {
       return 'email';
     } else if(errors['forbiddenPosition']) {
       return 'forbiddenPosition';
+    } else if(errors['forbiddenName']) {
+      return 'forbiddenName';
     } else {
       return false
     }

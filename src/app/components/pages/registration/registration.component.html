@@ -201,13 +201,6 @@
                   id="skill">
                 </li>
               </ul>
-              <!-- <input matInput
-                  type="text"
-                  formControlName="skill"
-                  placeholder="{{ !choosedSkills.length ? 'Add skill' : '' }}"
-                  [ngStyle]="{ 'padding': choosedSkills.length > 0 ? '5px': '10px' }"
-                  [matAutocomplete]="autoSkills"
-                  id="skill"> -->
               <mat-autocomplete #autoSkills="matAutocomplete" (optionSelected)="addSkillSelected($event)">
                 <mat-option *ngFor="let skill of filteredOptions | async" [value]="skill.name">
                   {{skill.name}}
@@ -215,8 +208,9 @@
               </mat-autocomplete>
             </div>
             <div *ngIf="!isSkillsValid || secondFormGroup.get('skill')!.errors">
-              <span *ngIf="!isSkillsValid">this field must be one of list of skills</span>
-              <span *ngIf="secondFormGroup.get('skill')!.errors && showErrors(secondFormGroup.get('skill')!.errors) === 'required'">this field is required</span>
+              <span *ngIf="(secondFormGroup.get('skill')!.errors
+                            && showErrors(secondFormGroup.get('skill')!.errors) === 'required')
+                            || (choosedSkills.length === 0 && (secondFormGroup.get('skill')!.dirty || secondFormGroup.get('skill')!.touched))">this field is required</span>
             </div>
             <div class="under-text">
               <sup>*</sup>
