@@ -1,6 +1,6 @@
 import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from './../../services/common.service.ts.service';
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Developer } from 'src/app/interfaces/developer';
 
@@ -10,6 +10,12 @@ import { Developer } from 'src/app/interfaces/developer';
   styleUrls: ['./available-developers.component.scss']
 })
 export class AvailableDevelopersComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.width = event.target.innerWidth;
+    this.changeSize();
+  }
 
   width = window.innerWidth;
   cardsWidth = '370';
@@ -84,7 +90,7 @@ export class AvailableDevelopersComponent implements OnInit {
 
   changeSize() {
     const cardWidth = document.querySelector('.dev-card')?.clientWidth || 370;
-    const twoCardsWidth = (cardWidth + 30) * 2;
+    const twoCardsWidth = (cardWidth + 30) * 2.25;
     const treCardsWidth = (cardWidth + 30) * 3;
     if( this.width < twoCardsWidth ) {
       this.cardsPadding = ((this.width - cardWidth) / 2) + 'px';

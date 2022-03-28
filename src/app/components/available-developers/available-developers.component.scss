@@ -61,9 +61,10 @@ h2 {
 }
 
 .dev-card-list {
-  width: auto;
+  /* width: auto; */
   display: inline-flex;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
 
