@@ -246,6 +246,21 @@
                 </mat-option>
               </mat-autocomplete>
             </div>
+            <label for="Seniority">Seniority</label>
+                <div class="inner-input" style="padding: 10px;" [ngClass]="{ 'error': secondFormGroup.get('Seniority') 
+                                                                                      && secondFormGroup.get('Seniority')!.status === 'INVALID'
+                                                                                      && (secondFormGroup.get('Seniority')!.touched || secondFormGroup.get('Seniority')!.dirty) }">
+                  <mat-select panelClass="panel" 
+                              formControlName="Seniority"
+                              empty="false"
+                              placeholder="Seniority"
+                              [ngClass]="{ 'input-error': secondFormGroup.get('Seniority') 
+                                                          && secondFormGroup.get('Seniority')!.status === 'INVALID'
+                                                          && (secondFormGroup.get('Seniority')!.touched || secondFormGroup.get('Seniority')!.dirty) }">
+                    <mat-option [value]="option.id" *ngFor="let option of seniotityList">{{ option.name }}</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix></mat-icon>
+                </div>
             <div class="under-text">
               <sup>*</sup>
               <span>
@@ -365,7 +380,8 @@
                                   || secondFormGroup.status === 'INVALID' 
                                   || therdFormGroup.status === 'INVALID'
                                   || choosedOtherSkills.length === 0
-                                  || choosedSkills.length === 0" >
+                                  || choosedSkills.length === 0
+                                  || disableRegisterButton" >
                       Register
               </button>
             </div>

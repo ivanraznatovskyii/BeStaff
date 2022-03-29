@@ -12,6 +12,8 @@ import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from 'src/app/services/common.service.ts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
+import { Seniority } from 'src/app/interfaces/seniority';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -35,9 +37,11 @@ export class RegistrationComponent implements OnInit {
 
   cvFilenames: string[] = [];
   files: any[] = [];
+  seniotityList: Seniority[] = [];
 
   isFormsLoaded: boolean = false;
 
+  disableRegisterButton: boolean = false;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   therdFormGroup!: FormGroup;
@@ -67,7 +71,9 @@ export class RegistrationComponent implements OnInit {
   constructor(private fb: FormBuilder, 
               private devService: DevelopersService, 
               private _snackBar: MatSnackBar,
-              private commonService: CommonService) {
+              private commonService: CommonService,
+              private router: Router) {
+    devService.getSeniorities().subscribe(seniorities => {this.seniotityList = seniorities})
     devService.getSkills().subscribe((skills: Skills[]) => {
       this.skills = skills;
       this.isSkillsLoaded = true;
@@ -87,7 +93,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 
   initFilters() {
@@ -127,6 +136,7 @@ export class RegistrationComponent implements OnInit {
       skill: [''
     ],
       otherSkills: [''],
+      Seniority: ['', Validators.required],
       Experience: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
       cvFile: ['', Validators.required]
     });
@@ -313,7 +323,6 @@ export class RegistrationComponent implements OnInit {
 
       for(let item in this.firstFormGroup.controls) {
         if(item === 'Position') {
-          console.log('Position')
           const fieldName = this.firstFormGroup.controls[item].value;
           body[item] = this.positionsList.find(el => el.name === fieldName)!.id;
         } else if(item !== 'Position') {
@@ -336,12 +345,17 @@ export class RegistrationComponent implements OnInit {
       this.therdFormGroup.updateValueAndValidity();
     }
     
-    console.log('body', body)
-    //const preparedBody = this.commonService.makeBody(body, this.files, this.choosedSkills, this.choosedOtherSkills);
+    //console.log('body', body)
     const preparedBody = this.makeBody(body);
-    console.log('preparedBody', preparedBody)
+    //console.log('preparedBody', preparedBody);
+    this.disableRegisterButton = true;
     this.devService.registerDev(preparedBody).subscribe(res => {
-      console.log(res)
+      if(res && (res.status === 200 || res.status === '200')) {
+        this.openSnackBar('Request has been submitted!', 'close');
+        this.router.navigate([`/`]);
+      } else {
+        this.openSnackBar('Something went wrong!', 'close')
+      }
     })
   }
 
