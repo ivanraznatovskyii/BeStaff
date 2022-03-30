@@ -87,16 +87,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   goToTop() {
-    window.scrollTo(0,0)
-    // const el = document.querySelector('.logo');
-    // el?.scrollIntoView(true);
+    window.scrollTo(0,0);
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
+    const snack = this._snackBar.open(message, action, {
       duration: 5000,
-      verticalPosition: 'top'
+      verticalPosition: 'top',
+      panelClass: 'snackbar-block'
     });
+    snack.afterDismissed().subscribe(sn => {
+      if(sn.dismissedByAction) {
+        this.snackbarWasClosed();
+      }
+    })
   }
 
   initFilters() {
@@ -188,15 +192,6 @@ export class RegistrationComponent implements OnInit {
       return this.skills;
     }
   }
-
-  /* _filterOtherSkills(value: string): Stacks[] {
-    if(value) {
-      const filterValue = value.toLowerCase();
-      return this.skills.filter(option => option.name.toLowerCase().includes(filterValue));
-    } else {
-      return this.skills;
-    }
-  } */
 
   _filterPositions(value: string): Positions[] {
     if(value) {
@@ -362,7 +357,15 @@ export class RegistrationComponent implements OnInit {
       } else {
         this.openSnackBar('Something went wrong!', 'close')
       }
+    }, error => {
+      if(error) {
+        this.openSnackBar('Something went wrong (' + error.statusText + ')', 'Close');
+      }
     })
+  }
+
+  snackbarWasClosed() {
+    console.log('snackbarWasClosed()')
   }
 
   makeBody(body): Object {
