@@ -219,7 +219,6 @@ export class RegistrationComponent implements OnInit {
       
       
         if (files.hasOwnProperty(i) && files[i]) {
-          console.log(+((files[i].size/1024)/1024).toFixed(4))
           if(+((files[i].size/1024)/1024).toFixed(4) < 5 ) {
             file = files[i];
             filename = file.name.split('.')[0];
