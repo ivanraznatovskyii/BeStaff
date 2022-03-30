@@ -74,12 +74,10 @@ export class HiringFormComponent implements OnInit {
       text: this.hiringForm.get('text')!.value,
     };
     if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
-      //this.devService.submitRequestForCVDevById(this.devId, this.commonService.makeBody(body)).subscribe(response => {
-      this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {
+      this.devService.submitRequestForContacts(body).subscribe(response => {
         if(response.status === 200) {
           this.openSnackBar('Request has been submitted!', 'close');
-          this.hiringForm.reset();
-          setTimeout(()=>this.router.navigate(['/']), 5000);
+          this.router.navigate(['/']);
         } else {
           this.openSnackBar('Something went wrong!', 'close');
         }
@@ -92,7 +90,6 @@ export class HiringFormComponent implements OnInit {
   }
 
   showErrors(errors) {
-    console.log(errors)
     if(errors['pattern']) {
       return 'pattern';
     } else if(errors['required']) {

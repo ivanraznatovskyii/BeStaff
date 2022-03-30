@@ -222,24 +222,34 @@
             <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': secondFormGroup.get('otherSkills') 
                                                                                 && secondFormGroup.get('otherSkills')!.status === 'INVALID'
                                                                                 && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }">
-              <ul class="skills-list-inner" *ngIf="choosedOtherSkills.length" [ngStyle]="{ 'width': ulWidth() }">
+              <ul class="skills-list-inner" [ngStyle]="{ 'width': 'calc(' + ulWidth() + 'px + 50px)' }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedOtherSkills">
                   <span>{{ skill.name }}</span>
                   <span (click)="removeSkill(skill.name, 'otherSkills')"><fa-icon [icon]="faTimes"></fa-icon></span>
                 </li>
+                <li>
+                  <input matInput
+                  type="text"
+                  formControlName="otherSkills"
+                  placeholder="{{ !choosedOtherSkills.length ? 'Other Skills' : '' }}"
+                  [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
+                  [matAutocomplete]="autoOtherSkills"
+                  id="otherSkills"
+                  (keypress)="hendleAddSkill($event, 'otherSkills')">
+                </li>
+                  <!-- <textarea matInput
+                            formControlName="otherSkills"
+                            placeholder="{{ !choosedOtherSkills.length ? 'Other Skills' : '' }}"
+                            [matAutocomplete]="autoOtherSkills"
+                            [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
+                            id="otherSkills"
+                            [ngClass]="{ 'input-error': secondFormGroup.get('otherSkills') 
+                                                        && secondFormGroup.get('otherSkills')!.status === 'INVALID'
+                                                        && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }"
+                            (keypress)="hendleAddSkill($event, 'otherSkills')"
+                            rows="4">
+                  </textarea> -->
               </ul>
-              <textarea matInput
-                        formControlName="otherSkills"
-                        placeholder="{{ !choosedOtherSkills.length ? 'Other Skills' : '' }}"
-                        [matAutocomplete]="autoOtherSkills"
-                        [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
-                        id="otherSkills"
-                        [ngClass]="{ 'input-error': secondFormGroup.get('otherSkills') 
-                                                    && secondFormGroup.get('otherSkills')!.status === 'INVALID'
-                                                    && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }"
-                        (keypress)="hendleAddSkill($event, 'otherSkills')"
-                        rows="4">
-              </textarea>
               <mat-autocomplete #autoOtherSkills="matAutocomplete" (optionSelected)="otherSkillsSelected($event, secondFormGroup.get('otherSkills')!.value)">
                 <mat-option *ngFor="let skill of filteredOtherOptions | async" [value]="skill.name">
                   {{skill.name}}

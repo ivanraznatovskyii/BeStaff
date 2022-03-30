@@ -37,7 +37,7 @@ export class DevelopersService {
 
   getDevById(id: string): Observable<any> {
     //console.log('getDevById')
-    return this.http.get<Developer>(`/api/developers/developer/${id}`/* , { params: { developerId: id } } */);
+    return this.http.get<Developer>(`/api/developers/developer/${id}`);
   }
 
   getSeniorities(): Observable<any> {
@@ -45,9 +45,15 @@ export class DevelopersService {
   }
 
   submitRequestForCVDevById(id: string, body: any): Observable<any> {
-    console.log('request must be submitted')
-    console.log('body', body)
-    return this.http.post<Developer>(`/api/developer/${id}/cv`, body, {observe: 'response'});
+    //console.log('request must be submitted')
+    //console.log('body', body)
+    return this.http.post<any>(`/api/developer/${id}/cv`, body, {observe: 'response'});
+  }
+
+  submitRequestForContacts(body: any): Observable<any> {
+    //console.log('request must be submitted')
+    //console.log('body', body)
+    return this.http.post<any>(`/api/contacts`, body, {observe: 'response'});
   }
 
   registerDev(body: Object): Observable<any> {

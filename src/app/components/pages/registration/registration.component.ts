@@ -216,24 +216,34 @@ export class RegistrationComponent implements OnInit {
     const files = filesObj.files;
     const fileReaderPromises: Promise<any>[] = [];
     for (const i in files) {
-      if (files.hasOwnProperty(i) && files[i]) {
-        file = files[i];
-        filename = file.name.split('.')[0];
-        this.cvFilenames.push(filename);
-        const reader = new FileReader();
-        reader.readAsDataURL(files[i]);
-        const loadPromise = new Promise((resolve) => {
-          reader.onload = () => {
-            const attachment: any = reader.result as string;
-            resolve(attachment);
-          };
+      
+      
+        if (files.hasOwnProperty(i) && files[i]) {
+          console.log(+((files[i].size/1024)/1024).toFixed(4))
+          if(+((files[i].size/1024)/1024).toFixed(4) < 5 ) {
+            file = files[i];
+            filename = file.name.split('.')[0];
+            this.cvFilenames.push(filename);
+            const reader = new FileReader();
+            reader.readAsDataURL(files[i]);
+            const loadPromise = new Promise((resolve) => {
+              reader.onload = () => {
+                const attachment: any = reader.result as string;
+                resolve(attachment);
+              };
+            });
+            fileReaderPromises.push(loadPromise);
+          } else {
+            this._snackBar.open('File size must be less than 5 Mb', 'OK');
+            this.files = [];
+            this.cvFilenames = [];
+          }
+        }
+        Promise.all(fileReaderPromises).then(res => {
+          this.files = res;
         });
-        fileReaderPromises.push(loadPromise);
-        
-      }
-      Promise.all(fileReaderPromises).then(res => {
-        this.files = res;
-      });
+      
+      
     }
   }
 
@@ -345,14 +355,11 @@ export class RegistrationComponent implements OnInit {
       this.therdFormGroup.updateValueAndValidity();
     }
     
-    //console.log('body', body)
     const preparedBody = this.makeBody(body);
-    //console.log('preparedBody', preparedBody);
     this.disableRegisterButton = true;
     this.devService.registerDev(preparedBody).subscribe(res => {
       if(res && (res.status === 200 || res.status === '200')) {
-        this.openSnackBar('Request has been submitted!', 'close');
-        this.router.navigate([`/`]);
+        this.registrationHaveBeenCompleted = true;
       } else {
         this.openSnackBar('Something went wrong!', 'close')
       }

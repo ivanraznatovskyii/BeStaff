@@ -118,12 +118,12 @@ export class DevDetailsComponent implements OnInit {
     this.cvForm.updateValueAndValidity();
     const body = {
       name: this.cvForm.get('name')!.value,
-      text: this.cvForm.get('surname')!.value,
+      surname: this.cvForm.get('surname')!.value,
       email: this.cvForm.get('email')!.value,
     };
     if(this.cvForm.status === 'VALID' && this.isAgreementAccepted) {
       this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {  
-        if(response.status === 200) {
+        if(response && (response.status === 200 || response.status === '200')) {
           this.openSnackBar('Request has been submitted!', 'close')
         }
       })
@@ -131,7 +131,6 @@ export class DevDetailsComponent implements OnInit {
   }
 
   showErrors(errors) {
-    console.log(errors)
     if(errors['pattern']) {
       return 'pattern';
     } else if(errors['required']) {
