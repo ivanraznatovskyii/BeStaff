@@ -90,12 +90,16 @@ export class AvailableDevelopersComponent implements OnInit {
 
   changeSize() {
     const cardWidth = document.querySelector('.dev-card')?.clientWidth || 370;
-    const twoCardsWidth = (cardWidth + 30) * 2.25;
-    const treCardsWidth = (cardWidth + 30) * 3;
+    const twoCardsWidth = (cardWidth * 2) + 10;
+    const treCardsWidth = (cardWidth * 3) + 15;
     if( this.width < twoCardsWidth ) {
-      this.cardsPadding = ((this.width - cardWidth) / 2) + 'px';
+      //console.log('case 1 = ', ((this.width - cardWidth) / 2) + 'px')
+      this.cardsPadding = ((this.width - cardWidth) / 3) + 'px';
+      this.cardsPadding = 'auto';
     } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
-      this.cardsPadding = ((this.width - twoCardsWidth) / 3) + 'px';
+      //console.log('case 2 = ', ((this.width - twoCardsWidth) / 3) + 'px')
+      this.cardsPadding = ((this.width - twoCardsWidth) / 4) + 'px';
+      this.cardsPadding = 'auto';
     } else if(this.width > treCardsWidth) {
       this.cardsPadding = 'auto';
     }
