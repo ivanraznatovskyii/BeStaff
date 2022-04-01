@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.directive';
 import { Seniority } from 'src/app/interfaces/seniority';
 import { Router } from '@angular/router';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-registration',
@@ -31,6 +32,8 @@ import { Router } from '@angular/router';
   ],
 })
 export class RegistrationComponent implements OnInit {
+
+  addSkillsItem: boolean = false;
 
   faLink = faLink;
   faTimes =faTimes;
@@ -52,7 +55,8 @@ export class RegistrationComponent implements OnInit {
   loremTwo: FormControl = new FormControl(false, Validators.required);
 
   @ViewChild('fileInput', {static: true }) fileInput: any;
-  @ViewChild('stepper', {static: true }) stepper!: MatStepper
+  @ViewChild('stepper', {static: true }) stepper!: MatStepper;
+  @ViewChild('autoOtherSkills') otherSkillsAuto!: MatAutocomplete;
 
   skills: Skills[] = [];
   isSkillsLoaded: boolean = false;
@@ -380,10 +384,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   hendleAddSkill(event: any, controlName: string) {
+    //console.log(event)
     if(event && event.code === 'Enter') {
       event.preventDefault();
       this.optionWasSelected(null, controlName, this.secondFormGroup.get(controlName)!.value);
-    } else if(!event && this.secondFormGroup.get(controlName)!.value && this.secondFormGroup.get(controlName)!.value.length > 0) {
+    } else if(event instanceof FocusEvent && !event.relatedTarget && this.secondFormGroup.get(controlName)!.value && this.secondFormGroup.get(controlName)!.value.length > 0) {
       this.optionWasSelected(null, controlName, this.secondFormGroup.get(controlName)!.value);
     }
   }

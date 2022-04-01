@@ -236,7 +236,7 @@
                   [matAutocomplete]="autoOtherSkills"
                   id="otherSkills"
                   (keypress)="hendleAddSkill($event, 'otherSkills')"
-                  (blur)="hendleAddSkill(false, 'otherSkills')">
+                  (blur)="hendleAddSkill($event, 'otherSkills')">
                 </li>
               </ul>
               <mat-autocomplete #autoOtherSkills="matAutocomplete" (optionSelected)="otherSkillsSelected($event, secondFormGroup.get('otherSkills')!.value)">
@@ -256,7 +256,7 @@
                               [ngClass]="{ 'input-error': secondFormGroup.get('Seniority') 
                                                           && secondFormGroup.get('Seniority')!.status === 'INVALID'
                                                           && (secondFormGroup.get('Seniority')!.touched || secondFormGroup.get('Seniority')!.dirty) }">
-                    <mat-option [value]="option.id" *ngFor="let option of seniotityList">{{ option.name }}</mat-option>
+                    <mat-option style="border: none" [value]="option.id" *ngFor="let option of seniotityList">{{ option.name }}</mat-option>
                   </mat-select>
                   <mat-icon matSuffix></mat-icon>
                 </div>
