@@ -107,7 +107,8 @@
             <button type="button"
                     mat-raised-button
                     class="elipse-button elipse-button_cv"
-                    (click)="submitRequestForCVDevById()">
+                    (click)="submitRequestForCVDevById()"
+                    [disabled]="isSubmit">
               Request CV
             </button>
           </div>

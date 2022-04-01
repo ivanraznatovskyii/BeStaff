@@ -18,6 +18,7 @@ export class HiringFormComponent implements OnInit {
   isAgreementAccepted: boolean = false;
   isSubmit: boolean = false;
   devId: string = '';
+  submitButtonDisabled: boolean = false;
 
   constructor(private fb: FormBuilder,
               private _snackBar: MatSnackBar,
@@ -28,7 +29,7 @@ export class HiringFormComponent implements OnInit {
   ngOnInit(): void {
     this.initHiringForm();
     this.hiringFormTitle = this.initTitle();
-    this.devId = this.commonService.getDev().developerId;
+    this.devId = this.commonService.getDev() && this.commonService.getDev().developerId ? this.commonService.getDev().developerId : null;
   }
 
   isContactsPage() {
@@ -61,6 +62,7 @@ export class HiringFormComponent implements OnInit {
   }
 
   sendHiringForm() {
+    this.submitButtonDisabled = true;
     this.isSubmit = true;
     this.hiringForm.controls['agreementAccepted'].patchValue(this.isAgreementAccepted);
     for(let item in this.hiringForm.controls) {

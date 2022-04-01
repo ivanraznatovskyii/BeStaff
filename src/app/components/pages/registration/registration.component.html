@@ -235,7 +235,8 @@
                   [ngStyle]="{ 'padding': choosedOtherSkills.length > 0 ? '5px': '10px' }"
                   [matAutocomplete]="autoOtherSkills"
                   id="otherSkills"
-                  (keypress)="hendleAddSkill($event, 'otherSkills')">
+                  (keypress)="hendleAddSkill($event, 'otherSkills')"
+                  (blur)="hendleAddSkill(false, 'otherSkills')">
                 </li>
               </ul>
               <mat-autocomplete #autoOtherSkills="matAutocomplete" (optionSelected)="otherSkillsSelected($event, secondFormGroup.get('otherSkills')!.value)">
@@ -378,7 +379,8 @@
                                   || secondFormGroup.status === 'INVALID' 
                                   || therdFormGroup.status === 'INVALID'
                                   || choosedOtherSkills.length === 0
-                                  || choosedSkills.length === 0" >
+                                  || choosedSkills.length === 0
+                                  || disableRegisterButton">
                       Register
               </button>
             </div>

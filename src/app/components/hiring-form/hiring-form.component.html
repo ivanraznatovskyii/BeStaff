@@ -77,7 +77,8 @@
           <button type="button"
                   mat-raised-button
                   class="elipse-button elipse-button_cv"
-                  (click)="sendHiringForm()">
+                  (click)="sendHiringForm()"
+                  [disabled]="submitButtonDisabled">
             Send request
           </button>
         </div>

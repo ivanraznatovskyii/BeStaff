@@ -92,7 +92,7 @@ export class RegistrationComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     const snack = this._snackBar.open(message, action, {
-      duration: 5000,
+      //duration: 5000,
       verticalPosition: 'top',
       panelClass: 'snackbar-block'
     });
@@ -355,17 +355,18 @@ export class RegistrationComponent implements OnInit {
       if(res && (res.status === 200 || res.status === '200')) {
         this.registrationHaveBeenCompleted = true;
       } else {
-        this.openSnackBar('Something went wrong!', 'close')
+        this.openSnackBar('Something went wrong!', 'Close')
       }
     }, error => {
       if(error) {
-        this.openSnackBar('Something went wrong (' + error.statusText + ')', 'Close');
+        this.openSnackBar('Something went wrong (' + error.statusText + ')', 'Retry');
       }
     })
   }
 
   snackbarWasClosed() {
-    console.log('snackbarWasClosed()')
+    //console.log('snackbarWasClosed()')
+    setTimeout(()=>{this.disableRegisterButton = false},0);
   }
 
   makeBody(body): Object {
@@ -379,8 +380,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   hendleAddSkill(event: any, controlName: string) {
-    if(event.code === 'Enter') {
+    if(event && event.code === 'Enter') {
       event.preventDefault();
+      this.optionWasSelected(null, controlName, this.secondFormGroup.get(controlName)!.value);
+    } else if(!event && this.secondFormGroup.get(controlName)!.value && this.secondFormGroup.get(controlName)!.value.length > 0) {
       this.optionWasSelected(null, controlName, this.secondFormGroup.get(controlName)!.value);
     }
   }

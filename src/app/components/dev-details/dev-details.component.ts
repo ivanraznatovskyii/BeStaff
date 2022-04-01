@@ -58,10 +58,15 @@ export class DevDetailsComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
+    const snack = this._snackBar.open(message, action, {
       duration: 5000,
       verticalPosition: 'top'
     });
+    snack.afterDismissed().subscribe(sn => {
+      if(sn.dismissedByAction) {
+        setTimeout(()=>{this.isSubmit = false},0);
+      }
+    })
   }
 
   loadUser() {
@@ -126,6 +131,8 @@ export class DevDetailsComponent implements OnInit {
         if(response && (response.status === 200 || response.status === '200')) {
           this.openSnackBar('Request has been submitted!', 'close')
         }
+      }, error => {
+        this.openSnackBar('Something went wrong (' + error.statusText + ')', 'Retry');
       })
     }
   }
