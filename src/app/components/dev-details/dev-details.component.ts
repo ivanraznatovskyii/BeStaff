@@ -59,7 +59,6 @@ export class DevDetailsComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     const snack = this._snackBar.open(message, action, {
-      duration: 5000,
       verticalPosition: 'top'
     });
     snack.afterDismissed().subscribe(sn => {
