@@ -370,6 +370,22 @@
               </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-12">
+                <ngx-recaptcha2 #captchaElem
+                  siteKey="6LdKxTIfAAAAABKn2g9VbBPYId1PNtCV-zuf3xdy"
+                  (reset)="handleReset()"
+                  (expire)="handleExpire()"
+                  (load)="handleLoad()"
+                  (success)="handleSuccess($event)"
+                  hl="en"
+                  size="normal"
+                  type="image"
+                  theme="light"
+                  formControlName="recaptcha">
+                </ngx-recaptcha2>
+              </div>
+            </div>
             <div class="next-btn-container">
               <button mat-button
                       matStepperNext

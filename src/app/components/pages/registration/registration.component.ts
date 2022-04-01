@@ -417,4 +417,20 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  handleReset() {
+
+  }
+
+  handleExpire() {
+
+  }
+
+  handleLoad() {
+
+  }
+
+  handleSuccess(event) {
+
+  }
+
 }
