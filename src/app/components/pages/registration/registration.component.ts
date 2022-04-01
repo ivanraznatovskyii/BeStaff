@@ -151,7 +151,8 @@ export class RegistrationComponent implements OnInit {
 
     this.therdFormGroup = this.fb.group({
       EnglishListeningTest: ['', Validators.required],
-      EnglishGrammarTest: ['', Validators.required]
+      EnglishGrammarTest: ['', Validators.required],
+      recaptcha: ['', Validators.required]
     });
 
     this.isFormsLoaded = true;

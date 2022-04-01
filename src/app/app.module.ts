@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -114,6 +115,7 @@ import { EmptyPageComponent } from './components/pages/empty-page/empty-page.com
     MatStepperModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

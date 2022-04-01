@@ -219,8 +219,9 @@
               </span>
             </div>
             <label for="otherSkills">Other Skills</label>
-            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': secondFormGroup.get('otherSkills') 
-                                                                                && secondFormGroup.get('otherSkills')!.status === 'INVALID'
+            <div class="inner-input inner-input_textarea" [ngClass]="{ 'error': ((secondFormGroup.get('otherSkills') 
+                                                                                && secondFormGroup.get('otherSkills')!.status === 'INVALID') 
+                                                                                || choosedOtherSkills.length === 0)
                                                                                 && (secondFormGroup.get('otherSkills')!.touched || secondFormGroup.get('otherSkills')!.dirty) }">
               <ul class="skills-list-inner" [ngStyle]="{ 'width': 'calc(' + ulWidth() + 'px + 50px)' }">
                 <li class="skills-item-inner" *ngFor="let skill of choosedOtherSkills">
@@ -256,7 +257,7 @@
                               [ngClass]="{ 'input-error': secondFormGroup.get('Seniority') 
                                                           && secondFormGroup.get('Seniority')!.status === 'INVALID'
                                                           && (secondFormGroup.get('Seniority')!.touched || secondFormGroup.get('Seniority')!.dirty) }">
-                    <mat-option style="border: none" [value]="option.id" *ngFor="let option of seniotityList">{{ option.name }}</mat-option>
+                    <mat-option [value]="option.id" *ngFor="let option of seniotityList">{{ option.name }}</mat-option>
                   </mat-select>
                   <mat-icon matSuffix></mat-icon>
                 </div>
@@ -378,6 +379,7 @@
                   (expire)="handleExpire()"
                   (load)="handleLoad()"
                   (success)="handleSuccess($event)"
+                  [useGlobalDomain]="false"
                   hl="en"
                   size="normal"
                   type="image"
@@ -385,7 +387,7 @@
                   formControlName="recaptcha">
                 </ngx-recaptcha2>
               </div>
-            </div>
+            </div> 
             <div class="next-btn-container">
               <button mat-button
                       matStepperNext
@@ -396,7 +398,7 @@
                                   || therdFormGroup.status === 'INVALID'
                                   || choosedOtherSkills.length === 0
                                   || choosedSkills.length === 0
-                                  || disableRegisterButton">
+                                  || disableRegisterButton" >
                       Register
               </button>
             </div>
