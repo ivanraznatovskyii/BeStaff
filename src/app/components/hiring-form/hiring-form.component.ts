@@ -18,7 +18,7 @@ export class HiringFormComponent implements OnInit {
   isAgreementAccepted: boolean = false;
   isSubmit: boolean = false;
   devId: string = '';
-  submitButtonDisabled: boolean = false;
+  submitButtonDisabled: boolean = true;
 
   constructor(private fb: FormBuilder,
               private _snackBar: MatSnackBar,
@@ -62,7 +62,7 @@ export class HiringFormComponent implements OnInit {
   }
 
   sendHiringForm() {
-    this.submitButtonDisabled = true;
+    //this.submitButtonDisabled = true;
     this.isSubmit = true;
     this.hiringForm.controls['agreementAccepted'].patchValue(this.isAgreementAccepted);
     for(let item in this.hiringForm.controls) {
