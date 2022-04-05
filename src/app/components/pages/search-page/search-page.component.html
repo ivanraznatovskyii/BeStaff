@@ -27,7 +27,8 @@
                   mat-raised-button
                   *ngIf="!panelOpenState"
                   class="elipse-button"
-                  (click)="searchByStackQuery()">
+                  (click)="searchByStackQuery()"
+                  [disabled]="disableSearchButton">
             <span class="search-btn-text" id="querySearch"> Search </span><fa-icon [icon]="faSearch"> </fa-icon>
           </button>
         </div>
@@ -94,6 +95,7 @@
                 <button type="button"
                         mat-raised-button
                         class="elipse-button elipse-button_search"
+                        [disabled]="disableSearchButton"
                         (click)="searchByStackQuery()">
                   Search
                 </button>

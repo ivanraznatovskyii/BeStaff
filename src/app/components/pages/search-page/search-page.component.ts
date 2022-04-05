@@ -25,6 +25,8 @@ export class SearchPageComponent implements OnInit {
   cardsMargin: number | string = 5;
   currentCardsWidth: number = 3;
 
+  disableSearchButton: boolean = false;
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.width = event.target.innerWidth;
@@ -277,6 +279,7 @@ export class SearchPageComponent implements OnInit {
       this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);
       this.preparePaginator();
       this.isDevsLoaded = true;
+      this.disableSearchButton = false;
     })
   }
 
@@ -392,6 +395,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchByStackQuery() {
+    this.disableSearchButton = true;
     this.currentPage = 1;
     const body = {};
     if(this.searchFormGroup.status === 'VALID'
