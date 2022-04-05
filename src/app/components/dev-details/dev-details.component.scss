@@ -458,7 +458,7 @@ h3.card-heading {
 
 .cv-request-form {
   width: 370px;
-  height: 410px;
+  min-height: 410px;
   padding: 20px;
   background-color: $header-font-color;
 

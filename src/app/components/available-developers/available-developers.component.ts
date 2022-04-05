@@ -19,7 +19,8 @@ export class AvailableDevelopersComponent implements OnInit {
 
   width = window.innerWidth;
   cardsWidth = '370';
-  cardsPadding = '5px';
+  currentCardsWidth: number = 3;
+  cardsMargin: number | string = 5;
 
   devs: Developer[] = [];
   tabs: any[] = [];
@@ -89,21 +90,61 @@ export class AvailableDevelopersComponent implements OnInit {
   }
 
   changeSize() {
-    const cardWidth = document.querySelector('.dev-card')?.clientWidth || 370;
-    const twoCardsWidth = (cardWidth * 2) + 10;
-    const treCardsWidth = (cardWidth * 3) + 15;
+    //console.log(document.querySelector('.dev-card')!.clientWidth) // 370
+    const cardWidth = (document.querySelector('.dev-card')!.clientWidth + 10) || 370;
+    const twoCardsWidth = (cardWidth + 10) * 2;
+    const treCardsWidth = (cardWidth + 15) * 3;
     if( this.width < twoCardsWidth ) {
-      //console.log('case 1 = ', ((this.width - cardWidth) / 2) + 'px')
-      this.cardsPadding = ((this.width - cardWidth) / 3) + 'px';
-      this.cardsPadding = 'auto';
+      this.cardsMargin = (this.width - cardWidth) / 2;
+      this.currentCardsWidth = 1;
     } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
-      //console.log('case 2 = ', ((this.width - twoCardsWidth) / 3) + 'px')
-      this.cardsPadding = ((this.width - twoCardsWidth) / 4) + 'px';
-      this.cardsPadding = 'auto';
+      this.cardsMargin = (this.width - twoCardsWidth) / 3;
+      this.currentCardsWidth = 2;
     } else if(this.width > treCardsWidth) {
-      this.cardsPadding = 'auto';
+      this.cardsMargin = 'auto';
+      this.currentCardsWidth = 3;
     }
     //console.log(document.querySelector('.dev-card-list')?.clientWidth)
+  }
+
+  calcMarginRight(devId) {
+    const idx = this.devs.findIndex(item => item.developerId === devId);
+    if(this.currentCardsWidth === 1) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
+      return 'auto';
+    } /* else if(this.currentCardsWidth === 3 && idx % 3 === 0) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 3 && idx % 3 === 1) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 3 && idx % 3 === 2) {
+      return 0;
+    } */ else {
+      return 'auto';
+    }
+  }
+
+  calcMarginLeft(devId) {
+    const idx = this.devs.findIndex(item => item.developerId === devId);
+    if(this.currentCardsWidth === 1) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 2 && idx > 0 && idx % 2 === 0) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
+      return this.cardsMargin + 'px';
+    } /* else if(this.currentCardsWidth === 3 && idx % 3 === 0) {
+      return 0;
+    } else if(this.currentCardsWidth === 3 && idx % 3 === 1) {
+      return this.cardsMargin + 'px';
+    } else if(this.currentCardsWidth === 3 && idx % 3 === 2) {
+      return this.cardsMargin + 'px';
+    } */ else {
+      return 'auto';
+    }
   }
 
 }

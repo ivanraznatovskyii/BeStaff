@@ -63,7 +63,12 @@ export class DevDetailsComponent implements OnInit {
     });
     snack.afterDismissed().subscribe(sn => {
       if(sn.dismissedByAction) {
-        setTimeout(()=>{this.isSubmit = false},0);
+        setTimeout(()=>{
+          this.isSubmit = false;
+          this.cvForm.reset();
+          this.isAgreementAccepted = false;
+          
+        },0);
       }
     })
   }
@@ -115,6 +120,7 @@ export class DevDetailsComponent implements OnInit {
 
   submitRequestForCVDevById() {
     this.isSubmit = true;
+
     this.cvForm.controls['agreementAccepted'].patchValue(this.isAgreementAccepted);
     for(let item in this.cvForm.controls) {
       this.cvForm.controls[item].markAsTouched();
@@ -128,7 +134,7 @@ export class DevDetailsComponent implements OnInit {
     if(this.cvForm.status === 'VALID' && this.isAgreementAccepted) {
       this.devService.submitRequestForCVDevById(this.devId, body).subscribe(response => {  
         if(response && (response.status === 200 || response.status === '200')) {
-          this.openSnackBar('Request has been submitted!', 'close')
+          this.openSnackBar('Request has been submitted!', 'close');
         }
       }, error => {
         this.openSnackBar('Something went wrong (' + error.statusText + ')', 'Retry');

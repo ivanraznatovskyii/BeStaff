@@ -482,7 +482,7 @@ export class SearchPageComponent implements OnInit {
     } else if(this.currentCardsWidth === 2 && idx > 0 && idx % 2 === 0) {
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
-      return '5px';
+      return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
       return this.cardsMargin + 'px';
     } /* else if(this.currentCardsWidth === 3 && idx % 3 === 0) {

@@ -35,7 +35,10 @@
 
 
                 <div class="dev-card-list">
-                  <div class="dev-card" *ngFor="let dev of tab.devs" [ngStyle]="{ 'margin-right': cardsPadding, 'margin-left': cardsPadding }">
+                  <div class="dev-card"
+                      *ngFor="let dev of tab.devs"
+                      [ngStyle]="{ 'margin-right': calcMarginRight(dev.developerId),
+                                   'margin-left': calcMarginLeft(dev.developerId) }">
                     <div class="card-content" *ngIf="dev && dev.name">
                       <h3 class="card-heading">{{ dev.name }}</h3>
                       <div class="position">{{ dev.position }}</div>

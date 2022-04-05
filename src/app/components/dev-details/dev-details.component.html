@@ -99,8 +99,8 @@
         </div>
           <div class="bottom-block">
             <mat-checkbox formControName="agreementAccepted"
-                          [ngClass]="{ 'error-checkbox-label':
-                          cvForm.touched && isSubmit && !isAgreementAccepted }"
+                          [ngClass]="{ 'error-checkbox-label': cvForm.touched && isSubmit && !isAgreementAccepted }"
+                          [checked]="isAgreementAccepted"
                           (change)="isAgreementAccepted = !isAgreementAccepted">
               <span  class="skills">I Agree BeStaff <a href="#">Terms and Private Policy</a></span>
             </mat-checkbox>
@@ -108,7 +108,7 @@
                     mat-raised-button
                     class="elipse-button elipse-button_cv"
                     (click)="submitRequestForCVDevById()"
-                    [disabled]="isSubmit">
+                    [disabled]="isSubmit || cvForm.status === 'INVALID' || !isAgreementAccepted">
               Request CV
             </button>
           </div>
