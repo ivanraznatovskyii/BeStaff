@@ -101,7 +101,7 @@ export class AvailableDevelopersComponent implements OnInit {
       this.cardsMargin = (this.width - twoCardsWidth) / 3;
       this.currentCardsWidth = 2;
     } else if(this.width > treCardsWidth) {
-      this.cardsMargin = 'auto';
+      this.cardsMargin = 'inherit';
       this.currentCardsWidth = 3;
     }
     //console.log(document.querySelector('.dev-card-list')?.clientWidth)
@@ -114,15 +114,9 @@ export class AvailableDevelopersComponent implements OnInit {
     } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
-      return 'auto';
-    } /* else if(this.currentCardsWidth === 3 && idx % 3 === 0) {
-      return this.cardsMargin + 'px';
-    } else if(this.currentCardsWidth === 3 && idx % 3 === 1) {
-      return this.cardsMargin + 'px';
-    } else if(this.currentCardsWidth === 3 && idx % 3 === 2) {
-      return 0;
-    } */ else {
-      return 'auto';
+      return 'inherit';
+    } else {
+      return 'inherit';
     }
   }
 
@@ -136,14 +130,8 @@ export class AvailableDevelopersComponent implements OnInit {
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
       return this.cardsMargin + 'px';
-    } /* else if(this.currentCardsWidth === 3 && idx % 3 === 0) {
-      return 0;
-    } else if(this.currentCardsWidth === 3 && idx % 3 === 1) {
-      return this.cardsMargin + 'px';
-    } else if(this.currentCardsWidth === 3 && idx % 3 === 2) {
-      return this.cardsMargin + 'px';
-    } */ else {
-      return 'auto';
+    } else {
+      return 'inherit';
     }
   }
 

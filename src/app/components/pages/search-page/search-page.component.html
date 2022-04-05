@@ -159,6 +159,14 @@
                 <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
               </div>
             </div>
+            <div class="dev-card"
+                  *ngIf="showedCards.length % 3 === 1 || showedCards.length % 3 === 2"
+                  style="background-color: transparent;">
+            </div>
+            <div class="dev-card"
+                  *ngIf="showedCards.length % 3 === 2"
+                  style="background-color: transparent;">
+            </div>
           </div>
         </div>
       </div>
