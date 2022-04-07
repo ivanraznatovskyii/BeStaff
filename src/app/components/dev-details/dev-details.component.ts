@@ -104,7 +104,7 @@ export class DevDetailsComponent implements OnInit {
     this.cvForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
       surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email, emailsMatchesDirective()]],
+      email: ['', [Validators.required, Validators.pattern(/^([\w]+\.?)+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/), Validators.email, emailsMatchesDirective()]],
       agreementAccepted: [' ']
     })
   }

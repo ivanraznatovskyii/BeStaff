@@ -134,7 +134,7 @@ export class RegistrationComponent implements OnInit {
     this.firstFormGroup = this.fb.group({
       Name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
       Surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(2)]],
-      Email: ['', [Validators.required, Validators.email]],
+      Email: ['', [Validators.required, Validators.pattern(/^([\w]+\.?)+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/), Validators.email]],
       Location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z,-]*$/), Validators.minLength(2)]],
       Position: ['', [Validators.required, positionsMatchesDirective(this.positionsList)]],
       Description: ['', [Validators.required, Validators.minLength(100)]],
