@@ -22,6 +22,11 @@
 
   &_hiring-form {
     justify-content: flex-start;
+
+    @include respond-to-less-than(1000px) {
+      justify-content: center;
+    }
+
     align-items: center;
     height: 100%;
     max-width: 1200px;

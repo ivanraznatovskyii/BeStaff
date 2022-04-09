@@ -1,4 +1,7 @@
+import { AboutComponent } from './components/pages/about/about.component';
+import { BehaviorSubject, Observer } from 'rxjs';
 import { Component, OnInit, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { faCommentDots, faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -31,6 +34,34 @@ export class AppComponent {
   faArrowAltCircleUp = faArrowAltCircleUp;
   isQuestionShowed: boolean = true;
   isMinimize: boolean = false;
+
+  backgroundColor: string = 'transparent';
+  isDeviderShoved: boolean = false;
+
+
+  constructor(private router: Router){
+    /* console.log(router.url);
+    console.log(router.events); */
+    
+    router.events
+          .subscribe(event => 
+           {
+              if(event instanceof NavigationEnd) {
+                //this.currentRoute = event.url;
+                console.log(event.url);
+                switch(event.url) {
+                  case '/contacts':
+                    this.backgroundColor = 'url("../assets/bg-hiring.png")';
+                    this.isDeviderShoved = true;
+                    break;
+                  case '/career':
+                    this.isDeviderShoved = false;
+                    break;
+                  default: this.isDeviderShoved = false;
+                }
+              };
+           });
+  }
 
   getOffset(offcet: number) {
     offcet > 400 ? this.showToTopButton = true : this.showToTopButton = false;

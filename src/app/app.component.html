@@ -1,6 +1,7 @@
   <div class="app-container">
     <app-header></app-header>
     <router-outlet></router-outlet>
+    <div class="devider" *ngIf="isDeviderShoved" [ngStyle]="{ 'background-image' : backgroundColor }">{{ backgroundColor }}</div>
     <app-footer></app-footer>
 
     <div class="to-top-button" [ngClass]="{ 'show': showToTopButton }" (click)="goToTop()">

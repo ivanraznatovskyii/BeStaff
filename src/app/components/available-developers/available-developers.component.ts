@@ -100,7 +100,7 @@ export class AvailableDevelopersComponent implements OnInit {
     } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
       this.cardsMargin = (this.width - twoCardsWidth) / 3;
       this.currentCardsWidth = 2;
-    } else if(this.width > treCardsWidth) {
+    } else if(this.width > treCardsWidth || this.width > 1200) {
       this.cardsMargin = 'inherit';
       this.currentCardsWidth = 3;
     }
