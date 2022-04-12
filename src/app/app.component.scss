@@ -33,6 +33,14 @@
   display: block;
 }
 
+.q-container {
+  position: absolute;
+  //top: 0;
+  bottom: 0;
+  //left: 0;
+  right: 0;
+}
+
 .questions-button {
   position: fixed;
   display: inline-flex;

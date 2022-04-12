@@ -48,7 +48,7 @@ export class AppComponent {
            {
               if(event instanceof NavigationEnd) {
                 //this.currentRoute = event.url;
-                console.log(event.url);
+                //console.log(event.url);
                 switch(event.url) {
                   case '/contacts':
                     this.backgroundColor = 'url("../assets/bg-hiring.png")';

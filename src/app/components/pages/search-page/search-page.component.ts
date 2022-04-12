@@ -1,5 +1,5 @@
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { from, Observable, Observer } from 'rxjs';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./search-page.component.scss'],
   providers: [CommonService]
 })
-export class SearchPageComponent implements OnInit {
+export class SearchPageComponent implements OnInit, AfterContentChecked {
 
   width = window.innerWidth;
   cardsWidth = '370';
@@ -192,6 +192,12 @@ export class SearchPageComponent implements OnInit {
     //this.createRequestBody()
   }
 
+  ngAfterContentChecked() {
+    if(document.querySelector('.dev-card') && document.querySelector('.dev-card')!.clientWidth) {
+      this.changeSize();
+    }
+  }
+
   goToTop() {
     window.scrollTo(0,0);
   }
@@ -278,7 +284,7 @@ export class SearchPageComponent implements OnInit {
       this.isDevsLoaded = true;
       this.disableSearchButton = false;
     });
-    this.changeSize();
+    //this.changeSize();
   }
 
   changeCurrentPage(arg: string | number) {
@@ -442,15 +448,15 @@ export class SearchPageComponent implements OnInit {
     const twoCardsWidth = (cardWidth + 10) * 2;
     const treCardsWidth = (cardWidth + 15) * 3;
     if( this.width < twoCardsWidth ) {
-      console.log('this.width < twoCardsWidth')
+      //console.log('this.width < twoCardsWidth')
       this.cardsMargin = (this.width - cardWidth) / 2;
       this.currentCardsWidth = 1;
     } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
-      console.log('this.width > twoCardsWidth && this.width < treCardsWidth')
+      //console.log('this.width > twoCardsWidth && this.width < treCardsWidth')
       this.cardsMargin = (this.width - twoCardsWidth) / 3;
       this.currentCardsWidth = 2;
     } else if(this.width > treCardsWidth) {
-      console.log('this.width > treCardsWidth')
+      //console.log('this.width > treCardsWidth')
       this.cardsMargin = 'inherit';
       this.currentCardsWidth = 3;
     }
@@ -458,40 +464,39 @@ export class SearchPageComponent implements OnInit {
   }
 
   calcMarginRight(devId) {
-    console.log(this.currentCardsWidth)
+    //console.log(this.currentCardsWidth)
     const idx = this.showedCards.findIndex(item => item.developerId === devId);
     if(this.currentCardsWidth === 1) {
-      console.log('R1', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('R1', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
-      console.log('R2', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('R2', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
-      console.log('R3', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('R3', this.cardsMargin, this.currentCardsWidth, this.width)
       return 'inherit';
     } else {
-      console.log('R4', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('R4', this.cardsMargin, this.currentCardsWidth, this.width)
       return 'inherit';
     }
   }
 
   calcMarginLeft(devId) {
-    console.log()
     const idx = this.showedCards.findIndex(item => item.developerId === devId);
     if(this.currentCardsWidth === 1) {
-      console.log('L1', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('L1', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx > 0 && idx % 2 === 0) {
-      console.log('L2', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('L2', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 0) {
-      console.log('L3', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('L3', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else if(this.currentCardsWidth === 2 && idx % 2 === 1) {
-      console.log('L4', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('L4', this.cardsMargin, this.currentCardsWidth, this.width)
       return this.cardsMargin + 'px';
     } else {
-      console.log('L5', this.cardsMargin, this.currentCardsWidth, this.width)
+      //console.log('L5', this.cardsMargin, this.currentCardsWidth, this.width)
       return 'inherit';
     }
   }

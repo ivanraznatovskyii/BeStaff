@@ -1,27 +1,30 @@
   <div class="app-container">
     <app-header></app-header>
     <router-outlet></router-outlet>
-    <div class="devider" *ngIf="isDeviderShoved" [ngStyle]="{ 'background-image' : backgroundColor }">{{ backgroundColor }}</div>
+    <div class="devider" *ngIf="isDeviderShoved" [ngStyle]="{ 'background-image' : backgroundColor }"></div>
     <app-footer></app-footer>
 
     <div class="to-top-button" [ngClass]="{ 'show': showToTopButton }" (click)="goToTop()">
       <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
     </div>
-    <button mat-flat-button
-            class="questions-button"
-            [routerLink]="['/contacts']"
-            [ngStyle]="{ 'width': isQuestionShowed && !isMinimize ? '267px' : '54px' }">
-      <fa-icon [icon]="faComment"
-                style="font-size: 30px;"
-                [ngStyle]="{ 'margin-right': isQuestionShowed && !isMinimize ? '10px' : '0' }">
-      </fa-icon>
-      <span class="btn-text"
-            [ngStyle]="{ 'display': isQuestionShowed && !isMinimize ? 'inline-flex' : 'none' }">
-        Questions? Contac us!
-      </span>
-    </button>
-    <div class="min-container" [ngStyle]="{ 'display': isMinimize ? 'none' : 'block' }">
-      <span class="minimize-btn" (click)="questionToggle()" [ngStyle]="{ 'transform': isQuestionShowed ? 'rotate(45deg)' : 'rotate(225deg)' }"></span>
+    <div class="q-container">
+      <button mat-flat-button
+              class="questions-button"
+              [routerLink]="['/contacts']"
+              [ngStyle]="{ 'width': isQuestionShowed && !isMinimize ? '267px' : '54px' }">
+        <fa-icon [icon]="faComment"
+                  style="font-size: 30px;"
+                  [ngStyle]="{ 'margin-right': isQuestionShowed && !isMinimize ? '10px' : '0' }">
+        </fa-icon>
+        <span class="btn-text"
+              [ngStyle]="{ 'display': isQuestionShowed && !isMinimize ? 'inline-flex' : 'none' }">
+          Questions? Contac us!
+        </span>
+      </button>
+      <div class="min-container" [ngStyle]="{ 'display': isMinimize ? 'none' : 'block' }">
+        <span class="minimize-btn" (click)="questionToggle()" [ngStyle]="{ 'transform': isQuestionShowed ? 'rotate(45deg)' : 'rotate(225deg)' }"></span>
+      </div>
     </div>
+    
   </div>
 

@@ -50,8 +50,13 @@
                 <button mat-menu-item [routerLink]="['/about']">About</button>
                 <button mat-menu-item [routerLink]="['/developers']">Developers</button>
                 <button mat-menu-item>Clients</button>
+                <button mat-menu-item [matMenuTriggerFor]="mobileSubMenu">Services</button>
                 <button mat-menu-item [routerLink]="['/career']">Career</button>
                 <button mat-menu-item [routerLink]="['/contacts']">Contacts</button>
+              </mat-menu>
+              <mat-menu #mobileSubMenu="matMenu">
+                <button mat-menu-item [routerLink]="['/services']">Services</button>
+                <button mat-menu-item [routerLink]="['/owner']">Owner developed page</button>
               </mat-menu>
             </div>
           </div>

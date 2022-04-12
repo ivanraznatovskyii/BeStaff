@@ -1,6 +1,6 @@
 import { DevelopersService } from 'src/app/services/developers.service';
 import { CommonService } from './../../services/common.service.ts.service';
-import { Component, ElementRef, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, HostListener, OnInit, AfterContentChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { Developer } from 'src/app/interfaces/developer';
 
@@ -9,7 +9,7 @@ import { Developer } from 'src/app/interfaces/developer';
   templateUrl: './available-developers.component.html',
   styleUrls: ['./available-developers.component.scss']
 })
-export class AvailableDevelopersComponent implements OnInit {
+export class AvailableDevelopersComponent implements OnInit, AfterContentChecked {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -39,6 +39,12 @@ export class AvailableDevelopersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterContentChecked() {
+    if(document.querySelector('.dev-card') && document.querySelector('.dev-card')!.clientWidth) {
+      this.changeSize();
+    }
   }
 
   sortByPositions(devs: Developer[]) {
@@ -104,6 +110,7 @@ export class AvailableDevelopersComponent implements OnInit {
       this.cardsMargin = 'inherit';
       this.currentCardsWidth = 3;
     }
+    
     //console.log(document.querySelector('.dev-card-list')?.clientWidth)
   }
 

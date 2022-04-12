@@ -1,6 +1,6 @@
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { faLink, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith } from 'rxjs';
@@ -15,6 +15,7 @@ import { positionsMatchesDirective } from 'src/app/directives/positions-mathes.d
 import { Seniority } from 'src/app/interfaces/seniority';
 import { Router } from '@angular/router';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import { ReCaptcha2Component } from 'ngx-captcha';
 
 @Component({
   selector: 'app-registration',
@@ -57,6 +58,7 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('fileInput', {static: true }) fileInput: any;
   @ViewChild('stepper', {static: true }) stepper!: MatStepper;
   @ViewChild('autoOtherSkills') otherSkillsAuto!: MatAutocomplete;
+  @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
 
   skills: Skills[] = [];
   isSkillsLoaded: boolean = false;
@@ -427,11 +429,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   handleLoad() {
-
+    // console.log(this.getCaptcha());
+    // console.log(this.captchaElem);
+    // console.log(this.captchaElem.size)
   }
 
   handleSuccess(event) {
 
+  }
+
+  getCaptcha() {
+    const captcha = document.querySelector('#captcha');
+    return captcha;
   }
 
 }
