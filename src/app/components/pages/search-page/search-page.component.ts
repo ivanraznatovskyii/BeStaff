@@ -41,6 +41,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   stacksList: Stacks[] = [];
   senioritiesList: any[] = [];
   radioArr: number[] = [];
+  currentCards: any[] = [];
   cardsHeight: string = '580px';
 
   asyncTabs!: Observable<any[]>;
@@ -158,7 +159,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       //console.log(devs)
       this.devs = devs;
       //this.fakeDevs();
-      this.makeRadioArr();
+      //this.makeRadioArr();
       //this.computedPageNumber();
       this.addVisibleCards();
       // this.preparePaginator();
@@ -180,16 +181,6 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this.goToTop();
-    /* const devFromLS = localStorage.getItem('currentDev');
-    if(devFromLS) {
-      const devsId = JSON.parse(devFromLS).developerId;
-      if(devsId) {
-        this.devService.getDevById(devsId).subscribe(dev => {
-          console.log(dev)
-        })
-      }
-    } */
-    //this.createRequestBody()
   }
 
   ngAfterContentChecked() {
@@ -216,9 +207,14 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   }
 
   makeRadioArr() {
-    for(let i = 0; i < this.cardsPerPage; i++) {
-      this.radioArr.push(+(i + 1));
+    this.radioArr = [];
+    const iterator = this.showedCards.length > 0 ? Math.ceil(this.showedCards.length / this.currentCardsWidth) : 0;
+    if(iterator) {
+      for(let i = 0; i < iterator; i++) {
+        this.radioArr.push(+(i + 1));
+      }
     }
+    
   }
 
   currentYearsExp(value: number) {
@@ -271,6 +267,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   }
 
   addVisibleCards() {
+    this.currentCards = [];
     this.showedCards = [];
     this.isDevsLoaded = false;
     this.pagesNumberArray = [];
@@ -283,12 +280,18 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       this.preparePaginator();
       this.isDevsLoaded = true;
       this.disableSearchButton = false;
+      let to;
+      this.width < 1050 ? to = this.currentCardsWidth : to = this.cardsPerPage;
+      for(let i = 0; i < to; i++) {
+        this.currentCards.push(this.showedCards[i])
+      };
+      this.makeRadioArr();
     });
     //this.changeSize();
   }
 
   changeCurrentPage(arg: string | number) {
-    const el = document.querySelector('.dev-card-list') as HTMLElement;
+    //const el = document.querySelector('.dev-card-list') as HTMLElement;
     if(arg === '-') {
       if(this.currentPage > 1) {
         this.currentPage--;
@@ -304,7 +307,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       this.addVisibleCards();
     }
     this.radioItem.setValue(1);
-    el.style.transform = `translateX(0)`;
+    //el.style.transform = `translateX(0)`;
   }
 
   initSearchForm() {
@@ -339,30 +342,10 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   }
 
   change() {
-    const step = (100 / this.cardsPerPage);
-    const el = document.querySelector('.dev-card-list') as HTMLElement;
-    switch(this.radioItem.value) {
-      case 1:
-        el.style.transform = `translateX(-${step * 0}%)`;
-        break;
-      case 2:
-        el.style.transform = `translateX(-${step * 1}%)`;
-        break;
-      case 3:
-        el.style.transform = `translateX(-${step * 2}%)`;
-        break;
-      case 4:
-        el.style.transform = `translateX(-${step * 3}%)`;
-        break;
-      case 5:
-        el.style.transform = `translateX(-${step * 4}%)`;
-        break;
-      case 6:
-        el.style.transform = `translateX(-${step * 5}%)`;
-        break;
-      default: el.style.transform = 'translateX(0)';
-    }
-    el?.scrollIntoView({ block: 'center', inline: 'start' })
+    this.currentCards = [];
+    const start = this.currentCardsWidth * (this.radioItem.value - 1);
+    const finish = start + this.currentCardsWidth;
+    for(let i = start; i < finish; i++ ) { if(this.showedCards[i]) this.currentCards.push(this.showedCards[i]) };
   }
 
   onOutletLoaded(component: any) {
@@ -452,6 +435,10 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       this.cardsMargin = (this.width - cardWidth) / 2;
       this.currentCardsWidth = 1;
     } else if(this.width > twoCardsWidth && this.width < treCardsWidth ) {
+      if(this.radioItem.value > 3) {
+        this.radioItem.setValue(1);
+        this.currentCards = [this.showedCards[0], this.showedCards[1]];
+      }
       //console.log('this.width > twoCardsWidth && this.width < treCardsWidth')
       this.cardsMargin = (this.width - twoCardsWidth) / 3;
       this.currentCardsWidth = 2;
@@ -460,6 +447,9 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       this.cardsMargin = 'inherit';
       this.currentCardsWidth = 3;
     }
+
+    this.makeRadioArr();
+    if(this.width > 1050) this.currentCards = this.showedCards;
     //console.log(document.querySelector('.dev-card-list')?.clientWidth)
   }
 

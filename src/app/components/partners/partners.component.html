@@ -2,36 +2,14 @@
 <div class="partners-wrapper">
   <div class="partners-container">
     <div class="partners" >
-      <div style="width: 2px;"  id="fst">&nbsp;</div>
-      <div class="partners-item">
-        <img src="../../../assets/daxx.svg" alt="">
-      </div>
-      <div class="partners-item">
-        <img src="../../../assets/epam.svg" alt="">
-      </div>
-      <div class="partners-item">
-        <img src="../../../assets/sigma.svg" alt="">
-      </div>
-      <div class="partners-item" id="scd">
-        <img src="../../../assets/SoftServe.svg" alt="">
-      </div>
-      <div class="partners-item">
-        <img src="../../../assets/DataArt.svg" alt="">
-      </div>
-      <div class="partners-item">
-        <img src="../../../assets/ciklum.svg" alt="">
-      </div>
-      <div class="partners-item">
-        <img src="../../../assets/Luxoft.svg" alt="" id="trd">
+      <div class="partners-item" *ngFor="let item of currentItems">
+        <img src="{{ item.src }}" alt="" *ngIf="item && item.src">
       </div>
     </div>
   </div>
   <div class="slider-btns">
     <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
-      <mat-radio-button [value]="1" class="radio-item" checked></mat-radio-button>
-      <mat-radio-button [value]="2" class="radio-item"></mat-radio-button>
-      <mat-radio-button [value]="3" class="radio-item"></mat-radio-button>
-      <mat-radio-button [value]="4" class="radio-item"></mat-radio-button>
+      <mat-radio-button [value]="+item" *ngFor="let item of radioItemsList" class="radio-item" [checked]="+radioItem.value === +item"></mat-radio-button>
     </mat-radio-group>
   </div>
 </div>
