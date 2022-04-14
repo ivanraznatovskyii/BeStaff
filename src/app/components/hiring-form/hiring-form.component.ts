@@ -19,6 +19,7 @@ export class HiringFormComponent implements OnInit {
   isSubmit: boolean = false;
   devId: string = '';
   submitButtonDisabled: boolean = true;
+  isButtonDisabled: boolean = false;
 
   constructor(private fb: FormBuilder,
               private _snackBar: MatSnackBar,
@@ -37,10 +38,17 @@ export class HiringFormComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 5000,
+    const snack = this._snackBar.open(message, action, {
       verticalPosition: 'top'
     });
+    snack.afterDismissed().subscribe(sn => {
+      if(sn.dismissedByAction) {
+        setTimeout(()=>{
+          this.isSubmit = false;
+          this.isButtonDisabled = false;
+        },0);
+      }
+    })
   }
 
   initTitle() {
@@ -76,6 +84,7 @@ export class HiringFormComponent implements OnInit {
       text: this.hiringForm.get('text')!.value,
     };
     if(this.hiringForm.status === 'VALID' && this.isAgreementAccepted) {
+      this.isButtonDisabled = true;
       this.devService.submitRequestForContacts(body).subscribe(response => {
         if(response.status === 200) {
           this.openSnackBar('Request has been submitted!', 'close');
@@ -83,6 +92,8 @@ export class HiringFormComponent implements OnInit {
         } else {
           this.openSnackBar('Something went wrong!', 'close');
         }
+      }, error => {
+        this.openSnackBar(error.statusText, 'Retry');
       })
     } else if(!this.isAgreementAccepted) {
       this.openSnackBar('You need to accept BeStaff agreement and Terms of use!', 'close')

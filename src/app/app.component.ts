@@ -38,6 +38,9 @@ export class AppComponent {
   backgroundColor: string = 'transparent';
   isDeviderShoved: boolean = false;
 
+  isHiring: boolean = false;
+  isCareer: boolean = false;
+
 
   constructor(private router: Router){
     /* console.log(router.url);
@@ -47,17 +50,21 @@ export class AppComponent {
           .subscribe(event => 
            {
               if(event instanceof NavigationEnd) {
-                //this.currentRoute = event.url;
-                //console.log(event.url);
                 switch(event.url) {
                   case '/contacts':
-                    this.backgroundColor = 'url("../assets/bg-hiring.png")';
+                    this.isHiring = true;
+                    this.isCareer = false;
                     this.isDeviderShoved = true;
                     break;
                   case '/career':
-                    this.isDeviderShoved = false;
+                    this.isHiring = false;
+                    this.isCareer = true;
+                    this.isDeviderShoved = true;
                     break;
-                  default: this.isDeviderShoved = false;
+                  default: 
+                    this.isHiring = false;
+                    this.isCareer = false;
+                    this.isDeviderShoved = false;
                 }
               };
            });

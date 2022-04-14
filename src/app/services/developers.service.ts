@@ -52,7 +52,7 @@ export class DevelopersService {
 
   submitRequestForContacts(body: any): Observable<any> {
     //console.log('request must be submitted')
-    console.log('body', body)
+    //console.log('body', body)
     return this.http.post<any>(`/api/contacts`, body, {observe: 'response'});
   }
 

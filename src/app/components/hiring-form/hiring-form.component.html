@@ -78,8 +78,8 @@
           <button type="button"
                   mat-raised-button
                   class="elipse-button elipse-button_cv"
-                  (click)="sendHiringForm()"
-                  [disabled]="hiringForm.status === 'INVALID' || !isAgreementAccepted">
+                  (click)="sendHiringForm(); isButtonDisabled = true"
+                  [disabled]="hiringForm.status === 'INVALID' || !isAgreementAccepted || isButtonDisabled">
             Send request
           </button>
         </div>
