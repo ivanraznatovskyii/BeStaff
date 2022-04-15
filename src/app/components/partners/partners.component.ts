@@ -67,7 +67,9 @@ export class PartnersComponent implements OnInit {
       const last = start + count;
       this.currentItems = [];
       for(let i = start; i < last; i++ ) {
-        this.currentItems.push(this.items[i])
+        if(this.items[i]) {
+          this.currentItems.push(this.items[i])
+        }
       }
     }
   }
