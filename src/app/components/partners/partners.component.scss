@@ -12,8 +12,9 @@
   margin: 0 auto;
   text-align: -webkit-center;
   padding: 0;
-  overflow: hidden;
-  height: 80px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
 
   @include respond-to($media_large) {
     padding: 50px 0;
@@ -36,9 +37,8 @@ div.slider-btns {
 
 .partners {
   display: inline-flex;
-  justify-content: space-around;
   align-items: center;
-  width: 100%;
+  padding: 25px;
 }
 
 .partners-item {

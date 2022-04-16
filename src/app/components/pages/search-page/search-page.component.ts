@@ -341,12 +341,12 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
     this.router.navigate([`/developers/details/`], { queryParams: params });
   }
 
-  change() {
+  /* change() {
     this.currentCards = [];
     const start = this.currentCardsWidth * (this.radioItem.value - 1);
     const finish = start + this.currentCardsWidth;
     for(let i = start; i < finish; i++ ) { if(this.showedCards[i]) this.currentCards.push(this.showedCards[i]) };
-  }
+  } */
 
   onOutletLoaded(component: any) {
     //component.node = 'someValue';

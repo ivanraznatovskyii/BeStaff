@@ -25,17 +25,17 @@ export class PartnersComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.width = event.target.innerWidth;
-    this.changeSize();
+    //this.changeSize();
   }
 
   constructor() { }
   
   ngOnInit(): void {
     this.currentItems = this.items;
-    this.changeSize();
+    //this.changeSize();
   }
 
-  change() {
+  /* change() {
     this.changeSize();
   }
 
@@ -72,6 +72,6 @@ export class PartnersComponent implements OnInit {
         }
       }
     }
-  }
+  } */
 
 }
