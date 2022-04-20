@@ -40,12 +40,13 @@ export class AppComponent {
 
   isHiring: boolean = false;
   isCareer: boolean = false;
+  width: number = window.innerWidth;
 
 
   constructor(private router: Router){
     /* console.log(router.url);
     console.log(router.events); */
-    
+    this.getHorizontaleOffcet(this.width);
     router.events
           .subscribe(event => 
            {

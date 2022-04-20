@@ -102,6 +102,11 @@ export class HiringFormComponent implements OnInit {
     }
   }
 
+  trimValue(field) {
+    this.hiringForm.controls[field].setValue(this.hiringForm.controls[field].value.trim());
+    this.hiringForm.controls[field].updateValueAndValidity();
+  }
+
   showErrors(errors) {
     if(errors['pattern']) {
       return 'pattern';

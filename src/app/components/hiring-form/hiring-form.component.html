@@ -11,7 +11,8 @@
           <input matInput
                 type="text"
                 formControlName="name"
-                placeholder="Name">
+                placeholder="Name"
+                (input)="trimValue('name')">
         </div>
         <div *ngIf="hiringForm.get('name') 
               && hiringForm.get('name')!.status === 'INVALID'
@@ -26,7 +27,8 @@
           <input matInput
                 type="text"
                 formControlName="surname"
-                placeholder="Surname">
+                placeholder="Surname"
+                (input)="trimValue('surname')">
         </div>
         <div *ngIf="hiringForm.get('surname') 
               && hiringForm.get('surname')!.status === 'INVALID'
@@ -41,7 +43,8 @@
           <input matInput
                 type="text"
                 formControlName="email"
-                placeholder="Email">
+                placeholder="Email"
+                (input)="trimValue('email')">
         </div>
         <div *ngIf="hiringForm.get('email') 
               && hiringForm.get('email')!.status === 'INVALID'
