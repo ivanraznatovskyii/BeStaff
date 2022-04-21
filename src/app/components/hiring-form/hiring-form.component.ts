@@ -20,6 +20,7 @@ export class HiringFormComponent implements OnInit {
   devId: string = '';
   submitButtonDisabled: boolean = true;
   isButtonDisabled: boolean = false;
+  bgNeeds: boolean = false;
 
   constructor(private fb: FormBuilder,
               private _snackBar: MatSnackBar,
@@ -31,6 +32,9 @@ export class HiringFormComponent implements OnInit {
     this.initHiringForm();
     this.hiringFormTitle = this.initTitle();
     this.devId = this.commonService.getDev() && this.commonService.getDev().developerId ? this.commonService.getDev().developerId : null;
+    if(window.location.href.replace(window.location.origin + '/', '') !== 'contacts') {
+      this.bgNeeds = true;
+    }
   }
 
   isContactsPage() {
