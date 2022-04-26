@@ -64,9 +64,11 @@
 
 .dev-card-list {
   max-width: 100%;
-  overflow-x: scroll;
+  //overflow-x: scroll;
+  overflow: hidden;
   display: inline-flex;
-  flex-wrap: nowrap;
+  //flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 

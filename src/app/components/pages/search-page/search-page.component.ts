@@ -267,7 +267,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   }
 
   addVisibleCards() {
-    this.currentCards = [];
+    //this.currentCards = [];
     this.showedCards = [];
     this.isDevsLoaded = false;
     this.pagesNumberArray = [];
@@ -280,12 +280,12 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
       this.preparePaginator();
       this.isDevsLoaded = true;
       this.disableSearchButton = false;
-      let to;
+      /* let to;
       this.width < 1050 ? to = this.currentCardsWidth : to = this.cardsPerPage;
       for(let i = 0; i < to; i++) {
         this.currentCards.push(this.showedCards[i])
-      };
-      this.makeRadioArr();
+      }; */
+      //this.makeRadioArr();
     });
     //this.changeSize();
   }

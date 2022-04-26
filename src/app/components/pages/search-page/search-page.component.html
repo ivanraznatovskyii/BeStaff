@@ -130,10 +130,14 @@
       <mat-progress-bar mode="indeterminate" style="top: calc(100% - 5px)" *ngIf="!isDevsLoaded || !showedCards"></mat-progress-bar>
       
       <!-- cards template, should be showed in recursion -->
+      
       <div class="row search-cards-container" *ngIf="isDevsLoaded && showedCards && showedCards.length">
         <div class="col-12">
           <div class="dev-card-list">
-            <div class="dev-card"  *ngFor="let dev of showedCards">
+            <div class="dev-card"
+                  *ngFor="let dev of showedCards"
+                  [ngStyle]="{ 'margin-right': calcMarginRight(dev.developerId),
+                               'margin-left': calcMarginLeft(dev.developerId) }">
               <div class="card-content" *ngIf="dev && dev.name">
                 <h3 class="card-heading">{{ dev.name }}</h3>
                 <div class="position">{{ dev.position }}</div>
@@ -156,17 +160,19 @@
                 <button mat-raised-button class="elipse-button" (click)="navigateToCV(dev)">Open CV</button>
               </div>
             </div>
+            <div class="dev-card"
+                  *ngIf="currentCards.length === 2 || currentCards.length === 1"
+                  style="background-color: transparent;">
+            </div>
+            <div class="dev-card"
+                  *ngIf="currentCards.length === 1"
+                  style="background-color: transparent;">
+            </div>
           </div>
         </div>
       </div>
-      
       <!-- end cards template -->
 
-      <!-- <div class="slider-btns">
-        <mat-radio-group class="radio-group" [formControl]="radioItem" (change)="change()">
-          <mat-radio-button [value]="+item" class="radio-item" *ngFor="let item of radioArr" [checked]="+radioItem.value === +item"></mat-radio-button>
-        </mat-radio-group>
-      </div> -->
     </div>
   </div>
 </div>
