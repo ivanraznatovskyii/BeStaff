@@ -173,6 +173,19 @@
       </div>
       <!-- end cards template -->
 
+      <div class="row searching-results-content">        
+        <div class="col-10 searching-results-paginator" *ngIf="isDevsLoaded && showedCards && totalDevsCount && pagesCount">
+          <div class="prev-page" (click)="changeCurrentPage('-')"></div>
+            <div class="pages"
+                 [ngClass]="{ 'pages_active': num === currentPage }"
+                 *ngFor="let num of pagesNumberArray"
+                 (click)="changeCurrentPage(num)">
+              {{ num }}
+            </div>
+          <div class="next-page" (click)="changeCurrentPage('+')"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
