@@ -1,8 +1,13 @@
-  <div class="app-container" [ngClass]="{ 'hiring-bg' : isHiring, 'career-bg' : isCareer }">
-    <app-header></app-header>
-    <router-outlet></router-outlet>
-    <div class="devider" *ngIf="isDeviderShoved"></div>
-    <app-footer></app-footer>
+  <div class="app-container">
+    <div class="main-header">
+      <app-header></app-header>
+    </div>
+    <div class="main" [ngClass]="{ 'hiring-bg' : isHiring, 'career-bg' : isCareer }">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="main-footer">
+      <app-footer></app-footer>
+    </div>
 
     <div class="to-top-button" [ngClass]="{ 'show': showToTopButton }" (click)="goToTop()">
       <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
