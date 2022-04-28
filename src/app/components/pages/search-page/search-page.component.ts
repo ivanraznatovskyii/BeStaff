@@ -26,6 +26,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   currentCardsWidth: number = 3;
 
   disableSearchButton: boolean = false;
+  isFakeCardsShowed: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -42,6 +43,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   senioritiesList: any[] = [];
   radioArr: number[] = [];
   currentCards: any[] = [];
+  currentFakeCards: any[] = [];
   cardsHeight: string = '580px';
 
   asyncTabs!: Observable<any[]>;
@@ -181,6 +183,13 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this.goToTop();
+    this.fillFakeCards();
+  }
+
+  fillFakeCards() {
+    for(let i = 0; i < this.cardsPerPage; i++) {
+      this.currentFakeCards.push(i)
+    }
   }
 
   ngAfterContentChecked() {
@@ -269,11 +278,13 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
   addVisibleCards() {
     //this.currentCards = [];
     this.showedCards = [];
+    this.isFakeCardsShowed = true;
     this.isDevsLoaded = false;
     this.pagesNumberArray = [];
     let query = { 'ResultsOnPage': this.cardsPerPage, 'Page': this.currentPage, ...this.queryParams };
       this.searchService.searchByParams(query).subscribe(devs => {
       //console.log(devs);
+      this.isFakeCardsShowed = false;
       this.showedCards = devs.items;
       this.totalDevsCount = devs.totalCount;
       this.pagesCount = Math.ceil(this.totalDevsCount / this.cardsPerPage);
@@ -427,7 +438,7 @@ export class SearchPageComponent implements OnInit, AfterContentChecked {
 
   changeSize() {
     //console.log(document.querySelector('.dev-card')!.clientWidth) // 370
-    const cardWidth = (document.querySelector('.dev-card')!.clientWidth + 10) | 370;
+    const cardWidth = document.querySelector('.dev-card') ? (document.querySelector('.dev-card')!.clientWidth + 10) : 370;
     const twoCardsWidth = (cardWidth + 10) * 2;
     const treCardsWidth = (cardWidth + 15) * 3;
     if( this.width < twoCardsWidth ) {
